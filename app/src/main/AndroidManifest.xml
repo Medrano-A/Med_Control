@@ -13,6 +13,54 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".GA21090Activity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicamentoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicamentoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicamentoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicamentoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LocalMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DoctorMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicamentoMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

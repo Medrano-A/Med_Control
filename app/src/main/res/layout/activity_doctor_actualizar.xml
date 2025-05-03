@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1" >
+    <TableRow>
+
+        <TextView android:text="@string/idDoctor" />
+
+        <EditText
+            android:id="@+id/editDoctor"
+            android:inputType="text"
+            android:maxLength="7" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="@string/nombreDoctor" />
+
+        <EditText
+            android:id="@+id/editNombre"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="@string/especialidad" />
+
+        <EditText
+            android:id="@+id/editEspecialidad"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+
+    <TableRow>
+
+        <TextView android:text="@string/jvpm" />
+
+        <EditText
+            android:id="@+id/editJvpm"
+            android:inputType="text"
+            android:maxLength="4" />
+    </TableRow>
+    <TableRow>
+
+        <TextView android:text="@string/telefonoDoctor" />
+
+        <EditText
+            android:id="@+id/editTelefonoDoctor"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+    <TableRow>
+
+        <TextView android:text="@string/correo" />
+
+        <EditText
+            android:id="@+id/editCorreoDoctor"
+            android:inputType="textEmailAddress"
+            android:maxLength="30" />
+    </TableRow>
+    <TableRow>
+
+        <Button
+            android:onClick="actualizarDoctor"
+            android:text="@string/actualizar" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+    </TableRow>
+
+</TableLayout>

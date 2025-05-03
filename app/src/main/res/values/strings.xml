@@ -1,3 +1,57 @@
 <resources>
+
     <string name="app_name">FarmaciaRikas</string>
+    <string name="title_activity_alumno_menu">MedicamentoMenuActivity</string>
+    <string name="title_activity_nota_menu">DoctorMenuActivity</string>
+    <string name="title_activity_materia_menu">LocalMenuActivity</string>
+    <string name="title_activity_medicamento_insertar">MedicamentoInsertarActivity</string>
+    <string name="title_activity_medicamento_eliminar">MedicamentoEliminarActivity</string>
+    <string name="title_activity_medicamento_actualizar">MedicamentoActualizarActivity</string>
+    <string name="title_activity_medicamento_consultar">MedicamentoConsultarActivity</string>
+    <string name="title_activity_doctor_insertar">DoctorInsertarActivity</string>
+    <string name="title_activity_doctor_eliminar">DoctorEliminarActivity</string>
+    <string name="title_activity_doctor_actualizar">DoctorActualizarActivity</string>
+    <string name="title_activity_doctor_consultar">DoctorConsultarActivity</string>
+    <string name="title_activity_local_insertar">LocalInsertarActivity</string>
+    <string name="title_activity_local_eliminar">LocalEliminarActivity</string>
+    <string name="title_activity_local_actualizar">LocalActualizarActivity</string>
+    <string name="title_activity_local_consultar">LocalConsultarActivity</string>
+    <string name="medicamento_menu">Función a Ejecutar Medicamento</string>
+    <string name="doctor_menu">Función a Ejecutar Doctor</string>
+    <string name="local_menu">Función a Ejecutar Local</string>
+    <string name="insertar_registro">Insertar Registro</string>
+    <string name="eliminar_registro">Eliminar Registro</string>
+    <string name="consultar_registro">Consultar Registro</string>
+    <string name="actualizar_registro">Actualizar Registro</string>
+
+    <string name="idMedicamento">Codigo</string>
+    <string name="codElemento">Codigo Elemento</string>
+    <string name="codLaboratorio">Codigo Laboratorio</string>
+    <string name="viaAdministracion">Via de administracion</string>
+    <string name="formaFarmaceutica">Forma Farmaceutica</string>
+
+    <string name="idLaboratorio">Codigo laboratorio</string>
+    <string name="insertar">Insertar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="eliminar2">EliminarV2</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="consultar">Consultar</string>
+
+    <string name="idLocal">Codigo Local</string>
+    <string name="idUbicacion">Codigo Ubicacion</string>
+    <string name="nombreLocal">Nombre</string>
+    <string name="tipo">Tipo</string>
+    <string name="telefonoLocal">Telefono</string>
+
+    <string name="limpiar">Limpiar</string>
+
+    <string name="idDoctor">Codigo</string>
+    <string name="nombreDoctor">Nombre</string>
+
+    <string name="especialidad">Especialidad</string>
+    <string name="jvpm">JVPM</string>
+    <string name="telefonoDoctor">Telefono</string>
+    <string name="correo">Correo</string>
+
+    <string name="opciones">Opciones:</string>
 </resources>

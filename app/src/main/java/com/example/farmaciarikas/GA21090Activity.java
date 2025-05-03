@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-public class MainActivity extends ListActivity  {
-    String[] menu={"Menu GA21090","Menu MM21030","Menu MM22108","Menu GD21001", "Menu PG22010"};
+public class GA21090Activity extends ListActivity  {
+    String[] menu={"Tabla Medicamento","Tabla Doctor","Tabla Local"};
             String[]
-    activities={"GA21090Activity","MM21030Activity","MM22108Activity","GD21001Activity","PG22010Activity"};
+    activities={"MedicamentoMenuActivity","DoctorMenuActivity","LocalMenuActivity"};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
