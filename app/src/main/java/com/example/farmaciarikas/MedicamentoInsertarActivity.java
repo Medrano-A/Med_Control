@@ -45,14 +45,15 @@ public class MedicamentoInsertarActivity extends Activity {
         regInsertados=helper.insertar(medicamento);
         helper.cerrar();
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
-    }
-
-    public void limpiarTexto(View v) {
         editIdMedicamento.setText("");
         editCodElemento.setText("");
         idLaboratorio.setText("");
         editViaAdmin.setText("");
         forma.setText("");
+    }
+
+    public void limpiarTexto(View v) {
+
 
     }
 }
