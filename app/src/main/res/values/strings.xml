@@ -56,7 +56,8 @@
     <string name="opciones">Opciones:</string>
 
 
-    //strings usados por mm22108
+    <!--strings usados por mm22108-->
+    <!--strings Cliente-->
     <string name="InsertarCliente_titulo">Crear Cliente</string>
     <string name="InsertarCliente_hint_dui">Ingrese DUI</string>
     <string name="InsertarCliente_hint_nombre">Ingrese Nombre</string>
@@ -64,4 +65,46 @@
     <string name="InsertarCliente_hint_telefono">Ingrese Teléfono</string>
     <string name="InsertarCliente_hint_correo">Ingrese Correo Electrónico</string>
     <string name="InsertarCliente_btn_guardar">Guardar</string>
+
+    <string name="EliminarCliente_titulo">Eliminar Cliente</string>
+    <string name="EliminarCliente_hint_dui">Ingrese DUI</string>
+    <string name="EliminarCliente_btn_eliminar">Eliminar Cliente</string>
+
+    <string name="ConsultarCliente_titulo">Consultar Cliente</string>
+    <string name="ConsultarCliente_hint_dui">Ingrese DUI</string>
+    <string name="ConsultarCliente_hint_nombre">Nombre del Cliente</string>
+    <string name="ConsultarCliente_hint_apellido">Apellido del Cliente</string>
+    <string name="ConsultarCliente_hint_telefono">Teléfono del Cliente</string>
+    <string name="ConsultarCliente_hint_correo">Correo Buscardel Cliente</string>
+    <string name="ConsultarCliente_btn_consultar">Buscar</string>
+
+    <string name="ActualizarCliente_titulo">Actualizar Cliente</string>
+    <string name="ActualizarCliente_hint_dui">Ingrese DUI</string>
+    <string name="ActualizarCliente_hint_nombre">Nombre del Cliente</string>
+    <string name="ActualizarCliente_hint_apellido">Apellido del Cliente</string>
+    <string name="ActualizarCliente_hint_telefono">Teléfono del Cliente</string>
+    <string name="ActualizarCliente_hint_correo">Correo Buscardel Cliente</string>
+    <string name="ActualizarCliente_btn_buscar">Buscar</string>
+    <string name="ActualizarCliente_btn_actualizar">Actualizar</string>
+
+
+    <!--strings Distribuidor-->
+    <string name="InsertarDistribuidor_titulo">Crear Distribuidor</string>
+    <string name="InsertarDistribuidor_hint_dui">Ingrese DUI</string>
+    <string name="InsertarDistribuidor_btn_guardar">Guardar</string>
+
+    <string name="EliminarDistribuidor_titulo">Eliminar Distribuidor</string>
+    <string name="EliminarDistribuidor_hint_dui">Ingrese DUI</string>
+    <string name="EliminarDistribuidor_btn_eliminar">Eliminar Distribuidor</string>
+
+    <string name="ConsultarDistribuidor_titulo">Consultar Distribuidor</string>
+    <string name="ConsultarDistribuidor_hint_dui">Ingrese DUI</string>
+
+    <string name="ConsultarDistribuidor_btn_consultar">Buscar</string>
+
+    <string name="ActualizarDistribuidor_titulo">Actualizar Distribuidor</string>
+    <string name="ActualizarDistribuidor_hint_dui">Ingrese DUI</string>
+
+    <string name="ActualizarDistribuidor_btn_actualizar">Buscar</string>
+
 </resources>

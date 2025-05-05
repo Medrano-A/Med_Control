@@ -9,8 +9,8 @@ import android.widget.ListView;
 
 public class MainActivity extends ListActivity  {
     String[] menu={"Menu GA21090","Menu MM21030","Menu MM22108","Menu GD21001", "Menu PG22010"};
-            String[]
-    activities={"GA21090Activity","MM21030Activity","MM22108Activity","GD21001Activity","PG22010Activity"};
+    String[] activities={"GA21090Activity","MM21030Activity","MM22108Activity","GD21001Activity","PG22010Activity"};
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
