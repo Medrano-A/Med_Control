@@ -1,0 +1,58 @@
+<resources>
+
+    <string name="app_name">FarmaciaRikas</string>
+    <string name="title_activity_alumno_menu">MedicineMenuActivity</string>
+    <string name="title_activity_nota_menu">DoctorMenuActivity</string>
+    <string name="title_activity_materia_menu">LocalMenuActivity</string>
+    <string name="title_activity_medicamento_insertar">MedicineInsertActivity</string>
+    <string name="title_activity_medicamento_eliminar">MedicineDeleteActivity</string>
+    <string name="title_activity_medicamento_actualizar">MedicineUpdateActivity</string>
+    <string name="title_activity_medicamento_consultar">MedicineQueryActivity</string>
+    <string name="title_activity_doctor_insertar">DoctorInsertActivity</string>
+    <string name="title_activity_doctor_eliminar">DoctorDeleteActivity</string>
+    <string name="title_activity_doctor_actualizar">DoctorUpdateActivity</string>
+    <string name="title_activity_doctor_consultar">DoctorQueryActivity</string>
+    <string name="title_activity_local_insertar">LocalInsertActivity</string>
+    <string name="title_activity_local_eliminar">LocalDeleteActivity</string>
+    <string name="title_activity_local_actualizar">LocalUpdateActivity</string>
+    <string name="title_activity_local_consultar">LocalQueryActivity</string>
+
+    <string name="medicamento_menu">Select a Medicine Function</string>
+    <string name="doctor_menu">Select a Doctor Function</string>
+    <string name="local_menu">Select a Local Function</string>
+    <string name="insertar_registro">Insert Record</string>
+    <string name="eliminar_registro">Delete Record</string>
+    <string name="consultar_registro">Query Record</string>
+    <string name="actualizar_registro">Update Record</string>
+
+    <string name="idMedicamento">Code</string>
+    <string name="codElemento">Element Code</string>
+    <string name="codLaboratorio">Laboratory Code</string>
+    <string name="viaAdministracion">Route of Administration</string>
+    <string name="formaFarmaceutica">Pharmaceutical Form</string>
+
+    <string name="idLaboratorio">Laboratory Code</string>
+    <string name="insertar">Insert</string>
+    <string name="eliminar">Delete</string>
+    <string name="eliminar2">DeleteV2</string>
+    <string name="actualizar">Update</string>
+    <string name="consultar">Query</string>
+
+    <string name="idLocal">Local Code</string>
+    <string name="idUbicacion">Location Code</string>
+    <string name="nombreLocal">Name</string>
+    <string name="tipo">Type</string>
+    <string name="telefonoLocal">Phone</string>
+
+    <string name="limpiar">Clear</string>
+
+    <string name="idDoctor">Code</string>
+    <string name="nombreDoctor">Name</string>
+
+    <string name="especialidad">Specialty</string>
+    <string name="jvpm">JVPM</string>
+    <string name="telefonoDoctor">Phone</string>
+    <string name="correo">Email</string>
+
+    <string name="opciones">Options:</string>
+</resources>
