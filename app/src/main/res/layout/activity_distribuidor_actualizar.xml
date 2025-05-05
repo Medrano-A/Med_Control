@@ -21,12 +21,36 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp" />
 
-        <!--EditText de ejemplo-->
         <EditText
-            android:id="@+id/editTextDui"
+            android:id="@+id/editIdDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/ActualizarDistribuidor_hint_dui"
+            android:hint="@string/ActualizarDistribuidor_hint_id"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="username"/>
+
+        <EditText
+            android:id="@+id/editIdMarcaDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ActualizarDistribuidor_hint_marca"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes" />
+
+        <EditText
+            android:id="@+id/editNombreDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ActualizarDistribuidor_hint_nombre"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
@@ -34,12 +58,51 @@
             android:importantForAutofill="yes"
             android:autofillHints="username"/>
 
-        <!--Boton final-->
-        <Button
-            android:id="@+id/buttonActualizar"
+        <EditText
+            android:id="@+id/editTelDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ActualizarDistribuidor_btn_actualizar"
+            android:enabled="false"
+            android:hint="@string/ActualizarDistribuidor_hint_telefono"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="phone"/>
+
+        <EditText
+            android:id="@+id/editNitDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ActualizarDistribuidor_hint_nit"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints=""/>
+
+        <EditText
+            android:id="@+id/editCorreoDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ActualizarDistribuidor_hint_correo"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="emailAddress"/>
+
+        <!--Boton final-->
+        <Button
+            android:id="@+id/buttonActualizarDistribuidor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ActualizarDistribuidor_btn_buscar"
             android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>

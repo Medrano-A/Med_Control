@@ -21,13 +21,12 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp" />
 
-        <!--EditText de ejemplo-->
         <EditText
-            android:id="@+id/editTextDui"
+            android:id="@+id/editIdDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/EliminarDistribuidor_hint_dui"
-            android:inputType="text"
+            android:hint="@string/InsertarDistribuidor_hint_id"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
             android:textColorHint="?android:textColorHint"
@@ -36,7 +35,7 @@
 
         <!--Boton final-->
         <Button
-            android:id="@+id/buttonGuardar"
+            android:id="@+id/buttonEliminar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/EliminarDistribuidor_btn_eliminar"

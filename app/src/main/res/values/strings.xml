@@ -90,21 +90,35 @@
 
     <!--strings Distribuidor-->
     <string name="InsertarDistribuidor_titulo">Crear Distribuidor</string>
-    <string name="InsertarDistribuidor_hint_dui">Ingrese DUI</string>
+    <string name="InsertarDistribuidor_hint_id">Ingrese ID</string>
+    <string name="InsertarDistribuidor_hint_marca">Ingrese Marca</string>
+    <string name="InsertarDistribuidor_hint_nombre">Ingrese Nombre</string>
+    <string name="InsertarDistribuidor_hint_telefono">Ingrese Teléfono</string>
+    <string name="InsertarDistribuidor_hint_nit">Ingrese NIT</string>
+    <string name="InsertarDistribuidor_hint_correo">Ingrese Correo Electrónico</string>
     <string name="InsertarDistribuidor_btn_guardar">Guardar</string>
 
     <string name="EliminarDistribuidor_titulo">Eliminar Distribuidor</string>
-    <string name="EliminarDistribuidor_hint_dui">Ingrese DUI</string>
+    <string name="EliminarDistribuidor_hint_id">Ingrese ID</string>
     <string name="EliminarDistribuidor_btn_eliminar">Eliminar Distribuidor</string>
 
     <string name="ConsultarDistribuidor_titulo">Consultar Distribuidor</string>
-    <string name="ConsultarDistribuidor_hint_dui">Ingrese DUI</string>
-
+    <string name="ConsultarDistribuidor_hint_id">Ingrese ID</string>
+    <string name="ConsultarDistribuidor_hint_marca">Marca del Distribuidor</string>
+    <string name="ConsultarDistribuidor_hint_nombre">Nombre del Distribuidor</string>
+    <string name="ConsultarDistribuidor_hint_telefono">Teléfono del Distribuidor</string>
+    <string name="ConsultarDistribuidor_hint_nit">NIT del Distribuidor</string>
+    <string name="ConsultarDistribuidor_hint_correo">Correo Electrónico del Distribuidor</string>
     <string name="ConsultarDistribuidor_btn_consultar">Buscar</string>
 
     <string name="ActualizarDistribuidor_titulo">Actualizar Distribuidor</string>
-    <string name="ActualizarDistribuidor_hint_dui">Ingrese DUI</string>
-
-    <string name="ActualizarDistribuidor_btn_actualizar">Buscar</string>
+    <string name="ActualizarDistribuidor_hint_id">Ingrese ID</string>
+    <string name="ActualizarDistribuidor_hint_marca">Marca del Distribuidor</string>
+    <string name="ActualizarDistribuidor_hint_nombre">Nombre del Distribuidor</string>
+    <string name="ActualizarDistribuidor_hint_telefono">Teléfono del Distribuidor</string>
+    <string name="ActualizarDistribuidor_hint_nit">NIT del Distribuidor</string>
+    <string name="ActualizarDistribuidor_hint_correo">Correo Electrónico del Distribuidor</string>
+    <string name="ActualizarDistribuidor_btn_actualizar">Actualizar</string>
+    <string name="ActualizarDistribuidor_btn_buscar">Buscar</string>
 
 </resources>

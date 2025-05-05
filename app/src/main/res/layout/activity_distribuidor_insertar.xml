@@ -25,8 +25,8 @@
             android:id="@+id/editIdDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/InsertarDistribuidor_hint_dui"
-            android:inputType="text"
+            android:hint="@string/InsertarDistribuidor_hint_id"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
             android:textColorHint="?android:textColorHint"
@@ -37,19 +37,18 @@
             android:id="@+id/editIdMarcaDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/InsertarDistribuidor_hint_dui"
-            android:inputType="text"
+            android:hint="@string/InsertarDistribuidor_hint_marca"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
             android:textColorHint="?android:textColorHint"
-            android:importantForAutofill="yes"
-            android:autofillHints="username"/>
+            android:importantForAutofill="yes" />
 
         <EditText
             android:id="@+id/editNombreDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/InsertarDistribuidor_hint_dui"
+            android:hint="@string/InsertarDistribuidor_hint_nombre"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
@@ -61,37 +60,37 @@
             android:id="@+id/editTelDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/InsertarDistribuidor_hint_dui"
-            android:inputType="text"
+            android:hint="@string/InsertarDistribuidor_hint_telefono"
+            android:inputType="phone"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
             android:textColorHint="?android:textColorHint"
             android:importantForAutofill="yes"
-            android:autofillHints="username"/>
+            android:autofillHints="phone"/>
 
         <EditText
             android:id="@+id/editNitDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/InsertarDistribuidor_hint_dui"
-            android:inputType="text"
+            android:hint="@string/InsertarDistribuidor_hint_nit"
+            android:inputType="number"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
             android:textColorHint="?android:textColorHint"
             android:importantForAutofill="yes"
-            android:autofillHints="username"/>
+            android:autofillHints=""/>
 
         <EditText
             android:id="@+id/editCorreoDis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/InsertarDistribuidor_hint_dui"
-            android:inputType="text"
+            android:hint="@string/InsertarDistribuidor_hint_correo"
+            android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
             android:textColorHint="?android:textColorHint"
             android:importantForAutofill="yes"
-            android:autofillHints="username"/>
+            android:autofillHints="emailAddress"/>
 
         <!--Boton final-->
         <Button

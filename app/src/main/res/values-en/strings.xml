@@ -90,22 +90,35 @@
 
 
     <!--strings Distribuidor-->
-    <string name="InsertarDistribuidor_titulo">Create Distribuidor</string>
-    <string name="InsertarDistribuidor_hint_dui">Ingrese DUI</string>
+    <string name="InsertarDistribuidor_titulo">Create Distributor</string>
+    <string name="InsertarDistribuidor_hint_id">Enter ID</string>
+    <string name="InsertarDistribuidor_hint_marca">Enter Brand</string>
+    <string name="InsertarDistribuidor_hint_nombre">Enter Name</string>
+    <string name="InsertarDistribuidor_hint_telefono">Enter Phone Number</string>
+    <string name="InsertarDistribuidor_hint_nit">Enter NIT</string>
+    <string name="InsertarDistribuidor_hint_correo">Enter Email Address</string>
+    <string name="InsertarDistribuidor_btn_guardar">Save</string>
 
-    <string name="InsertarDistribuidor_btn_guardar">Guardar</string>
+    <string name="EliminarDistribuidor_titulo">Delete Distributor</string>
+    <string name="EliminarDistribuidor_hint_id">Enter ID</string>
+    <string name="EliminarDistribuidor_btn_eliminar">Delete Distributor</string>
 
-    <string name="EliminarDistribuidor_titulo">Delete Distribuidor</string>
-    <string name="EliminarDistribuidor_hint_dui">Ingrese DUI</string>
-    <string name="EliminarDistribuidor_btn_eliminar">Eliminar Distribuidor</string>
-
-    <string name="ConsultarDistribuidor_titulo">Read Distribuidor</string>
-    <string name="ConsultarDistribuidor_hint_dui">Ingrese DUI</string>
-
+    <string name="ConsultarDistribuidor_titulo">Read Distributor</string>
+    <string name="ConsultarDistribuidor_hint_id">Enter ID</string>
+    <string name="ConsultarDistribuidor_hint_marca">Distributor\'s Brand</string>
+    <string name="ConsultarDistribuidor_hint_nombre">Distributor\'s Name</string>
+    <string name="ConsultarDistribuidor_hint_telefono">Distributor\'s Phone Number</string>
+    <string name="ConsultarDistribuidor_hint_nit">Distributor\'s NIT</string>
+    <string name="ConsultarDistribuidor_hint_correo">Distributor\'s Email Address</string>
     <string name="ConsultarDistribuidor_btn_consultar">Buscar</string>
 
-    <string name="ActualizarDistribuidor_titulo">Update Distribuidor</string>
-    <string name="ActualizarDistribuidor_hint_dui">Ingrese DUI</string>
-
-    <string name="ActualizarDistribuidor_btn_actualizar">Buscar</string>
+    <string name="ActualizarDistribuidor_titulo">Update Distributor</string>
+    <string name="ActualizarDistribuidor_hint_id">Enter ID</string>
+    <string name="ActualizarDistribuidor_hint_marca">Distributor\'s Brand</string>
+    <string name="ActualizarDistribuidor_hint_nombre">Distributor\'s Name</string>
+    <string name="ActualizarDistribuidor_hint_telefono">Distributor\'s Phone Number</string>
+    <string name="ActualizarDistribuidor_hint_nit">Distributor\'s NIT</string>
+    <string name="ActualizarDistribuidor_hint_correo">Distributor\'s Email Address</string>
+    <string name="ActualizarDistribuidor_btn_actualizar">Update</string>
+    <string name="ActualizarDistribuidor_btn_buscar">Search</string>
 </resources>
