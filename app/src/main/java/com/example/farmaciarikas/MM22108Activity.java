@@ -13,6 +13,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MM22108Activity extends ListActivity {
+    // Tablas asignadas a MM22108
     String[] menu={"Tabla Cliente","Tabla Distribuidor","Tabla Detalle Receta"};
     String[] activities={"ClienteMenuActivity","DistribuidorMenuActivity","DetalleRecetaMenuActivity"};
     @Override
