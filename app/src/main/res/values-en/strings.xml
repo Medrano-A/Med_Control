@@ -55,4 +55,13 @@
     <string name="correo">Email</string>
 
     <string name="opciones">Options:</string>
+
+    //Strings usados por MM22108
+    <string name="InsertarCliente_titulo">Create Client</string>
+    <string name="InsertarCliente_hint_dui">Enter DUI</string>
+    <string name="InsertarCliente_hint_nombre">Enter First Name</string>
+    <string name="InsertarCliente_hint_apellido">Enter Last Name</string>
+    <string name="InsertarCliente_hint_telefono">Enter Phone Number</string>
+    <string name="InsertarCliente_hint_correo">Enter Email Address</string>
+    <string name="InsertarCliente_btn_guardar">Save</string>
 </resources>
