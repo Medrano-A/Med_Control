@@ -27,10 +27,10 @@ public class StockActivity extends AppCompatActivity {
         listViewOpciones = findViewById(R.id.listViewOpciones);
 
         List<Opcion> opciones = new ArrayList<>();
-        opciones.add(new Opcion("Crear Stock", R.drawable.ic_crearubicacion));
-        opciones.add(new Opcion("Consultar Stocks", R.drawable.ic_encontrarubicacion));
-        opciones.add(new Opcion("Actualizar Stocks", R.drawable.ic_editarubicacion));
-        opciones.add(new Opcion("Eliminar Stock", R.drawable.ic_borrarubicacion));
+        //opciones.add(new Opcion("Crear Stock", R.drawable.ic_crearubicacion));
+        //opciones.add(new Opcion("Consultar Stocks", R.drawable.ic_encontrarubicacion));
+        //opciones.add(new Opcion("Actualizar Stocks", R.drawable.ic_editarubicacion));
+        //opciones.add(new Opcion("Eliminar Stock", R.drawable.ic_borrarubicacion));
 
         OpcionAdapter adapter = new OpcionAdapter(this, opciones);
         listViewOpciones.setAdapter(adapter);
