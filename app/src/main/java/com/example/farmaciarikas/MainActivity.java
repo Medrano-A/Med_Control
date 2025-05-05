@@ -1,10 +1,12 @@
 package com.example.farmaciarikas;
+
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
 public class MainActivity extends ListActivity  {
     String[] menu={"Menu GA21090","Menu MM21030","Menu MM22108","Menu GD21001", "Menu PG22010"};
             String[]
@@ -30,5 +32,6 @@ public class MainActivity extends ListActivity  {
             }
         }else{
         }
+
     }
 }

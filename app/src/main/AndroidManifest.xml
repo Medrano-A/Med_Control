@@ -13,6 +13,33 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".ListarStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EliminarStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CrearStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EliminarUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListarUbicacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CrearUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UbicacionActivity"
+            android:exported="false" />
+        <activity
             android:name=".GA21090Activity"
             android:exported="false" />
         <activity
@@ -59,6 +86,7 @@
             android:exported="false" />
         <activity
             android:name=".MedicamentoMenuActivity"
+
             android:exported="false" />
         <activity
             android:name=".MainActivity"
