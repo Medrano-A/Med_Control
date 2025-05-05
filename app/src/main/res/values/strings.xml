@@ -121,4 +121,31 @@
     <string name="ActualizarDistribuidor_btn_actualizar">Actualizar</string>
     <string name="ActualizarDistribuidor_btn_buscar">Buscar</string>
 
+
+    <!--strings Detalle Receta-->
+    <string name="InsertarDetalleReceta_titulo">Insertar Detalle Receta</string>
+    <string name="InsertarDetalleReceta_hint_id">Ingrese ID</string>
+    <string name="InsertarDetalleReceta_hint_id_receta">Ingrese ID Receta</string>
+    <string name="InsertarDetalleReceta_hint_dosis">Ingrese Dosis</string>
+    <string name="InsertarDetalleReceta_btn_guardar">Guardar</string>
+
+    <string name="EliminarDetalleReceta_titulo">Eliminar Detalle Receta</string>
+    <string name="EliminarDetalleReceta_hint_id">Ingrese ID</string>
+    <string name="EliminarDetalleReceta_btn_eliminar">Eliminar</string>
+
+    <string name="ConsultarDetalleReceta_titulo">Consultar Detalle Receta</string>
+    <string name="ConsultarDetalleReceta_hint_id">Ingrese ID</string>
+    <string name="ConsultarDetalleReceta_hint_id_receta">ID Receta</string>
+    <string name="ConsultarDetalleReceta_hint_dosis">Dosis Detalle Receta</string>
+    <string name="ConsultarDetalleReceta_btn_consultar">Buscar</string>
+
+
+    <string name="ActualizarDetalleReceta_titulo">Actualizar Detalle Receta</string>
+    <string name="ActualizarDetalleReceta_hint_id">Ingrese ID</string>
+    <string name="ActualizarDetalleReceta_hint_id_receta">ID de Receta</string>
+    <string name="ActualizarDetalleReceta_hint_dosis">Dosis Detalle Receta</string>
+    <string name="ActualizarDetalleReceta_btn_buscar">Buscar</string>
+    <string name="ActualizarDetalleReceta_btn_actualizar">Actualizar</string>
+
+
 </resources>

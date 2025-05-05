@@ -121,4 +121,30 @@
     <string name="ActualizarDistribuidor_hint_correo">Distributor\'s Email Address</string>
     <string name="ActualizarDistribuidor_btn_actualizar">Update</string>
     <string name="ActualizarDistribuidor_btn_buscar">Search</string>
+
+    <!--strings Detalle Receta-->
+    <string name="InsertarDetalleReceta_titulo">Create Prescription Details</string>
+    <string name="InsertarDetalleReceta_hint_id">Enter ID</string>
+    <string name="InsertarDetalleReceta_hint_id_receta">Enter ID Receta</string>
+    <string name="InsertarDetalleReceta_hint_dosis">Enter Dosis</string>
+    <string name="InsertarDetalleReceta_btn_guardar">Save</string>
+
+    <string name="EliminarDetalleReceta_titulo">Delete Prescription Details</string>
+    <string name="EliminarDetalleReceta_hint_id">Enter ID</string>
+    <string name="EliminarDetalleReceta_btn_eliminar">Delete</string>
+
+    <string name="ConsultarDetalleReceta_titulo">Read Prescription Details</string>
+    <string name="ConsultarDetalleReceta_hint_id">Enter ID</string>
+    <string name="ConsultarDetalleReceta_hint_id_receta">Prescription ID</string>
+    <string name="ConsultarDetalleReceta_hint_dosis">Prescription Details Dose</string>
+    <string name="ConsultarDetalleReceta_btn_consultar">Search</string>
+
+
+    <string name="ActualizarDetalleReceta_titulo">Update Prescription Details</string>
+    <string name="ActualizarDetalleReceta_hint_id">Enter ID</string>
+    <string name="ActualizarDetalleReceta_hint_id_receta">Prescription ID </string>
+    <string name="ActualizarDetalleReceta_hint_dosis">Prescription Details Dose</string>
+    <string name="ActualizarDetalleReceta_btn_buscar">Search</string>
+    <string name="ActualizarDetalleReceta_btn_actualizar">Update</string>
 </resources>
+
