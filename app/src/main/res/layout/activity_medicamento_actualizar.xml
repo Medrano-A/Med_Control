@@ -122,16 +122,17 @@
 
     <!-- Botones alineados en la misma fila -->
     <TableRow android:layout_marginBottom="16dp" android:gravity="center_horizontal">
+
         <Button
             android:id="@+id/btnActualizar"
-            android:background="@color/material_dynamic_primary10"
+            android:layout_marginEnd="16dp"
+            android:background="@color/primary_color"
             android:onClick="actualizarMedicamento"
-            android:text="@string/actualizar"
-            android:layout_marginEnd="16dp" />
+            android:text="@string/actualizar" />
 
         <Button
             android:id="@+id/btnLimpiar"
-            android:background="@color/material_dynamic_primary10"
+            android:background="@color/primary_color"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
     </TableRow>
