@@ -54,4 +54,20 @@
     <string name="correo">Correo</string>
 
     <string name="opciones">Opciones:</string>
+    <string name="agregar_ubicacion">Agregar Ubicación</string>
+    <string name="id_de_ubicacion">ID de Ubicación</string>
+    <string name="nombre_de_la_ubicacion">Nombre de la Ubicación</string>
+    <string name="id_del_distrito">ID del Distrito</string>
+    <string name="agregar">Agregar</string>
+    <string name="buscar_ubicacion">Consultar Ubicacion</string>
+    <string name="icono_de_busqueda">icono de busqueda</string>
+    <string name="editar_ubicacion">Actualizar Ubicación</string>
+    <string name="eliminar_ubicacion">Eliminar Ubicación</string>
+    <string name="id">ID:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="distrito">Distrito:</string>
+
+    <string name="ingrese_id_de_ubicacion">Ingrese ID de ubicación</string>
+
+
 </resources>

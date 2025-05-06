@@ -14,7 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UbicacionActivity extends AppCompatActivity {
+public class MM21030Activity extends AppCompatActivity {
 
     ListView listViewOpciones;
 
@@ -26,10 +26,10 @@ public class UbicacionActivity extends AppCompatActivity {
         listViewOpciones = findViewById(R.id.listViewOpciones);
 
         List<Opcion> opciones = new ArrayList<>();
-        opciones.add(new Opcion("Crear ubicación", R.drawable.ic_crearubicacion));
-        opciones.add(new Opcion("Consultar ubicaciones", R.drawable.ic_encontrarubicacion));
-        opciones.add(new Opcion("Actualizar ubicación", R.drawable.ic_editarubicacion));
-        opciones.add(new Opcion("Eliminar ubicación", R.drawable.ic_borrarubicacion));
+        opciones.add(new Opcion("Ubicaciones", R.drawable.ic_location));
+        opciones.add(new Opcion("Stoks", R.drawable.ic_stocks));
+        opciones.add(new Opcion("Articulo", R.drawable.ic_articulo));
+
 
         OpcionAdapter adapter = new OpcionAdapter(this, opciones);
         listViewOpciones.setAdapter(adapter);
@@ -37,19 +37,17 @@ public class UbicacionActivity extends AppCompatActivity {
         listViewOpciones.setOnItemClickListener((parent, view, position, id) -> {
             switch (position) {
                 case 0:
-                    startActivity(new Intent(this, CrearUbicacionActivity.class));
+                    startActivity(new Intent(this, UbicacionActivity.class));
                     break;
                 case 1:
-                    startActivity(new Intent(this, ListarUbicacionesActivity.class));
+                    startActivity(new Intent(this, StockActivity.class));
                     break;
+                    /*
                 case 2:
                     startActivity(new Intent(this, ActualizarUbicacionActivity.class));
                     break;
-                case 3:
-                    startActivity(new Intent(this, EliminarUbicacionActivity.class));
-                    break;
+                */
             }
         });
     }
 }
-
