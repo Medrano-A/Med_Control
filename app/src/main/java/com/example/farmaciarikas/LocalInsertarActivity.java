@@ -40,8 +40,6 @@ public class LocalInsertarActivity extends Activity {
         regInsertados=helper.insertar(local);
         helper.cerrar();
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
-    }
-    public void limpiarTexto(View v) {
         editLocal.setText("");
         editNombre.setText("");
         editUbicacion.setText("");
@@ -49,4 +47,12 @@ public class LocalInsertarActivity extends Activity {
         telefonoLocal.setText("");
 
     }
+   /* public void limpiarTexto(View v) {
+        editLocal.setText("");
+        editNombre.setText("");
+        editUbicacion.setText("");
+        editTipo.setText("");
+        telefonoLocal.setText("");
+
+    }*/
 }

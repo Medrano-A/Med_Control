@@ -15,6 +15,12 @@ public class MedicamentoConsultarActivity extends Activity {
     EditText editIdLab;
     EditText editVia;
     EditText editforma;
+    EditText editNombre;
+    EditText editCantidad;
+    EditText editDescripcion;
+    EditText editPrecio;
+    EditText editUnidad;
+
 
 
     /** Called when the activity is first created. */
@@ -30,6 +36,11 @@ public class MedicamentoConsultarActivity extends Activity {
         editIdLab = (EditText) findViewById(R.id.editIdLab);
         editVia = (EditText) findViewById(R.id.editVia);
         editforma = (EditText) findViewById(R.id.editForma);
+        editNombre =( EditText) findViewById(R.id.ediNombre);
+        editCantidad =(EditText) findViewById(R.id.editCantidad);
+        editDescripcion = (EditText) findViewById(R.id.editDescripcion);
+        editPrecio = (EditText) findViewById(R.id.editPrecio);
+        editUnidad = (EditText) findViewById(R.id.editUnidad);
 
     }
 
@@ -49,6 +60,12 @@ public class MedicamentoConsultarActivity extends Activity {
             editIdLab.setText(String.valueOf(medicamento.getIdLaboratorio()));
             editVia.setText(medicamento.getViaDeAdministracion());
             editforma.setText(medicamento.getFormaFarmaceutica());
+            editNombre.setText(medicamento.getNombre());
+            editCantidad.setText(String.valueOf(medicamento.getCantidad()));
+            editDescripcion.setText(medicamento.getDescripcion());
+            editPrecio.setText(String.valueOf(medicamento.getPrecioUni()));
+            editUnidad.setText(medicamento.getUnidades());
+
 
         }
     }
@@ -58,5 +75,10 @@ public class MedicamentoConsultarActivity extends Activity {
         editIdLab.setText("");
         editVia.setText("");
         editforma.setText("");
+        editUnidad.setText("");
+        editPrecio.setText("");
+        editNombre.setText("");
+        editCantidad.setText("");
+        editDescripcion.setText("");
     }
 }

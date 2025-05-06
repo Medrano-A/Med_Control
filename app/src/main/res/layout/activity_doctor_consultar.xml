@@ -1,78 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/idDoctor"/>
+        android:text="@string/idDoctor"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/editDoctor"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="3"/>
+        android:maxLength="3"
+        android:layout_marginBottom="16dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="start|center_vertical"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/botonConsultar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/material_dynamic_primary10"
+            android:onClick="consultarDoctor"
             android:text="@string/consultar"
-            android:onClick="consultarDoctor"/>
+            android:layout_marginEnd="8dp" />
 
         <Button
             android:id="@+id/botonLimpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiarTexto"/>
-
+            android:background="@color/material_dynamic_primary10"
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
     </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nombreDoctor" />
+        android:text="@string/nombreDoctor"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/editNombreDoctor"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled ="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/especialidad" />
-
-    <EditText
-        android:id="@+id/editEspecialidad"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
-        android:longClickable="false"/>
+        android:longClickable="false"
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/jvpm" />
+        android:text="@string/especialidad"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/editEspecialidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:enabled="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:cursorVisible="false"
+        android:longClickable="false"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/jvpm"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/editJvpm"
@@ -83,12 +97,14 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:inputType="text"
-        android:longClickable="false" />
+        android:longClickable="false"
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/telefonoDoctor" />
+        android:text="@string/telefonoDoctor"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/editTelefonoDoctor"
@@ -99,11 +115,14 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:inputType="text"
-        android:longClickable="false" />
+        android:longClickable="false"
+        android:layout_marginBottom="16dp"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/correo" />
+        android:text="@string/correo"
+        android:layout_marginBottom="8dp"/>
 
     <EditText
         android:id="@+id/editCorreoDoctor"
@@ -114,6 +133,6 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:inputType="text"
-        android:longClickable="false" />
-
+        android:longClickable="false"
+        android:layout_marginBottom="16dp"/>
 </LinearLayout>

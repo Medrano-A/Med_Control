@@ -1,60 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="30dip"
-    android:stretchColumns="1" >
+    android:paddingTop="30dp"
+    android:padding="16dp"
+    android:stretchColumns="1">
+
     <TableRow>
-        <TextView android:text="@string/idDoctor"/>
+        <TextView
+            android:text="@string/idDoctor"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editIdDoc"
             android:inputType="text"
-            android:maxLength="3" />
+            android:maxLength="3"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/nombreDoctor" />
+        <TextView
+            android:text="@string/nombreDoctor"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editNombreDoctor"
             android:inputType="text"
-            android:maxLength="30" />
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/especialidad" />
+        <TextView
+            android:text="@string/especialidad"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editEspecialidad"
             android:inputType="text"
-            android:maxLength="30" />
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/jvpm" />
+        <TextView
+            android:text="@string/jvpm"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editJvpm"
             android:inputType="text"
-            android:maxLength="4" />
+            android:maxLength="4"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/telefonoDoctor" />
+        <TextView
+            android:text="@string/telefonoDoctor"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editTelefonoDoctor"
             android:inputType="text"
-            android:maxLength="8" />
+            android:maxLength="8"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/correo" />
+        <TextView
+            android:text="@string/correo"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editCorreoDoctor"
             android:inputType="textEmailAddress"
-            android:maxLength="30" />
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/opciones" />
+        <TextView
+            android:text="@string/opciones"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
         <Button
+            android:background="@color/material_dynamic_primary10"
             android:onClick="insertarDoctor"
-            android:text="@string/insertar" />
-        <Button
-            android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
+            android:text="@string/insertar"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp" />
     </TableRow>
+
 </TableLayout>

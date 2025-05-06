@@ -32,8 +32,7 @@ public class LocalEliminarActivity extends Activity {
         regEliminadas=controlhelper.eliminar(local);
         controlhelper.cerrar();
         Toast.makeText(this, regEliminadas, Toast.LENGTH_SHORT).show();
+        editLocal.setText("");
     }
-    public void limpiar(View v){
-       editLocal.setText("");
-    }
+
 }
