@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class ControlDBFarmacia {
 
@@ -16,6 +17,9 @@ public class ControlDBFarmacia {
             {"idMedicamento", "codElemento", "idLaboratorio", "viaDeAdministracion", "formaFarmaceutica"};
     private static final String[] camposLocal = new String[]
             {"idLocal", "idUbicacion", "nombreLocal", "tipoLocal", "telefonoLocal"};
+    private static final String[] camposElemento = new String[] {
+            "codElemento", "nombre", "cantidad", "descripcion", "precioUni", "unidades"
+    };
 
     private final Context context;
     private DatabaseHelper DBHelper;
@@ -48,6 +52,17 @@ public class ControlDBFarmacia {
                         "telefonoDoctor VARCHAR(8)," +
                         "correoDoctor VARCHAR(30));");
 
+                /*TABLA ELEMENTO*/
+
+                db.execSQL("CREATE TABLE elemento (\n" +
+                        "    codElemento INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                        "    nombre VARCHAR(30) NOT NULL,\n" +
+                        "    cantidad INTEGER,\n" +
+                        "    descripcion TEXT,\n" +
+                        "    precioUni REAL,\n" +
+                        "    unidades VARCHAR(5)\n" +
+                        ");");
+
                 /*TABLA MEDICAMENTO*/
 
                 db.execSQL("CREATE TABLE medicamento(idMedicamento VARCHAR(4) NOT NULL PRIMARY KEY," +
@@ -55,6 +70,8 @@ public class ControlDBFarmacia {
                         "idLaboratorio INTEGER NOT NULL," +
                         "viaDeAdministracion VARCHAR(32)," +
                         "formaFarmaceutica VARCHAR(32));");
+
+
 
                 /*TABLA LOCAL*/
 
@@ -170,15 +187,29 @@ public class ControlDBFarmacia {
     public String insertar(Medicamento medicamento) {
         String regInsertados = "Registro Insertado Nº= ";
         long contador = 0;
+        long codElementoGenerado;
 
+        // 1. Insertar en la tabla elemento (sin codElemento)
+        ContentValues valoresElemento = new ContentValues();
+        valoresElemento.put("nombre", medicamento.getNombre());
+        valoresElemento.put("cantidad", medicamento.getCantidad());
+        valoresElemento.put("descripcion", medicamento.getDescripcion());
+        valoresElemento.put("precioUni", medicamento.getPrecioUni());
+        valoresElemento.put("unidades", medicamento.getUnidades());
 
-            ContentValues medicamentos = new ContentValues();
-            medicamentos.put("idMedicamento", medicamento.getIdMedicamento());
-            medicamentos.put("codElemento", medicamento.getCodElemento());
-            medicamentos.put("idLaboratorio", medicamento.getIdLaboratorio());
-            medicamentos.put("viaDeAdministracion", medicamento.getViaDeAdministracion());
-            medicamentos.put("formaFarmaceutica", medicamento.getFormaFarmaceutica());
-            contador = db.insert("medicamento", null, medicamentos);
+        codElementoGenerado = db.insert("elemento", null, valoresElemento);
+        if (codElementoGenerado == -1) {
+            return " Error al insertar en la tabla 'elemento'.";
+        }
+
+        // 2.Insertar un medicamento
+        ContentValues medicamentos = new ContentValues();
+        medicamentos.put("idMedicamento", medicamento.getIdMedicamento());
+        medicamentos.put("codElemento", codElementoGenerado);
+        medicamentos.put("idLaboratorio", medicamento.getIdLaboratorio());
+        medicamentos.put("viaDeAdministracion", medicamento.getViaDeAdministracion());
+        medicamentos.put("formaFarmaceutica", medicamento.getFormaFarmaceutica());
+        contador = db.insert("medicamento", null, medicamentos);
 
 
         if (contador == -1 || contador == 0) {
@@ -189,19 +220,47 @@ public class ControlDBFarmacia {
 
         return regInsertados;
     }
-    public String actualizar(Medicamento medicamento) {
-
-        String[] id = {medicamento.getIdMedicamento()};
-        ContentValues cv = new ContentValues();
-        cv.put("codElemento", medicamento.getCodElemento());
-        cv.put("idLaboratorio", medicamento.getIdLaboratorio());
-        cv.put("viaDeAdministracion", medicamento.getViaDeAdministracion());
-        cv.put("formaFarmaceutica", medicamento.getFormaFarmaceutica());
-
-        db.update("medicamento", cv, "idMedicamento = ?", id);
-        return "Registro Actualizado Correctamente";
-
+    public int obtenerCodElementoPorIdMedicamento(String idMedicamento) {
+        int codElemento = -1;
+        Cursor cursor = db.rawQuery("SELECT codElemento FROM medicamento WHERE idMedicamento = ?", new String[]{idMedicamento});
+        if (cursor.moveToFirst()) {
+            codElemento = cursor.getInt(0);  // Este es el codElemento relacionado con el medicamento
+        }
+        cursor.close();
+        return codElemento;
     }
+    public boolean actualizarElemento(Medicamento medicamento) {
+        ContentValues valores = new ContentValues();
+        valores.put("nombre", medicamento.getNombre());
+        valores.put("cantidad", medicamento.getCantidad());
+        valores.put("descripcion", medicamento.getDescripcion());
+        valores.put("precioUni", medicamento.getPrecioUni());
+        valores.put("unidades", medicamento.getUnidades());
+
+        String where = "codElemento=?";
+        String[] whereArgs = {String.valueOf(medicamento.getCodElemento())};
+
+        int filasAfectadas = db.update("elemento", valores, where, whereArgs);
+        return filasAfectadas > 0;  // Si se actualizaron filas, es verdadero
+    }
+
+
+    public boolean actualizarMedicamento(Medicamento medicamento) {
+        ContentValues valores = new ContentValues();
+        valores.put("idLaboratorio", medicamento.getIdLaboratorio());
+        valores.put("viaDeAdministracion", medicamento.getViaDeAdministracion());
+        valores.put("formaFarmaceutica", medicamento.getFormaFarmaceutica());
+
+        String where = "idMedicamento=?";
+        String[] whereArgs = {medicamento.getIdMedicamento()};
+
+        int filasAfectadas = db.update("medicamento", valores, where, whereArgs);
+        return filasAfectadas > 0;  // Si se actualizaron filas, es verdadero
+    }
+
+
+
+
     public String eliminar(Medicamento medicamento) {
         String regAfectados = "filas afectadas= ";
         int contador = 0;
@@ -209,21 +268,41 @@ public class ControlDBFarmacia {
         regAfectados += contador;
         return regAfectados;
     }
-    public Medicamento consultarMedicamento(String idMedicamento) {
-        String[] id = {idMedicamento};
-        Cursor cursor = db.query("medicamento", camposMedicamento, "idMedicamento = ?", id, null, null, null, null);
+    public Medicamento consultarMedicamento(String idMed) {
+        db = DBHelper.getReadableDatabase();
+
+
+        String query = "SELECT m.idMedicamento, m.codElemento, m.idLaboratorio, " +
+                "m.viaDeAdministracion, m.formaFarmaceutica, " +
+                "e.nombre, e.cantidad, e.descripcion, e.precioUni, e.unidades " +
+                "FROM medicamento m INNER JOIN elemento e ON m.codElemento = e.codElemento " +
+                "WHERE m.idMedicamento = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{idMed});
+
+        Medicamento medicamento = null;
+
         if (cursor.moveToFirst()) {
-            Medicamento medicamento = new Medicamento();
+            medicamento = new Medicamento();
             medicamento.setIdMedicamento(cursor.getString(0));
             medicamento.setCodElemento(cursor.getInt(1));
             medicamento.setIdLaboratorio(cursor.getInt(2));
             medicamento.setViaDeAdministracion(cursor.getString(3));
             medicamento.setFormaFarmaceutica(cursor.getString(4));
-            return medicamento;
-        } else {
-            return null;
+
+            // Campos heredados de Elemento
+            medicamento.setNombre(cursor.getString(5));
+            medicamento.setCantidad(cursor.getInt(6));
+            medicamento.setDescripcion(cursor.getString(7));
+            medicamento.setPrecioUni(cursor.getDouble(8));
+            medicamento.setUnidades(cursor.getString(9));
         }
+
+        cursor.close();
+        return medicamento;
     }
+
+
     /*-----------------------------------------------TABLA LOCAL----------------------------------------------------------*/
     public String insertar(Local local) {
         String regInsertados = "Registro Insertado Nº= ";

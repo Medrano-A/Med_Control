@@ -17,17 +17,76 @@
             android:maxLength="7" />
     </TableRow>
 
-    <TableRow android:layout_marginBottom="8dp">
+    <TableRow
+        android:layout_marginBottom="16dp">
         <TextView
-            android:text="@string/codElemento"
+            android:text="@string/nombreMedicamento"
             android:layout_marginEnd="8dp" />
-
         <EditText
-            android:id="@+id/editCodEle"
+            android:id="@+id/editNombreMedicamento"
             android:inputType="text"
-            android:maxLength="30" />
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
     </TableRow>
-
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/cantidad"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editCantidad"
+            android:inputType="number"
+            android:maxLength="10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/descripcion"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editDescripcion"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/precioUni"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editPrecio"
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/unidad"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editUnidad"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
     <TableRow android:layout_marginBottom="8dp">
         <TextView
             android:text="@string/idLaboratorio"

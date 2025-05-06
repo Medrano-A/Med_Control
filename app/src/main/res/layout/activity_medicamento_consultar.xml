@@ -1,118 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/idMedicamento"
-        android:layout_marginBottom="4dp" />
-
-    <EditText
-        android:id="@+id/editMed"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:maxLength="3"
-        android:layout_marginBottom="12dp" />
-
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
-        android:layout_marginBottom="16dp">
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/botonConsultar"
+        <!-- ID Medicamento -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/material_dynamic_primary10"
-            android:onClick="consultarMedicamento"
-            android:text="@string/consultar"
-            android:layout_marginEnd="16dp" />
+            android:text="@string/idMedicamento"
+            android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/botonLimpiar"
+        <EditText
+            android:id="@+id/editMed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="3"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Botones -->
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/botonConsultar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/material_dynamic_primary10"
+                android:onClick="consultarMedicamento"
+                android:text="@string/consultar"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/botonLimpiar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/material_dynamic_primary10"
+                android:onClick="limpiarTexto"
+                android:text="@string/limpiar" />
+        </LinearLayout>
+
+        <!-- Código del elemento -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/material_dynamic_primary10"
-            android:onClick="limpiarTexto"
-            android:text="@string/limpiar" />
+            android:text="@string/codElemento"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editcodEle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:longClickable="false"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Nombre del medicamento -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nombreMedicamento"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/ediNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="30"
+            android:enabled="false"
+            android:layout_marginBottom="16dp" />
+
+        <!-- ID laboratorio -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/idLaboratorio"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editIdLab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:longClickable="false"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Vía de administración -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/viaAdministracion"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editVia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:longClickable="false"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Forma farmacéutica -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/formaFarmaceutica"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editForma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:longClickable="false"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Cantidad -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cantidad"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editCantidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="10"
+            android:enabled="false"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Descripción -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/descripcion"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="30"
+            android:enabled="false"
+            android:layout_marginBottom="16dp"
+            android:minHeight="80dp"  />
+
+        <!-- Precio unitario -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/precioUni"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editPrecio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:enabled="false"
+            android:maxLength="3"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Unidad -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unidad"
+            android:layout_marginBottom="8dp" />
+
+        <EditText
+            android:id="@+id/editUnidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLength="30"
+            android:enabled="false"
+            android:layout_marginBottom="16dp" />
+
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/codElemento"
-        android:layout_marginBottom="4dp" />
-
-    <EditText
-        android:id="@+id/editcodEle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/idLaboratorio"
-        android:layout_marginBottom="4dp" />
-
-    <EditText
-        android:id="@+id/editIdLab"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/viaAdministracion"
-        android:layout_marginBottom="4dp" />
-
-    <EditText
-        android:id="@+id/editVia"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false"
-        android:layout_marginBottom="12dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/formaFarmaceutica"
-        android:layout_marginBottom="4dp" />
-
-    <EditText
-        android:id="@+id/editForma"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false" />
-</LinearLayout>
+</ScrollView>

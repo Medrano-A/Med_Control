@@ -26,6 +26,11 @@
 
     <string name="idMedicamento">Codigo</string>
     <string name="codElemento">Codigo Elemento</string>
+    <string name="nombreMedicamento">Nombre medicamento</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="descripcion">Descripción</string>
+    <string name="precioUni">Precio Unitario</string>
+    <string name="unidad">Unidad</string>
     <string name="codLaboratorio">Codigo Laboratorio</string>
     <string name="viaAdministracion">Via de administracion</string>
     <string name="formaFarmaceutica">Forma Farmaceutica</string>
