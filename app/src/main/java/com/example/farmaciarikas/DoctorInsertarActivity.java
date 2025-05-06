@@ -45,14 +45,15 @@ public class DoctorInsertarActivity extends Activity {
         regInsertados=helper.insertar(doctor);
         helper.cerrar();
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
-    }
-
-    public void limpiarTexto(View v) {
         editIdDoctor.setText("");
         editNombreDoctor.setText("");
         editEspecialidad.setText("");
         editJvpm.setText("");
         telefonoDoctor.setText("");
         correoDoctor.setText("");
+    }
+
+    public void limpiarTexto(View v) {
+
     }
 }

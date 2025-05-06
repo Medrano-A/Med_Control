@@ -1,6 +1,6 @@
 package com.example.farmaciarikas;
 
-public class Medicamento {
+public class Medicamento extends Elemento{
 
     private String idMedicamento;
     private int codElemento;

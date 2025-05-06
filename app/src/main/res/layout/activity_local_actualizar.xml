@@ -2,56 +2,85 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="10dip"
-    android:stretchColumns="1" >
+    android:paddingTop="10dp"
+    android:stretchColumns="1"
+    android:padding="16dp">
+
     <TableRow>
-        <TextView android:text="@string/idLocal" />
+        <TextView
+            android:text="@string/idLocal"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editLocal"
             android:inputType="text"
-            android:maxLength="4" />
+            android:maxLength="4"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/idUbicacion" />
+        <TextView
+            android:text="@string/idUbicacion"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editUbicacion"
             android:inputType="text"
-            android:maxLength="30" />
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/nombreLocal" />
+        <TextView
+            android:text="@string/nombreLocal"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editNombre"
             android:inputType="text"
-            android:maxLength="5" />
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
     </TableRow>
 
     <TableRow>
-        <TextView android:text="@string/tipo" />
-
+        <TextView
+            android:text="@string/tipo"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editTipo"
-            android:inputType="text" />
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
     <TableRow>
-        <TextView android:text="@string/telefonoLocal" />
+        <TextView
+            android:text="@string/telefonoLocal"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
         <EditText
             android:id="@+id/editTelefono"
             android:inputType="text"
-            android:maxLength="8" />
+            android:maxLength="8"
+            android:layout_marginBottom="8dp" />
     </TableRow>
+
+    <!-- Botones en la misma fila -->
     <TableRow>
 
         <Button
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/material_dynamic_primary10"
             android:onClick="actualizarLocal"
             android:text="@string/actualizar" />
-    </TableRow>
-
-    <TableRow>
 
         <Button
+            android:layout_marginTop="12dp"
+            android:background="@color/material_dynamic_primary10"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
     </TableRow>
 
 </TableLayout>
+

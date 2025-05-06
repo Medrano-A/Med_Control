@@ -10,10 +10,15 @@ public class MedicamentoActualizarActivity extends Activity {
     ControlDBFarmacia helper;
 
     EditText editIdMedicamento;
-    EditText codElemento;
     EditText editIdLab;
     EditText editVia;
-    EditText editforma;
+    EditText editForma;
+    EditText editNombre;
+    EditText editCantidad;
+    EditText editDescripcion;
+    EditText editPrecio;
+    EditText editUnidad;
+
     /** Called when the activity is first created. */
     @SuppressLint("MissingInflatedId")
     @Override
@@ -21,32 +26,82 @@ public class MedicamentoActualizarActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicamento_actualizar);
         helper = new ControlDBFarmacia(this);
-        editIdMedicamento = (EditText) findViewById(R.id.editIdMed);
-        codElemento = (EditText) findViewById(R.id.editCodEle);
-        editIdLab = (EditText) findViewById(R.id.editIdLab);
-        editVia = (EditText) findViewById(R.id.editVia);
-        editforma = (EditText) findViewById(R.id.editForma);
 
+        // Inicializando los campos EditText
+        editIdMedicamento = findViewById(R.id.editIdMed);
+        editIdLab = findViewById(R.id.editIdLab);
+        editVia = findViewById(R.id.editVia);
+        editForma = findViewById(R.id.editForma);
+        editNombre = findViewById(R.id.editNombreMedicamento);
+        editCantidad = findViewById(R.id.editCantidad);
+        editDescripcion = findViewById(R.id.editDescripcion);
+        editPrecio = findViewById(R.id.editPrecio);
+        editUnidad = findViewById(R.id.editUnidad);
     }
+
     public void actualizarMedicamento(View v) {
-        Medicamento medicamento = new Medicamento();
-        medicamento.setIdMedicamento(editIdMedicamento.getText().toString());
-        medicamento.setCodElemento(Integer.parseInt(codElemento.getText().toString()));
-        medicamento.setIdLaboratorio(Integer.parseInt(editIdLab.getText().toString()));
-        medicamento.setViaDeAdministracion(editVia.getText().toString());
-        medicamento.setFormaFarmaceutica(editforma.getText().toString());
+        // 1. Obtener ID del medicamento ingresado
+        String idMedicamento = editIdMedicamento.getText().toString().trim();
 
+        // Validar que se haya ingresado el ID del medicamento
+        if (idMedicamento.isEmpty()) {
+            Toast.makeText(this, "Por favor ingresa el ID del medicamento", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 2. Obtener el codElemento de la base de datos
         helper.abrir();
-        String estado = helper.actualizar(medicamento);
+        int codElem = helper.obtenerCodElementoPorIdMedicamento(idMedicamento);
         helper.cerrar();
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+
+        // Si no se encuentra el medicamento, mostrar un mensaje y salir
+        if (codElem == -1) {
+            Toast.makeText(this, "No se encontró el medicamento con ese ID", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // 3. Construir objeto Medicamento con los valores ingresados
+        Medicamento medicamento = new Medicamento();
+        medicamento.setIdMedicamento(idMedicamento);  // El ID del medicamento
+        medicamento.setCodElemento(codElem);  // El codElemento relacionado
+        medicamento.setIdLaboratorio(Integer.parseInt(editIdLab.getText().toString()));  // Obtener el ID del laboratorio
+        medicamento.setViaDeAdministracion(editVia.getText().toString());  // Obtener la vía de administración
+        medicamento.setFormaFarmaceutica(editForma.getText().toString());  // Obtener la forma farmacéutica
+        medicamento.setNombre(editNombre.getText().toString());  // Obtener el nombre del medicamento
+        medicamento.setCantidad(Integer.parseInt(editCantidad.getText().toString()));  // Obtener la cantidad
+        medicamento.setDescripcion(editDescripcion.getText().toString());  // Obtener la descripción
+        medicamento.setPrecioUni(Double.parseDouble(editPrecio.getText().toString()));  // Obtener el precio unitario
+        medicamento.setUnidades(editUnidad.getText().toString());  // Obtener la unidad
+
+        // 4. Actualizar primero el Elemento, luego el Medicamento
+        helper.abrir();
+        boolean elementoActualizado = helper.actualizarElemento(medicamento);  // Actualizar Elemento
+        boolean medicamentoActualizado = helper.actualizarMedicamento(medicamento);  // Actualizar Medicamento
+        helper.cerrar();
+
+        if (elementoActualizado && medicamentoActualizado) {
+            Toast.makeText(this, "Medicamento y Elemento actualizados correctamente", Toast.LENGTH_SHORT).show();
+        } else if (!elementoActualizado && !medicamentoActualizado) {
+            Toast.makeText(this, "Error: no se actualizó ni el Elemento ni el Medicamento", Toast.LENGTH_LONG).show();
+        } else if (!elementoActualizado) {
+            Toast.makeText(this, "Error al actualizar el Elemento", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Error al actualizar el Medicamento", Toast.LENGTH_LONG).show();
+        }
+
     }
+
+
+
     public void limpiarTexto(View v) {
         editIdMedicamento.setText("");
-        codElemento.setText("");
+        editDescripcion.setText("");
         editIdLab.setText("");
         editVia.setText("");
-        editforma.setText("");
+        editForma.setText("");
+        editNombre.setText("");
+        editPrecio.setText("");
+        editCantidad.setText("");
 
     }
 }

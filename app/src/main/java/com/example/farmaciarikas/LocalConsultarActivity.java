@@ -41,9 +41,16 @@ public class LocalConsultarActivity extends Activity {
 
         helper.cerrar();
 
-        if(local == null)
+        if(local == null) {
             Toast.makeText(this, "Local no registrado",
                     Toast.LENGTH_LONG).show();
+        }else
+        {
+            editIdUbicacion.setText(String.valueOf(local.getIdUbicacion()));
+            editNombre.setText(local.getNombreLocal());
+            editTipo.setText(local.getTipoLocal());
+            editTelefono.setText(local.getTelefonoLocal());
+        }
 
     }
 
