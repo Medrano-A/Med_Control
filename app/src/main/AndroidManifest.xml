@@ -13,6 +13,54 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".TransaccionActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MarcaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MarcaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MarcaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MarcaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaboratorioActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaboratorioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaboratorioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaboratorioInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GD21001Activity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MarcaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LaboratorioMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListarStockActivity"
             android:exported="false" />
         <activity
@@ -134,7 +182,6 @@
             android:exported="false" />
         <activity
             android:name=".MedicamentoMenuActivity"
-
             android:exported="false" />
         <activity
             android:name=".MainActivity"
