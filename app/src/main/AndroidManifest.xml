@@ -13,6 +13,81 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".ListarStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EliminarStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CrearStockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".StockActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EliminarUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListarUbicacionesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CrearUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".UbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleRecetaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleRecetaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleRecetaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleRecetaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistribuidorActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistribuidorConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistribuidorEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistribuidorInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClienteActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClienteConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClienteEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClienteInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleRecetaMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistribuidorMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ClienteMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MM22108Activity"
+            android:exported="false" />
+        <activity
             android:name=".GA21090Activity"
             android:exported="false" />
         <activity
@@ -59,6 +134,7 @@
             android:exported="false" />
         <activity
             android:name=".MedicamentoMenuActivity"
+
             android:exported="false" />
         <activity
             android:name=".MainActivity"

@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">FarmaciaRikas</string>
+    <string name="app_name" translatable="false">FarmaciaRikas</string>
     <string name="title_activity_alumno_menu">MedicamentoMenuActivity</string>
     <string name="title_activity_nota_menu">DoctorMenuActivity</string>
     <string name="title_activity_materia_menu">LocalMenuActivity</string>
@@ -33,7 +33,7 @@
     <string name="unidad">Unidad</string>
     <string name="codLaboratorio">Codigo Laboratorio</string>
     <string name="viaAdministracion">Via de administracion</string>
-    <string name="formaFarmaceutica">Forma Farmaceutica</string>
+    <string name="formaFarmaceutica">Forma <Farmaceut></Farmaceut>ica</string>
 
     <string name="idLaboratorio">Codigo laboratorio</string>
     <string name="insertar">Insertar</string>
