@@ -134,10 +134,14 @@
     <string name="InsertarDistribuidor_hint_nit">Ingrese NIT</string>
     <string name="InsertarDistribuidor_hint_correo">Ingrese Correo Electrónico</string>
     <string name="InsertarDistribuidor_btn_guardar">Guardar</string>
+    <string name="dialog_msg_distribuidor_guardado">Distribuidor guardado exitosamente</string>
+    <string name="dialog_msg_error_guardar_distribuidor">Error al guardar Distribuidor</string>
 
     <string name="EliminarDistribuidor_titulo">Eliminar Distribuidor</string>
     <string name="EliminarDistribuidor_hint_id">Ingrese ID</string>
     <string name="EliminarDistribuidor_btn_eliminar">Eliminar Distribuidor</string>
+    <string name="dialog_msg_distribuidor_eliminado">Distribuidor eliminado exitosamente</string>
+    <string name="dialog_msg_error_eliminar_distribuidor">Error al eliminar Distribuidor</string>
 
     <string name="ConsultarDistribuidor_titulo">Consultar Distribuidor</string>
     <string name="ConsultarDistribuidor_hint_id">Ingrese ID</string>
@@ -147,6 +151,8 @@
     <string name="ConsultarDistribuidor_hint_nit">NIT del Distribuidor</string>
     <string name="ConsultarDistribuidor_hint_correo">Correo Electrónico del Distribuidor</string>
     <string name="ConsultarDistribuidor_btn_consultar">Buscar</string>
+    <string name="dialog_msg_distribuidor_consultar">Distribuidor encontrado exitosamente</string>
+    <string name="dialog_msg_error_consultar_distribuidor">Error al encontrar Distribuidor</string>
 
     <string name="ActualizarDistribuidor_titulo">Actualizar Distribuidor</string>
     <string name="ActualizarDistribuidor_hint_id">Ingrese ID</string>
@@ -157,6 +163,8 @@
     <string name="ActualizarDistribuidor_hint_correo">Correo Electrónico del Distribuidor</string>
     <string name="ActualizarDistribuidor_btn_actualizar">Actualizar</string>
     <string name="ActualizarDistribuidor_btn_buscar">Buscar</string>
+    <string name="dialog_msg_distribuidor_actualizar">Distribuidor encontrado exitosamente</string>
+    <string name="dialog_msg_error_actualizar_distribuidor">Error al encontrar Distribuidor</string>
 
 
     <!--strings Detalle Receta-->

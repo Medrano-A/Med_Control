@@ -44,6 +44,7 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE local(idLocal INTEGER  NOT NULL PRIMARY KEY ,idUbicacion INTEGER  NOT NULL ,nombreLocal VARCHAR(30) ,tipoLocal VARCHAR(30),telefonoLocal VARCHAR(8));");
                 db.execSQL("CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
                 db.execSQL("CREATE TABLE detalleReceta (idDetReceta INTEGER NOT NULL PRIMARY KEY, idReceta INTEGER, dosis VARCHAR(50) NOT NULL);");
+                db.execSQL("CREATE TABLE distribuidor (idDistribuidor INTEGER NOT NULL PRIMARY KEY, idMarca INTEGER, nombre VARCHAR(30) NOT NULL, telefono CHAR(8) NOT NULL, nit CHAR(10) NOT NULL, correo VARCHAR(30));");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -437,7 +438,7 @@ public class ControlDBFarmacia {
             values.put("dosis", detalle.getDosis());
 
             String whereClause = "idDetReceta = ?";
-            String[] whereArgs = { String.valueOf(detalle.getIdDetReceta()) };
+            String[] whereArgs = {String.valueOf(detalle.getIdDetReceta())};
 
             int filasAfectadas = db.update("detalleReceta", values, whereClause, whereArgs);
             return filasAfectadas > 0;
@@ -446,6 +447,92 @@ public class ControlDBFarmacia {
             return false;
         }
     }
+
+    //Distribuidor
+    public boolean insertarDistribuidor(Distribuidor distribuidor) {
+        db = DBHelper.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+
+        valores.put("idDistribuidor", distribuidor.getIdDistribuidor());
+        valores.put("idMarca", distribuidor.getIdMarca());
+        valores.put("nombre", distribuidor.getNombre());
+        valores.put("telefono", distribuidor.getTelefono());
+        valores.put("nit", distribuidor.getNit());
+        valores.put("correo", distribuidor.getCorreo());
+
+        long resultado = -1;
+        try {
+            resultado = db.insert("distribuidor", null, valores);
+        } catch (Exception e) {
+            Log.e("DB", "Error insertando distribuidor", e);
+        }
+
+        return resultado != -1;
+    }
+
+    public boolean eliminarDistribuidor(int idDistribuidor) {
+        db = DBHelper.getWritableDatabase();
+        int resultado = 0;
+        try {
+            resultado = db.delete("distribuidor", "idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resultado > 0;
+    }
+
+    public Distribuidor consultarDistribuidor(int idDistribuidor) {
+        db = DBHelper.getReadableDatabase();
+        Distribuidor distribuidor = null;
+        Cursor cursor = null;
+
+        try {
+            cursor = db.query("distribuidor", null, "idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)}, null, null, null);
+            if (cursor.moveToFirst()) {
+                int idMarca = cursor.getInt(cursor.getColumnIndexOrThrow("idMarca"));
+                String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                String telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono"));
+                String nit = cursor.getString(cursor.getColumnIndexOrThrow("nit"));
+                String correo = cursor.getString(cursor.getColumnIndexOrThrow("correo"));
+
+                distribuidor = new Distribuidor(idDistribuidor, idMarca, nombre, telefono, nit, correo);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (cursor != null) cursor.close();
+            db.close();
+        }
+
+        return distribuidor;
+    }
+
+    public boolean actualizarDistribuidor(Distribuidor distribuidor) {
+        SQLiteDatabase db = null;
+        try {
+            db = DBHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put("idMarca", distribuidor.getIdMarca());
+            values.put("nombre", distribuidor.getNombre());
+            values.put("telefono", distribuidor.getTelefono());
+            values.put("nit", distribuidor.getNit());
+            values.put("correo", distribuidor.getCorreo());
+
+            int filasAfectadas = db.update(
+                    "distribuidor",
+                    values,
+                    "idDistribuidor = ?",
+                    new String[]{String.valueOf(distribuidor.getIdDistribuidor())}
+            );
+
+            return filasAfectadas > 0;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
 
 
 

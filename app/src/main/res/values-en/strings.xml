@@ -71,7 +71,7 @@
         <item>Delete Client</item>
     </string-array>
 
-    <string name="dialog_title_info_ingreso">Create Cliente</string>
+    <string name="dialog_title_info_ingreso">Create Client</string>
     <string name="dialog_msg_cliente_guardado">Client was successfully created</string>
     <string name="dialog_msg_error_guardar_cliente">Error creating client</string>
     <string name="dialog_btn_aceptar">Accept</string>
@@ -134,10 +134,14 @@
     <string name="InsertarDistribuidor_hint_nit">Enter NIT</string>
     <string name="InsertarDistribuidor_hint_correo">Enter Email Address</string>
     <string name="InsertarDistribuidor_btn_guardar">Save</string>
+    <string name="dialog_msg_distribuidor_guardado">Distributor was successfully created</string>
+    <string name="dialog_msg_error_guardar_distribuidor">Error creating distributor</string>
 
     <string name="EliminarDistribuidor_titulo">Delete Distributor</string>
     <string name="EliminarDistribuidor_hint_id">Enter ID</string>
     <string name="EliminarDistribuidor_btn_eliminar">Delete Distributor</string>
+    <string name="dialog_msg_distribuidor_eliminado">Distributor was successfully eliminated</string>
+    <string name="dialog_msg_error_eliminar_distribuidor">Error deleting distributor</string>
 
     <string name="ConsultarDistribuidor_titulo">Read Distributor</string>
     <string name="ConsultarDistribuidor_hint_id">Enter ID</string>
@@ -146,7 +150,9 @@
     <string name="ConsultarDistribuidor_hint_telefono">Distributor\'s Phone Number</string>
     <string name="ConsultarDistribuidor_hint_nit">Distributor\'s NIT</string>
     <string name="ConsultarDistribuidor_hint_correo">Distributor\'s Email Address</string>
-    <string name="ConsultarDistribuidor_btn_consultar">Buscar</string>
+    <string name="ConsultarDistribuidor_btn_consultar">Search</string>
+    <string name="dialog_msg_distribuidor_consultar">Distributor was successfully read</string>
+    <string name="dialog_msg_error_consultar_distribuidor">Error reading distributor</string>
 
     <string name="ActualizarDistribuidor_titulo">Update Distributor</string>
     <string name="ActualizarDistribuidor_hint_id">Enter ID</string>
@@ -157,6 +163,8 @@
     <string name="ActualizarDistribuidor_hint_correo">Distributor\'s Email Address</string>
     <string name="ActualizarDistribuidor_btn_actualizar">Update</string>
     <string name="ActualizarDistribuidor_btn_buscar">Search</string>
+    <string name="dialog_msg_distribuidor_actualizar">Distributor was successfully updated</string>
+    <string name="dialog_msg_error_actualizar_distribuidor">Error updating distributor</string>
 
     <!--strings Detalle Receta-->
     <string-array name="menu_items_detalle_receta">
