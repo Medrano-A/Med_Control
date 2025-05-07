@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class ControlDBFarmacia {
 
     private static final String[] camposDoctor = new String[]
@@ -104,6 +107,16 @@ public class ControlDBFarmacia {
                         "FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE, " +
                         "FOREIGN KEY(id_opcion_crud) REFERENCES OpcionCrud(id_opcion_crud) ON DELETE CASCADE)");
 
+                db.execSQL("CREATE TABLE ubicacion(idUbicacion INTEGER NOT NULL PRIMARY KEY," +
+                        " idDistrito INTEGER NOT NULL," +
+                        " idMarca INTEGER NOT NULL," +
+                        "detalle TEXT NOT NULL)");
+
+                db.execSQL("CREATE TABLE stock(idStock INTEGER NOT NULL PRIMARY KEY," +
+                        " codElemento INTEGER NOT NULL," +
+                        " idlocal INTEGER NOT NULL," +
+                        " cantidad INTEGER NOT NULL," +
+                        " fechavencimiento TEXT NOT NULL)");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -123,6 +136,46 @@ public class ControlDBFarmacia {
     public void cerrar() {
         DBHelper.close();
     }
+    /*-----------------------------------------------TABLA UBICACION----------------------------------------------------------*/
+    public String insertar(Ubicacion ubicacion) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues doc = new ContentValues();
+        doc.put("idUbicacion", ubicacion.getIdUbicacion());
+        doc.put("idDistrito", ubicacion.getIdDistrito());
+        doc.put("idMarca", ubicacion.getIdMarca());
+        doc.put("detalle", ubicacion.getDetalle());
+
+        contador = db.insert("ubicacion", null, doc);
+
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+    /*-----------------------------------------------TABLA STOCKS----------------------------------------------------------*/
+    public String insertar(Stock stock) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues doc = new ContentValues();
+        doc.put("idStock", stock.getIdStock());
+        doc.put("codElemento", stock.getCodElemento());
+        doc.put("idlocal", stock.getIdLocal());
+        doc.put("cantidad", stock.getCantidad());
+        doc.put("fechavencimiento", stock.getFechaVencimiento());
+
+        contador = db.insert("stock", null, doc);
+
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/
     public String insertar(Doctor doctor) {
         String regInsertados = "Registro Insertado Nº= ";

@@ -47,7 +47,13 @@
             android:layout_height="wrap_content"
             android:hint="@string/nombre_de_la_ubicacion"
             android:layout_marginTop="12dp" />
-
+        <EditText
+            android:id="@+id/etIdMarca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id_de_marca"
+            android:inputType="number"
+            android:layout_marginTop="12dp" />
         <EditText
             android:id="@+id/etIdDistrito"
             android:layout_width="match_parent"
@@ -59,7 +65,7 @@
         <!-- Botón para agregar -->
         <Button
             android:id="@+id/btnAgregarUbicacion"
-
+            android:onClick="crearUbicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/agregar"

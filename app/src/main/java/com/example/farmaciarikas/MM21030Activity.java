@@ -27,7 +27,7 @@ public class MM21030Activity extends AppCompatActivity {
 
         List<Opcion> opciones = new ArrayList<>();
         opciones.add(new Opcion("Ubicaciones", R.drawable.ic_location));
-        opciones.add(new Opcion("Stoks", R.drawable.ic_stocks));
+        opciones.add(new Opcion("Stocks", R.drawable.ic_logostock));
         opciones.add(new Opcion("Articulo", R.drawable.ic_articulo));
 
 
