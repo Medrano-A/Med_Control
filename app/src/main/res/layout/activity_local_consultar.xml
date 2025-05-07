@@ -2,104 +2,115 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/idLocal"/>
+        android:text="@string/idLocal"
+        android:layout_marginBottom="4dp"/>
 
     <EditText
         android:id="@+id/editLocal"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="7"/>
-
-
-
-
-
-
+        android:maxLength="7"
+        android:layout_marginBottom="12dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/botonConsultar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/consultar"
-            android:onClick="consultarLocal"/>
+            android:layout_marginEnd="8dp"
+            android:background="@color/primary_color"
+            android:onClick="consultarLocal"
+            android:text="@string/consultar" />
 
         <Button
             android:id="@+id/botonLimpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/limpiar"
-            android:onClick="limpiarTexto"/>
-
+            android:layout_marginStart="8dp"
+            android:background="@color/primary_color"
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
     </LinearLayout>
-
-
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/idUbicacion" />
+        android:text="@string/idUbicacion"
+        android:layout_marginBottom="4dp"/>
 
     <EditText
         android:id="@+id/idUbicacion"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:enabled ="false"
+        android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
-        android:longClickable="false" />
+        android:longClickable="false"
+        android:layout_marginBottom="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/nombreLocal" />
+        android:text="@string/nombreLocal"
+        android:layout_marginBottom="4dp"/>
+
     <EditText
         android:id="@+id/editNombre"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:maxLength="7"/>
+        android:enabled="false"
+        android:maxLength="7"
+        android:layout_marginBottom="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tipo" />
+        android:text="@string/tipo"
+        android:layout_marginBottom="4dp"/>
 
     <EditText
         android:id="@+id/idTipo"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="text"
-        android:enabled ="false"
+        android:enabled="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
         android:cursorVisible="false"
-        android:longClickable="false" />
+        android:longClickable="false"
+        android:layout_marginBottom="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/telefonoLocal"/>
+        android:text="@string/telefonoLocal"
+        android:layout_marginBottom="4dp"/>
+
     <EditText
         android:id="@+id/editTelefono"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:maxLength="5"/>
-
-
-
+        android:maxLength="8"
+        android:enabled="false"
+        android:layout_marginBottom="12dp"/>
 
 </LinearLayout>
