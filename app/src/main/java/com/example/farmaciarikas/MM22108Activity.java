@@ -14,11 +14,12 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class MM22108Activity extends ListActivity {
     // Tablas asignadas a MM22108
-    String[] menu={"Tabla Cliente","Tabla Distribuidor","Tabla Detalle Receta"};
+    String[] menu;//={"Tabla Cliente","Tabla Distribuidor","Tabla Detalle Receta"};
     String[] activities={"ClienteMenuActivity","DistribuidorMenuActivity","DetalleRecetaMenuActivity"};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        menu = getResources().getStringArray(R.array.menu_items_mm22108);
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
     }

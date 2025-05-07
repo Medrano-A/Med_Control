@@ -15,12 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 public class DetalleRecetaMenuActivity extends ListActivity {
 
     //CRUD de la tabla Detalle Receta
-    String[] menu={"Insertar Detalle Receta","Eliminar Detalle Receta","Consultar Detalle Receta", "Actualizar Detalle Receta"};
-    String[] activities={"DetalleRecetaInsertarActivity","DetalleRecetaEliminarActivity","DetalleRecetaConsultarActivity", "DetalleRecetaActualizarActivity"};
+    String[] menu;//={"Insertar Detalle Receta","Consultar Detalle Receta", "Actualizar Detalle Receta","Eliminar Detalle Receta"};
+    String[] activities={"DetalleRecetaInsertarActivity", "DetalleRecetaConsultarActivity", "DetalleRecetaActualizarActivity", "DetalleRecetaEliminarActivity"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        menu = getResources().getStringArray(R.array.menu_items_detalle_receta);
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
     }

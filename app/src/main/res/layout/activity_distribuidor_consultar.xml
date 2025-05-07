@@ -1,10 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DistribuidorConsultarActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ConsultarDistribuidor_titulo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/editIdDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ConsultarDistribuidor_hint_id"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="username"/>
+
+        <EditText
+            android:id="@+id/editIdMarcaDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ConsultarDistribuidor_hint_marca"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes" />
+
+        <EditText
+            android:id="@+id/editNombreDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ConsultarDistribuidor_hint_nombre"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="username"/>
+
+        <EditText
+            android:id="@+id/editTelDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ConsultarDistribuidor_hint_telefono"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="phone"/>
+
+        <EditText
+            android:id="@+id/editNitDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ConsultarDistribuidor_hint_nit"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints=""/>
+
+        <EditText
+            android:id="@+id/editCorreoDis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/ConsultarDistribuidor_hint_correo"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="emailAddress"/>
+
+        <!--Boton final-->
+        <Button
+            android:id="@+id/buttonGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ConsultarDistribuidor_btn_consultar"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>
