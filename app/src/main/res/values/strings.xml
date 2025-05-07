@@ -114,6 +114,7 @@
     <string name="ActualizarCliente_btn_buscar">Buscar</string>
     <string name="ActualizarCliente_btn_actualizar">Actualizar</string>
     <string name="dialog_title_info_actualizar">Información</string>
+    <string name="dialog_msg_cliente_actualizado">Cliente actualizado existosamente</string>
 
 
     <!--strings Distribuidor-->

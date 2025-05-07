@@ -330,5 +330,49 @@ public class ControlDBFarmacia {
         return cliente;
     }
 
+    public boolean eliminarCliente(String dui) {
+        db = DBHelper.getWritableDatabase();
+        int filasAfectadas = 0;
+
+        try {
+            filasAfectadas = db.delete("cliente", "dui = ?", new String[]{dui});
+            Log.d("DB", "Filas eliminadas: " + filasAfectadas);
+        } catch (Exception e) {
+            Log.e("DB", "Error eliminando cliente", e);
+        }
+
+        return filasAfectadas > 0;
+    }
+
+    public boolean actualizarCliente(Cliente cliente) {
+        db = DBHelper.getWritableDatabase();
+        int filasAfectadas = 0;
+
+        if (cliente == null) {
+            Log.e("DB", "Cliente es null");
+            return false;
+        }
+
+        ContentValues values = new ContentValues();
+        values.put("nombre", cliente.getNombre());
+        values.put("apellido", cliente.getApellido());
+        values.put("telefono", cliente.getTelefono());
+        values.put("correo", cliente.getCorreo());
+
+        try {
+            filasAfectadas = db.update(
+                    "cliente",             // nombre de la tabla
+                    values,                // nuevos valores
+                    "dui = ?",             // cláusula WHERE
+                    new String[]{cliente.getDui()} // argumentos WHERE
+            );
+            Log.d("DB", "Filas actualizadas: " + filasAfectadas);
+        } catch (Exception e) {
+            Log.e("DB", "Error actualizando cliente", e);
+        }
+
+        return filasAfectadas > 0;
+    }
+
 
 }

@@ -111,9 +111,10 @@
     <string name="ActualizarCliente_hint_apellido">Client\'s Last Name</string>
     <string name="ActualizarCliente_hint_telefono">Client\'s Phone Number</string>
     <string name="ActualizarCliente_hint_correo">Client\'s Email Address</string>
-    <string name="ActualizarCliente_btn_actualizar">Search</string>
-    <string name="ActualizarCliente_btn_buscar">Update</string>
+    <string name="ActualizarCliente_btn_actualizar">Update</string>
+    <string name="ActualizarCliente_btn_buscar">Search</string>
     <string name="dialog_title_info_actualizar">Information</string>
+    <string name="dialog_msg_cliente_actualizado">Client successfully updated</string>
 
 
     <!--strings Distribuidor-->

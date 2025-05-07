@@ -34,12 +34,12 @@ public class ClienteEliminarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String dui = editTextDui.getText().toString().trim();
 
-                if (dui.isEmpty()) {
+                if (dui.length() != 10) {
                     Toast.makeText(ClienteEliminarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                boolean eliminado = false;// dbFarmacia.eliminarCliente(dui);
+                boolean eliminado = dbFarmacia.eliminarCliente(dui);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClienteEliminarActivity.this);
                 builder.setTitle(getString(R.string.dialog_title_info_eliminar));

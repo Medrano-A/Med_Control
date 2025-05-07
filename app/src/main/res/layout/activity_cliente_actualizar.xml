@@ -89,7 +89,7 @@
             android:id="@+id/buttonActualizarCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/ActualizarCliente_btn_actualizar"
+            android:text="@string/ActualizarCliente_btn_buscar"
             android:layout_marginTop="24dp" />
     </LinearLayout>
 </ScrollView>

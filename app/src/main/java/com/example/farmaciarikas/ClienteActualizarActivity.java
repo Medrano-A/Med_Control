@@ -61,7 +61,7 @@ public class ClienteActualizarActivity extends AppCompatActivity {
             Toast.makeText(ClienteActualizarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
             return;
         }
-        Cliente cliente = null; // dbFarmacia.consultarCliente(dui);
+        Cliente cliente = dbFarmacia.consultarCliente(dui);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ClienteActualizarActivity.this);
         builder.setTitle(getString(R.string.dialog_title_info_consultar));
@@ -100,18 +100,20 @@ public class ClienteActualizarActivity extends AppCompatActivity {
         String telefono = editTextTelefono.getText().toString().trim();
         String correo = editTextCorreo.getText().toString().trim();
 
-        if (dui.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+        Cliente cliente = new Cliente(dui, nombre, apellido, telefono, correo);
+
+        if (!cliente.esValido()) {
             Toast.makeText(ClienteActualizarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        boolean insertada = false;//dbFarmacia.actualizarCliente(dui, nombre, apellido, telefono, correo);
+        boolean insertada = dbFarmacia.actualizarCliente(cliente);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(ClienteActualizarActivity.this);
         builder.setTitle(getString(R.string.dialog_title_info_actualizar));
 
         if (insertada) {
-            builder.setMessage(getString(R.string.dialog_msg_cliente_guardado));
+            builder.setMessage(getString(R.string.dialog_msg_cliente_actualizado));
             builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
