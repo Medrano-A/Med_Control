@@ -43,6 +43,7 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE medicamento(idMedicamento VARCHAR(4) NOT NULL PRIMARY KEY,codElemento INTEGER NOT NULL,idLaboratorio INTEGER NOT NULL,viaDeAdministracion VARCHAR(32),formaFarmaceutica VARCHAR(32));");
                 db.execSQL("CREATE TABLE local(idLocal INTEGER  NOT NULL PRIMARY KEY ,idUbicacion INTEGER  NOT NULL ,nombreLocal VARCHAR(30) ,tipoLocal VARCHAR(30),telefonoLocal VARCHAR(8));");
                 db.execSQL("CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
+                db.execSQL("CREATE TABLE detalleReceta (idDetReceta INTEGER NOT NULL PRIMARY KEY, idReceta INTEGER, dosis VARCHAR(50) NOT NULL);");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -373,6 +374,81 @@ public class ControlDBFarmacia {
 
         return filasAfectadas > 0;
     }
+
+    //Detalle Receta
+    public boolean insertarDetalleReceta(DetalleReceta detalle) {
+        try {
+            db = DBHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+
+            values.put("idDetReceta", detalle.getIdDetReceta());
+            values.put("idReceta", detalle.getIdReceta());
+            values.put("dosis", detalle.getDosis());
+
+            long resultado = db.insert("detalleReceta", null, values);
+            return resultado != -1;
+        } catch (Exception e) {
+            Log.e("DB", "Error insertando detalle receta", e);
+            return false;
+        }
+    }
+
+    public boolean eliminarDetalleReceta(int idDetReceta) {
+        try {
+            db = DBHelper.getWritableDatabase();
+            int filasAfectadas = db.delete("detalleReceta", "idDetReceta = ?", new String[]{String.valueOf(idDetReceta)});
+            return filasAfectadas > 0;
+        } catch (Exception e) {
+            Log.e("DB", "Error eliminando detalle receta", e);
+            return false;
+        }
+    }
+
+    public DetalleReceta consultarDetalleReceta(int idDetReceta) {
+        DetalleReceta detalle = null;
+        SQLiteDatabase db = DBHelper.getReadableDatabase();
+        Cursor cursor = null;
+
+        try {
+            cursor = db.rawQuery(
+                    "SELECT idReceta, dosis FROM detalleReceta WHERE idDetReceta = ?",
+                    new String[]{String.valueOf(idDetReceta)}
+            );
+
+            if (cursor != null && cursor.moveToFirst()) {
+                int idReceta = cursor.getInt(0);
+                String dosis = cursor.getString(1);
+                detalle = new DetalleReceta(idDetReceta, idReceta, dosis);
+            }
+        } catch (Exception e) {
+            Log.e("DB", "Error consultando detalle receta", e);
+        } finally {
+            if (cursor != null) cursor.close();
+        }
+
+        return detalle;
+    }
+
+    public boolean actualizarDetalleReceta(DetalleReceta detalle) {
+        try {
+            db = DBHelper.getWritableDatabase();
+            ContentValues values = new ContentValues();
+            values.put("idReceta", detalle.getIdReceta());
+            values.put("dosis", detalle.getDosis());
+
+            String whereClause = "idDetReceta = ?";
+            String[] whereArgs = { String.valueOf(detalle.getIdDetReceta()) };
+
+            int filasAfectadas = db.update("detalleReceta", values, whereClause, whereArgs);
+            return filasAfectadas > 0;
+        } catch (Exception e) {
+            Log.e("DB", "Error actualizando detalle receta", e);
+            return false;
+        }
+    }
+
+
+
 
 
 }

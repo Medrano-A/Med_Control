@@ -77,6 +77,7 @@
     <string name="dialog_msg_error_guardar_cliente">Error al guardar cliente</string>
     <string name="dialog_btn_aceptar">Aceptar</string>
     <string name="msg_campos_obligatorios">Por favor complete los campos obligatorios</string>
+    <string name="msg_campos_invalidos">Por favor complete los campos correctamente</string>
 
 
     <string name="InsertarCliente_titulo">Crear Cliente</string>
@@ -171,16 +172,22 @@
     <string name="InsertarDetalleReceta_hint_id_receta">Ingrese ID Receta</string>
     <string name="InsertarDetalleReceta_hint_dosis">Ingrese Dosis</string>
     <string name="InsertarDetalleReceta_btn_guardar">Guardar</string>
+    <string name="dialog_msg_detalleReceta_guardado">Detalle Receta guardado exitosamente</string>
+    <string name="dialog_msg_error_guardar_detalleReceta">Error al guardar Detalle Receta</string>
 
     <string name="EliminarDetalleReceta_titulo">Eliminar Detalle Receta</string>
     <string name="EliminarDetalleReceta_hint_id">Ingrese ID</string>
     <string name="EliminarDetalleReceta_btn_eliminar">Eliminar</string>
+    <string name="dialog_msg_detalleReceta_eliminado">Detalle Receta eliminado exitosamente</string>
+    <string name="dialog_msg_error_eliminar_detalleReceta">Error al eliminar Detalle Receta</string>
 
     <string name="ConsultarDetalleReceta_titulo">Consultar Detalle Receta</string>
     <string name="ConsultarDetalleReceta_hint_id">Ingrese ID</string>
     <string name="ConsultarDetalleReceta_hint_id_receta">ID Receta</string>
     <string name="ConsultarDetalleReceta_hint_dosis">Dosis Detalle Receta</string>
     <string name="ConsultarDetalleReceta_btn_consultar">Buscar</string>
+    <string name="dialog_msg_detalleReceta_encontrado">Detalle Receta encontrado exitosamente</string>
+    <string name="dialog_msg_error_encontrado_detalleReceta">Error al buscar Detalle Receta</string>
 
 
     <string name="ActualizarDetalleReceta_titulo">Actualizar Detalle Receta</string>
@@ -189,6 +196,8 @@
     <string name="ActualizarDetalleReceta_hint_dosis">Dosis Detalle Receta</string>
     <string name="ActualizarDetalleReceta_btn_buscar">Buscar</string>
     <string name="ActualizarDetalleReceta_btn_actualizar">Actualizar</string>
+    <string name="dialog_msg_detalleReceta_actualizado">Detalle Receta actualizado exitosamente</string>
+    <string name="dialog_msg_error_actualizado_detalleReceta">Error al actualizar Detalle Receta</string>
 
 
 </resources>

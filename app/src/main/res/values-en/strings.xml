@@ -76,6 +76,7 @@
     <string name="dialog_msg_error_guardar_cliente">Error creating client</string>
     <string name="dialog_btn_aceptar">Accept</string>
     <string name="msg_campos_obligatorios">Please fill out the mandatory fields</string>
+    <string name="msg_campos_invalidos">Please fill out correctly the fields</string>
 
     <string name="InsertarCliente_titulo">Create Client</string>
     <string name="InsertarCliente_hint_dui">Enter DUI</string>
@@ -170,16 +171,23 @@
     <string name="InsertarDetalleReceta_hint_id_receta">Enter ID Receta</string>
     <string name="InsertarDetalleReceta_hint_dosis">Enter Dosis</string>
     <string name="InsertarDetalleReceta_btn_guardar">Save</string>
+    <string name="dialog_msg_detalleReceta_guardado">Prescription Details successfully created</string>
+    <string name="dialog_msg_error_guardar_detalleReceta">Error creating Prescription Details</string>
 
     <string name="EliminarDetalleReceta_titulo">Delete Prescription Details</string>
     <string name="EliminarDetalleReceta_hint_id">Enter ID</string>
     <string name="EliminarDetalleReceta_btn_eliminar">Delete</string>
+    <string name="dialog_msg_detalleReceta_eliminado">Prescription Details successfully deleted</string>
+    <string name="dialog_msg_error_eliminar_detalleReceta">Error deleting Prescription Details</string>
+
 
     <string name="ConsultarDetalleReceta_titulo">Read Prescription Details</string>
     <string name="ConsultarDetalleReceta_hint_id">Enter ID</string>
     <string name="ConsultarDetalleReceta_hint_id_receta">Prescription ID</string>
     <string name="ConsultarDetalleReceta_hint_dosis">Prescription Details Dose</string>
     <string name="ConsultarDetalleReceta_btn_consultar">Search</string>
+    <string name="dialog_msg_detalleReceta_encontrado">Prescription Details successfully found</string>
+    <string name="dialog_msg_error_encontrado_detalleReceta">Error searching Prescription Details</string>
 
 
     <string name="ActualizarDetalleReceta_titulo">Update Prescription Details</string>
@@ -188,5 +196,7 @@
     <string name="ActualizarDetalleReceta_hint_dosis">Prescription Details Dose</string>
     <string name="ActualizarDetalleReceta_btn_buscar">Search</string>
     <string name="ActualizarDetalleReceta_btn_actualizar">Update</string>
+    <string name="dialog_msg_detalleReceta_actualizado">Prescription Details successfully updated</string>
+    <string name="dialog_msg_error_actualizado_detalleReceta">Error searching Prescription Details</string>
 </resources>
 
