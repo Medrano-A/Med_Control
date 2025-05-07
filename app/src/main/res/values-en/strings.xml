@@ -71,6 +71,12 @@
         <item>Delete Client</item>
     </string-array>
 
+    <string name="dialog_title_info_ingreso">Create Cliente</string>
+    <string name="dialog_msg_cliente_guardado">Client was successfully created</string>
+    <string name="dialog_msg_error_guardar_cliente">Error creating client</string>
+    <string name="dialog_btn_aceptar">Accept</string>
+    <string name="msg_campos_obligatorios">Please fill out the mandatory fields</string>
+
     <string name="InsertarCliente_titulo">Create Client</string>
     <string name="InsertarCliente_hint_dui">Enter DUI</string>
     <string name="InsertarCliente_hint_nombre">Enter First Name</string>
@@ -81,8 +87,12 @@
 
 
     <string name="EliminarCliente_titulo">Delete Client</string>
+    <string name="dialog_title_info_eliminar">Delete Client</string>
     <string name="EliminarCliente_hint_dui">Enter DUI</string>
     <string name="EliminarCliente_btn_eliminar">Delete Client</string>
+    <string name="dialog_msg_cliente_eliminado">Client successfully deleted</string>
+    <string name="dialog_msg_error_eliminar_cliente">Error deleting client</string>
+
 
     <string name="ConsultarCliente_titulo">Read Client</string>
     <string name="ConsultarCliente_hint_dui">Enter DUI</string>
@@ -91,6 +101,9 @@
     <string name="ConsultarCliente_hint_telefono">Client\'s Phone Number</string>
     <string name="ConsultarCliente_hint_correo">Client\'s Email Address</string>
     <string name="ConsultarCliente_btn_consultar">Search</string>
+    <string name="dialog_title_info_consultar">Read Client</string>
+    <string name="dialog_msg_cliente_no_encontrado">Client not found</string>
+    <string name="dialog_msg_cliente_encontrado">Client found</string>
 
     <string name="ActualizarCliente_titulo">Update Client</string>
     <string name="ActualizarCliente_hint_dui">Enter DUI</string>
@@ -100,6 +113,7 @@
     <string name="ActualizarCliente_hint_correo">Client\'s Email Address</string>
     <string name="ActualizarCliente_btn_actualizar">Search</string>
     <string name="ActualizarCliente_btn_buscar">Update</string>
+    <string name="dialog_title_info_actualizar">Information</string>
 
 
     <!--strings Distribuidor-->

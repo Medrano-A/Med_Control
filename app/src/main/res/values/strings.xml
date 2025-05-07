@@ -72,6 +72,13 @@
         <item>Eliminar Cliente</item>
     </string-array>
 
+    <string name="dialog_title_info_ingreso">Ingresar Cliente</string>
+    <string name="dialog_msg_cliente_guardado">Cliente guardado exitosamente</string>
+    <string name="dialog_msg_error_guardar_cliente">Error al guardar cliente</string>
+    <string name="dialog_btn_aceptar">Aceptar</string>
+    <string name="msg_campos_obligatorios">Por favor complete los campos obligatorios</string>
+
+
     <string name="InsertarCliente_titulo">Crear Cliente</string>
     <string name="InsertarCliente_hint_dui">Ingrese DUI</string>
     <string name="InsertarCliente_hint_nombre">Ingrese Nombre</string>
@@ -81,8 +88,11 @@
     <string name="InsertarCliente_btn_guardar">Guardar</string>
 
     <string name="EliminarCliente_titulo">Eliminar Cliente</string>
+    <string name="dialog_title_info_eliminar">Eliminar Cliente</string>
     <string name="EliminarCliente_hint_dui">Ingrese DUI</string>
     <string name="EliminarCliente_btn_eliminar">Eliminar Cliente</string>
+    <string name="dialog_msg_cliente_eliminado">Cliente eliminado exitosamente</string>
+    <string name="dialog_msg_error_eliminar_cliente">No se pudo eliminar el cliente</string>
 
     <string name="ConsultarCliente_titulo">Consultar Cliente</string>
     <string name="ConsultarCliente_hint_dui">Ingrese DUI</string>
@@ -91,6 +101,9 @@
     <string name="ConsultarCliente_hint_telefono">Teléfono del Cliente</string>
     <string name="ConsultarCliente_hint_correo">Correo Buscardel Cliente</string>
     <string name="ConsultarCliente_btn_consultar">Buscar</string>
+    <string name="dialog_title_info_consultar">Información</string>
+    <string name="dialog_msg_cliente_no_encontrado">Cliente no encontrado</string>
+    <string name="dialog_msg_cliente_encontrado">Cliente encontrado</string>
 
     <string name="ActualizarCliente_titulo">Actualizar Cliente</string>
     <string name="ActualizarCliente_hint_dui">Ingrese DUI</string>
@@ -100,6 +113,7 @@
     <string name="ActualizarCliente_hint_correo">Correo Buscardel Cliente</string>
     <string name="ActualizarCliente_btn_buscar">Buscar</string>
     <string name="ActualizarCliente_btn_actualizar">Actualizar</string>
+    <string name="dialog_title_info_actualizar">Información</string>
 
 
     <!--strings Distribuidor-->

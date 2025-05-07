@@ -86,7 +86,7 @@
             android:autofillHints="emailAddress"/>
 
         <Button
-            android:id="@+id/buttonGuardar"
+            android:id="@+id/buttonConsultarCliente"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/ConsultarCliente_btn_consultar"
