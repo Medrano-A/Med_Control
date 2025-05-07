@@ -1,10 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
     tools:context=".TransaccionEliminarActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow>
+        <TextView
+            android:id="@+id/transaccionEliminar"
+            android:text="@string/EliminarTransaccion"
+            />
+    </TableRow>
+
+    <!-->Ids<!-->
+    <TableRow>
+        <TextView
+            android:id="@+id/ventaIdDelete"
+            android:text="@string/idVenta"
+            />
+        <EditText
+            android:id="@+id/ventaIdDeleteedit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/DuiDelete"
+            android:text="@string/DuiCliente"
+            />
+        <EditText
+            android:id="@+id/DuiDeleteedit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/usuarioIdDelete"
+            android:text="@string/IDUsuario"
+            />
+        <EditText
+            android:id="@+id/usuarioIdDeleteedit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/LocalIdDelete"
+            android:text="@string/IDLocal"
+            />
+        <EditText
+            android:id="@+id/LocalIdDeleteredit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+    <!-->Ids fin<!-->
+
+    <TableRow>
+        <Button
+            android:id="@+id/transIdEliminarBtn"
+            android:onClick="eliminarTrans"
+            android:text="@string/EliminarDatos"/>
+        <Button
+            android:id="@+id/transEliminaBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"/>
+    </TableRow>
+</TableLayout>

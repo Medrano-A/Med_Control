@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
     tools:context=".LaboratorioEliminarActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/laboEliminar"
+        android:text="@string/EliminarLabo"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/eliminarLaboTxtView"
+        android:text="@string/idLabo"
+        />
+
+    <EditText
+        android:id="@+id/labIdEliminarEdTxt"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="8"
+        />
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dip"
+        android:stretchColumns="1">
+
+        <TableRow>
+            <Button
+                android:id="@+id/labIdEliminarBtn"
+                android:onClick="eliminarLabo"
+                android:text="@string/EliminarDatos"/>
+            <Button
+                android:id="@+id/labIdEliminaBtnTxt"
+                android:onClick="limpiarCampos"
+                android:text="@string/LimpiarCampos"/>
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

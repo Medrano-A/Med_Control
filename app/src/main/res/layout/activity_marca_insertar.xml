@@ -14,13 +14,46 @@
     <TableRow>
         <TextView
             android:id="@+id/marcaInsertar"
-            android:text="@String/"/>
+            android:text="@string/InsertarMarca"/>
     </TableRow>
+
     <TableRow>
         <TextView
+            android:id="@+id/marcaIdInsertar"
+            android:text="@string/idLabo"
             />
         <EditText
+            android:id="@+id/marcaIdInsertarEdit"
+            android:inputType="number"
+            android:maxLength="8"
             />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/marcaNombreInsertar"
+            android:text="@string/nombreMarca"
+            />
+        <EditText
+            android:id="@+id/marcaNombreInsertarEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/marcaInsertarBtn"
+            android:onClick="insertarMarca"
+            android:text="@string/InsertarDatos" />
+
+        <Button
+            android:id="@+id/marcaInsertarBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+
     </TableRow>
 
 </TableLayout>

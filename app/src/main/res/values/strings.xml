@@ -90,25 +90,25 @@
     </string-array>
 
     <!-->Marca<!-->
-    <string name="idMarca">Marca ID</string>
-    <string name="nombreMarca">Nombre Marca</string>
+    <string name="idMarca">Marca ID:</string>
+    <string name="nombreMarca">Nombre Marca:</string>
     <!-->Laboratorio<!-->
-    <string name="idLabo">Laboratorio ID</string>
-    <string name="laboratorioNombre">Nombre Laboratorio</string>
-    <string name="laboratorioTipo">Tipo De Laboratorio</string>
-    <string name="laboratorioTelefono">Telefono Laboratorio</string>
+    <string name="idLabo">Laboratorio ID:</string>
+    <string name="laboratorioNombre">Nombre Laboratorio:</string>
+    <string name="laboratorioTipo">Tipo De Laboratorio:</string>
+    <string name="laboratorioTelefono">Telefono Laboratorio:</string>
     <!-->Transaccion<!-->
-    <string name="idVenta">Transaccion ID</string>
-    <string name="DuiCliente">Dui</string>
-    <string name="IDUsuario">Usuario ID</string>
-    <string name="IDLocal">Local ID</string>
-    <string name="fechaEmision">Fecha de Emision</string>
-    <string name="totalTransaccion">Total</string>
-    <string name="tipoTransaccion">Tipo De Transaccion</string>
+    <string name="idVenta">Transaccion ID:</string>
+    <string name="DuiCliente">Dui:</string>
+    <string name="IDUsuario">Usuario ID:</string>
+    <string name="IDLocal">Local ID:</string>
+    <string name="fechaEmision">Fecha de Emision:</string>
+    <string name="totalTransaccion">Total:</string>
+    <string name="tipoTransaccion">Tipo De Transaccion:</string>
     <!-->Botones<!-->
     <string name="InsertarMarca">Insertar Marca</string>
     <string name="InsertarTransaccion">Insertar Transaccion</string>
-    <string name="InsertarLabo">Insertar Laboratorio</string>
+    <string name="InsertarLaboratorio">Insertar Laboratorio</string>
 
     <string name="ActualizarMarca">Actualizar Marca</string>
     <string name="ActualizarTransaccion">Actualizar Transaccion</string>
@@ -122,6 +122,10 @@
     <string name="EliminarTransaccion">Eliminar Transaccion</string>
     <string name="EliminarLabo">Eliminar Laboratorio</string>
 
+    <string name="InsertarDatos">Insertar</string>
+    <string name="ActualizarDatos">Actualizar</string>
+    <string name="ConsultarDatos">Consultar</string>
+    <string name="EliminarDatos">Eliminar</string>
     <string name="LimpiarCampos">Limpiar</string>
     <!-->GD21001<!-->
 

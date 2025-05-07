@@ -1,10 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
     tools:context=".LaboratorioInsertarActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow>
+        <TextView
+            android:id="@+id/laboInsertar"
+            android:text="@string/InsertarLaboratorio"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/laboIdInsertar"
+            android:text="@string/idLabo"
+            />
+        <EditText
+            android:id="@+id/laboIdInsertaredit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/laboNombreInsertar"
+            android:text="@string/laboratorioNombre"
+            />
+        <EditText
+            android:id="@+id/laboNombreInsertarEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/laboTipoInsertar"
+            android:text="@string/laboratorioTipo"
+            />
+        <EditText
+            android:id="@+id/laboTipoInsertarEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/laboTelInsertar"
+            android:text="@string/laboratorioTelefono"
+            />
+        <EditText
+            android:id="@+id/laboTelInsertarEdit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/laboInsertarBtn"
+            android:onClick="insertarLabo"
+            android:text="@string/InsertarDatos" />
+
+        <Button
+            android:id="@+id/laboInsertarBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+
+    </TableRow>
+
+</TableLayout>

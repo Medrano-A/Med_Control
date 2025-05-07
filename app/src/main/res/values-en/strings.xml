@@ -77,7 +77,7 @@
     <!-->Buttons<!-->
     <string name="InsertarMarca">Insert Brand</string>
     <string name="InsertarTransaccion">Insert Transaction</string>
-    <string name="InsertarLabo">Insert Laboratory</string>
+    <string name="InsertarLaboratorio">Insert Laboratory</string>
 
     <string name="ActualizarMarca">Update Brand</string>
     <string name="ActualizarTransaccion">Update Transaction</string>
@@ -91,6 +91,10 @@
     <string name="EliminarTransaccion">Delete Transaction</string>
     <string name="EliminarLabo">Delete Laboratory</string>
 
+    <string name="InsertarDatos">Insert</string>
+    <string name="ActualizarDatos">Update</string>
+    <string name="ConsultarDatos">Query</string>
+    <string name="EliminarDatos">Delete</string>
     <string name="LimpiarCampos">Clear</string>
     <!-->GD21001<!-->
 
