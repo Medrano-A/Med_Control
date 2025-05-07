@@ -66,7 +66,6 @@ public class MedicamentoInsertarActivity extends Activity {
 
         Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
         editIdMedicamento.setText("");
-        editCodElemento.setText("");
         idLaboratorio.setText("");
         editViaAdmin.setText("");
         ediforma.setText("");

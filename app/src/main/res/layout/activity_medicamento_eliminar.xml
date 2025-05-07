@@ -22,10 +22,10 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/material_dynamic_primary10"
-        android:onClick="eliminarMedicamento"
-        android:text="@string/eliminar"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="8dp"
+        android:background="@color/primary_color"
+        android:onClick="eliminarMedicamento"
+        android:text="@string/eliminar" />
 
 </LinearLayout>
