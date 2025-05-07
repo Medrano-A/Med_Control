@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,7 +27,7 @@ public class MarcaMenuActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(0, 0, 0));
+        listView.setBackgroundColor(ContextCompat.getColor(this, R.color.greenLight));
 
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
@@ -36,6 +37,8 @@ public class MarcaMenuActivity extends ListActivity {
         super.onListItemClick(l,v,pos,id);
 
         String nomVal = activities[pos];
+
+        l.getChildAt(pos).setBackgroundColor(ContextCompat.getColor(this, R.color.greenDark));
 
         try{
             Class<?> acti = Class.forName("com.example.farmaciarikas." + nomVal);

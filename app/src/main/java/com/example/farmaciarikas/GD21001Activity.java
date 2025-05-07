@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -24,6 +25,9 @@ public class GD21001Activity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        ListView listView = getListView();
+        listView.setBackgroundColor(ContextCompat.getColor(this, R.color.blueLight));
+
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
 
@@ -32,6 +36,8 @@ public class GD21001Activity extends ListActivity {
         super.onListItemClick(l,v,pos,id);
 
         String nomVal = activities[pos];
+
+        l.getChildAt(pos).setBackgroundColor(ContextCompat.getColor(this, R.color.blueDark));
 
         try{
             Class<?> acti = Class.forName("com.example.farmaciarikas." + nomVal);

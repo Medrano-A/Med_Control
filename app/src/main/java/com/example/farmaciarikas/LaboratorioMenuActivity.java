@@ -4,12 +4,14 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -26,7 +28,7 @@ public class LaboratorioMenuActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         ListView listView = getListView();
-        listView.setBackgroundColor(Color.rgb(0, 0, 0));
+        listView.setBackgroundColor(ContextCompat.getColor(this, R.color.redLight));
 
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
@@ -36,6 +38,8 @@ public class LaboratorioMenuActivity extends ListActivity {
         super.onListItemClick(l,v,pos,id);
 
         String nomVal = activities[pos];
+
+        l.getChildAt(pos).setBackgroundColor(ContextCompat.getColor(this, R.color.redDark));
 
         try{
             Class<?> acti = Class.forName("com.example.farmaciarikas." + nomVal);
