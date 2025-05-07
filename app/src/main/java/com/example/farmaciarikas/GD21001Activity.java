@@ -17,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class GD21001Activity extends ListActivity {
 
     //menu y activities
-    String[] menu = {"Tabla Transacciones","Tabla Marca", "Tabla Laboratorio"};
+    String[] menu; //= {"Tabla Transacciones","Tabla Marca", "Tabla Laboratorio"};
     String[] activities = {"TransaccionMenuActivity","MarcaMenuActivity", "LaboratorioMenuActivity"};
     //paquete: com.example.farmaciarikas.
 
@@ -28,6 +28,7 @@ public class GD21001Activity extends ListActivity {
         ListView listView = getListView();
         listView.setBackgroundColor(ContextCompat.getColor(this, R.color.blueLight));
 
+        menu = menu = getResources().getStringArray(R.array.menu_items_GD21001);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
 

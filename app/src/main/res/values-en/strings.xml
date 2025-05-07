@@ -55,4 +55,43 @@
     <string name="correo">Email</string>
 
     <string name="opciones">Options:</string>
+
+    <!-->GD21001<!-->
+
+    <!-->Brand<!-->
+    <string name="idMarca">Brand ID</string>
+    <string name="nombreMarca">Brand Name</string>
+    <!-->Laboratory<!-->
+    <string name="idLabo">Laboratory ID</string>
+    <string name="laboratorioNombre">Laboratory Name</string>
+    <string name="laboratorioTipo">Laboratory Type</string>
+    <string name="laboratorioTelefono">Laboratory Phone</string>
+    <!-->Transaction<!-->
+    <string name="idVenta">Transaction ID</string>
+    <string name="DuiCliente">DUI</string>
+    <string name="IDUsuario">User ID</string>
+    <string name="IDLocal">Location ID</string>
+    <string name="fechaEmision">Issue Date</string>
+    <string name="totalTransaccion">Total</string>
+    <string name="tipoTransaccion">Transaction Type</string>
+    <!-->Buttons<!-->
+    <string name="InsertarMarca">Insert Brand</string>
+    <string name="InsertarTransaccion">Insert Transaction</string>
+    <string name="InsertarLabo">Insert Laboratory</string>
+
+    <string name="ActualizarMarca">Update Brand</string>
+    <string name="ActualizarTransaccion">Update Transaction</string>
+    <string name="ActualizarLabo">Update Laboratory</string>
+
+    <string name="ConsultarMarca">Consult Brand</string>
+    <string name="ConsultarTransaccion">Consult Transaction</string>
+    <string name="ConsultarLabo">Consult Laboratory</string>
+
+    <string name="EliminarMarca">Delete Brand</string>
+    <string name="EliminarTransaccion">Delete Transaction</string>
+    <string name="EliminarLabo">Delete Laboratory</string>
+
+    <string name="LimpiarCampos">Clear</string>
+    <!-->GD21001<!-->
+
 </resources>

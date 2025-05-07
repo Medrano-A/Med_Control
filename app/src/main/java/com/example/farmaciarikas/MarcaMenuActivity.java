@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MarcaMenuActivity extends ListActivity {
 
     //menu y activities
-    String[] menu = {"Insertar Marca", "Actualizar Marca", "Consultar Marca", "Eliminar Marca"};
+    String[] menu; //= {"Insertar Marca", "Actualizar Marca", "Consultar Marca", "Eliminar Marca"};
     String[] activities = {"MarcaInsertarActivity", "MarcaActualizarActivity", "MarcaConsultarActivity", "MarcaEliminarActivity"};
     //paquete: com.example.farmaciarikas.
 
@@ -29,6 +29,7 @@ public class MarcaMenuActivity extends ListActivity {
         ListView listView = getListView();
         listView.setBackgroundColor(ContextCompat.getColor(this, R.color.greenLight));
 
+        menu = menu = getResources().getStringArray(R.array.menu_items_Marca);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
 

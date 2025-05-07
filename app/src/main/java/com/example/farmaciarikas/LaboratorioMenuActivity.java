@@ -19,7 +19,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class LaboratorioMenuActivity extends ListActivity {
 
     //menu y activities
-    String[] menu = {"Insertar Laboratorio", "Actualizar Laboratorio", "Consultar Laboratorio", "Eliminar Laboratorio"};
+    String[] menu; // = {"Insertar Laboratorio", "Actualizar Laboratorio", "Consultar Laboratorio", "Eliminar Laboratorio"};
     String[] activities = {"LaboratorioInsertarActivity", "LaboratorioActualizarActivity", "LaboratorioConsultarActivity", "LaboratorioEliminarActivity"};
     //paquete: com.example.farmaciarikas.
 
@@ -30,6 +30,7 @@ public class LaboratorioMenuActivity extends ListActivity {
         ListView listView = getListView();
         listView.setBackgroundColor(ContextCompat.getColor(this, R.color.redLight));
 
+        menu = menu = getResources().getStringArray(R.array.menu_items_Laboratorio);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
 

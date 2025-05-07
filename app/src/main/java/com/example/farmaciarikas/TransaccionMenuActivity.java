@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class TransaccionMenuActivity extends ListActivity {
 
     //menu y activities
-    String[] menu = {"Insertar Transaccion", "Actualizar Transaccion", "Consultar Transaccion", "Eliminar Transaccion"};
+    String[] menu; //= {"Insertar Transaccion", "Actualizar Transaccion", "Consultar Transaccion", "Eliminar Transaccion"};
     String[] activities = {"TransaccionInsertarActivity", "TransaccionActualizarActivity", "TransaccionConsultarActivity", "TransaccionEliminarActivity"};
     //paquete: com.example.farmaciarikas.
 
@@ -29,6 +29,7 @@ public class TransaccionMenuActivity extends ListActivity {
         ListView listView = getListView();
         listView.setBackgroundColor(ContextCompat.getColor(this, R.color.orngLight));
 
+        menu = getResources().getStringArray(R.array.menu_items_Transaccion);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
 

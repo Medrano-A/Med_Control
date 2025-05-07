@@ -59,4 +59,70 @@
     <string name="correo">Correo</string>
 
     <string name="opciones">Opciones:</string>
+
+    <!-->GD21001<!-->
+
+    <string-array name="menu_items_GD21001">
+        <item>Tabla Transacciones</item>
+        <item>Tabla Marca</item>
+        <item>Tabla Laboratorio</item>
+    </string-array>
+
+    <string-array name="menu_items_Transaccion">
+        <item>Insertar Transaccion</item>
+        <item>Actualizar Transaccion</item>
+        <item>Consultar Transaccion</item>
+        <item>Eliminar Transaccion</item>
+    </string-array>
+
+    <string-array name="menu_items_Marca">
+        <item>Insertar Marca</item>
+        <item>Actualizar Marca</item>
+        <item>Consultar Marca</item>
+        <item>Eliminar Marca</item>
+    </string-array>
+
+    <string-array name="menu_items_Laboratorio">
+        <item>Insertar Laboratorio</item>
+        <item>Actualizar Laboratorio</item>
+        <item>Consultar Laboratorio</item>
+        <item>Eliminar Laboratorio</item>
+    </string-array>
+
+    <!-->Marca<!-->
+    <string name="idMarca">Marca ID</string>
+    <string name="nombreMarca">Nombre Marca</string>
+    <!-->Laboratorio<!-->
+    <string name="idLabo">Laboratorio ID</string>
+    <string name="laboratorioNombre">Nombre Laboratorio</string>
+    <string name="laboratorioTipo">Tipo De Laboratorio</string>
+    <string name="laboratorioTelefono">Telefono Laboratorio</string>
+    <!-->Transaccion<!-->
+    <string name="idVenta">Transaccion ID</string>
+    <string name="DuiCliente">Dui</string>
+    <string name="IDUsuario">Usuario ID</string>
+    <string name="IDLocal">Local ID</string>
+    <string name="fechaEmision">Fecha de Emision</string>
+    <string name="totalTransaccion">Total</string>
+    <string name="tipoTransaccion">Tipo De Transaccion</string>
+    <!-->Botones<!-->
+    <string name="InsertarMarca">Insertar Marca</string>
+    <string name="InsertarTransaccion">Insertar Transaccion</string>
+    <string name="InsertarLabo">Insertar Laboratorio</string>
+
+    <string name="ActualizarMarca">Actualizar Marca</string>
+    <string name="ActualizarTransaccion">Actualizar Transaccion</string>
+    <string name="ActualizarLabo">Actualizar Laboratorio</string>
+
+    <string name="ConsultarMarca">Consultar Marca</string>
+    <string name="ConsultarTransaccion">Consultar Transaccion</string>
+    <string name="ConsultarLabo">Consultar Laboratorio</string>
+
+    <string name="EliminarMarca">Eliminar Marca</string>
+    <string name="EliminarTransaccion">Eliminar Transaccion</string>
+    <string name="EliminarLabo">Eliminar Laboratorio</string>
+
+    <string name="LimpiarCampos">Limpiar</string>
+    <!-->GD21001<!-->
+
 </resources>
