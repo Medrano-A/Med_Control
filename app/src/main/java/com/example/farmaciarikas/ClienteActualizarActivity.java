@@ -44,91 +44,99 @@ public class ClienteActualizarActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(!yaBusco){
                     yaBusco=true;
-                    String dui = editTextDui.getText().toString().trim();
-
-                    if (dui.isEmpty()) {
-                        Toast.makeText(ClienteActualizarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    Cliente cliente = null; // dbFarmacia.consultarCliente(dui);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ClienteActualizarActivity.this);
-                    builder.setTitle(getString(R.string.dialog_title_info_consultar));
-
-                    if (cliente != null) {
-                        editTextNombre.setText(cliente.getNombre());
-                        editTextApellido.setText(cliente.getApellido());
-                        editTextTelefono.setText(cliente.getTelefono());
-                        editTextCorreo.setText(cliente.getCorreo());
-
-                        editTextDui.setEnabled(false);
-                        editTextNombre.setEnabled(true);
-                        editTextNombre.requestFocus();
-                        editTextApellido.setEnabled(true);
-                        editTextTelefono.setEnabled(true);
-                        editTextCorreo.setEnabled(true);
-
-
-                        builder.setMessage(getString(R.string.dialog_msg_cliente_encontrado));
-                        builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), null);
-
-                        buscar.setText(R.string.ActualizarCliente_btn_actualizar);
-                    } else {
-                        builder.setMessage(getString(R.string.dialog_msg_cliente_no_encontrado));
-                        builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), null);
-                    }
-
-                    builder.create().show();
+                    buscarCliente();
                 }
                 else{
                     yaBusco=false;
-
-                    String dui = editTextDui.getText().toString().trim();
-                    String nombre = editTextNombre.getText().toString().trim();
-                    String apellido = editTextApellido.getText().toString().trim();
-                    String telefono = editTextTelefono.getText().toString().trim();
-                    String correo = editTextCorreo.getText().toString().trim();
-
-                    if (dui.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
-                        Toast.makeText(ClienteActualizarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    boolean insertada = false;//dbFarmacia.actualizarCliente(dui, nombre, apellido, telefono, correo);
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ClienteActualizarActivity.this);
-                    builder.setTitle(getString(R.string.dialog_title_info_actualizar));
-
-                    if (insertada) {
-                        builder.setMessage(getString(R.string.dialog_msg_cliente_guardado));
-                        builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                finish();
-                            }
-                        });
-
-                        editTextDui.setEnabled(true);
-                        editTextDui.setText("");
-                        editTextNombre.setEnabled(false);
-                        editTextNombre.setText("");
-                        editTextApellido.setEnabled(false);
-                        editTextApellido.setText("");
-                        editTextTelefono.setEnabled(false);
-                        editTextTelefono.setText("");
-                        editTextCorreo.setEnabled(false);
-                        editTextCorreo.setText("");
-                        buscar.setText(R.string.ActualizarCliente_btn_buscar);
-                    } else {
-                        builder.setMessage(getString(R.string.dialog_msg_error_guardar_cliente));
-                        builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), null);
-                    }
-
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                    actualizarCliente();
                 }
-
             }
         });
+    }
+
+    private void buscarCliente(){
+        String dui = editTextDui.getText().toString().trim();
+
+        if (dui.isEmpty()) {
+            Toast.makeText(ClienteActualizarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Cliente cliente = null; // dbFarmacia.consultarCliente(dui);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClienteActualizarActivity.this);
+        builder.setTitle(getString(R.string.dialog_title_info_consultar));
+
+        if (cliente != null) {
+            editTextNombre.setText(cliente.getNombre());
+            editTextApellido.setText(cliente.getApellido());
+            editTextTelefono.setText(cliente.getTelefono());
+            editTextCorreo.setText(cliente.getCorreo());
+
+            editTextDui.setEnabled(false);
+            editTextNombre.setEnabled(true);
+            editTextNombre.requestFocus();
+            editTextApellido.setEnabled(true);
+            editTextTelefono.setEnabled(true);
+            editTextCorreo.setEnabled(true);
+
+
+            builder.setMessage(getString(R.string.dialog_msg_cliente_encontrado));
+            builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), null);
+
+            buscar.setText(R.string.ActualizarCliente_btn_actualizar);
+        } else {
+            builder.setMessage(getString(R.string.dialog_msg_cliente_no_encontrado));
+            builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), null);
+        }
+
+        builder.create().show();
+
+    }
+
+    private void actualizarCliente(){
+        String dui = editTextDui.getText().toString().trim();
+        String nombre = editTextNombre.getText().toString().trim();
+        String apellido = editTextApellido.getText().toString().trim();
+        String telefono = editTextTelefono.getText().toString().trim();
+        String correo = editTextCorreo.getText().toString().trim();
+
+        if (dui.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+            Toast.makeText(ClienteActualizarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        boolean insertada = false;//dbFarmacia.actualizarCliente(dui, nombre, apellido, telefono, correo);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(ClienteActualizarActivity.this);
+        builder.setTitle(getString(R.string.dialog_title_info_actualizar));
+
+        if (insertada) {
+            builder.setMessage(getString(R.string.dialog_msg_cliente_guardado));
+            builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+
+            editTextDui.setEnabled(true);
+            editTextDui.setText("");
+            editTextNombre.setEnabled(false);
+            editTextNombre.setText("");
+            editTextApellido.setEnabled(false);
+            editTextApellido.setText("");
+            editTextTelefono.setEnabled(false);
+            editTextTelefono.setText("");
+            editTextCorreo.setEnabled(false);
+            editTextCorreo.setText("");
+            buscar.setText(R.string.ActualizarCliente_btn_buscar);
+        } else {
+            builder.setMessage(getString(R.string.dialog_msg_error_guardar_cliente));
+            builder.setPositiveButton(getString(R.string.dialog_btn_aceptar), null);
+        }
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
     }
 }

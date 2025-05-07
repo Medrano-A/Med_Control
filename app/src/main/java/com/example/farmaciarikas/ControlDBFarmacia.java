@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class ControlDBFarmacia {
 
@@ -41,6 +42,7 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE doctor(idDoctor INTEGER NOT NULL PRIMARY KEY,nombreDoctor VARCHAR(30),especialidad VARCHAR(30),jvpm VARCHAR(4),telefonoDoctor VARCHAR(8),correoDoctor VARCHAR(30));");
                 db.execSQL("CREATE TABLE medicamento(idMedicamento VARCHAR(4) NOT NULL PRIMARY KEY,codElemento INTEGER NOT NULL,idLaboratorio INTEGER NOT NULL,viaDeAdministracion VARCHAR(32),formaFarmaceutica VARCHAR(32));");
                 db.execSQL("CREATE TABLE local(idLocal INTEGER  NOT NULL PRIMARY KEY ,idUbicacion INTEGER  NOT NULL ,nombreLocal VARCHAR(30) ,tipoLocal VARCHAR(30),telefonoLocal VARCHAR(8));");
+                db.execSQL("CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -266,5 +268,67 @@ public class ControlDBFarmacia {
                 return false;
         }
     }
+
+    //Metodos MM22108
+    // Cliente
+    public boolean insertarCliente(Cliente cliente) {
+        db = DBHelper.getWritableDatabase();
+        if (cliente == null) {
+            Log.e("DB", "Cliente es null");
+            return false;
+        }
+
+        Log.d("DB", "Insertando cliente: " + cliente.getDui() + ", " + cliente.getNombre());
+
+        ContentValues values = new ContentValues();
+        values.put("dui", cliente.getDui());
+        values.put("nombre", cliente.getNombre());
+        values.put("apellido", cliente.getApellido());
+        values.put("telefono", cliente.getTelefono());
+        values.put("correo", cliente.getCorreo());
+
+        try {
+            long resultado = db.insert("cliente", null, values);
+            Log.d("DB", "Resultado insert: " + resultado);
+            return resultado != -1;
+        } catch (Exception e) {
+            Log.e("DB", "Error insertando cliente", e);
+            return false;
+        }
+    }
+
+
+    public Cliente consultarCliente(String dui) {
+        db = DBHelper.getWritableDatabase();
+        Cliente cliente = null;
+        Cursor cursor = null;
+
+        try {
+            cursor = db.query(
+                    "cliente",
+                    new String[]{"dui", "nombre", "apellido", "telefono", "correo"},
+                    "dui = ?",
+                    new String[]{dui},
+                    null,
+                    null,
+                    null
+            );
+
+            if (cursor != null && cursor.moveToFirst()) {
+                cliente = new Cliente(
+                        cursor.getString(cursor.getColumnIndexOrThrow("dui")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("apellido")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("telefono")),
+                        cursor.getString(cursor.getColumnIndexOrThrow("correo"))
+                );
+            }
+        } finally {
+            if (cursor != null) cursor.close();
+        }
+
+        return cliente;
+    }
+
 
 }

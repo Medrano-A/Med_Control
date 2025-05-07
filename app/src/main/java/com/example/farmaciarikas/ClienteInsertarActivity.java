@@ -46,12 +46,14 @@ public class ClienteInsertarActivity extends AppCompatActivity {
                 String telefono = editTextTelefono.getText().toString().trim();
                 String correo = editTextCorreo.getText().toString().trim();
 
-                if (dui.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || telefono.isEmpty() || correo.isEmpty()) {
+                Cliente cliente = new Cliente(dui, nombre, apellido, telefono, correo);
+
+                if(!cliente.esValido()){
                     Toast.makeText(ClienteInsertarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                boolean insertada = false;//dbFarmacia.insertarCliente(dui, nombre, apellido, telefono, correo);
+                boolean insertada = dbFarmacia.insertarCliente(cliente);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClienteInsertarActivity.this);
                 builder.setTitle(getString(R.string.dialog_title_info_ingreso));

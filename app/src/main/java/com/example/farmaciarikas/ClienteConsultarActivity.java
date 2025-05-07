@@ -36,12 +36,12 @@ public class ClienteConsultarActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String dui = editTextDui.getText().toString().trim();
 
-                if (dui.isEmpty()) {
+                if (dui.isEmpty() || dui.length() > 10 || dui == null) {
                     Toast.makeText(ClienteConsultarActivity.this, getString(R.string.msg_campos_obligatorios), Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Cliente cliente = null; // dbFarmacia.consultarCliente(dui);
+                Cliente cliente = dbFarmacia.consultarCliente(dui);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ClienteConsultarActivity.this);
                 builder.setTitle(getString(R.string.dialog_title_info_consultar));
