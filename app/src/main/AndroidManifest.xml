@@ -13,6 +13,51 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".DistritoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistritoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistritoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistritoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MunicipioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MunicipioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MunicipioActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MunicipioInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DepartamentoEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DepartamentoConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DepartamentoActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DepartamentoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DistritoMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MunicipioMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DepartamentoMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".TransaccionActualizarActivity"
             android:exported="false" />
         <activity
