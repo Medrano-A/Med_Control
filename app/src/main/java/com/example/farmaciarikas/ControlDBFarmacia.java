@@ -377,7 +377,8 @@ public class ControlDBFarmacia {
             return null;
         }
     }
-    //GD21001 Tablas
+    /*----GD21001 Tablas----*/
+    /*----LABORATORIO----*/
     public String insertar(Laboratorio l){
         String regInsert = "Registro insertado N°= ";
         long cont = 0;
@@ -394,7 +395,187 @@ public class ControlDBFarmacia {
         }
         return regInsert;
     }
-    //Fin
+    public String actualizar(Laboratorio l){
+        int idLab = l.getIdLaboratorio();
+        String[] idLaboratorio = {Integer.toString(idLab)};
+        ContentValues cv = new ContentValues();
+        cv.put("nombre", l.getNombre());
+        cv.put("tipo", l.getTipo());
+        cv.put("telefono", l.getTelefono());
+        db.update("Laboratorio",cv,"idLaboratorio = ?", idLaboratorio);
+        return "Registro actualizado correctamente";
+    }
+    public Laboratorio consultarLab(int idLabo){
+        String[] idLaboratorio = {Integer.toString(idLabo)};
+        Cursor c = db.query("Laboratorio", camposLaboratorio, "idLaboratorio = ?", idLaboratorio, null, null, null);
+        if(c.moveToFirst()){
+            Laboratorio lab = new Laboratorio();
+            lab.setIdLaboratorio(Integer.parseInt(c.getString(0)));
+            lab.setNombre(c.getString(1));
+            lab.setTipo(c.getString(2));
+            lab.setTelefono(c.getString(3));
+            return lab;
+        }else{
+            return null;
+        }
+    }
+    public String eliminar(Laboratorio l){
+        String regAfect = "Filas afectadas = ";
+        int cont = 0;
+        //verificar la integridad relacionada con otras tablas
+        cont += db.delete("Laboratorio", "idLaboratorio = '" + l.getIdLaboratorio() +"'", null);
+        return null;
+    }
+    /*----MARCA----*/
+    public String insertar(Marca m){
+        return null;
+    }
+    public String actualizar(Marca m){
+        return null;
+    }
+    public Marca consultarMarca(String idMarca){
+        return null;
+    }
+    public String eliminar(Marca m){
+        return null;
+    }
+    /*----DEPARTAMENTO----*/
+//    public String insertar(){
+//        return null;
+//    }
+//    public String actualizar(){
+//        return null;
+//    }
+//    public String consultar(){
+//        return null;
+//    }
+//    public String eliminar(){
+//        return null;
+//    }
+    /*----MUNICIPIO----*/
+//    public String insertar(){
+//        return null;
+//    }
+//    public String actualizar(){
+//        return null;
+//    }
+//    public String consultar(){
+//        return null;
+//    }
+//    public String eliminar(){
+//        return null;
+//    }
+    /*----DISTRITO----*/
+//    public String insertar(){
+//        return null;
+//    }
+//    public String actualizar(){
+//        return null;
+//    }
+//    public String consultar(){
+//        return null;
+//    }
+//    public String eliminar(){
+//        return null;
+//    }
+    public boolean verificarIntegridadLab(Object dato, int relacion) throws SQLException{
+        return true;
+    }
+    public boolean verificarIntegridadMarca(Object dato, int relacion) throws SQLException{
+        return true;
+    }
+    public boolean verificarIntegridadDpto(Object dato, int relacion) throws SQLException{
+        return true;
+    }
+    public boolean verificarIntegridadMncip(Object dato, int relacion) throws SQLException{
+        return true;
+    }
+    public boolean verificarIntegridaDist(Object dato, int relacion) throws SQLException{
+        return true;
+    }
+    public String llenadoTablasGD21001(){
+        abrir();
+        //limpiado de tablas
+        db.execSQL("DELETE FROM Laboratorio");
+        db.execSQL("DELETE FROM Departamento");
+        db.execSQL("DELETE FROM Municipio");
+        db.execSQL("DELETE FROM Distrito");
+        db.execSQL("DELETE FROM Marca");
+
+        //tabla Laboratorio
+        /*Campos iniciales*/
+        final int[] idLaboratorio = {01, 02, 03, 04, 05};
+        final String[] nombre = {"Laboratorio Pfizer", "Laboratorio SanSavior", "Laboratorio Quesadillas", "LabComputo", "Laboratorio Bukeli"};
+        final String[] tipo = {"Química", "Quimica", "Biología", "Clinico", "Medrano"};
+        final String[] telefono = {"70017029", "70017030", "70017031", "70017032", "70017033"};
+        /*Insercion de datos*/
+        Laboratorio l = new Laboratorio();
+        for(int i=0; i < 5; i++){
+            l.setIdLaboratorio(idLaboratorio[i]);
+            l.setNombre(nombre[i]);
+            l.setTipo(tipo[i]);
+            l.setTelefono(telefono[i]);
+            insertar(l);
+        }
+        /*---------------------*/
+        //tabla Departamento
+        /*Campos iniciales*/
+        final int[] idDepartamento = {01, 02, 03, 04, 05};
+        final String[] nombreDep = {"San Salvador", "La Libertad", "Santa Ana", "Chalatenango", "San Miguel"};
+        /*Insercion de datos*/
+        Departamento d = new Departamento();
+        for (int i = 0; i < 5; i++) {
+            d.setIdDepartamento(idDepartamento[i]);
+            d.setNombre(nombreDep[i]);
+            //insertar(d);
+        }
+        /*---------------------*/
+        //tabla Municipio
+        /*Campos iniciales*/
+        final int[] idMunicipio = {011, 012, 013, 014, 015};
+        final int[] idDepartamentoMun = {01, 02, 03, 04, 05};
+        final String[] nombreMun = {"Soyapango", "Santa Tecla", "Metapán", "Mejicanos", "Chirilagua"};
+        /*Insercion de datos*/
+        Municipio m = new Municipio();
+        for (int i = 0; i < 5; i++) {
+            m.setIdMunicipio(idMunicipio[i]);
+            m.setIdDepartamento(idDepartamentoMun[i]);
+            m.setNombre(nombreMun[i]);
+            //insertar(m);
+        }
+        /*---------------------*/
+        //tabla Distrito
+        /*Campos iniciales*/
+        final int[] idDistrito = {1001, 1002, 1003, 1004, 1005};
+        final int[] idMunicipioDistrito = {011, 012, 013, 014, 015};
+        final String[] nombreDist = {"Distrito 1", "Distrito 2", "Distrito 3", "Distrito 4", "Distrito 5"};
+        /*Insercion de datos*/
+        Distrito dis = new Distrito();
+        for (int i = 0; i < 5; i++) {
+            dis.setIdDistrito(idDistrito[i]);
+            dis.setIdMunicipio(idMunicipioDistrito[i]);
+            dis.setNombre(nombreDist[i]);
+            //insertar(dis);
+        }
+
+        /*---------------------*/
+        //tabla Marca
+        /*Campos iniciales*/
+        final int[] idMarca = {501, 502, 503, 504, 505};
+        final String[] nombreMarca = {"Farvel", "EISI", "GUD", "Advi", "PDM"};
+        /*Insercion de datos*/
+        Marca marca = new Marca();
+        for (int i = 0; i < 5; i++) {
+            marca.setIdMarca(idMarca[i]);
+            marca.setNombre(nombreMarca[i]);
+            insertar(marca);
+        }
+        /*---------------------*/
+
+        cerrar();
+        return context.getResources().getString(R.string.llenadoBD);
+    }
+    //Fin GD21001
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {

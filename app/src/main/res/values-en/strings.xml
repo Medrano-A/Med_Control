@@ -247,6 +247,7 @@
     <string name="ConsultarDatos">Query</string>
     <string name="EliminarDatos">Delete</string>
     <string name="LimpiarCampos">Clear</string>
+    <string name="llenadoBD">GD21001 Table's Loaded</string>
     <!-->GD21001<!-->
 
 </resources>
