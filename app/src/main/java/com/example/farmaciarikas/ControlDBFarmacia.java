@@ -431,11 +431,13 @@ public class ControlDBFarmacia {
         if(verificarIntegridadLab(l, 1)){
             cont += db.delete("Laboratorio", "idLaboratorio = '" + l.getIdLaboratorio() +"'", null);
         }else{
-            regAfect = "ID no existe o no se encuentra";
+            regAfect = "ID no existe o no se encuentra, Filas afectadas = ";
+            regAfect += cont;
             return regAfect;
         }
         regAfect += cont;
         return regAfect;
+
     }
     /*----MARCA----*/
     public String insertar(Marca m){
@@ -501,7 +503,7 @@ public class ControlDBFarmacia {
                     //Se encontro el lab
                     return true;
                 }
-                return true;
+                return false;
             }
             default:
                 return false;

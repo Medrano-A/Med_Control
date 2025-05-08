@@ -2,6 +2,7 @@ package com.example.farmaciarikas;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -53,14 +54,23 @@ public class LaboratorioActualizarActivity extends Activity {
     }
 
     public void ActuLabo(View v){
-        Laboratorio lNew = new Laboratorio();
-        lNew.setIdLaboratorio(Integer.valueOf(editIdLaboratorio.getText().toString()));
-        lNew.setNombre(editNombre.getText().toString());
-        lNew.setTipo(editTipoLab.getText().toString());
-        lNew.setTelefono(editTelefonoLab.getText().toString());
-        dbFarmHelper.abrir();
-        String estado = dbFarmHelper.actualizar(lNew);
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        try{
+            if(editIdLaboratorio.getText().toString().isEmpty() || editNombre.getText().toString().isEmpty() || editTipoLab.getText().toString().isEmpty() || editTelefonoLab.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los Campos de Laboratorio se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                Laboratorio lNew = new Laboratorio();
+                lNew.setIdLaboratorio(Integer.valueOf(editIdLaboratorio.getText().toString()));
+                lNew.setNombre(editNombre.getText().toString());
+                lNew.setTipo(editTipoLab.getText().toString());
+                lNew.setTelefono(editTelefonoLab.getText().toString());
+                dbFarmHelper.abrir();
+                String estado = dbFarmHelper.actualizar(lNew);
+                Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e) {
+            Toast.makeText(this, "Ha ocurrido un error en Actualizar Laboratorio", Toast.LENGTH_SHORT).show();
+            Log.e("LAB_ERROR", "Error al Actualizar laboratorio", e);
+        }
     }
 
     public void limpiarCampos(View v){

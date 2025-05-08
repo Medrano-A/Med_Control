@@ -2,6 +2,7 @@ package com.example.farmaciarikas;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,13 +29,22 @@ public class LaboratorioEliminarActivity extends Activity {
     }
 
     public void eliminarLabo(View v){
-        String regElim;
-        Laboratorio l = new Laboratorio();
-        l.setIdLaboratorio(Integer.valueOf(editIdLaboratorio.getText().toString()));
-        dbFarmHelper.abrir();
-        regElim = dbFarmHelper.eliminar(l);
-        dbFarmHelper.cerrar();
-        Toast.makeText(this, regElim, Toast.LENGTH_SHORT).show();
+        try{
+            if(editIdLaboratorio.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los Campos de ID Laboratorio se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                String regElim;
+                Laboratorio l = new Laboratorio();
+                l.setIdLaboratorio(Integer.valueOf(editIdLaboratorio.getText().toString()));
+                dbFarmHelper.abrir();
+                regElim = dbFarmHelper.eliminar(l);
+                dbFarmHelper.cerrar();
+                Toast.makeText(this, regElim, Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Ha ocurrido un error en Eliminar Laboratorio", Toast.LENGTH_SHORT).show();
+            Log.e("LAB_ERROR", "Error al Eliminar laboratorio", e);
+        }
     }
 
     public void limpiarCampos(View v){
