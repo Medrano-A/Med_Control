@@ -16,6 +16,7 @@
         android:id="@+id/marcaEliminar"
         android:text="@string/EliminarMarca"
         android:layout_gravity="center_horizontal"
+        android:textSize="24sp"
         />
 
     <TextView

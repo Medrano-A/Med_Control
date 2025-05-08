@@ -15,6 +15,7 @@
         <TextView
             android:id="@+id/transaccionInsertar"
             android:text="@string/InsertarTransaccion"
+            android:textSize="24sp"
             />
     </TableRow>
     <!-->Ids<!-->

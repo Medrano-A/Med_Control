@@ -16,6 +16,7 @@
         <TextView
             android:id="@+id/laboConsultar"
             android:text="@string/ConsultarLabo"
+            android:textSize="24sp"
             />
     </TableRow>
 
