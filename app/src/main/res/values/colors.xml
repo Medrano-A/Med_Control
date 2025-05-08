@@ -12,5 +12,9 @@
     <color name="orngDark">#FFB74D</color>
     <color name="blueLight">#B3D9FF</color>
     <color name="blueDark">#64B5F6</color>
+    <color name="purpleLight">#E0BBE4</color>
+    <color name="purpleDark">#9C27B0</color>
+    <color name="aquaLight">#B2EBF2</color>
+    <color name="aquaDark">#00ACC1</color>
     <!-->GD21001 Colors End<!-->
 </resources>

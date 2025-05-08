@@ -14,8 +14,9 @@
     <TableRow>
         <TextView
             android:id="@+id/marcaInsertar"
-            android:text="@string/InsertarMarca"/>
-            android:textSize="24sp"
+            android:text="@string/InsertarMarca"
+            android:textSize="24sp"/>
+
     </TableRow>
 
     <TableRow>

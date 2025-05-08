@@ -24,6 +24,18 @@ public class ControlDBFarmacia {
     private static final String[] camposLaboratorio = new String[] {
       "idLaboratorio", "nombre", "tipo", "telefono"
     };
+    private static final String[] camposMarca = new String[]{
+            "idMarca", "nombre"
+    };
+    private static final String[] camposDepartamento = new String[]{
+            "idDepartamento", "nombre"
+    };
+    private static final String[] camposMunicipio = new String[]{
+            "idMunicipio", "idDepartamento", "nombre"
+    };
+    private static final String[] camposDistrito = new String[]{
+            "idDistrito", "idMunicipio", "nombre"
+    };
 
     private final Context context;
     private DatabaseHelper DBHelper;
@@ -453,44 +465,64 @@ public class ControlDBFarmacia {
         return null;
     }
     /*----DEPARTAMENTO----*/
-//    public String insertar(){
-//        return null;
-//    }
-//    public String actualizar(){
-//        return null;
-//    }
-//    public String consultar(){
-//        return null;
-//    }
-//    public String eliminar(){
-//        return null;
-//    }
+    public String insertar(Departamento d){
+        String regInsert = "Registro insertado N°= ";
+        long cont = 0;
+        ContentValues v = new ContentValues();
+        v.put("idDepartamento", d.getIdDepartamento());
+        v.put("nombre", d.getNombre());
+        cont = db.insert("Departamento", null, v);
+        if(cont == -1 || cont == 0){
+            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion";
+        }else{
+            regInsert=regInsert+cont;
+        }
+        return regInsert;
+    }
+    public String actualizar(Departamento d){
+        return null;
+    }
+    public Departamento consultarDpto(int idDpto){
+        String[] id = {Integer.toString(idDpto)};
+        Cursor c = db.query("Departamento", camposDepartamento, "idDepartamento = ?", id, null, null, null);
+        if(c.moveToFirst()){
+            Departamento d = new Departamento();
+            d.setIdDepartamento(Integer.parseInt(c.getString(0)));
+            d.setNombre(c.getString(1));
+            return d;
+        }else{
+            return null;
+        }
+    }
+    public String eliminar(Departamento d){
+        return null;
+    }
     /*----MUNICIPIO----*/
-//    public String insertar(){
-//        return null;
-//    }
-//    public String actualizar(){
-//        return null;
-//    }
-//    public String consultar(){
-//        return null;
-//    }
-//    public String eliminar(){
-//        return null;
-//    }
+    public String insertar(Municipio m){
+        return null;
+    }
+    public String actualizar(Municipio m){
+        return null;
+    }
+    public Municipio consultarMuni(int idMuni){
+        return null;
+    }
+    public String eliminar(Municipio m){
+        return null;
+    }
     /*----DISTRITO----*/
-//    public String insertar(){
-//        return null;
-//    }
-//    public String actualizar(){
-//        return null;
-//    }
-//    public String consultar(){
-//        return null;
-//    }
-//    public String eliminar(){
-//        return null;
-//    }
+    public String insertar(Distrito dis){
+        return null;
+    }
+    public String actualizar(Distrito dis){
+        return null;
+    }
+    public Distrito consultarDis(int idDis){
+        return null;
+    }
+    public String eliminar(Distrito dis){
+        return null;
+    }
     public boolean verificarIntegridadLab(Object dato, int relacion) throws SQLException{
         switch (relacion){
             case 1:{
@@ -603,7 +635,7 @@ public class ControlDBFarmacia {
         cerrar();
         return context.getResources().getString(R.string.llenadoBD);
     }
-    //Fin GD21001
+    //Fin GD21001/////////////
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {
