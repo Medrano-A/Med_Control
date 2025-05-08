@@ -433,23 +433,32 @@ public class ControlDBFarmacia {
         String regInsertados = "Registro Insertado Nº= ";
         long contador = 0;
 
+        try {
+            if (verificarIntegridad(local, 1)) {  // Verifica que idUbicacion exista
+                ContentValues loc = new ContentValues();
+                loc.put("idLocal", local.getIdLocal());
+                loc.put("idUbicacion", local.getIdUbicacion());
+                loc.put("nombreLocal", local.getNombreLocal());
+                loc.put("tipoLocal", local.getTipoLocal());
+                loc.put("telefonoLocal", local.getTelefonoLocal());
 
-            ContentValues loc = new ContentValues();
-            loc.put("idLocal", local.getIdLocal());
-            loc.put("idUbicacion", local.getIdUbicacion());
-            loc.put("nombreLocal", local.getNombreLocal());
-            loc.put("tipoLocal", local.getTipoLocal());
-            loc.put("telefonoLocal", local.getTelefonoLocal());
-            contador = db.insert("local", null, loc);
+                contador = db.insert("local", null, loc);
 
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro. Verificar si existe la ubicación o si el registro es duplicado.";
-        } else {
-            regInsertados = regInsertados + contador;
+                if (contador == -1 || contador == 0) {
+                    regInsertados = "Error al Insertar el registro. Verificar si el registro es duplicado.";
+                } else {
+                    regInsertados = regInsertados + contador;
+                }
+            } else {
+                regInsertados = "Error: La ubicación con ID " + local.getIdUbicacion() + " no existe.";
+            }
+        } catch (SQLException e) {
+            regInsertados = "Error en la base de datos: " + e.getMessage();
         }
+
         return regInsertados;
     }
+
     public String actualizar(Local local) {
 
             String[] id = {String.valueOf(local.getIdLocal())};
