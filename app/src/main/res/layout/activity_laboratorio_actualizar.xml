@@ -64,11 +64,11 @@
     </TableRow>
     <TableRow>
         <TextView
-            android:id="@+id/laboTelInsertar"
+            android:id="@+id/laboTelActu"
             android:text="@string/laboratorioTelefono"
             />
         <EditText
-            android:id="@+id/laboTelInsertarEdit"
+            android:id="@+id/laboTelActuEdit"
             android:inputType="number"
             android:maxLength="8"
             />

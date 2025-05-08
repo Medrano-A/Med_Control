@@ -51,8 +51,6 @@ public class LaboratorioConsultarActivity extends Activity {
         }catch (Exception e){
             Toast.makeText(this, "A ocurrido un error durante la ejecucion en Consultar en Laboratorio", Toast.LENGTH_SHORT).show();
         }
-        dbFarmHelper.abrir();
-        Laboratorio l = dbFarmHelper.consultarLab(Integer.valueOf(editIdLaboratorio.getText().toString()));
     }
     public void limpiarCampos(View v){
         editIdLaboratorio.setText("");

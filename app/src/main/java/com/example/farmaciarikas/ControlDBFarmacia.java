@@ -396,14 +396,19 @@ public class ControlDBFarmacia {
         return regInsert;
     }
     public String actualizar(Laboratorio l){
-        int idLab = l.getIdLaboratorio();
-        String[] idLaboratorio = {Integer.toString(idLab)};
-        ContentValues cv = new ContentValues();
-        cv.put("nombre", l.getNombre());
-        cv.put("tipo", l.getTipo());
-        cv.put("telefono", l.getTelefono());
-        db.update("Laboratorio",cv,"idLaboratorio = ?", idLaboratorio);
-        return "Registro actualizado correctamente";
+        if(verificarIntegridadLab(l, 1)){
+            int idLab = l.getIdLaboratorio();
+            String[] idLaboratorio = {Integer.toString(idLab)};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre", l.getNombre());
+            cv.put("tipo", l.getTipo());
+            cv.put("telefono", l.getTelefono());
+            db.update("Laboratorio",cv,"idLaboratorio = ?", idLaboratorio);
+            return "Registro actualizado correctamente";
+        }else{
+            return "Registro con Id " + l.getIdLaboratorio() + "no existe";
+        }
+
     }
     public Laboratorio consultarLab(int idLabo){
         String[] idLaboratorio = {Integer.toString(idLabo)};
@@ -422,9 +427,15 @@ public class ControlDBFarmacia {
     public String eliminar(Laboratorio l){
         String regAfect = "Filas afectadas = ";
         int cont = 0;
-        //verificar la integridad relacionada con otras tablas
-        cont += db.delete("Laboratorio", "idLaboratorio = '" + l.getIdLaboratorio() +"'", null);
-        return null;
+        //verificar la integridad relacionada con el id
+        if(verificarIntegridadLab(l, 1)){
+            cont += db.delete("Laboratorio", "idLaboratorio = '" + l.getIdLaboratorio() +"'", null);
+        }else{
+            regAfect = "ID no existe o no se encuentra";
+            return regAfect;
+        }
+        regAfect += cont;
+        return regAfect;
     }
     /*----MARCA----*/
     public String insertar(Marca m){
@@ -479,7 +490,22 @@ public class ControlDBFarmacia {
 //        return null;
 //    }
     public boolean verificarIntegridadLab(Object dato, int relacion) throws SQLException{
-        return true;
+        switch (relacion){
+            case 1:{
+                //verificar que el ID Exista
+                Laboratorio labExiste = (Laboratorio) dato;
+                String[] id = {Integer.toString(labExiste.getIdLaboratorio())};
+                abrir();
+                Cursor cExist = db.query("Laboratorio", null, "idLaboratorio = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el lab
+                    return true;
+                }
+                return true;
+            }
+            default:
+                return false;
+        }
     }
     public boolean verificarIntegridadMarca(Object dato, int relacion) throws SQLException{
         return true;
