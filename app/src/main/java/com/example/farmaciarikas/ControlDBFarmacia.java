@@ -23,6 +23,13 @@ public class ControlDBFarmacia {
     private static final String[] camposElemento = new String[] {
             "codElemento", "nombre", "cantidad", "descripcion", "precioUni", "unidades"
     };
+    private static final String[] camposUbicacion = new String[] {
+            "idUbicacion", "idDistrito", "idMarca", "detalle"
+    };
+
+    private static final String[] camposStock = new String[] {
+            "idStock", "codElemento", "idLocal", "cantidad", "fechaVencimiento"
+    };
 
     private final Context context;
     private DatabaseHelper DBHelper;
@@ -155,6 +162,38 @@ public class ControlDBFarmacia {
         }
         return regInsertados;
     }
+    public Ubicacion consultarUbicacion(int idUbicacion) {
+        String[] id = {String.valueOf(idUbicacion)};
+        Cursor cursor = db.query("ubicacion", camposUbicacion, "idUbicacion = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Ubicacion ubicacion = new Ubicacion();
+            ubicacion.setIdUbicacion(cursor.getInt(0));
+            ubicacion.setIdDistrito(cursor.getInt(1));
+            ubicacion.setIdMarca(cursor.getInt(2));
+            ubicacion.setDetalle(cursor.getString(3));
+
+            return ubicacion;
+        } else {
+            return null;
+        }
+    }
+    public String actualizar(Ubicacion ubicacion) {
+        String[] id = {String.valueOf(ubicacion.getIdUbicacion())};
+        ContentValues cv = new ContentValues();
+        cv.put("idDistrito", ubicacion.getIdDistrito());
+        cv.put("idMarca", ubicacion.getIdMarca());
+        cv.put("detalle", ubicacion.getDetalle());
+        db.update("ubicacion", cv, "idUbicacion = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+    public String eliminar(Ubicacion ubicacion) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        String idUbicacion =String.valueOf(ubicacion.getIdUbicacion());
+        contador += db.delete("ubicacion", "idUbicacion='" + idUbicacion + "'", null);
+        regAfectados += contador;
+        return regAfectados;
+    }
     /*-----------------------------------------------TABLA STOCKS----------------------------------------------------------*/
     public String insertar(Stock stock) {
         String regInsertados = "Registro Insertado Nº= ";
@@ -174,6 +213,39 @@ public class ControlDBFarmacia {
             regInsertados = regInsertados + contador;
         }
         return regInsertados;
+    }
+    public String eliminar(Stock stock) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        String idStock =String.valueOf(stock.getIdStock());
+        contador += db.delete("stock", "idStock='" + idStock + "'", null);
+        regAfectados += contador;
+        return regAfectados;
+    }
+    public Stock consultarStock(int idStock) {
+        String[] id = {String.valueOf(idStock)};
+        Cursor cursor = db.query("stock", camposStock, "idStock = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Stock stock = new Stock();
+            stock.setIdStock(cursor.getInt(0));
+            stock.setCodElemento(cursor.getInt(1));
+            stock.setIdLocal(cursor.getInt(2));;
+            stock.setCantidad(cursor.getInt(3));
+            stock.setFechaVencimiento(cursor.getString(4));
+            return stock;
+        } else {
+            return null;
+        }
+    }
+    public String actualizar(Stock stock) {
+        String[] id = {String.valueOf(stock.getIdStock())};
+        ContentValues cv = new ContentValues();
+        cv.put("codElemento", stock.getCodElemento());
+        cv.put("idlocal", stock.getIdLocal());
+        cv.put("cantidad", stock.getCantidad());
+        cv.put("fechavencimiento", stock.getFechaVencimiento());
+        db.update("stock", cv, "idStock = ?", id);
+        return "Registro Actualizado Correctamente";
     }
 
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/

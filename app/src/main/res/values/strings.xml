@@ -81,6 +81,16 @@
     <string name="cantidad_stock">Cantidad</string>
     <string name="fecha_vencimiento_yyyy_mm_dd">Fecha Vencimiento (yyyy-MM-dd)</string>
     <string name="registrar_stock">Registrar Stock</string>
+    <string name="id_ubicaci_n">ID Ubicación</string>
+    <string name="detalle_ubicaci_n">Detalle Ubicación</string>
+    <string name="id_distrito">ID Distrito</string>
+    <string name="id_marca">ID Marca</string>
+    <string name="guardar_cambios">Guardar Cambios</string>
+    <string name="eliminar_stock">Eliminar Stock</string>
+    <string name="ingrese_id_de_stock">Ingrese ID de Stock</string>
+    <string name="buscar">Buscar</string>
+    <string name="consultar_stock">Consultar Stock</string>
+    <string name="actualizar_stock">Actualizar Stock</string>
 
 
 </resources>

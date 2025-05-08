@@ -15,6 +15,9 @@ public class Stock {
         this.cantidad = cantidad;
         this.fechaVencimiento = fechaVencimiento;
     }
+    public Stock() {
+
+    }
 
     // Getters y Setters
     public int getIdStock() {
