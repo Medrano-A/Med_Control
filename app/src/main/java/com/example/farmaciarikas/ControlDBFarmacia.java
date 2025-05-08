@@ -21,6 +21,10 @@ public class ControlDBFarmacia {
             "codElemento", "nombre", "cantidad", "descripcion", "precioUni", "unidades"
     };
 
+    private static final String[] camposLaboratorio = new String[] {
+      "idLaboratorio", "nombre", "tipo", "telefono"
+    };
+
     private final Context context;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -106,6 +110,15 @@ public class ControlDBFarmacia {
                         " id_opcion_crud INTEGER NOT NULL, " +
                         "FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE, " +
                         "FOREIGN KEY(id_opcion_crud) REFERENCES OpcionCrud(id_opcion_crud) ON DELETE CASCADE)");
+
+                //gd21001 tablas
+                db.execSQL("CREATE TABLE Laboratorio (idLaboratorio INTEGER NOT NULL PRIMARY KEY, nombre VARCHAR2(30) NOT NULL, tipo CHAR(30) NOT NULL, telefono VARCHAR2(8) NOT NULL);");
+                db.execSQL("CREATE TABLE Departamento (idDepartamento INTEGER NOT NULL PRIMARY KEY, nombre VARCHAR2(30) NOT NULL);");
+                db.execSQL("CREATE TABLE Municipio (idMunicipio INTEGER NOT NULL PRIMARY KEY, idDepartamento INTEGER NOT NULL, nombre VARCHAR2(30) NOT NULL);");
+                db.execSQL("CREATE TABLE Distrito (idDistrito INTEGER NOT NULL PRIMARY KEY, idMunicipio INTEGER NOT NULL, nombre VARCHAR2(30) NOT NULL);");
+                db.execSQL("CREATE TABLE Marca (idMarca INTEGER NOT NULL PRIMARY KEY, nombre VARCHAR2(30) NOT NULL);");
+
+
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -364,7 +377,24 @@ public class ControlDBFarmacia {
             return null;
         }
     }
-
+    //GD21001 Tablas
+    public String insertar(Laboratorio l){
+        String regInsert = "Registro insertado N°= ";
+        long cont = 0;
+        ContentValues lab = new ContentValues();
+        lab.put("idLaboratorio", l.getIdLaboratorio());
+        lab.put("nombre", l.getNombre());
+        lab.put("tipo", l.getTipo());
+        lab.put("telefono", l.getTelefono());
+        cont = db.insert("Laboratorio", null, lab);
+        if (cont == 1 || cont == 0){
+            regInsert = "Error al insertar el registro, registro ya esta insertado, verificar informacion";
+        }else{
+            regInsert = regInsert + cont;
+        }
+        return regInsert;
+    }
+    //Fin
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
             case 1: {

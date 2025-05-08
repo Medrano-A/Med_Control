@@ -61,7 +61,7 @@
             />
         <EditText
             android:id="@+id/laboTelInsertarEdit"
-            android:inputType="number"
+            android:inputType="phone"
             android:maxLength="8"
             />
     </TableRow>
