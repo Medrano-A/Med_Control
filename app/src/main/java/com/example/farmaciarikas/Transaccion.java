@@ -3,7 +3,6 @@ package com.example.farmaciarikas;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,9 @@ public class Transaccion extends Model<Transaccion> {
     };
     public static final String SEL_PK   = "IDTRANSACCION = ?";
 
-    // Constructor
+    /**
+     * Constructor completo, usado al leer de BD (incluye el total).
+     */
     public Transaccion(int idTransaccion,
                        String dui,
                        int idUsuario,
@@ -39,6 +40,26 @@ public class Transaccion extends Model<Transaccion> {
         this.idLocal        = idLocal;
         this.fecha          = fecha;
         this.total          = total;
+        this.tipo           = tipo;
+        fillValues();
+    }
+
+    /**
+     * Constructor para creación inicial; total arranca en 0.
+     */
+    public Transaccion(int idTransaccion,
+                       String dui,
+                       int idUsuario,
+                       int idLocal,
+                       String fecha,
+                       String tipo) {
+        super();
+        this.idTransaccion = idTransaccion;
+        this.dui            = dui;
+        this.idUsuario      = idUsuario;
+        this.idLocal        = idLocal;
+        this.fecha          = fecha;
+        this.total          = 0;
         this.tipo           = tipo;
         fillValues();
     }
@@ -148,8 +169,8 @@ public class Transaccion extends Model<Transaccion> {
 
     /* Consultas estáticas */
     public static Transaccion getByPk(int id) {
-        return getByQuery(SEL_PK, new String[]{String.valueOf(id)})
-                .stream().findFirst().orElse(null);
+        List<Transaccion> arr = getByQuery(SEL_PK, new String[]{String.valueOf(id)});
+        return arr.isEmpty() ? null : arr.get(0);
     }
 
     public static Transaccion[] getAll() {
@@ -178,5 +199,23 @@ public class Transaccion extends Model<Transaccion> {
                 c.getDouble(c.getColumnIndexOrThrow(FIELDS[5])), // TOTAL
                 c.getString(c.getColumnIndexOrThrow(FIELDS[6]))  // TIPO
         );
+    }
+
+    public void recalculateTotal() {
+        // 1) sumar subtotales de todos sus detalles
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT IFNULL(SUM(SUBTOTAL),0) FROM DETALLETRANSACCION WHERE IDTRANSACCION = ?",
+                new String[]{ String.valueOf(idTransaccion) }
+        );
+        double suma = 0;
+        if (c.moveToFirst()) suma = c.getDouble(0);
+        c.close();
+
+        // 2) actualizar campo local y BD
+        this.total = suma;
+        fillValues();  // vuelve a poblar ContentValues con el nuevo total
+        dbHelper.getWritableDatabase()
+                .update(TABLE, valores, SEL_PK, new String[]{ String.valueOf(idTransaccion) });
     }
 }

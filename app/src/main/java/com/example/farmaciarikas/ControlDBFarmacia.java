@@ -145,36 +145,6 @@ public class ControlDBFarmacia {
                                 ");"
                 );
 
-                // Trigger: al insertar un detalle, recalcula TOTAL
-                db.execSQL(
-                        "CREATE TRIGGER trg_update_total_after_insert " +
-                                "AFTER INSERT ON DETALLETRANSACCION " +
-                                "BEGIN " +
-                                "UPDATE TRANSACCION " +
-                                "SET TOTAL = (" +
-                                "SELECT IFNULL(SUM(SUBTOTAL),0) " +
-                                "FROM DETALLETRANSACCION " +
-                                "WHERE IDTRANSACCION = NEW.IDTRANSACCION" +
-                                ") " +
-                                "WHERE IDTRANSACCION = NEW.IDTRANSACCION; " +
-                                "END;"
-                );
-
-                // Trigger: al borrar un detalle, recalcula TOTAL
-                db.execSQL(
-                        "CREATE TRIGGER trg_update_total_after_delete " +
-                                "AFTER DELETE ON DETALLETRANSACCION " +
-                                "BEGIN " +
-                                "UPDATE TRANSACCION " +
-                                "SET TOTAL = (" +
-                                "SELECT IFNULL(SUM(SUBTOTAL),0) " +
-                                "FROM DETALLETRANSACCION " +
-                                "WHERE IDTRANSACCION = OLD.IDTRANSACCION" +
-                                ") " +
-                                "WHERE IDTRANSACCION = OLD.IDTRANSACCION; " +
-                                "END;"
-                );
-
 
 
 
@@ -195,13 +165,7 @@ public class ControlDBFarmacia {
     }
 
     public void cerrar() {
-        // DBHelper.close(); // ¡COMENTA O ELIMINA ESTA LÍNEA!
-        // Si la variable 'db' es una instancia específica obtenida en abrir()
-        // y quieres cerrarla explícitamente (aunque SQLiteOpenHelper lo gestiona),
-        // podrías hacer db.close() si 'db' no es null, pero es más seguro
-        // simplemente no cerrar el DBHelper global aquí.
-        // Para la entrega rápida, es más seguro no hacer nada aquí o solo cerrar 'db' si es local al método.
-        // Lo más simple es no cerrar el DBHelper global aquí.
+        // DBHelper.close();
     }
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/
     public String insertar(Doctor doctor) {

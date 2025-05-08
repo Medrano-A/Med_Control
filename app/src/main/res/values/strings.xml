@@ -212,5 +212,117 @@
     <string name="dialog_msg_detalleReceta_actualizado">Detalle Receta actualizado exitosamente</string>
     <string name="dialog_msg_error_actualizado_detalleReceta">Error al actualizar Detalle Receta</string>
 
+    <!--- MENÚS  -->
+    <string-array name="menu_items_receta">
+        <item>Crear Receta</item>
+        <item>Consultar Receta</item>
+        <item>Actualizar Receta</item>
+        <item>Eliminar Receta</item>
+    </string-array>
+    <string-array name="menu_items_transaccion">
+        <item>Crear Transacción</item>
+        <item>Consultar Transacción</item>
+        <item>Actualizar Transacción</item>
+        <item>Eliminar Transacción</item>
+    </string-array>
+    <string-array name="menu_items_detalle_transaccion">
+        <item>Crear Detalle Transacción</item>
+        <item>Consultar Detalle Transacción</item>
+        <item>Actualizar Detalle Transacción</item>
+        <item>Eliminar Detalle Transacción</item>
+    </string-array>
+
+    <!-- RECETA -->
+    <string name="RecetaInsertar_titulo">Crear Receta</string>
+    <string name="RecetaInsertar_hint_id">ID Receta</string>
+    <string name="RecetaInsertar_hint_dui">DUI Cliente</string>
+    <string name="RecetaInsertar_hint_idDoctor">ID Doctor</string>
+    <string name="RecetaInsertar_hint_nombrePaciente">Nombre Paciente</string>
+    <string name="RecetaInsertar_hint_fecha">Fecha (YYYY-MM-DD)</string>
+    <string name="RecetaInsertar_hint_edad">Edad</string>
+    <string name="RecetaInsertar_hint_observaciones">Observaciones</string>
+    <string name="RecetaInsertar_btn_guardar">Guardar</string>
+    <string name="dialog_msg_receta_guardado">Receta guardada exitosamente</string>
+    <string name="dialog_msg_error_guardar_receta">Error al guardar Receta</string>
+
+    <string name="RecetaConsultar_titulo">Consultar Receta</string>
+    <string name="RecetaConsultar_hint_id">ID Receta</string>
+    <string name="RecetaConsultar_btn_consultar">Buscar</string>
+    <string name="dialog_msg_receta_encontrado">Receta encontrada</string>
+    <string name="dialog_msg_error_receta_no_encontrada">Receta no encontrada</string>
+
+    <string name="RecetaActualizar_titulo">Actualizar Receta</string>
+    <string name="RecetaActualizar_hint_id">ID Receta</string>
+    <string name="RecetaActualizar_btn_buscar">Buscar</string>
+    <string name="RecetaActualizar_btn_actualizar">Actualizar</string>
+    <string name="dialog_msg_receta_actualizado">Receta actualizada exitosamente</string>
+    <string name="dialog_msg_error_actualizar_receta">Error al actualizar Receta</string>
+
+    <string name="RecetaEliminar_titulo">Eliminar Receta</string>
+    <string name="RecetaEliminar_hint_id">ID Receta</string>
+    <string name="RecetaEliminar_btn_eliminar">Eliminar</string>
+    <string name="dialog_msg_receta_eliminado">Receta eliminada exitosamente</string>
+    <string name="dialog_msg_error_eliminar_receta">Error al eliminar Receta</string>
+
+    <!-- TRANSACCIÓN -->
+    <string name="TransaccionInsertar_titulo">Crear Transacción</string>
+    <string name="TransaccionInsertar_hint_id">ID Transacción</string>
+    <string name="TransaccionInsertar_hint_dui">DUI Cliente</string>
+    <string name="TransaccionInsertar_hint_idUsuario">ID Usuario</string>
+    <string name="TransaccionInsertar_hint_idLocal">ID Local</string>
+    <string name="TransaccionInsertar_hint_fecha">Fecha (YYYY-MM-DD)</string>
+    <string name="TransaccionInsertar_btn_guardar">Guardar</string>
+    <string name="dialog_msg_transaccion_guardado">Transacción guardada exitosamente</string>
+    <string name="dialog_msg_error_guardar_transaccion">Error al guardar Transacción</string>
+
+    <string name="TransaccionConsultar_titulo">Consultar Transacción</string>
+    <string name="TransaccionConsultar_hint_id">ID Transacción</string>
+    <string name="TransaccionConsultar_btn_consultar">Buscar</string>
+    <string name="dialog_msg_transaccion_encontrada">Transacción encontrada</string>
+    <string name="dialog_msg_error_transaccion_no_encontrada">Transacción no encontrada</string>
+
+    <string name="TransaccionActualizar_titulo">Actualizar Transacción</string>
+    <string name="TransaccionActualizar_hint_id">ID Transacción</string>
+    <string name="TransaccionActualizar_btn_buscar">Buscar</string>
+    <string name="TransaccionActualizar_btn_actualizar">Actualizar</string>
+    <string name="dialog_msg_transaccion_actualizada">Transacción actualizada exitosamente</string>
+    <string name="dialog_msg_error_actualizar_transaccion">Error al actualizar Transacción</string>
+
+    <string name="TransaccionEliminar_titulo">Eliminar Transacción</string>
+    <string name="TransaccionEliminar_hint_id">ID Transacción</string>
+    <string name="TransaccionEliminar_btn_eliminar">Eliminar</string>
+    <string name="dialog_msg_transaccion_eliminada">Transacción eliminada exitosamente</string>
+    <string name="dialog_msg_error_eliminar_transaccion">Error al eliminar Transacción</string>
+
+    <!--  DETALLE TRANSACCIÓN -->
+    <string name="DetalleTransaccionInsertar_titulo">Crear Detalle Transacción</string>
+    <string name="DetalleTransaccionInsertar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionInsertar_hint_idTransaccion">ID Transacción</string>
+    <string name="DetalleTransaccionInsertar_hint_cantidad">Cantidad</string>
+    <string name="DetalleTransaccionInsertar_hint_precioUnitario">Precio Unitario</string>
+    <string name="DetalleTransaccionInsertar_hint_subtotal">Subtotal</string>
+    <string name="DetalleTransaccionInsertar_btn_guardar">Guardar</string>
+    <string name="dialog_msg_detalleTransaccion_guardado">Detalle Transacción guardado</string>
+    <string name="dialog_msg_error_guardar_detalleTransaccion">Error al guardar Detalle Transacción</string>
+
+    <string name="DetalleTransaccionConsultar_titulo">Consultar Detalle Transacción</string>
+    <string name="DetalleTransaccionConsultar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionConsultar_btn_consultar">Buscar</string>
+    <string name="dialog_msg_detalleTransaccion_encontrado">Detalle Transacción encontrado</string>
+    <string name="dialog_msg_error_no_encontrado_detalleTransaccion">Error al buscar Detalle Transacción</string>
+
+    <string name="DetalleTransaccionActualizar_titulo">Actualizar Detalle Transacción</string>
+    <string name="DetalleTransaccionActualizar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionActualizar_btn_buscar">Buscar</string>
+    <string name="DetalleTransaccionActualizar_btn_actualizar">Actualizar</string>
+    <string name="dialog_msg_detalleTransaccion_actualizado">Detalle Transacción actualizado</string>
+    <string name="dialog_msg_error_actualizar_detalleTransaccion">Error al actualizar Detalle Transacción</string>
+
+    <string name="DetalleTransaccionEliminar_titulo">Eliminar Detalle Transacción</string>
+    <string name="DetalleTransaccionEliminar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionEliminar_btn_eliminar">Eliminar</string>
+    <string name="dialog_msg_detalleTransaccion_eliminado">Detalle Transacción eliminado</string>
+    <string name="dialog_msg_error_eliminar_detalleTransaccion">Error al eliminar Detalle Transacción</string>
+
 
 </resources>
