@@ -22,7 +22,7 @@ public class ControlDBFarmacia {
     };
 
     private final Context context;
-    private DatabaseHelper DBHelper;
+    public DatabaseHelper DBHelper;
     private SQLiteDatabase db;
 
 
@@ -31,7 +31,7 @@ public class ControlDBFarmacia {
         DBHelper = new DatabaseHelper(context);
     }
 
-    private static class DatabaseHelper extends SQLiteOpenHelper {
+    public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String BASE_DATOS = "farmacia.s3db";
         private static final int VERSION = 1;
 
@@ -46,6 +46,8 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
                 db.execSQL("CREATE TABLE detalleReceta (idDetReceta INTEGER NOT NULL PRIMARY KEY, idReceta INTEGER, dosis VARCHAR(50) NOT NULL);");
                 db.execSQL("CREATE TABLE distribuidor (idDistribuidor INTEGER NOT NULL PRIMARY KEY, idMarca INTEGER, nombre VARCHAR(30) NOT NULL, telefono CHAR(8) NOT NULL, nit CHAR(10) NOT NULL, correo VARCHAR(30));");
+
+
                 /*TABLA DOCTOR*/
                 db.execSQL("CREATE TABLE doctor" +
                         "(idDoctor INTEGER NOT NULL PRIMARY KEY," +
@@ -73,7 +75,6 @@ public class ControlDBFarmacia {
                         "idLaboratorio INTEGER NOT NULL," +
                         "viaDeAdministracion VARCHAR(32)," +
                         "formaFarmaceutica VARCHAR(32));");
-
 
 
                 /*TABLA LOCAL*/
@@ -107,6 +108,76 @@ public class ControlDBFarmacia {
                         "FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE, " +
                         "FOREIGN KEY(id_opcion_crud) REFERENCES OpcionCrud(id_opcion_crud) ON DELETE CASCADE)");
 
+                // Crear tabla RECETA
+                db.execSQL(
+                        "CREATE TABLE RECETA (" +
+                                "IDRECETA INTEGER    NOT NULL PRIMARY KEY, " +
+                                "DUI       TEXT, " +
+                                "IDDOCTOR  INTEGER    NOT NULL, " +
+                                "NOMBREPACIENTE TEXT NOT NULL, " +
+                                "FECHA     DATE       NOT NULL, " +
+                                "EDAD      INTEGER    NOT NULL, " +
+                                "OBSERVACIONES TEXT NOT NULL" +
+                                ");"
+                );
+
+                // Tabla TRANSACCION
+                db.execSQL(
+                        "CREATE TABLE TRANSACCION (" +
+                                "IDTRANSACCION INTEGER NOT NULL PRIMARY KEY, " +
+                                "DUI            CHAR(10), " +
+                                "IDUSUARIO      INTEGER, " +
+                                "ID_LOCAL       INTEGER, " +
+                                "FECHA          DATE    NOT NULL, " +
+                                "TOTAL          REAL    NOT NULL DEFAULT 0, " +
+                                "TIPO           CHAR(30) NOT NULL" +
+                                ");"
+                );
+
+                // Tabla DETALLETRANSACCION
+                db.execSQL(
+                        "CREATE TABLE DETALLETRANSACCION (" +
+                                "ID_DETALLE     INTEGER NOT NULL PRIMARY KEY, " +
+                                "IDTRANSACCION  INTEGER NOT NULL, " +
+                                "CANTIDAD       INTEGER NOT NULL, " +
+                                "SUBTOTAL       REAL    NOT NULL, " +
+                                "PRECIOUNITARIO REAL    NOT NULL" +
+                                ");"
+                );
+
+                // Trigger: al insertar un detalle, recalcula TOTAL
+                db.execSQL(
+                        "CREATE TRIGGER trg_update_total_after_insert " +
+                                "AFTER INSERT ON DETALLETRANSACCION " +
+                                "BEGIN " +
+                                "UPDATE TRANSACCION " +
+                                "SET TOTAL = (" +
+                                "SELECT IFNULL(SUM(SUBTOTAL),0) " +
+                                "FROM DETALLETRANSACCION " +
+                                "WHERE IDTRANSACCION = NEW.IDTRANSACCION" +
+                                ") " +
+                                "WHERE IDTRANSACCION = NEW.IDTRANSACCION; " +
+                                "END;"
+                );
+
+                // Trigger: al borrar un detalle, recalcula TOTAL
+                db.execSQL(
+                        "CREATE TRIGGER trg_update_total_after_delete " +
+                                "AFTER DELETE ON DETALLETRANSACCION " +
+                                "BEGIN " +
+                                "UPDATE TRANSACCION " +
+                                "SET TOTAL = (" +
+                                "SELECT IFNULL(SUM(SUBTOTAL),0) " +
+                                "FROM DETALLETRANSACCION " +
+                                "WHERE IDTRANSACCION = OLD.IDTRANSACCION" +
+                                ") " +
+                                "WHERE IDTRANSACCION = OLD.IDTRANSACCION; " +
+                                "END;"
+                );
+
+
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -124,7 +195,13 @@ public class ControlDBFarmacia {
     }
 
     public void cerrar() {
-        DBHelper.close();
+        // DBHelper.close(); // ¡COMENTA O ELIMINA ESTA LÍNEA!
+        // Si la variable 'db' es una instancia específica obtenida en abrir()
+        // y quieres cerrarla explícitamente (aunque SQLiteOpenHelper lo gestiona),
+        // podrías hacer db.close() si 'db' no es null, pero es más seguro
+        // simplemente no cerrar el DBHelper global aquí.
+        // Para la entrega rápida, es más seguro no hacer nada aquí o solo cerrar 'db' si es local al método.
+        // Lo más simple es no cerrar el DBHelper global aquí.
     }
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/
     public String insertar(Doctor doctor) {
@@ -147,7 +224,7 @@ public class ControlDBFarmacia {
         return regInsertados;
     }
     public String actualizar(Doctor doctor) {
-        //if(verificarIntegridad(doctor, 5)){
+        //if(verificarInteverificarIntegridad(doctor, 5)){
         String[] id = {String.valueOf(doctor.getIdDoctor())};
         ContentValues cv = new ContentValues();
         cv.put("nombreDoctor", doctor.getNombreDoctor());

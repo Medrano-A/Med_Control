@@ -12,12 +12,16 @@ public class MainActivity extends ListActivity  {
             String[]
     activities={"GA21090Activity","MM21030Activity","MM22108Activity","GD21001Activity","PG22010Activity"};
     ControlDBFarmacia helper;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
         helper = new ControlDBFarmacia(this);
+        Model.init(helper.DBHelper);
         helper.permisosUsuarios();
     }
     @Override
