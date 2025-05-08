@@ -43,6 +43,26 @@ public class LocalActualizarActivity extends Activity {
         Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
 
     }
+    public void consultarLocal(View v) {
+
+        helper.abrir();
+
+        Local local = helper.consultarLocal(Integer.parseInt(editIdLocal.getText().toString()));
+
+        helper.cerrar();
+
+        if(local == null) {
+            Toast.makeText(this, "Local no registrado",
+                    Toast.LENGTH_LONG).show();
+        }else
+        {
+            editIdUbicacion.setText(String.valueOf(local.getIdUbicacion()));
+            editNombre.setText(local.getNombreLocal());
+            editTipo.setText(local.getTipoLocal());
+            editTelefono.setText(local.getTelefonoLocal());
+        }
+
+    }
 
     public void limpiarTexto(View v) {
         editIdLocal.setText("");

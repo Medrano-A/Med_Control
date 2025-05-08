@@ -3,4 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary_color">#191a6e</color>
+    <!-->GD21001 Colors<!-->
+    <color name="redLight">#F8B5B5</color>
+    <color name="redDark">#E57373</color>
+    <color name="greenLight">#B5EAD7</color>
+    <color name="greenDark">#81C784</color>
+    <color name="orngLight">#FFD8A9</color>
+    <color name="orngDark">#FFB74D</color>
+    <color name="blueLight">#B3D9FF</color>
+    <color name="blueDark">#64B5F6</color>
+    <!-->GD21001 Colors End<!-->
 </resources>

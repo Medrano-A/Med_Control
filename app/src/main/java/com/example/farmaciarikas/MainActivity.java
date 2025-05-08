@@ -23,7 +23,7 @@ public class MainActivity extends ListActivity  {
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
-        if(position!=3){
+        if(position!=4){
             String nombreValue=activities[position];
             try{
                 Class<?>
