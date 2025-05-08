@@ -15,12 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class DistribuidorMenuActivity extends ListActivity {
     //CRUD de la tabla Distribuidor
-    String[] menu={"Insertar Distribuidor","Eliminar Distribuidor","Consultar Distribuidor", "Actualizar Distribuidor"};
-    String[] activities={"DistribuidorInsertarActivity","DistribuidorEliminarActivity","DistribuidorConsultarActivity", "DistribuidorActualizarActivity"};
+    String[] menu;//={"Insertar Distribuidor","Consultar Distribuidor", "Actualizar Distribuidor", "Eliminar Distribuidor"};
+    String[] activities={"DistribuidorInsertarActivity", "DistribuidorConsultarActivity", "DistribuidorActualizarActivity", "DistribuidorEliminarActivity"};
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        menu = getResources().getStringArray(R.array.menu_items_distribuidor);
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
     }

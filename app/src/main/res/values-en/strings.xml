@@ -56,6 +56,157 @@
 
     <string name="opciones">Options:</string>
 
+    <!--strings usados por mm22108-->
+    <!-- Menu  -->
+    <string-array name="menu_items_mm22108">
+        <item>Client Table</item>
+        <item>Distributor Table</item>
+        <item>Prescription Details Table</item>
+    </string-array>
+    <!--strings Cliente-->
+    <string-array name="menu_items_cliente">
+        <item>Create Client</item>
+        <item>Read Client</item>
+        <item>Update Client</item>
+        <item>Delete Client</item>
+    </string-array>
+
+    <string name="dialog_title_info_ingreso">Create Client</string>
+    <string name="dialog_msg_cliente_guardado">Client was successfully created</string>
+    <string name="dialog_msg_error_guardar_cliente">Error creating client</string>
+    <string name="dialog_btn_aceptar">Accept</string>
+    <string name="msg_campos_obligatorios">Please fill out the mandatory fields</string>
+    <string name="msg_campos_invalidos">Please fill out correctly the fields</string>
+
+    <string name="InsertarCliente_titulo">Create Client</string>
+    <string name="InsertarCliente_hint_dui">Enter DUI</string>
+    <string name="InsertarCliente_hint_nombre">Enter First Name</string>
+    <string name="InsertarCliente_hint_apellido">Enter Last Name</string>
+    <string name="InsertarCliente_hint_telefono">Enter Phone Number</string>
+    <string name="InsertarCliente_hint_correo">Enter Email Address</string>
+    <string name="InsertarCliente_btn_guardar">Save</string>
+
+
+    <string name="EliminarCliente_titulo">Delete Client</string>
+    <string name="dialog_title_info_eliminar">Delete Client</string>
+    <string name="EliminarCliente_hint_dui">Enter DUI</string>
+    <string name="EliminarCliente_btn_eliminar">Delete Client</string>
+    <string name="dialog_msg_cliente_eliminado">Client successfully deleted</string>
+    <string name="dialog_msg_error_eliminar_cliente">Error deleting client</string>
+
+
+    <string name="ConsultarCliente_titulo">Read Client</string>
+    <string name="ConsultarCliente_hint_dui">Enter DUI</string>
+    <string name="ConsultarCliente_hint_nombre">Client\'s First Name</string>
+    <string name="ConsultarCliente_hint_apellido">Client\'s Last Name</string>
+    <string name="ConsultarCliente_hint_telefono">Client\'s Phone Number</string>
+    <string name="ConsultarCliente_hint_correo">Client\'s Email Address</string>
+    <string name="ConsultarCliente_btn_consultar">Search</string>
+    <string name="dialog_title_info_consultar">Read Client</string>
+    <string name="dialog_msg_cliente_no_encontrado">Client not found</string>
+    <string name="dialog_msg_cliente_encontrado">Client found</string>
+
+    <string name="ActualizarCliente_titulo">Update Client</string>
+    <string name="ActualizarCliente_hint_dui">Enter DUI</string>
+    <string name="ActualizarCliente_hint_nombre">Client\'s First Name</string>
+    <string name="ActualizarCliente_hint_apellido">Client\'s Last Name</string>
+    <string name="ActualizarCliente_hint_telefono">Client\'s Phone Number</string>
+    <string name="ActualizarCliente_hint_correo">Client\'s Email Address</string>
+    <string name="ActualizarCliente_btn_actualizar">Update</string>
+    <string name="ActualizarCliente_btn_buscar">Search</string>
+    <string name="dialog_title_info_actualizar">Information</string>
+    <string name="dialog_msg_cliente_actualizado">Client successfully updated</string>
+
+
+    <!--strings Distribuidor-->
+    <string-array name="menu_items_distribuidor">
+        <item>Create Distributor</item>
+        <item>Read Distributor</item>
+        <item>Update Distributor</item>
+        <item>Delete Distributor</item>
+    </string-array>
+
+    <string name="InsertarDistribuidor_titulo">Create Distributor</string>
+    <string name="InsertarDistribuidor_hint_id">Enter ID</string>
+    <string name="InsertarDistribuidor_hint_marca">Enter Brand</string>
+    <string name="InsertarDistribuidor_hint_nombre">Enter Name</string>
+    <string name="InsertarDistribuidor_hint_telefono">Enter Phone Number</string>
+    <string name="InsertarDistribuidor_hint_nit">Enter NIT</string>
+    <string name="InsertarDistribuidor_hint_correo">Enter Email Address</string>
+    <string name="InsertarDistribuidor_btn_guardar">Save</string>
+    <string name="dialog_msg_distribuidor_guardado">Distributor was successfully created</string>
+    <string name="dialog_msg_error_guardar_distribuidor">Error creating distributor</string>
+
+    <string name="EliminarDistribuidor_titulo">Delete Distributor</string>
+    <string name="EliminarDistribuidor_hint_id">Enter ID</string>
+    <string name="EliminarDistribuidor_btn_eliminar">Delete Distributor</string>
+    <string name="dialog_msg_distribuidor_eliminado">Distributor was successfully eliminated</string>
+    <string name="dialog_msg_error_eliminar_distribuidor">Error deleting distributor</string>
+
+    <string name="ConsultarDistribuidor_titulo">Read Distributor</string>
+    <string name="ConsultarDistribuidor_hint_id">Enter ID</string>
+    <string name="ConsultarDistribuidor_hint_marca">Distributor\'s Brand</string>
+    <string name="ConsultarDistribuidor_hint_nombre">Distributor\'s Name</string>
+    <string name="ConsultarDistribuidor_hint_telefono">Distributor\'s Phone Number</string>
+    <string name="ConsultarDistribuidor_hint_nit">Distributor\'s NIT</string>
+    <string name="ConsultarDistribuidor_hint_correo">Distributor\'s Email Address</string>
+    <string name="ConsultarDistribuidor_btn_consultar">Search</string>
+    <string name="dialog_msg_distribuidor_consultar">Distributor was successfully read</string>
+    <string name="dialog_msg_error_consultar_distribuidor">Error reading distributor</string>
+
+    <string name="ActualizarDistribuidor_titulo">Update Distributor</string>
+    <string name="ActualizarDistribuidor_hint_id">Enter ID</string>
+    <string name="ActualizarDistribuidor_hint_marca">Distributor\'s Brand</string>
+    <string name="ActualizarDistribuidor_hint_nombre">Distributor\'s Name</string>
+    <string name="ActualizarDistribuidor_hint_telefono">Distributor\'s Phone Number</string>
+    <string name="ActualizarDistribuidor_hint_nit">Distributor\'s NIT</string>
+    <string name="ActualizarDistribuidor_hint_correo">Distributor\'s Email Address</string>
+    <string name="ActualizarDistribuidor_btn_actualizar">Update</string>
+    <string name="ActualizarDistribuidor_btn_buscar">Search</string>
+    <string name="dialog_msg_distribuidor_actualizar">Distributor was successfully updated</string>
+    <string name="dialog_msg_error_actualizar_distribuidor">Error updating distributor</string>
+
+    <!--strings Detalle Receta-->
+    <string-array name="menu_items_detalle_receta">
+        <item>Create Prescription Details</item>
+        <item>Read Prescription Details</item>
+        <item>Update Prescription Details</item>
+        <item>Delete Prescription Details</item>
+    </string-array>
+
+    <string name="InsertarDetalleReceta_titulo">Create Prescription Details</string>
+    <string name="InsertarDetalleReceta_hint_id">Enter ID</string>
+    <string name="InsertarDetalleReceta_hint_id_receta">Enter ID Receta</string>
+    <string name="InsertarDetalleReceta_hint_dosis">Enter Dosis</string>
+    <string name="InsertarDetalleReceta_btn_guardar">Save</string>
+    <string name="dialog_msg_detalleReceta_guardado">Prescription Details successfully created</string>
+    <string name="dialog_msg_error_guardar_detalleReceta">Error creating Prescription Details</string>
+
+    <string name="EliminarDetalleReceta_titulo">Delete Prescription Details</string>
+    <string name="EliminarDetalleReceta_hint_id">Enter ID</string>
+    <string name="EliminarDetalleReceta_btn_eliminar">Delete</string>
+    <string name="dialog_msg_detalleReceta_eliminado">Prescription Details successfully deleted</string>
+    <string name="dialog_msg_error_eliminar_detalleReceta">Error deleting Prescription Details</string>
+
+
+    <string name="ConsultarDetalleReceta_titulo">Read Prescription Details</string>
+    <string name="ConsultarDetalleReceta_hint_id">Enter ID</string>
+    <string name="ConsultarDetalleReceta_hint_id_receta">Prescription ID</string>
+    <string name="ConsultarDetalleReceta_hint_dosis">Prescription Details Dose</string>
+    <string name="ConsultarDetalleReceta_btn_consultar">Search</string>
+    <string name="dialog_msg_detalleReceta_encontrado">Prescription Details successfully found</string>
+    <string name="dialog_msg_error_encontrado_detalleReceta">Error searching Prescription Details</string>
+
+
+    <string name="ActualizarDetalleReceta_titulo">Update Prescription Details</string>
+    <string name="ActualizarDetalleReceta_hint_id">Enter ID</string>
+    <string name="ActualizarDetalleReceta_hint_id_receta">Prescription ID </string>
+    <string name="ActualizarDetalleReceta_hint_dosis">Prescription Details Dose</string>
+    <string name="ActualizarDetalleReceta_btn_buscar">Search</string>
+    <string name="ActualizarDetalleReceta_btn_actualizar">Update</string>
+    <string name="dialog_msg_detalleReceta_actualizado">Prescription Details successfully updated</string>
+    <string name="dialog_msg_error_actualizado_detalleReceta">Error searching Prescription Details</string>
+
     <!-->GD21001<!-->
 
     <!-->Brand<!-->

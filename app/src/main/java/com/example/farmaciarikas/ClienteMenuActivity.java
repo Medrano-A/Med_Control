@@ -15,12 +15,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class ClienteMenuActivity extends ListActivity {
     //CRUD de la tabla Cliente
-    String[] menu={"Insertar Cliente","Eliminar Cliente","Consultar Cliente", "Actualizar Cliente"};
-    String[] activities={"ClienteInsertarActivity","ClienteEliminarActivity","ClienteConsultarActivity", "ClienteActualizarActivity"};
+    String[] menu;//={"Insertar Cliente","Consultar Cliente", "Actualizar Cliente","Eliminar Cliente"};
+    String[] activities={"ClienteInsertarActivity","ClienteConsultarActivity", "ClienteActualizarActivity", "ClienteEliminarActivity"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        menu = getResources().getStringArray(R.array.menu_items_cliente);
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
     }
