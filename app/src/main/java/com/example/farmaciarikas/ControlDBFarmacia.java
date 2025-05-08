@@ -33,129 +33,74 @@ public class ControlDBFarmacia {
 
     public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String BASE_DATOS = "farmacia.s3db";
-        private static final int VERSION = 1;
+        private static final int VERSION = 2;  // Incrementada para forzar onUpgrade
+        private static final String TAG = "DB_HELPER";
 
         public DatabaseHelper(Context context) {
             super(context, BASE_DATOS, null, VERSION);
-
+            Log.d(TAG, "DatabaseHelper initialized: DB=" + BASE_DATOS + ", Version=" + VERSION);
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-            try {
-                db.execSQL("CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
-                db.execSQL("CREATE TABLE detalleReceta (idDetReceta INTEGER NOT NULL PRIMARY KEY, idReceta INTEGER, dosis VARCHAR(50) NOT NULL);");
-                db.execSQL("CREATE TABLE distribuidor (idDistribuidor INTEGER NOT NULL PRIMARY KEY, idMarca INTEGER, nombre VARCHAR(30) NOT NULL, telefono CHAR(8) NOT NULL, nit CHAR(10) NOT NULL, correo VARCHAR(30));");
+            Log.d(TAG, "onCreate: llamado");
+            logTables(db, "Antes de crear tablas");
 
+            executeAndLog(db, "cliente", "CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
+            executeAndLog(db, "detalleReceta", "CREATE TABLE detalleReceta (idDetReceta INTEGER NOT NULL PRIMARY KEY, idReceta INTEGER, dosis VARCHAR(50) NOT NULL);");
+            executeAndLog(db, "distribuidor", "CREATE TABLE distribuidor (idDistribuidor INTEGER NOT NULL PRIMARY KEY, idMarca INTEGER, nombre VARCHAR(30) NOT NULL, telefono CHAR(8) NOT NULL, nit CHAR(10) NOT NULL, correo VARCHAR(30));");
+            executeAndLog(db, "doctor", "CREATE TABLE doctor (idDoctor INTEGER NOT NULL PRIMARY KEY, nombreDoctor VARCHAR(30), especialidad VARCHAR(30), jvpm VARCHAR(4), telefonoDoctor VARCHAR(8), correoDoctor VARCHAR(30));");
+            executeAndLog(db, "elemento", "CREATE TABLE elemento (codElemento INTEGER PRIMARY KEY AUTOINCREMENT, nombre VARCHAR(30) NOT NULL, cantidad INTEGER, descripcion TEXT, precioUni REAL, unidades VARCHAR(5));");
+            executeAndLog(db, "medicamento", "CREATE TABLE medicamento (idMedicamento VARCHAR(4) NOT NULL PRIMARY KEY, codElemento INTEGER NOT NULL, idLaboratorio INTEGER NOT NULL, viaDeAdministracion VARCHAR(32), formaFarmaceutica VARCHAR(32));");
+            executeAndLog(db, "local", "CREATE TABLE local (idLocal INTEGER NOT NULL PRIMARY KEY, idUbicacion INTEGER NOT NULL, nombreLocal VARCHAR(30), tipoLocal VARCHAR(30), telefonoLocal VARCHAR(8));");
+            executeAndLog(db, "User", "CREATE TABLE User (id_usuario CHAR(2) NOT NULL, nom_usuario VARCHAR2(30) NOT NULL, clave VARCHAR(10) NOT NULL, CONSTRAINT PK_USUARIO PRIMARY KEY (id_usuario));");
+            executeAndLog(db, "OpcionCrud", "CREATE TABLE OpcionCrud (id_opcion_crud VARCHAR(3) NOT NULL PRIMARY KEY, des_opcion VARCHAR2(30) NOT NULL, num_crud INTEGER NOT NULL);");
+            executeAndLog(db, "AccesoUsuario", "CREATE TABLE AccesoUsuario (id_acceso INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, id_usuario CHAR(2) NOT NULL, id_opcion_crud INTEGER NOT NULL, FOREIGN KEY(id_usuario) REFERENCES User(id_usuario) ON DELETE CASCADE, FOREIGN KEY(id_opcion_crud) REFERENCES OpcionCrud(id_opcion_crud) ON DELETE CASCADE);");
+            executeAndLog(db, "RECETA", "CREATE TABLE RECETA (IDRECETA INTEGER NOT NULL PRIMARY KEY, DUI TEXT, IDDOCTOR INTEGER NOT NULL, NOMBREPACIENTE TEXT NOT NULL, FECHA DATE NOT NULL, EDAD INTEGER NOT NULL, OBSERVACIONES TEXT NOT NULL);");
+            executeAndLog(db, "TRANSACCION", "CREATE TABLE TRANSACCION (IDTRANSACCION INTEGER NOT NULL PRIMARY KEY, DUI CHAR(10), IDUSUARIO INTEGER, ID_LOCAL INTEGER, FECHA DATE NOT NULL, TOTAL REAL NOT NULL DEFAULT 0, TIPO CHAR(30) NOT NULL);");
+            executeAndLog(db, "DETALLETRANSACCION", "CREATE TABLE DETALLETRANSACCION (ID_DETALLE INTEGER NOT NULL PRIMARY KEY, IDTRANSACCION INTEGER NOT NULL, CANTIDAD INTEGER NOT NULL, SUBTOTAL REAL NOT NULL, PRECIOUNITARIO REAL NOT NULL);");
 
-                /*TABLA DOCTOR*/
-                db.execSQL("CREATE TABLE doctor" +
-                        "(idDoctor INTEGER NOT NULL PRIMARY KEY," +
-                        "nombreDoctor VARCHAR(30)," +
-                        "especialidad VARCHAR(30)," +
-                        "jvpm VARCHAR(4)," +
-                        "telefonoDoctor VARCHAR(8)," +
-                        "correoDoctor VARCHAR(30));");
-
-                /*TABLA ELEMENTO*/
-
-                db.execSQL("CREATE TABLE elemento (\n" +
-                        "    codElemento INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                        "    nombre VARCHAR(30) NOT NULL,\n" +
-                        "    cantidad INTEGER,\n" +
-                        "    descripcion TEXT,\n" +
-                        "    precioUni REAL,\n" +
-                        "    unidades VARCHAR(5)\n" +
-                        ");");
-
-                /*TABLA MEDICAMENTO*/
-
-                db.execSQL("CREATE TABLE medicamento(idMedicamento VARCHAR(4) NOT NULL PRIMARY KEY," +
-                        "codElemento INTEGER NOT NULL," +
-                        "idLaboratorio INTEGER NOT NULL," +
-                        "viaDeAdministracion VARCHAR(32)," +
-                        "formaFarmaceutica VARCHAR(32));");
-
-
-                /*TABLA LOCAL*/
-
-                db.execSQL("CREATE TABLE local(idLocal INTEGER  NOT NULL PRIMARY KEY ," +
-                        "idUbicacion INTEGER  NOT NULL ," +
-                        "nombreLocal VARCHAR(30) ," +
-                        "tipoLocal VARCHAR(30)," +
-                        "telefonoLocal VARCHAR(8));");
-
-                /*TABLA USUARIO*/
-
-                db.execSQL("CREATE TABLE User (" +
-                        "id_usuario CHAR(2) NOT NULL," +
-                        " nom_usuario VARCHAR2(30) NOT NULL," +
-                        " clave VARCHAR(10) NOT NULL," +
-                        "CONSTRAINT PK_USUARIO PRIMARY KEY (id_usuario));");
-
-                /*TABLA OPCIONCRUD*/
-
-                db.execSQL("CREATE TABLE OpcionCrud(" +
-                        "id_opcion_crud VARCHAR(3) NOT NULL PRIMARY KEY," +
-                        "des_opcion VARCHAR2(30) NOT NULL," +
-                        "num_crud INTEGER NOT NULL);");
-
-                /*TABLA ACCESOUSUARIO*/
-                db.execSQL("CREATE TABLE AccesoUsuario (" +
-                        "id_acceso INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                        " id_usuario CHAR(2) NOT NULL," +
-                        " id_opcion_crud INTEGER NOT NULL, " +
-                        "FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE, " +
-                        "FOREIGN KEY(id_opcion_crud) REFERENCES OpcionCrud(id_opcion_crud) ON DELETE CASCADE)");
-
-                // Crear tabla RECETA
-                db.execSQL(
-                        "CREATE TABLE RECETA (" +
-                                "IDRECETA INTEGER    NOT NULL PRIMARY KEY, " +
-                                "DUI       TEXT, " +
-                                "IDDOCTOR  INTEGER    NOT NULL, " +
-                                "NOMBREPACIENTE TEXT NOT NULL, " +
-                                "FECHA     DATE       NOT NULL, " +
-                                "EDAD      INTEGER    NOT NULL, " +
-                                "OBSERVACIONES TEXT NOT NULL" +
-                                ");"
-                );
-
-                // Tabla TRANSACCION
-                db.execSQL(
-                        "CREATE TABLE TRANSACCION (" +
-                                "IDTRANSACCION INTEGER NOT NULL PRIMARY KEY, " +
-                                "DUI            CHAR(10), " +
-                                "IDUSUARIO      INTEGER, " +
-                                "ID_LOCAL       INTEGER, " +
-                                "FECHA          DATE    NOT NULL, " +
-                                "TOTAL          REAL    NOT NULL DEFAULT 0, " +
-                                "TIPO           CHAR(30) NOT NULL" +
-                                ");"
-                );
-
-                // Tabla DETALLETRANSACCION
-                db.execSQL(
-                        "CREATE TABLE DETALLETRANSACCION (" +
-                                "ID_DETALLE     INTEGER NOT NULL PRIMARY KEY, " +
-                                "IDTRANSACCION  INTEGER NOT NULL, " +
-                                "CANTIDAD       INTEGER NOT NULL, " +
-                                "SUBTOTAL       REAL    NOT NULL, " +
-                                "PRECIOUNITARIO REAL    NOT NULL" +
-                                ");"
-                );
-
-
-
-
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            logTables(db, "Después de crear tablas");
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-// TODO Auto-generated method stub
+            Log.d(TAG, "onUpgrade: de " + oldVersion + " a " + newVersion);
+            if (oldVersion < VERSION) {
+                String[] tablas = {"cliente","detalleReceta","distribuidor","doctor","elemento","medicamento","local","User","OpcionCrud","AccesoUsuario","RECETA","TRANSACCION","DETALLETRANSACCION"};
+                for (String t : tablas) {
+                    try {
+                        db.execSQL("DROP TABLE IF EXISTS " + t);
+                        Log.d(TAG, "Dropped table: " + t);
+                    } catch (SQLException e) {
+                        Log.e(TAG, "Error dropping " + t + ": " + e.getMessage(), e);
+                    }
+                }
+                onCreate(db);
+            }
+        }
+
+        private void executeAndLog(SQLiteDatabase db, String tableName, String sql) {
+            try {
+                Log.d(TAG, "Creando tabla '" + tableName + "'");
+                db.execSQL(sql);
+                Log.d(TAG, "Tabla '" + tableName + "' creada satisfactoriamente");
+            } catch (SQLException e) {
+                Log.e(TAG, "Error creando '" + tableName + "': " + e.getMessage(), e);
+            }
+        }
+
+        private void logTables(SQLiteDatabase db, String etapa) {
+            Cursor c = db.rawQuery("SELECT name FROM sqlite_master WHERE type='table'", null);
+            Log.d(TAG, "Tablas existentes (" + etapa + "): ");
+            if (c.moveToFirst()) {
+                do {
+                    Log.d(TAG, " - " + c.getString(0));
+                } while (c.moveToNext());
+            } else {
+                Log.d(TAG, " <ninguna>");
+            }
+            c.close();
         }
     }
 
