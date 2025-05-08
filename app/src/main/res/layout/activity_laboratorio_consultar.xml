@@ -42,11 +42,11 @@
 
     <TableRow>
         <TextView
-            android:id="@+id/laboNombreActu"
+            android:id="@+id/laboNombreCons"
             android:text="@string/laboratorioNombre"
             />
         <EditText
-            android:id="@+id/laboNombreActuEdit"
+            android:id="@+id/laboNombreConsEdt"
             android:inputType="text"
             android:maxLength="30"
             />
@@ -54,22 +54,22 @@
 
     <TableRow>
         <TextView
-            android:id="@+id/laboTipoActu"
+            android:id="@+id/laboTipoCons"
             android:text="@string/laboratorioTipo"
             />
         <EditText
-            android:id="@+id/laboTipoActuEdit"
+            android:id="@+id/laboTipoConsEdt"
             android:inputType="text"
             android:maxLength="30"
             />
     </TableRow>
     <TableRow>
         <TextView
-            android:id="@+id/laboTelActu"
+            android:id="@+id/laboTelCons"
             android:text="@string/laboratorioTelefono"
             />
         <EditText
-            android:id="@+id/laboTelActuEdit"
+            android:id="@+id/laboTelConsEdt"
             android:inputType="number"
             android:maxLength="8"
             />
