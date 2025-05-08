@@ -13,6 +13,9 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".MM21030Activity"
+            android:exported="false" />
+        <activity
             android:name=".ListarStockActivity"
             android:exported="false" />
         <activity
@@ -29,6 +32,9 @@
             android:exported="false" />
         <activity
             android:name=".ActualizarUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarStockActivity"
             android:exported="false" />
         <activity
             android:name=".ListarUbicacionesActivity"
@@ -134,7 +140,6 @@
             android:exported="false" />
         <activity
             android:name=".MedicamentoMenuActivity"
-
             android:exported="false" />
         <activity
             android:name=".MainActivity"
