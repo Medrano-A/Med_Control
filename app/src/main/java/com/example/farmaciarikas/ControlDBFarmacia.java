@@ -8,6 +8,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 
 public class ControlDBFarmacia {
 
@@ -480,7 +481,16 @@ public class ControlDBFarmacia {
         return regInsert;
     }
     public String actualizar(Departamento d){
-        return null;
+        if(verificarIntegridadDpto(d, 1)){
+            String[] id = {Integer.toString(d.getIdDepartamento())};
+            ContentValues c = new ContentValues();
+            c.put("nombre", d.getNombre());
+            db.update("Departamento", c, "idDepartamento = ?", id);
+            return "Registro actualizado correctamente";
+        }else{
+            return "Registro con Id " + d.getIdDepartamento() + "no existe";
+        }
+
     }
     public Departamento consultarDpto(int idDpto){
         String[] id = {Integer.toString(idDpto)};
@@ -495,7 +505,18 @@ public class ControlDBFarmacia {
         }
     }
     public String eliminar(Departamento d){
-        return null;
+        String regAfect = "Filas afectadas = ";
+        int cont = 0;
+        if(verificarIntegridadDpto(d, 1)){
+            String[] args = { String.valueOf(d.getIdDepartamento()) };
+            cont += db.delete("Departamento", "idDepartamento = ?", args);
+        } else {
+            regAfect = "ID no existe o no se encuentra, Filas afectadas = ";
+            regAfect += cont;
+            return regAfect;
+        }
+        regAfect += cont;
+        return regAfect;
     }
     /*----MUNICIPIO----*/
     public String insertar(Municipio m){
@@ -545,7 +566,22 @@ public class ControlDBFarmacia {
         return true;
     }
     public boolean verificarIntegridadDpto(Object dato, int relacion) throws SQLException{
-        return true;
+        switch (relacion){
+            case 1:{
+                //verificar que el ID Exista
+                Departamento dptoExiste = (Departamento) dato;
+                String[] id = {Integer.toString(dptoExiste.getIdDepartamento())};
+                abrir();
+                Cursor cExist = db.query("Departamento", null, "idDepartamento = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el dpto
+                    return true;
+                }
+                return false;
+            }
+            default:
+                return false;
+        }
     }
     public boolean verificarIntegridadMncip(Object dato, int relacion) throws SQLException{
         return true;
