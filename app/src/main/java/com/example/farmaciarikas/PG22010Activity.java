@@ -12,16 +12,13 @@ public class PG22010Activity extends ListActivity {
     private String[] menu = {
             "Recetas",
             "Transacciones",
-            "Detalle Recetas",
             "Detalle Transacciones",
-            "Poblar datos de prueba"
     };
 
     // 2) Las Activities a las que navigar, en el mismo orden
     private Class<?>[] activityClasses = {
             RecetaMenuActivity.class,
             TransaccionMenuActivity.class,
-            DetalleRecetaMenuActivity.class,
             DetalleTransaccionMenuActivity.class
     };
 
@@ -50,7 +47,6 @@ public class PG22010Activity extends ListActivity {
         }
     }
 
-    /** Inserta datos de ejemplo en la base (llamado desde el último ítem del menú) */
     private void poblarDatosDePrueba() {
         ControlDBFarmacia helper = new ControlDBFarmacia(this);
         helper.abrir();
