@@ -24,15 +24,16 @@
     <string name="eliminar_registro">Delete Record</string>
     <string name="consultar_registro">Query Record</string>
     <string name="actualizar_registro">Update Record</string>
-    <string name="nombreMedicamento">Medicine Name</string>
-    <string name="cantidad">Quantity</string>
-    <string name="descripcion">Description</string>
-    <string name="precioUni">Unit Price</string>
-    <string name="unidad">Unit</string>
+
 
 
     <string name="idMedicamento">Code</string>
     <string name="codElemento">Element Code</string>
+    <string name="nombreMedicamento">Medicine name</string>
+    <string name="cantidad">Quantity</string>
+    <string name="descripcion">Description</string>
+    <string name="precioUni">Unit Price</string>
+    <string name="unidad">Unit</string>
     <string name="codLaboratorio">Laboratory Code</string>
     <string name="viaAdministracion">Route of Administration</string>
     <string name="formaFarmaceutica">Pharmaceutical Form</string>
@@ -61,6 +62,9 @@
     <string name="correo">Email</string>
 
     <string name="opciones">Options:</string>
+
+
+
 
     <!--strings usados por mm22108-->
     <!-- Menu  -->
@@ -249,5 +253,50 @@
     <string name="registro_de_articulo">Item Registration</string>
 
 
-</resources>
 
+
+    <!-->GD21001<!-->
+
+    <!-->Brand<!-->
+    <string name="idMarca">Brand ID</string>
+    <string name="nombreMarca">Brand Name</string>
+    <!-->Laboratory<!-->
+    <string name="idLabo">Laboratory ID</string>
+    <string name="laboratorioNombre">Laboratory Name</string>
+    <string name="laboratorioTipo">Laboratory Type</string>
+    <string name="laboratorioTelefono">Laboratory Phone</string>
+    <!-->Transaction<!-->
+    <string name="idVenta">Transaction ID</string>
+    <string name="DuiCliente">DUI</string>
+    <string name="IDUsuario">User ID</string>
+    <string name="IDLocal">Location ID</string>
+    <string name="fechaEmision">Issue Date</string>
+    <string name="totalTransaccion">Total</string>
+    <string name="tipoTransaccion">Transaction Type</string>
+    <!-->Buttons<!-->
+    <string name="InsertarMarca">Insert Brand</string>
+    <string name="InsertarTransaccion">Insert Transaction</string>
+    <string name="InsertarLaboratorio">Insert Laboratory</string>
+
+    <string name="ActualizarMarca">Update Brand</string>
+    <string name="ActualizarTransaccion">Update Transaction</string>
+    <string name="ActualizarLabo">Update Laboratory</string>
+
+    <string name="ConsultarMarca">Consult Brand</string>
+    <string name="ConsultarTransaccion">Consult Transaction</string>
+    <string name="ConsultarLabo">Consult Laboratory</string>
+
+    <string name="EliminarMarca">Delete Brand</string>
+    <string name="EliminarTransaccion">Delete Transaction</string>
+    <string name="EliminarLabo">Delete Laboratory</string>
+
+    <string name="InsertarDatos">Insert</string>
+    <string name="ActualizarDatos">Update</string>
+    <string name="ConsultarDatos">Query</string>
+    <string name="EliminarDatos">Delete</string>
+    <string name="LimpiarCampos">Clear</string>
+    <string name="llenadoBD">GD21001 Tables</string>
+
+
+
+</resources>

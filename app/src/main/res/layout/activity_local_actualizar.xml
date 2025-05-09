@@ -71,15 +71,25 @@
         <Button
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
+            android:layout_weight="1"
             android:background="@color/primary_color"
             android:onClick="actualizarLocal"
             android:text="@string/actualizar" />
 
         <Button
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_weight="1"
             android:background="@color/primary_color"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+
+        <Button
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@color/primary_color"
+            android:onClick="consultarLocal"
+            android:text="@string/buscar" />
     </TableRow>
 
 </TableLayout>

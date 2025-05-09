@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
+    tools:context=".TransaccionActualizarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/transaccionActu"
+            android:text="@string/ActualizarTransaccion"
+            android:textSize="24sp"
+            />
+    </TableRow>
+
+    <!-->Ids<!-->
+    <TableRow>
+        <TextView
+            android:id="@+id/ventaIdActu"
+            android:text="@string/idVenta"
+            />
+        <EditText
+            android:id="@+id/ventaIdActuedit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/DuiActu"
+            android:text="@string/DuiCliente"
+            />
+        <EditText
+            android:id="@+id/DuiActuedit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/usuarioIdActu"
+            android:text="@string/IDUsuario"
+            />
+        <EditText
+            android:id="@+id/usuarioIdActuedit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/LocalIdActu"
+            android:text="@string/IDLocal"
+            />
+        <EditText
+            android:id="@+id/LocalIdActuedit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+    <!-->Ids fin<!-->
+    <TableRow>
+        <Button
+            android:id="@+id/transConsultarBtnId"
+            style="?android:attr/buttonBarButtonStyle"
+            android:onClick="consultarTrans"
+            android:text="@string/ConsultarDatos"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/fechaEmisionActu"
+            android:text="@string/fechaEmision"
+            />
+        <EditText
+            android:id="@+id/fechaEmisionActuEdit"
+            android:inputType="date"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/totalActu"
+            android:text="@string/totalTransaccion"
+            />
+        <EditText
+            android:id="@+id/totalActuEdit"
+            android:inputType="numberDecimal"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/tipoTransActu"
+            android:text="@string/tipoTransaccion"
+            />
+        <EditText
+            android:id="@+id/tipoTransActuEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/transActuBtn"
+            android:onClick="ActuTrans"
+            android:text="@string/ActualizarDatos" />
+
+        <Button
+            android:id="@+id/transActuTxtBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+
+    </TableRow>
+
+</TableLayout>

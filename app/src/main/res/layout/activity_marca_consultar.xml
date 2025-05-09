@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
+    tools:context=".MarcaConsultarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/marcaConsultar"
+            android:text="@string/ConsultarMarca"
+            android:textSize="24sp"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/marcaIdCons"
+            android:text="@string/idMarca"/>
+        <EditText
+            android:id="@+id/marcaIdConsEdit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/marcaConsultarBtnId"
+            style="?android:attr/buttonBarButtonStyle"
+            android:onClick="consultarMarca"
+            android:text="@string/ConsultarDatos"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/marcaNomCons"
+            android:text="@string/nombreMarca"
+            />
+        <EditText
+            android:id="@+id/marcaNomConsEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow style="?android:attr/buttonBarStyle">
+        <Button
+            android:id="@+id/marcaConsultarBtnTxt"
+            style="?android:attr/buttonBarButtonStyle"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            android:layout_gravity="center_horizontal"
+            />
+    </TableRow>
+
+</TableLayout>
