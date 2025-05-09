@@ -18,7 +18,7 @@ public class DistritoMenuActivity extends ListActivity {
 
     //menu y activities
     String[] menu; // = {"Insertar Laboratorio", "Actualizar Laboratorio", "Consultar Laboratorio", "Eliminar Laboratorio"};
-    String[] activities = {"DepartamentoInsertarActivity", "DepartamentoActualizarActivity", "DepartamentoConsultarActivity", "DepartamentoEliminarActivity"};
+    String[] activities = {"DistritoInsertarActivity", "DistritoActualizarActivity", "DistritoConsultarActivity", "DistritoEliminarActivity"};
     //paquete: com.example.farmaciarikas.
 
     @Override
