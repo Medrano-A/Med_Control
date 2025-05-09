@@ -13,6 +13,14 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".DistritoEliminarActivity"
             android:exported="false" />
         <activity
@@ -106,6 +114,24 @@
             android:name=".LaboratorioMenuActivity"
             android:exported="false" />
         <activity
+            android:name=".ArticuloEliminar"
+            android:exported="false" />
+        <activity
+            android:name=".ArticuloConsultar"
+            android:exported="false" />
+        <activity
+            android:name=".ArticuloActualizar"
+            android:exported="false" />
+        <activity
+            android:name=".ArcticuloCrear"
+            android:exported="false" />
+        <activity
+            android:name=".ArticuloActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MM21030Activity"
+            android:exported="false" />
+        <activity
             android:name=".ListarStockActivity"
             android:exported="false" />
         <activity
@@ -122,6 +148,9 @@
             android:exported="false" />
         <activity
             android:name=".ActualizarUbicacionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarStockActivity"
             android:exported="false" />
         <activity
             android:name=".ListarUbicacionesActivity"
@@ -231,11 +260,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

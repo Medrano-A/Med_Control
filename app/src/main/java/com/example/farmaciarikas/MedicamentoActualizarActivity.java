@@ -91,7 +91,29 @@ public class MedicamentoActualizarActivity extends Activity {
 
     }
 
+    public void consultarMedicamento(View v) {
 
+        helper.abrir();
+        Medicamento medicamento =
+                helper.consultarMedicamento(editIdMedicamento.getText().toString());
+
+        helper.cerrar();
+        if(medicamento == null)
+            Toast.makeText(this, "Medicamento con codigo " +
+                    editIdMedicamento.getText().toString() +
+                    " no encontrado", Toast.LENGTH_LONG).show();
+        else{
+
+            editIdLab.setText(String.valueOf(medicamento.getIdLaboratorio()));
+            editVia.setText(medicamento.getViaDeAdministracion());
+            editForma.setText(medicamento.getFormaFarmaceutica());
+            editNombre.setText(medicamento.getNombre());
+            editCantidad.setText(String.valueOf(medicamento.getCantidad()));
+            editDescripcion.setText(medicamento.getDescripcion());
+            editPrecio.setText(String.valueOf(medicamento.getPrecioUni()));
+            editUnidad.setText(medicamento.getUnidades());
+        }
+    }
 
     public void limpiarTexto(View v) {
         editIdMedicamento.setText("");
