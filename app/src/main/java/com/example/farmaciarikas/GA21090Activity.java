@@ -28,7 +28,6 @@ public class GA21090Activity extends ListActivity  {
             }catch(ClassNotFoundException e){
                 e.printStackTrace();
             }
-        }else{
         }
     }
 }

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
+    tools:context=".MarcaInsertarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/marcaInsertar"
+            android:text="@string/InsertarMarca"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/marcaIdInsertar"
+            android:text="@string/idLabo"
+            />
+        <EditText
+            android:id="@+id/marcaIdInsertarEdit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/marcaNombreInsertar"
+            android:text="@string/nombreMarca"
+            />
+        <EditText
+            android:id="@+id/marcaNombreInsertarEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/marcaInsertarBtn"
+            android:onClick="insertarMarca"
+            android:text="@string/InsertarDatos" />
+
+        <Button
+            android:id="@+id/marcaInsertarBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+
+    </TableRow>
+
+</TableLayout>

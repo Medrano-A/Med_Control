@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
+    tools:context=".LaboratorioInsertarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/transaccionInsertar"
+            android:text="@string/InsertarTransaccion"
+            android:textSize="24sp"
+            />
+    </TableRow>
+    <!-->Ids<!-->
+    <TableRow>
+        <TextView
+            android:id="@+id/ventaIdInsertar"
+            android:text="@string/idVenta"
+            />
+        <EditText
+            android:id="@+id/ventaIdInsertaredit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/DuiInsertar"
+            android:text="@string/DuiCliente"
+            />
+        <EditText
+            android:id="@+id/DuiInsertaredit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/usuarioIdInsertar"
+            android:text="@string/IDUsuario"
+            />
+        <EditText
+            android:id="@+id/usuarioIdInsertaredit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/LocalIdInsertar"
+            android:text="@string/IDLocal"
+            />
+        <EditText
+            android:id="@+id/LocalIdInsertaredit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+    <!-->Ids fin<!-->
+
+    <TableRow>
+        <TextView
+            android:id="@+id/fechaEmisionInsertar"
+            android:text="@string/fechaEmision"
+            />
+        <EditText
+            android:id="@+id/fechaEmisionInsertarEdit"
+            android:inputType="date"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/totalInsertar"
+            android:text="@string/totalTransaccion"
+            />
+        <EditText
+            android:id="@+id/totalInsertarEdit"
+            android:inputType="numberDecimal"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/tipoTransInsertar"
+            android:text="@string/tipoTransaccion"
+            />
+        <EditText
+            android:id="@+id/tipoTransInsertarEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/laboInsertarBtn"
+            android:onClick="insertarLabo"
+            android:text="@string/InsertarDatos" />
+
+        <Button
+            android:id="@+id/laboInsertarBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+
+    </TableRow>
+
+</TableLayout>

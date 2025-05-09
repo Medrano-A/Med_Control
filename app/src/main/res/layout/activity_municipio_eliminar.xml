@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
+    tools:context=".MunicipioEliminarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/muniElim"
+            android:text="@string/EliminarMunicipio"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/muniIdElim"
+            android:text="@string/idMunicipioMun"
+            />
+        <EditText
+            android:id="@+id/muniIdElimEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/depMuniIdElim"
+            android:text="@string/idDepartamentoMun"
+            />
+        <EditText
+            android:id="@+id/depMuniIdElimEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/muniElimBtn"
+            android:onClick="elimMuni"
+            android:text="@string/EliminarDatos" />
+
+        <Button
+            android:id="@+id/muniElimBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+    </TableRow>
+
+</TableLayout>

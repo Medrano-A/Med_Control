@@ -26,10 +26,10 @@ public class UbicacionActivity extends AppCompatActivity {
         listViewOpciones = findViewById(R.id.listViewOpciones);
 
         List<Opcion> opciones = new ArrayList<>();
-        //opciones.add(new Opcion("Crear ubicación", R.drawable.ic_crearubicacion));
-        //opciones.add(new Opcion("Consultar ubicaciones", R.drawable.ic_encontrarubicacion));
-        //opciones.add(new Opcion("Actualizar ubicación", R.drawable.ic_editarubicacion));
-        //opciones.add(new Opcion("Eliminar ubicación", R.drawable.ic_borrarubicacion));
+        opciones.add(new Opcion("Crear ubicación", R.drawable.ic_crearubicacion));
+        opciones.add(new Opcion("Consultar ubicaciones", R.drawable.ic_encontrarubicacion));
+        opciones.add(new Opcion("Actualizar ubicación", R.drawable.ic_editarubicacion));
+        opciones.add(new Opcion("Eliminar ubicación", R.drawable.ic_borrarubicacion));
 
         OpcionAdapter adapter = new OpcionAdapter(this, opciones);
         listViewOpciones.setAdapter(adapter);
