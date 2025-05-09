@@ -320,7 +320,15 @@
     <string name="consultar_stock">Consultar Stock</string>
     <string name="actualizar_stock">Actualizar Stock</string>
     <string name="registro_de_articulo">Registro de Articulo</string>
-
+    <string name="id_articulo">ID Articulo</string>
+    <string name="id_distribuidor">ID Distribuidor</string>
+    <string name="nombre_articulo">Nombre Articulo</string>
+    <string name="clasificacion">Clasificacion</string>
+    <string name="registrar_articulo">Registrar Articulo</string>
+    <string name="actualizar_articulo">Actualizar Articulo</string>
+    <string name="consultar_articulo">Consultar Articulo</string>
+    <string name="ingrese_id_de_articulo">Ingrese ID de Articulo</string>
+    <string name="borrar_articulo">Borrar Articulo</string>
 
 </resources>
 
