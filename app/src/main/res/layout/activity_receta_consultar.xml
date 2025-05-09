@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".RecetaConsultarActivity">
 
+    <!-- Título -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,6 +17,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="16dp"/>
 
+    <!-- Input de ID -->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +30,7 @@
             android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Botón Buscar -->
     <Button
         android:id="@+id/btnRecetaBuscarConsulta"
         android:layout_width="wrap_content"
@@ -35,18 +39,50 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp"/>
 
-    <TextView android:id="@+id/textRecetaDui" style="@style/TextViewStyleConsulta" android:text="DUI:"/>
-    <TextView android:id="@+id/textRecetaIdDoctor" style="@style/TextViewStyleConsulta" android:text="ID Doctor:"/>
-    <TextView android:id="@+id/textRecetaNombrePaciente" style="@style/TextViewStyleConsulta" android:text="Paciente:"/>
-    <TextView android:id="@+id/textRecetaFecha" style="@style/TextViewStyleConsulta" android:text="Fecha:"/>
-    <TextView android:id="@+id/textRecetaEdad" style="@style/TextViewStyleConsulta" android:text="Edad:"/>
-    <TextView android:id="@+id/textRecetaObservaciones" style="@style/TextViewStyleConsulta" android:text="Observaciones:"/>
+    <!-- Campos de resultado de la receta -->
+    <TextView android:id="@+id/textRecetaDui"
+        style="@style/TextViewStyleConsulta"
+        android:text="DUI:"/>
+    <TextView android:id="@+id/textRecetaIdDoctor"
+        style="@style/TextViewStyleConsulta"
+        android:text="ID Doctor:"/>
+    <TextView android:id="@+id/textRecetaNombrePaciente"
+        style="@style/TextViewStyleConsulta"
+        android:text="Paciente:"/>
+    <TextView android:id="@+id/textRecetaFecha"
+        style="@style/TextViewStyleConsulta"
+        android:text="Fecha:"/>
+    <TextView android:id="@+id/textRecetaEdad"
+        style="@style/TextViewStyleConsulta"
+        android:text="Edad:"/>
+    <TextView android:id="@+id/textRecetaObservaciones"
+        style="@style/TextViewStyleConsulta"
+        android:text="Observaciones:"/>
 
+    <!-- Botón para ir al menú de detalles genérico -->
     <Button
         android:id="@+id/btnRecetaVerDetallesConsulta"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Ver Detalles"
+        android:text="Ver Detalles (otra vista)"
         android:layout_marginTop="16dp"
         android:visibility="gone"/>
+
+    <!-- ListView para mostrar los DetalleReceta -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalles de la receta:"
+        android:textStyle="bold"
+        android:layout_marginTop="24dp"
+        android:visibility="gone"
+        android:id="@+id/labelDetallesReceta"/>
+
+    <ListView
+        android:id="@+id/listDetalleReceta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="1dp"
+        android:visibility="gone"/>
+
 </LinearLayout>
