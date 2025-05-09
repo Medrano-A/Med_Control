@@ -701,10 +701,10 @@ public class ControlDBFarmacia {
         switch (relacion){
             case 1:{
                 //verificar que al insertar el distrito exista el municipio seleccionado con el ID
-                Distrito dis = (Distrito) dato;
+                Distrito dis = (Distrito)dato;
                 String[] idMuni = {Integer.toString(dis.getIdMunicipio())};
-                Cursor c1 = db.query("Municipio", null, "idMunicipio = ?", idMuni, null, null, null);
-                if(c1.moveToFirst()){
+                Cursor curMuni = db.query("Municipio", null, "idMunicipio = ?", idMuni, null, null, null);
+                if(curMuni.moveToFirst()){
                     //Se encontro el id
                     return true;
                 }
@@ -755,7 +755,7 @@ public class ControlDBFarmacia {
         /*---------------------*/
         //tabla Departamento
         /*Campos iniciales*/
-        final int[] idDepartamento = {01, 02, 03, 04, 05};
+        final int[] idDepartamento = {1, 2, 3, 4, 5};
         final String[] nombreDep = {"San Salvador", "La Libertad", "Santa Ana", "Chalatenango", "San Miguel"};
         /*Insercion de datos*/
         Departamento d = new Departamento();
@@ -767,8 +767,8 @@ public class ControlDBFarmacia {
         /*---------------------*/
         //tabla Municipio
         /*Campos iniciales*/
-        final int[] idMunicipio = {011, 012, 013, 014, 015};
-        final int[] idDepartamentoMun = {01, 02, 03, 04, 05};
+        final int[] idMunicipio = {100, 200, 300, 400, 500};
+        final int[] idDepartamentoMun = {1, 2, 3, 4, 5};
         final String[] nombreMun = {"Soyapango", "Santa Tecla", "Metapán", "Mejicanos", "Chirilagua"};
         /*Insercion de datos*/
         Municipio m = new Municipio();
@@ -781,8 +781,8 @@ public class ControlDBFarmacia {
         /*---------------------*/
         //tabla Distrito
         /*Campos iniciales*/
-        final int[] idDistrito = {1001, 1002, 1003, 1004, 1005};
-        final int[] idMunicipioDistrito = {011, 012, 013, 014, 015};
+        final int[] idDistrito = {1000, 2000, 3000, 4000, 5000};
+        final int[] idMunicipioDistrito = {100, 200, 300, 400, 500};
         final String[] nombreDist = {"Distrito 1", "Distrito 2", "Distrito 3", "Distrito 4", "Distrito 5"};
         /*Insercion de datos*/
         Distrito dis = new Distrito();
