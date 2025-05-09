@@ -212,5 +212,40 @@
     <string name="dialog_msg_detalleReceta_actualizado">Detalle Receta actualizado exitosamente</string>
     <string name="dialog_msg_error_actualizado_detalleReceta">Error al actualizar Detalle Receta</string>
 
+    <string name="agregar_ubicacion">Agregar Ubicación</string>
+    <string name="id_de_ubicacion">ID de Ubicación</string>
+    <string name="nombre_de_la_ubicacion">Descripción de Ubicación</string>
+    <string name="id_del_distrito">ID del Distrito</string>
+    <string name="id_de_marca">ID de Marca</string>
+    <string name="agregar">Agregar</string>
+    <string name="buscar_ubicacion">Consultar Ubicacion</string>
+    <string name="icono_de_busqueda">icono de busqueda</string>
+    <string name="editar_ubicacion">Actualizar Ubicación</string>
+    <string name="eliminar_ubicacion">Eliminar Ubicación</string>
+    <string name="id">ID:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="distrito">Distrito:</string>
+
+    <string name="ingrese_id_de_ubicacion">Ingrese ID de ubicación</string>
+    <string name="registro_de_stock">Registro de Stock</string>
+    <string name="id_stock">ID Stock</string>
+    <string name="codigo_elemento">Código Elemento</string>
+    <string name="id_local">ID Local</string>
+    <string name="cantidad_stock">Cantidad</string>
+    <string name="fecha_vencimiento_yyyy_mm_dd">Fecha Vencimiento (yyyy-MM-dd)</string>
+    <string name="registrar_stock">Registrar Stock</string>
+    <string name="id_ubicaci_n">ID Ubicación</string>
+    <string name="detalle_ubicaci_n">Detalle Ubicación</string>
+    <string name="id_distrito">ID Distrito</string>
+    <string name="id_marca">ID Marca</string>
+    <string name="guardar_cambios">Guardar Cambios</string>
+    <string name="eliminar_stock">Eliminar Stock</string>
+    <string name="ingrese_id_de_stock">Ingrese ID de Stock</string>
+    <string name="buscar">Buscar</string>
+    <string name="consultar_stock">Consultar Stock</string>
+    <string name="actualizar_stock">Actualizar Stock</string>
+    <string name="registro_de_articulo">Registro de Articulo</string>
+
+
 
 </resources>

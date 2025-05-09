@@ -206,5 +206,6 @@
     <string name="ActualizarDetalleReceta_btn_actualizar">Update</string>
     <string name="dialog_msg_detalleReceta_actualizado">Prescription Details successfully updated</string>
     <string name="dialog_msg_error_actualizado_detalleReceta">Error searching Prescription Details</string>
+
 </resources>
 

@@ -9,6 +9,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class ControlDBFarmacia {
 
     private static final String[] camposDoctor = new String[]
@@ -19,6 +22,13 @@ public class ControlDBFarmacia {
             {"idLocal", "idUbicacion", "nombreLocal", "tipoLocal", "telefonoLocal"};
     private static final String[] camposElemento = new String[] {
             "codElemento", "nombre", "cantidad", "descripcion", "precioUni", "unidades"
+    };
+    private static final String[] camposUbicacion = new String[] {
+            "idUbicacion", "idDistrito", "idMarca", "detalle"
+    };
+
+    private static final String[] camposStock = new String[] {
+            "idStock", "codElemento", "idLocal", "cantidad", "fechaVencimiento"
     };
 
     private final Context context;
@@ -107,6 +117,16 @@ public class ControlDBFarmacia {
                         "FOREIGN KEY(id_usuario) REFERENCES Usuario(id_usuario) ON DELETE CASCADE, " +
                         "FOREIGN KEY(id_opcion_crud) REFERENCES OpcionCrud(id_opcion_crud) ON DELETE CASCADE)");
 
+                db.execSQL("CREATE TABLE ubicacion(idUbicacion INTEGER NOT NULL PRIMARY KEY," +
+                        " idDistrito INTEGER NOT NULL," +
+                        " idMarca INTEGER NOT NULL," +
+                        "detalle TEXT NOT NULL)");
+
+                db.execSQL("CREATE TABLE stock(idStock INTEGER NOT NULL PRIMARY KEY," +
+                        " codElemento INTEGER NOT NULL," +
+                        " idlocal INTEGER NOT NULL," +
+                        " cantidad INTEGER NOT NULL," +
+                        " fechavencimiento TEXT NOT NULL)");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -126,6 +146,111 @@ public class ControlDBFarmacia {
     public void cerrar() {
         DBHelper.close();
     }
+    /*-----------------------------------------------TABLA UBICACION----------------------------------------------------------*/
+    public String insertar(Ubicacion ubicacion) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues doc = new ContentValues();
+        doc.put("idUbicacion", ubicacion.getIdUbicacion());
+        doc.put("idDistrito", ubicacion.getIdDistrito());
+        doc.put("idMarca", ubicacion.getIdMarca());
+        doc.put("detalle", ubicacion.getDetalle());
+
+        contador = db.insert("ubicacion", null, doc);
+
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+    public Ubicacion consultarUbicacion(int idUbicacion) {
+        String[] id = {String.valueOf(idUbicacion)};
+        Cursor cursor = db.query("ubicacion", camposUbicacion, "idUbicacion = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Ubicacion ubicacion = new Ubicacion();
+            ubicacion.setIdUbicacion(cursor.getInt(0));
+            ubicacion.setIdDistrito(cursor.getInt(1));
+            ubicacion.setIdMarca(cursor.getInt(2));
+            ubicacion.setDetalle(cursor.getString(3));
+
+            return ubicacion;
+        } else {
+            return null;
+        }
+    }
+    public String actualizar(Ubicacion ubicacion) {
+        String[] id = {String.valueOf(ubicacion.getIdUbicacion())};
+        ContentValues cv = new ContentValues();
+        cv.put("idDistrito", ubicacion.getIdDistrito());
+        cv.put("idMarca", ubicacion.getIdMarca());
+        cv.put("detalle", ubicacion.getDetalle());
+        db.update("ubicacion", cv, "idUbicacion = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+    public String eliminar(Ubicacion ubicacion) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        String idUbicacion =String.valueOf(ubicacion.getIdUbicacion());
+        contador += db.delete("ubicacion", "idUbicacion='" + idUbicacion + "'", null);
+        regAfectados += contador;
+        return regAfectados;
+    }
+    /*-----------------------------------------------TABLA STOCKS----------------------------------------------------------*/
+    public String insertar(Stock stock) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues doc = new ContentValues();
+        doc.put("idStock", stock.getIdStock());
+        doc.put("codElemento", stock.getCodElemento());
+        doc.put("idlocal", stock.getIdLocal());
+        doc.put("cantidad", stock.getCantidad());
+        doc.put("fechavencimiento", stock.getFechaVencimiento());
+
+        contador = db.insert("stock", null, doc);
+
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+    public String eliminar(Stock stock) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        String idStock =String.valueOf(stock.getIdStock());
+        contador += db.delete("stock", "idStock='" + idStock + "'", null);
+        regAfectados += contador;
+        return regAfectados;
+    }
+    public Stock consultarStock(int idStock) {
+        String[] id = {String.valueOf(idStock)};
+        Cursor cursor = db.query("stock", camposStock, "idStock = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Stock stock = new Stock();
+            stock.setIdStock(cursor.getInt(0));
+            stock.setCodElemento(cursor.getInt(1));
+            stock.setIdLocal(cursor.getInt(2));;
+            stock.setCantidad(cursor.getInt(3));
+            stock.setFechaVencimiento(cursor.getString(4));
+            return stock;
+        } else {
+            return null;
+        }
+    }
+    public String actualizar(Stock stock) {
+        String[] id = {String.valueOf(stock.getIdStock())};
+        ContentValues cv = new ContentValues();
+        cv.put("codElemento", stock.getCodElemento());
+        cv.put("idlocal", stock.getIdLocal());
+        cv.put("cantidad", stock.getCantidad());
+        cv.put("fechavencimiento", stock.getFechaVencimiento());
+        db.update("stock", cv, "idStock = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/
     public String insertar(Doctor doctor) {
         String regInsertados = "Registro Insertado Nº= ";
