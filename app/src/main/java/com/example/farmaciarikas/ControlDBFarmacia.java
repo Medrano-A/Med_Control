@@ -16,6 +16,7 @@ import java.util.Locale;
 
 public class ControlDBFarmacia {
 
+    /**-------------------------------CAMPOS DE ENTIDADES----------------------------------------------**/
     private static final String[] camposDoctor = new String[]
             {"idDoctor", "nombreDoctor", "especialidad", "jvpm", "telefonoDoctor", "correoDoctor"};
     private static final String[] camposMedicamento = new String[]
@@ -95,7 +96,7 @@ public class ControlDBFarmacia {
                         "    cantidad INTEGER,\n" +
                         "    descripcion TEXT,\n" +
                         "    precioUni REAL,\n" +
-                        "    unidades VARCHAR(5)\n" +
+                        "    unidades VARCHAR(10)\n" +
                         ");");
 
                 /*TABLA MEDICAMENTO*/
@@ -164,12 +165,13 @@ public class ControlDBFarmacia {
                         " idDistrito INTEGER NOT NULL," +
                         " idMarca INTEGER NOT NULL," +
                         "detalle TEXT NOT NULL)");
-
+                //TABLA STOCK
                 db.execSQL("CREATE TABLE stock(idStock INTEGER NOT NULL PRIMARY KEY," +
                         " codElemento INTEGER NOT NULL," +
                         " idlocal INTEGER NOT NULL," +
                         " cantidad INTEGER NOT NULL," +
                         " fechavencimiento TEXT NOT NULL)");
+                //TABLA ARTICULO
                 db.execSQL("CREATE TABLE articulo(idArticulo INTEGER NOT NULL PRIMARY KEY," +
                         " idDistribuidor INTEGER NOT NULL," +
                         " nombreArticulo TEXT NOT NULL," +
@@ -207,6 +209,7 @@ public class ControlDBFarmacia {
         }
         return db;
     }
+    /*--CRUDS DE MM2108
     /*-----------------------------------------------TABLA ARTICULO-----------------------------------------------------------*/
     public String insertar(Articulo articulo) {
         String regInsertados = "Registro Insertado Nº= ";
@@ -375,7 +378,7 @@ public class ControlDBFarmacia {
         db.update("stock", cv, "idStock = ?", id);
         return "Registro Actualizado Correctamente";
     }
-
+    /*TABLAS DE GA21090*/
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/
     public String insertar(Doctor doctor) {
         String regInsertados = "Registro Insertado Nº= ";
@@ -547,10 +550,6 @@ public class ControlDBFarmacia {
 
     }
 
-
-
-
-
     public String eliminar(Medicamento medicamento) {
         String regAfectados = "filas afectadas= ";
         int contador = 0;
@@ -673,7 +672,7 @@ public class ControlDBFarmacia {
         }
     }
     /*----GD21001 Tablas----*/
-    /*----LABORATORIO----*/
+    /*---------------------------------------TABLA DE LABORATORIO------------------------------------------------*/
     public String insertar(Laboratorio l){
         String regInsert = "Registro insertado N°= ";
         long cont = 0;
@@ -1064,31 +1063,16 @@ public class ControlDBFarmacia {
                 return false;
         }
     }
-    public String llenadoTablasGD21001(){
+    /*----------------------------------------------------LLENADO DE TABLAS------------------------------------------------*/
+
+    public String llenadoTablas(){
         abrir();
         //limpiado de tablas
-        db.execSQL("DELETE FROM Laboratorio");
-        db.execSQL("DELETE FROM Departamento");
-        db.execSQL("DELETE FROM Municipio");
-        db.execSQL("DELETE FROM Distrito");
-        db.execSQL("DELETE FROM Marca");
+        db.execSQL("DELETE FROM doctor");
+        db.execSQL("DELETE FROM elemento");
+        db.execSQL("DELETE FROM medicamento");
+        db.execSQL("DELETE FROM local");
 
-        //tabla Laboratorio
-        /*Campos iniciales*/
-        final int[] idLaboratorio = {01, 02, 03, 04, 05};
-        final String[] nombre = {"Laboratorio Pfizer", "Laboratorio SanSavior", "Laboratorio Quesadillas", "LabComputo", "Laboratorio Bukeli"};
-        final String[] tipo = {"Química", "Quimica", "Biología", "Clinico", "Medrano"};
-        final String[] telefono = {"70017029", "70017030", "70017031", "70017032", "70017033"};
-        /*Insercion de datos*/
-        Laboratorio l = new Laboratorio();
-        for(int i=0; i < 5; i++){
-            l.setIdLaboratorio(idLaboratorio[i]);
-            l.setNombre(nombre[i]);
-            l.setTipo(tipo[i]);
-            l.setTelefono(telefono[i]);
-            insertar(l);
-        }
-        /*---------------------*/
         //tabla Departamento
         /*Campos iniciales*/
         final int[] idDepartamento = {1, 2, 3, 4, 5};
@@ -1141,11 +1125,109 @@ public class ControlDBFarmacia {
             marca.setNombre(nombreMarca[i]);
             insertar(marca);
         }
-        /*---------------------*/
+
+
+        /*----------TABLA DOCTOR----*/
+        final int[] idDoctor = {01, 02, 03, 04, 05};
+        final String[] nombreDoctor = {"Juan Lopez", "Elmer Chavez", "Gustavo Fring", "Melissa Hernandez", "Daniela Diaz"};
+        final String[] especialidad = {"Cirujano", "Pediatra", "Odontologo", "Ginecologa", "Cardiologo"};
+        final String[] jvpm = {"1234", "7894", "7531", "8754", "4561"};
+        final String[] telefonoDoctor = {"80017029", "80017030", "80017031", "80017032", "80017033"};
+        final String[] correoDoctor = {"juan@gmail.com", "elmer@gmail.com", "gustavo@gmail.com", "melissa@gamil.com", "daniela@gmail.com"};
+        /*Insercion de datos*/
+        Doctor doctor = new Doctor();
+        for(int i=0; i < 5; i++){
+            doctor.setIdDoctor(idDoctor[i]);
+            doctor.setNombreDoctor(nombreDoctor[i]);
+            doctor.setEspecialidad(especialidad[i]);
+            doctor.setJvpm(jvpm[i]);
+            doctor.setTelefonoDoctor(telefonoDoctor[i]);
+            doctor.setCorreoDoctor(correoDoctor[i]);
+            insertar(doctor);
+        }
+/*TABLA DE LABORATORIO**/
+        final int[] idLaboratorio = {01, 02, 03, 04, 05};
+        final String[] nombre = {"Laboratorio Pfizer", "Laboratorio SanSavior", "Laboratorio Quesadillas", "LabComputo", "Laboratorio Bukeli"};
+        final String[] tipo = {"Química", "Quimica", "Biología", "Clinico", "Medrano"};
+        final String[] telefono = {"70017029", "70017030", "70017031", "70017032", "70017033"};
+        /*Insercion de datos*/
+        Laboratorio l = new Laboratorio();
+        for(int i=0; i < 5; i++){
+            l.setIdLaboratorio(idLaboratorio[i]);
+            l.setNombre(nombre[i]);
+            l.setTipo(tipo[i]);
+            l.setTelefono(telefono[i]);
+            insertar(l);
+        }
+        /*---TABLA ELEMENTO*/
+
+        final int[] idElemento = {1, 2, 3, 4, 5};
+        final String[] nombreElemento = {"Paracetamol", "Aspirina", "Cefalexina", "Clonazepam", "Alca D"};
+        final int[] cantidad = {4,10,5,20,25};
+        final String[] descripción = {"Se utiliza para aliviar dolores leves a moderados (como dolor de cabeza," +
+                " dental o muscular)", "se usa para dolores leves, fiebre e inflamaciones,", "se utiliza para" +
+                " tratar infecciones bacterianas como las de piel, vías urinarias, respiratorias y de tejidos blandos",
+                "Se usa para tratar trastornos de ansiedad, epilepsia y, en algunos casos, insomnio severo.",
+                "es efectivo para el tratamiento de los síntomas de la diarrea y alivia generalmente con una sola dosis"};
+        final Double[] precioUnitario = {12.50,15.20,5.60,40.30,50.00};
+        final String[] Unidad = {"Blísteres", "Caja", "Cápsulas", "Ampollas", "Frascos"};
+        /*TABLA MEDICAMENTO*/
+        final String[] idMedicamento = {"A1","A2", "A3", "A4", "A5"};
+        final String[] viaDeAdministracion = {"Oral", "Vía Sublingual", "Rectal", "Intravenosa", "Intramuscular"};
+        final String[] formaFarmaceutica={"Solida","Liquida","Solida","Liquida","Semisolida"};
+
+        /*Insercion de datos de Medicamento*/
+        Medicamento medicamento = new Medicamento();
+        for(int i=0; i < 5; i++){
+            medicamento.setCodElemento(idElemento[i]);
+            medicamento.setIdMedicamento(idMedicamento[i]);
+            medicamento.setNombre(nombreElemento[i]);
+            medicamento.setCantidad(cantidad[i]);
+            medicamento.setDescripcion(descripción[i]);
+            medicamento.setPrecioUni(precioUnitario[i]);
+            medicamento.setUnidades(Unidad[i]);
+            medicamento.setIdLaboratorio((idLaboratorio[i]));
+            medicamento.setViaDeAdministracion(viaDeAdministracion[i]);
+            medicamento.setFormaFarmaceutica(formaFarmaceutica[i]);
+            insertar(medicamento);
+        }
+
+        /*TABLA UBICACION*/
+
+        final int[] idUbicacion = {1, 2, 3, 4, 5};
+        final String[] descripcionUbi = {"Distrito 1, Soyapango, San Salvador", "Distrito 2, Santa Tecla, La Libertad", "Distrito 3, Metapán, Santa Ana", "Distrito 4, Mejicanos, Chalatenango", "Distrito 5, Chirilagua, San Miguel"};
+
+        /*Insercion de datos*/
+        Ubicacion ubicacion = new Ubicacion();
+        for (int i = 0; i < 5; i++) {
+            ubicacion.setIdUbicacion(idUbicacion[i]);
+            ubicacion.setDetalle(descripcionUbi[i]);
+            ubicacion.setIdMarca(idMarca[i]);
+            ubicacion.setIdDistrito(idDistrito[i]);
+            insertar(ubicacion);
+        }
+        /*TABLA LOCAL*/
+
+        final int[] idLocal = {1, 2, 3, 4, 5};
+        final String[] nombreLocal = {"Local A, Planta Baja", "Local B, Segunda Planta", "Sucursal San Benito", "Farmacia Plaza Futura, Nivel Corporativo", "Sucursal Plaza Mayor, Nivel 2"};
+        final String[] tipoLocal={"Local","Local","Sucursal","Farmacia","Sucursal"};
+        final String[] telefonoLocal = {"70017029", "70017030", "70017031", "70017032", "70017033"};
+        /*Insercion de datos*/
+        Local local = new Local();
+        for (int i = 0; i < 5; i++) {
+            local.setIdUbicacion(idUbicacion[i]);
+            local.setIdLocal(idLocal[i]);
+            local.setNombreLocal(nombreLocal[i]);
+            local.setTipoLocal(tipoLocal[i]);
+            local.setTelefonoLocal(telefonoLocal[i]);
+            insertar(local);
+        }
 
         cerrar();
         return context.getResources().getString(R.string.llenadoBD);
     }
+
+
     //Fin GD21001/////////////
     private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
         switch (relacion) {
@@ -1187,7 +1269,7 @@ public class ControlDBFarmacia {
         }
     }
 
-    //Metodos MM22108
+    //Metodos DE MM22108
     // Cliente
     public boolean insertarCliente(Cliente cliente) {
         db = DBHelper.getWritableDatabase();
