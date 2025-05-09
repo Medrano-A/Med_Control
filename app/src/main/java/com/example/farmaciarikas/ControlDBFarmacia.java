@@ -160,6 +160,20 @@ public class ControlDBFarmacia {
         DBHelper.close();
     }
 
+    public SQLiteDatabase getReadableDatabase() {
+        if (db == null || !db.isOpen()) {
+            abrir();
+        }
+        return db;
+    }
+
+    public SQLiteDatabase getWritableDatabase() {
+        if (db == null || !db.isOpen()) {
+            abrir();
+        }
+        return db;
+    }
+
     /*-----------------------------------------------TABLA UBICACION----------------------------------------------------------*/
     public String insertar(Ubicacion ubicacion) {
         String regInsertados = "Registro Insertado Nº= ";

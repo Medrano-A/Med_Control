@@ -18,7 +18,7 @@ public class MainActivity extends ListActivity  {
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
         helper = new ControlDBFarmacia(this);
-        helper.permisosUsuarios();
+
     }
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){

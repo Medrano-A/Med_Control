@@ -58,15 +58,11 @@
     <string name="telefonoDoctor">Telefono</string>
     <string name="correo">Correo</string>
 
+    <!--Login-->
+    <string name="Usuario">Usuario</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="password">Contraseña</string>
     <string name="opciones">Opciones:</string>
-
-
-
-
-
-
-
-
 
 
     <!--strings usados por mm22108-->
@@ -324,7 +320,6 @@
     <string name="consultar_stock">Consultar Stock</string>
     <string name="actualizar_stock">Actualizar Stock</string>
     <string name="registro_de_articulo">Registro de Articulo</string>
-
 
 
 </resources>

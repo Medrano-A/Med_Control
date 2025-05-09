@@ -25,7 +25,10 @@
     <string name="consultar_registro">Query Record</string>
     <string name="actualizar_registro">Update Record</string>
 
-
+<!--Login-->
+    <string name="Usuario">User</string>
+    <string name="login">Login</string>
+    <string name="password">Contraseña</string>
 
     <string name="idMedicamento">Code</string>
     <string name="codElemento">Element Code</string>
