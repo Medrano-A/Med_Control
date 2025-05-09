@@ -28,6 +28,20 @@ public class MunicipioActualizarActivity extends Activity {
         editNombre = (EditText) findViewById(R.id.muniNomActuEdit);
     }
 
+    public void consMuni(View v) {
+        int idMuni, idDepto;
+        idMuni = Integer.parseInt(editIdMunicipio.getText().toString());
+        idDepto = Integer.parseInt(editIdDepartamentoMun.getText().toString());
+        dbFarmHelper.abrir();
+        Municipio muni = dbFarmHelper.consultarMuni(idMuni, idDepto);
+        dbFarmHelper.cerrar();
+        if(muni == null){
+            Toast.makeText(this, "Municipio no registrado", Toast.LENGTH_SHORT).show();
+        }else{
+            editNombre.setText(muni.getNombre());
+        }
+    }
+
     public void actuCampos(View v){
         Municipio muni = new Municipio();
         muni.setIdMunicipio(Integer.parseInt(editIdMunicipio.getText().toString()));

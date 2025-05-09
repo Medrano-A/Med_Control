@@ -567,7 +567,7 @@ public class ControlDBFarmacia {
         String regAfectados = "Filas Afectadas = ";
         int cont = 0;
         String where = "idMunicipio = '" + m.getIdMunicipio() + "'";
-        where = where + "AND idDepartamento '" + m.getIdDepartamento() + "'";
+        where = where + "AND idDepartamento = '" + m.getIdDepartamento() + "'";
         cont += db.delete("Municipio", where, null);
         regAfectados+=cont;
         return regAfectados;
@@ -621,7 +621,7 @@ public class ControlDBFarmacia {
         String regAfectados = "Filas Afectadas = ";
         int cont = 0;
         String where = "idDistrito = '" + dis.getIdDistrito() + "'";
-        where = where + "AND idMunicipio '" + dis.getIdMunicipio() + "'";
+        where = where + "AND idMunicipio = '" + dis.getIdMunicipio() + "'";
         cont += db.delete("Distrito", where, null);
         regAfectados+=cont;
         return regAfectados;
