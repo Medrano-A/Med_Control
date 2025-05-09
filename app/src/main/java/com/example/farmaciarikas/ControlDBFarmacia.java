@@ -15,6 +15,7 @@ import java.util.Locale;
 
 public class ControlDBFarmacia {
 
+    /**-------------------------------CAMPOS DE ENTIDADES----------------------------------------------**/
     private static final String[] camposDoctor = new String[]
             {"idDoctor", "nombreDoctor", "especialidad", "jvpm", "telefonoDoctor", "correoDoctor"};
     private static final String[] camposMedicamento = new String[]
@@ -133,17 +134,18 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE Distrito (idDistrito INTEGER NOT NULL PRIMARY KEY, idMunicipio INTEGER NOT NULL, nombre VARCHAR2(30) NOT NULL);");
                 db.execSQL("CREATE TABLE Marca (idMarca INTEGER NOT NULL PRIMARY KEY, nombre VARCHAR2(30) NOT NULL);");
 
-
+                //TABLA UBICACION
                 db.execSQL("CREATE TABLE ubicacion(idUbicacion INTEGER NOT NULL PRIMARY KEY," +
                         " idDistrito INTEGER NOT NULL," +
                         " idMarca INTEGER NOT NULL," +
                         "detalle TEXT NOT NULL)");
-
+                //TABLA STOCK
                 db.execSQL("CREATE TABLE stock(idStock INTEGER NOT NULL PRIMARY KEY," +
                         " codElemento INTEGER NOT NULL," +
                         " idlocal INTEGER NOT NULL," +
                         " cantidad INTEGER NOT NULL," +
                         " fechavencimiento TEXT NOT NULL)");
+                //TABLA ARTICULO
                 db.execSQL("CREATE TABLE articulo(idArticulo INTEGER NOT NULL PRIMARY KEY," +
                         " idDistribuidor INTEGER NOT NULL," +
                         " nombreArticulo TEXT NOT NULL," +
@@ -181,6 +183,7 @@ public class ControlDBFarmacia {
         }
         return db;
     }
+    /*--CRUDS DE MM2108
     /*-----------------------------------------------TABLA ARTICULO-----------------------------------------------------------*/
     public String insertar(Articulo articulo) {
         String regInsertados = "Registro Insertado Nº= ";
@@ -349,7 +352,7 @@ public class ControlDBFarmacia {
         db.update("stock", cv, "idStock = ?", id);
         return "Registro Actualizado Correctamente";
     }
-
+    /*TABLAS DE GA21090*/
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/
     public String insertar(Doctor doctor) {
         String regInsertados = "Registro Insertado Nº= ";
@@ -521,10 +524,6 @@ public class ControlDBFarmacia {
 
     }
 
-
-
-
-
     public String eliminar(Medicamento medicamento) {
         String regAfectados = "filas afectadas= ";
         int contador = 0;
@@ -647,7 +646,7 @@ public class ControlDBFarmacia {
         }
     }
     /*----GD21001 Tablas----*/
-    /*----LABORATORIO----*/
+    /*---------------------------------------TABLA DE LABORATORIO------------------------------------------------*/
     public String insertar(Laboratorio l){
         String regInsert = "Registro insertado N°= ";
         long cont = 0;
@@ -913,7 +912,7 @@ public class ControlDBFarmacia {
         }
     }
 
-    //Metodos MM22108
+    //Metodos DE MM22108
     // Cliente
     public boolean insertarCliente(Cliente cliente) {
         db = DBHelper.getWritableDatabase();
