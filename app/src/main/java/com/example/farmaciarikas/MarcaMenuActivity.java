@@ -29,7 +29,7 @@ public class MarcaMenuActivity extends ListActivity {
         ListView listView = getListView();
         listView.setBackgroundColor(ContextCompat.getColor(this, R.color.greenLight));
 
-        menu = menu = getResources().getStringArray(R.array.menu_items_Marca);
+        menu = getResources().getStringArray(R.array.menu_items_Marca);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
 

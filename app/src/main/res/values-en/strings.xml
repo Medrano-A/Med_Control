@@ -259,6 +259,56 @@
 
 
     <!-->GD21001<!-->
+    <string-array name="menu_items_GD21001">
+        <item>Department Table</item>
+        <item>Municipality Table</item>
+        <item>District Table</item>
+        <item>Brand Table</item>
+        <item>Laboratory Table</item>
+        <item>Fill Database Tables</item>
+    </string-array>
+
+    <string-array name="menu_items_Transaccion">
+        <item>Insert Transaction</item>
+        <item>Update Transaction</item>
+        <item>Consult Transaction</item>
+        <item>Delete Transaction</item>
+    </string-array>
+
+    <string-array name="menu_items_Departamento">
+        <item>Insert Department</item>
+        <item>Update Department</item>
+        <item>Consult Department</item>
+        <item>Delete Department</item>
+    </string-array>
+
+    <string-array name="menu_items_Municipio">
+        <item>Insert Municipality</item>
+        <item>Update Municipality</item>
+        <item>Consult Municipality</item>
+        <item>Delete Municipality</item>
+    </string-array>
+
+    <string-array name="menu_items_Distrito">
+        <item>Insert District</item>
+        <item>Update District</item>
+        <item>Consult District</item>
+        <item>Delete District</item>
+    </string-array>
+
+    <string-array name="menu_items_Marca">
+        <item>Insert Brand</item>
+        <item>Update Brand</item>
+        <item>Consult Brand</item>
+        <item>Delete Brand</item>
+    </string-array>
+
+    <string-array name="menu_items_Laboratorio">
+        <item>Insert Laboratory</item>
+        <item>Update Laboratory</item>
+        <item>Consult Laboratory</item>
+        <item>Delete Laboratory</item>
+    </string-array>
 
     <!-->Brand<!-->
     <string name="idMarca">Brand ID</string>
@@ -276,6 +326,21 @@
     <string name="fechaEmision">Issue Date</string>
     <string name="totalTransaccion">Total</string>
     <string name="tipoTransaccion">Transaction Type</string>
+
+    <!-- Department -->
+    <string name="idDepartamentoDpto">Department ID:</string>
+    <string name="nombreDpto">Department Name:</string>
+
+    <!-- Municipality -->
+    <string name="idMunicipioMun">Municipality ID:</string>
+    <string name="idDepartamentoMun">Department ID:</string>
+    <string name="nombreMun">Municipality Name:</string>
+
+    <!-- District -->
+    <string name="idDistrito">District ID:</string>
+    <string name="idMunicipioDist">Municipality ID:</string>
+    <string name="nombreDist">District Name:</string>
+
     <!-->Buttons<!-->
     <string name="InsertarMarca">Insert Brand</string>
     <string name="InsertarTransaccion">Insert Transaction</string>
@@ -292,6 +357,23 @@
     <string name="EliminarMarca">Delete Brand</string>
     <string name="EliminarTransaccion">Delete Transaction</string>
     <string name="EliminarLabo">Delete Laboratory</string>
+
+    <string name="InsertarDepartamento">Insert Department</string>
+    <string name="InsertarMunicipio">Insert Municipality</string>
+    <string name="InsertarDistrito">Insert District</string>
+
+    <string name="ActualizarDepartamento">Update Department</string>
+    <string name="ActualizarMunicipio">Update Municipality</string>
+    <string name="ActualizarDistrito">Update District</string>
+
+    <string name="ConsultarDepartamento">Consult Department</string>
+    <string name="ConsultarMunicipio">Consult Municipality</string>
+    <string name="ConsultarDistrito">Consult District</string>
+
+    <string name="EliminarDepartamento">Delete Department</string>
+    <string name="EliminarMunicipio">Delete Municipality</string>
+    <string name="EliminarDistrito">Delete District</string>
+
 
     <string name="InsertarDatos">Insert</string>
     <string name="ActualizarDatos">Update</string>

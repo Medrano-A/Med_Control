@@ -30,7 +30,7 @@ public class LaboratorioMenuActivity extends ListActivity {
         ListView listView = getListView();
         listView.setBackgroundColor(ContextCompat.getColor(this, R.color.redLight));
 
-        menu = menu = getResources().getStringArray(R.array.menu_items_Laboratorio);
+        menu = getResources().getStringArray(R.array.menu_items_Laboratorio);
         setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu));
     }
 

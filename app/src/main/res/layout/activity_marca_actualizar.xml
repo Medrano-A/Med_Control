@@ -16,6 +16,7 @@
             android:id="@+id/marcaActu"
             android:text="@string/ActualizarMarca"
             android:textSize="24sp"
+            android:textStyle="bold"
             />
     </TableRow>
 

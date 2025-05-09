@@ -1,6 +1,10 @@
 package com.example.farmaciarikas;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,17 +12,41 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MunicipioConsultarActivity extends AppCompatActivity {
+public class MunicipioConsultarActivity extends Activity {
 
+    ControlDBFarmacia dbFarmHelper;
+
+    EditText editIdMunicipio, editIdDepartamentoMun, editNombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_municipio_consultar);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        //helperBd y asignacion de editTxt
+        dbFarmHelper = new ControlDBFarmacia(this);
+        editIdMunicipio = (EditText) findViewById(R.id.muniIdConsEdit);
+        editIdDepartamentoMun = (EditText) findViewById(R.id.depMuniIdConsEdit);
+        editNombre = (EditText) findViewById(R.id.muniNomConsEdit);
+    }
+
+
+
+    public void limpiarCampos(View v){
+        editIdMunicipio.setText("");
+        editIdDepartamentoMun.setText("");
+        editNombre.setText("");
+    }
+
+    public void consMuni(View v) {
+        int idMuni, idDepto;
+        idMuni = Integer.parseInt(editIdMunicipio.getText().toString());
+        idDepto = Integer.parseInt(editIdDepartamentoMun.getText().toString());
+        dbFarmHelper.abrir();
+        Municipio muni = dbFarmHelper.consultarMuni(idMuni, idDepto);
+        dbFarmHelper.cerrar();
+        if(muni == null){
+            Toast.makeText(this, "Municipio no registrado", Toast.LENGTH_SHORT).show();
+        }else{
+            editNombre.setText(muni.getNombre());
+        }
     }
 }

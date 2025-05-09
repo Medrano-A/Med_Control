@@ -1,10 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
     tools:context=".MunicipioConsultarActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow>
+        <TextView
+            android:id="@+id/muniCons"
+            android:text="@string/ConsultarMunicipio"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/muniIdCons"
+            android:text="@string/idMunicipioMun"
+            />
+        <EditText
+            android:id="@+id/muniIdConsEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/depMuniIdCons"
+            android:text="@string/idDepartamentoMun"
+            />
+        <EditText
+            android:id="@+id/depMuniIdConsEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/muniConsBtn"
+            android:onClick="consMuni"
+            android:text="@string/ConsultarDatos" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/muniNomCons"
+            android:text="@string/nombreMun"
+            />
+        <EditText
+            android:id="@+id/muniNomConsEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/muniInsertarBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+    </TableRow>
+
+</TableLayout>
