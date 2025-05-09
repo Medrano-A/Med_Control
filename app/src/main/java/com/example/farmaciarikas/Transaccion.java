@@ -126,10 +126,10 @@ public class Transaccion extends Model<Transaccion> {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         if (!db.query("cliente", new String[]{"dui"}, "dui=?", new String[]{dui}, null, null, null).moveToFirst())
             throw new SQLException("Cliente inexistente: " + dui);
-        if (!db.query("User", new String[]{"id_usuario"}, "id_usuario=?", new String[]{String.valueOf(idUsuario)}, null, null, null).moveToFirst())
-            throw new SQLException("Usuario inexistente: " + idUsuario);
-        if (!db.query("local", new String[]{"idLocal"}, "idLocal=?", new String[]{String.valueOf(idLocal)}, null, null, null).moveToFirst())
-            throw new SQLException("Local inexistente: " + idLocal);
+        /* if (!db.query("User", new String[]{"id_usuario"}, "id_usuario=?", new String[]{String.valueOf(idUsuario)}, null, null, null).moveToFirst())
+            throw new SQLException("Usuario inexistente: " + idUsuario);*/
+        /* if (!db.query("local", new String[]{"idLocal"}, "idLocal=?", new String[]{String.valueOf(idLocal)}, null, null, null).moveToFirst())
+            throw new SQLException("Local inexistente: " + idLocal); */
 
         return dbHelper.getWritableDatabase()
                 .insertOrThrow(TABLE, null, valores);

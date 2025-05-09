@@ -33,7 +33,7 @@ public class ControlDBFarmacia {
 
     public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String BASE_DATOS = "farmacia.s3db";
-        private static final int VERSION = 1;
+        private static final int VERSION = 2;
 
         public DatabaseHelper(Context context) {
             super(context, BASE_DATOS, null, VERSION);

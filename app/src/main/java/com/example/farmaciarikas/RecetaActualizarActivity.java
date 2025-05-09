@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout; // Asegúrate de importar LinearLayout
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.database.SQLException;
@@ -13,6 +14,7 @@ public class RecetaActualizarActivity extends AppCompatActivity {
 
     EditText editIdRecetaBuscar, editDui, editIdDoctor, editNombrePaciente, editFecha, editEdad, editObservaciones;
     Button btnBuscar, btnActualizar, btnGestionarDetalles;
+    LinearLayout layoutDatosReceta; // <--- NUEVO: Referencia al LinearLayout contenedor
     private Receta recetaActual = null; // Para guardar la receta encontrada
 
     @Override
@@ -20,7 +22,7 @@ public class RecetaActualizarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receta_actualizar); // Asegúrate de crear este layout
 
-        editIdRecetaBuscar = findViewById(R.id.editRecetaId_buscar_actualizar); // ID para buscar
+        editIdRecetaBuscar = findViewById(R.id.editRecetaId_buscar_actualizar);
         editDui = findViewById(R.id.editRecetaDui_actualizar);
         editIdDoctor = findViewById(R.id.editRecetaIdDoctor_actualizar);
         editNombrePaciente = findViewById(R.id.editRecetaNombrePaciente_actualizar);
@@ -32,9 +34,14 @@ public class RecetaActualizarActivity extends AppCompatActivity {
         btnActualizar = findViewById(R.id.btnRecetaActualizar_confirmar);
         btnGestionarDetalles = findViewById(R.id.btnRecetaGestionarDetalles_actualizar);
 
-        habilitarCampos(false); // Campos de datos deshabilitados al inicio
+        layoutDatosReceta = findViewById(R.id.layoutDatosReceta_actualizar); // <--- NUEVO: Inicializar el LinearLayout
+
+        // Estado inicial: el layout de datos está GONE por XML,
+        // los campos dentro de él están deshabilitados y los botones también.
+        habilitarCampos(false);
         btnActualizar.setEnabled(false);
-        btnGestionarDetalles.setVisibility(View.GONE);
+        btnGestionarDetalles.setVisibility(View.GONE); // Este botón está dentro del layout, pero es bueno ser explícito.
+        // layoutDatosReceta.setVisibility(View.GONE); // Ya está GONE desde el XML, pero no haría daño
 
         btnBuscar.setOnClickListener(v -> buscarReceta());
         btnActualizar.setOnClickListener(v -> actualizarReceta());
@@ -62,15 +69,19 @@ public class RecetaActualizarActivity extends AppCompatActivity {
             Toast.makeText(this, "Ingrese ID de Receta a buscar", Toast.LENGTH_SHORT).show();
             return;
         }
+
+        // Limpiar estado anterior y ocultar formulario de datos
         limpiarCamposDatos();
         habilitarCampos(false);
         btnActualizar.setEnabled(false);
         btnGestionarDetalles.setVisibility(View.GONE);
+        layoutDatosReceta.setVisibility(View.GONE);
         recetaActual = null;
+        // No desbloquear editIdRecetaBuscar aquí, se hace si no se encuentra o después de actualizar
 
         try {
             int idReceta = Integer.parseInt(idStr);
-            recetaActual = Receta.getByPk(idReceta); // USA TU ORM
+            recetaActual = Receta.getByPk(idReceta);
 
             if (recetaActual != null) {
                 editIdRecetaBuscar.setEnabled(false); // Bloquear campo de búsqueda
@@ -81,17 +92,21 @@ public class RecetaActualizarActivity extends AppCompatActivity {
                 editEdad.setText(String.valueOf(recetaActual.getEdad()));
                 editObservaciones.setText(recetaActual.getObservaciones());
 
+                layoutDatosReceta.setVisibility(View.VISIBLE);
                 habilitarCampos(true);
                 btnActualizar.setEnabled(true);
                 btnGestionarDetalles.setVisibility(View.VISIBLE);
                 Toast.makeText(this, getString(R.string.dialog_msg_receta_encontrado), Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, getString(R.string.dialog_msg_error_receta_no_encontrada), Toast.LENGTH_SHORT).show();
+                editIdRecetaBuscar.setEnabled(true); // Permitir nueva búsqueda si no se encontró
             }
         } catch (NumberFormatException e) {
             Toast.makeText(this, "ID de Receta debe ser numérico.", Toast.LENGTH_SHORT).show();
+            editIdRecetaBuscar.setEnabled(true); // Permitir nueva búsqueda
         } catch (Exception e) {
             Toast.makeText(this, "Error al buscar: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            editIdRecetaBuscar.setEnabled(true); // Permitir nueva búsqueda
             e.printStackTrace();
         }
     }
@@ -118,7 +133,6 @@ public class RecetaActualizarActivity extends AppCompatActivity {
             int idDoctor = Integer.parseInt(idDoctorStr);
             int edad = Integer.parseInt(edadStr);
 
-            // Actualizar los campos del objeto recetaActual
             recetaActual.setDui(duiStr);
             recetaActual.setIdDoctor(idDoctor);
             recetaActual.setNombrePaciente(nombrePacienteStr);
@@ -126,15 +140,16 @@ public class RecetaActualizarActivity extends AppCompatActivity {
             recetaActual.setEdad(edad);
             recetaActual.setObservaciones(observacionesStr);
 
-            long resultado = recetaActual.update(); // USA TU ORM
+            long resultado = recetaActual.update();
 
-            if (resultado > 0) { // update devuelve el número de filas afectadas
+            if (resultado > 0) {
                 Toast.makeText(this, getString(R.string.dialog_msg_receta_actualizado), Toast.LENGTH_LONG).show();
-                editIdRecetaBuscar.setEnabled(true); // Permitir nueva búsqueda
+                editIdRecetaBuscar.setEnabled(true);
                 limpiarCamposDatos();
                 habilitarCampos(false);
                 btnActualizar.setEnabled(false);
                 btnGestionarDetalles.setVisibility(View.GONE);
+                layoutDatosReceta.setVisibility(View.GONE); // <--- MODIFICADO: Ocultar después de actualizar
                 recetaActual = null;
             } else {
                 Toast.makeText(this, getString(R.string.dialog_msg_error_actualizar_receta) + " (No se afectaron filas)", Toast.LENGTH_LONG).show();
@@ -149,6 +164,7 @@ public class RecetaActualizarActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
     private void limpiarCamposDatos(){
         editDui.setText("");
         editIdDoctor.setText("");
@@ -156,21 +172,23 @@ public class RecetaActualizarActivity extends AppCompatActivity {
         editFecha.setText("");
         editEdad.setText("");
         editObservaciones.setText("");
+        // No es necesario limpiar editIdRecetaBuscar aquí, se maneja según el contexto
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Si se modificaron detalles, el objeto recetaActual podría estar desactualizado
-        // pero para la simpleza de la entrega, no se refresca automáticamente.
-        // El usuario puede volver a buscar si es necesario.
-        if(recetaActual == null){ // Permitir nueva búsqueda si no hay una receta cargada
+        if(recetaActual == null){
             editIdRecetaBuscar.setEnabled(true);
-            editIdRecetaBuscar.setText("");
+            editIdRecetaBuscar.setText(""); // Limpiar campo de búsqueda si no hay receta cargada
             limpiarCamposDatos();
             habilitarCampos(false);
             btnActualizar.setEnabled(false);
             btnGestionarDetalles.setVisibility(View.GONE);
+            layoutDatosReceta.setVisibility(View.GONE); // <--- MODIFICADO: Asegurar que esté oculto
         }
+        // Si recetaActual no es null, significa que ya hay una receta cargada y
+        // el layoutDatosReceta debería estar visible (si la búsqueda fue exitosa).
+        // No es necesario cambiar su visibilidad aquí explícitamente en ese caso.
     }
 }
