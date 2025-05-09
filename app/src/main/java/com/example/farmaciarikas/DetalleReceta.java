@@ -11,6 +11,9 @@ public class DetalleReceta {
         this.dosis = dosis;
     }
 
+    public DetalleReceta(){
+
+    }
     public int getIdDetReceta() {
         return idDetReceta;
     }
