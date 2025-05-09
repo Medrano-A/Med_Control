@@ -31,6 +31,10 @@ public class ControlDBFarmacia {
             "idStock", "codElemento", "idLocal", "cantidad", "fechaVencimiento"
     };
 
+    private static final String[] camposArticulo = new String[] {
+            "idArticulo", "idDistribuidor", "nombreArticulo", "clasificacion"
+    };
+
     private final Context context;
     private DatabaseHelper DBHelper;
     private SQLiteDatabase db;
@@ -127,6 +131,10 @@ public class ControlDBFarmacia {
                         " idlocal INTEGER NOT NULL," +
                         " cantidad INTEGER NOT NULL," +
                         " fechavencimiento TEXT NOT NULL)");
+                db.execSQL("CREATE TABLE articulo(idArticulo INTEGER NOT NULL PRIMARY KEY," +
+                        " idDistribuidor INTEGER NOT NULL," +
+                        " nombreArticulo TEXT NOT NULL," +
+                        " clasificacion TEXT NOT NULL)");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -146,6 +154,63 @@ public class ControlDBFarmacia {
     public void cerrar() {
         DBHelper.close();
     }
+
+    /*-----------------------------------------------TABLA ARTICULO-----------------------------------------------------------*/
+    public String insertar(Articulo articulo) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues doc = new ContentValues();
+        doc.put("idArticulo", articulo.getIdArticulo());
+        doc.put("idDistribuidor", articulo.getIdDistribuidor());
+        doc.put("nombreArticulo", articulo.getNombreArticulo());
+        doc.put("clasificacion", articulo.getClasificacion());
+
+        contador = db.insert("articulo",null,doc);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
+        }
+        return regInsertados;
+    }
+    public Articulo consultarArticulo(int idArticulo) {
+        String[] id = {String.valueOf(idArticulo)};
+        Cursor cursor = db.query("articulo", camposArticulo, "idArticulo = ?", id, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            Articulo articulo = new Articulo();
+            articulo.setIdArticulo(cursor.getInt(0));
+            articulo.setIdDistribuidor(cursor.getInt(1));
+            articulo.setNombreArticulo(cursor.getString(2));
+            articulo.setClasificacion(cursor.getString(3));
+
+            return articulo;
+        } else {
+            return null;
+        }
+    }
+    public String actualizar(Articulo articulo) {
+        String[] id = {String.valueOf(articulo.getIdArticulo())};
+        ContentValues cv = new ContentValues();
+        cv.put("idDistribuidor", articulo.getIdDistribuidor());
+        cv.put("nombreArticulo", articulo.getNombreArticulo());
+        cv.put("clasificacion", articulo.getClasificacion());
+        db.update("articulo", cv, "idArticulo = ?", id);
+        return "Registro Actualizado Correctamente";
+    }
+    public String eliminarArticulo(int idArticulo) {
+        String regAfectados = "filas afectadas= ";
+        int contador = 0;
+        contador += db.delete("articulo", "idArticulo='" + idArticulo + "'", null);
+        regAfectados += contador;
+        return regAfectados;
+    }
+
+
+
+
+
+
     /*-----------------------------------------------TABLA UBICACION----------------------------------------------------------*/
     public String insertar(Ubicacion ubicacion) {
         String regInsertados = "Registro Insertado Nº= ";

@@ -42,11 +42,11 @@ public class MM21030Activity extends AppCompatActivity {
                 case 1:
                     startActivity(new Intent(this, StockActivity.class));
                     break;
-                    /*
+
                 case 2:
-                    startActivity(new Intent(this, ActualizarUbicacionActivity.class));
+                    startActivity(new Intent(this, ArticuloActivity.class));
                     break;
-                */
+
             }
         });
     }
