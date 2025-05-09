@@ -15,12 +15,22 @@ public class Cliente {
         this.correo = correo;
     }
 
+    public Cliente() {
+    }
+
     // Getters
     public String getDui() { return dui; }
     public String getNombre() { return nombre; }
     public String getApellido() { return apellido; }
     public String getTelefono() { return telefono; }
     public String getCorreo() { return correo; }
+
+    // Setters
+    public void setDui(String dui) { this.dui = dui; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+    public void setCorreo(String correo) { this.correo = correo; }
 
     // Validación
     public boolean esValido() {
@@ -31,5 +41,3 @@ public class Cliente {
                 correo.length() <= 30;
     }
 }
-
-
