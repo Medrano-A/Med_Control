@@ -37,16 +37,24 @@ public class MunicipioConsultarActivity extends Activity {
     }
 
     public void consMuni(View v) {
-        int idMuni, idDepto;
-        idMuni = Integer.parseInt(editIdMunicipio.getText().toString());
-        idDepto = Integer.parseInt(editIdDepartamentoMun.getText().toString());
-        dbFarmHelper.abrir();
-        Municipio muni = dbFarmHelper.consultarMuni(idMuni, idDepto);
-        dbFarmHelper.cerrar();
-        if(muni == null){
-            Toast.makeText(this, "Municipio no registrado", Toast.LENGTH_SHORT).show();
-        }else{
-            editNombre.setText(muni.getNombre());
+        try{
+            if(editIdMunicipio.getText().toString().isEmpty() || editIdDepartamentoMun.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los Campos de ID Municipio se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                int idMuni, idDepto;
+                idMuni = Integer.parseInt(editIdMunicipio.getText().toString());
+                idDepto = Integer.parseInt(editIdDepartamentoMun.getText().toString());
+                dbFarmHelper.abrir();
+                Municipio muni = dbFarmHelper.consultarMuni(idMuni, idDepto);
+                dbFarmHelper.cerrar();
+                if(muni == null){
+                    Toast.makeText(this, "Municipio no registrado", Toast.LENGTH_SHORT).show();
+                }else{
+                    editNombre.setText(muni.getNombre());
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Consultar en Municipio", Toast.LENGTH_SHORT).show();
         }
     }
 }

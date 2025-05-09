@@ -29,20 +29,28 @@ public class DistritoInsertarActivity extends Activity {
     }
 
     public void insertarDis(View v){
-        int idDistrito = Integer.parseInt(editIdDistrito.getText().toString());
-        int idMunicipio = Integer.parseInt(editIdMunicipioDis.getText().toString());
-        String nombre = editNombre.getText().toString();
-        String regInsert;
+        try{
+            if(editIdDistrito.getText().toString().isEmpty() || editIdMunicipioDis.getText().toString().isEmpty() || editNombre.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los Campos de Distrito se estan enviando vacio o los Id puedan existir, por favor verificar", Toast.LENGTH_SHORT).show();
+            }else{
+                int idDistrito = Integer.parseInt(editIdDistrito.getText().toString());
+                int idMunicipio = Integer.parseInt(editIdMunicipioDis.getText().toString());
+                String nombre = editNombre.getText().toString();
+                String regInsert;
 
-        Distrito dis = new Distrito();
-        dis.setIdDistrito(idDistrito);
-        dis.setIdMunicipio(idMunicipio);
-        dis.setNombre(nombre);
+                Distrito dis = new Distrito();
+                dis.setIdDistrito(idDistrito);
+                dis.setIdMunicipio(idMunicipio);
+                dis.setNombre(nombre);
 
-        dbFarmHelper.abrir();
-        regInsert = dbFarmHelper.insertar(dis);
-        dbFarmHelper.cerrar();
-        Toast.makeText(this, regInsert, Toast.LENGTH_SHORT).show();
+                dbFarmHelper.abrir();
+                regInsert = dbFarmHelper.insertar(dis);
+                dbFarmHelper.cerrar();
+                Toast.makeText(this, regInsert, Toast.LENGTH_SHORT).show();
+            }
+        }catch(Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar en Distrito", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void limpiarCampos(View v){

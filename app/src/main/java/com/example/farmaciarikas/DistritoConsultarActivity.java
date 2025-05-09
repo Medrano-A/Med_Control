@@ -38,16 +38,24 @@ public class DistritoConsultarActivity extends Activity {
     }
 
     public void consDist(View v) {
-        int idDis, idMuni;
-        idDis = Integer.parseInt(editIdDistrito.getText().toString());
-        idMuni = Integer.parseInt(editIdMunicipioDis.getText().toString());
-        dbFarmHelper.abrir();
-        Distrito dis = dbFarmHelper.consultarDis(idDis, idMuni);
-        dbFarmHelper.cerrar();
-        if(dis == null){
-            Toast.makeText(this, "Distrito no registrado", Toast.LENGTH_SHORT).show();
-        }else{
-            editNombre.setText(dis.getNombre());
+        try{
+            if(editIdDistrito.getText().toString().isEmpty() || editIdMunicipioDis.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los Campos de ID Distrito se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                int idDis, idMuni;
+                idDis = Integer.parseInt(editIdDistrito.getText().toString());
+                idMuni = Integer.parseInt(editIdMunicipioDis.getText().toString());
+                dbFarmHelper.abrir();
+                Distrito dis = dbFarmHelper.consultarDis(idDis, idMuni);
+                dbFarmHelper.cerrar();
+                if(dis == null){
+                    Toast.makeText(this, "Distrito no registrado", Toast.LENGTH_SHORT).show();
+                }else{
+                    editNombre.setText(dis.getNombre());
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Consultar en Distrito", Toast.LENGTH_SHORT).show();
         }
     }
 }

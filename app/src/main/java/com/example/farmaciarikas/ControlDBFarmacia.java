@@ -684,7 +684,7 @@ public class ControlDBFarmacia {
         lab.put("telefono", l.getTelefono());
         cont = db.insert("Laboratorio", null, lab);
         if (cont == 1 || cont == 0){
-            regInsert = "Error al insertar el registro, registro ya esta insertado, verificar informacion";
+            regInsert = "Error al insertar el registro, registro ya esta insertado, verificar informacion o si ya existe ID";
         }else{
             regInsert = regInsert + cont;
         }
@@ -795,7 +795,7 @@ public class ControlDBFarmacia {
         v.put("nombre", d.getNombre());
         cont = db.insert("Departamento", null, v);
         if(cont == -1 || cont == 0){
-            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion";
+            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion o Si ya existe el ID";
         }else{
             regInsert=regInsert+cont;
         }
@@ -809,7 +809,7 @@ public class ControlDBFarmacia {
             db.update("Departamento", c, "idDepartamento = ?", id);
             return "Registro actualizado correctamente";
         }else{
-            return "Registro con Id " + d.getIdDepartamento() + "no existe";
+            return "Registro con Id " + d.getIdDepartamento() + " no existe";
         }
 
     }
@@ -868,7 +868,7 @@ public class ControlDBFarmacia {
             db.update("Municipio", cv, "idMunicipio = ? AND idDepartamento = ?", id);
             return "Registro actualizado correctamente";
         }else{
-            return "Registro no existe";
+            return "Registro con Ids: " + m.getIdMunicipio() + " " +  m.getIdDepartamento() + " no existe";
         }
     }
     public Municipio consultarMuni(int idMuni, int idDepto){
@@ -922,7 +922,7 @@ public class ControlDBFarmacia {
             db.update("Distrito", cv, "idDistrito = ? AND idMunicipio = ?", id);
             return "Registro actualizado correctamente";
         }else{
-            return "Registro no existe";
+            return "Registro con Ids: " + dis.getIdDistrito() + " " + dis.getIdMunicipio() + " No existe";
         }
     }
     public Distrito consultarDis(int idDis, int idMun){
