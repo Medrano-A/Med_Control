@@ -2,6 +2,7 @@ package com.example.farmaciarikas;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -29,27 +30,44 @@ public class MarcaActualizarActivity extends Activity {
     }
 
     public void consultarmarca(View v) {
-        int idMarc;
-        idMarc = Integer.parseInt(editIdMarca.getText().toString());
-        dbFarmHelper.abrir();
-        Marca m = dbFarmHelper.consultarMarca(idMarc);
-        dbFarmHelper.cerrar();
-        if(m == null){
-            Toast.makeText(this, "Marca no registrada", Toast.LENGTH_SHORT).show();
-        }else{
-            editNombre.setText(m.getNombre());
+        try{
+            if(editIdMarca.getText().toString().isEmpty()){
+                Toast.makeText(this, "El Campo de ID Marca se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                int idMarc;
+                idMarc = Integer.parseInt(editIdMarca.getText().toString());
+                dbFarmHelper.abrir();
+                Marca m = dbFarmHelper.consultarMarca(idMarc);
+                dbFarmHelper.cerrar();
+                if(m == null){
+                    Toast.makeText(this, "Marca no registrada", Toast.LENGTH_SHORT).show();
+                }else{
+                    editNombre.setText(m.getNombre());
+                }
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Consultar en Marca", Toast.LENGTH_SHORT).show();
         }
     }
 
     public void ActuMarca(View v) {
-        Municipio muni = new Municipio();
-        Marca m = new Marca();
-        m.setIdMarca(Integer.parseInt(editIdMarca.getText().toString()));
-        m.setNombre(editNombre.getText().toString());
-        dbFarmHelper.abrir();
-        String estado = dbFarmHelper.actualizar(m);
-        dbFarmHelper.cerrar();
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        try{
+            if(editIdMarca.getText().toString().isEmpty()){
+                Toast.makeText(this, "El Campo de ID Marca se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                Municipio muni = new Municipio();
+                Marca m = new Marca();
+                m.setIdMarca(Integer.parseInt(editIdMarca.getText().toString()));
+                m.setNombre(editNombre.getText().toString());
+                dbFarmHelper.abrir();
+                String estado = dbFarmHelper.actualizar(m);
+                dbFarmHelper.cerrar();
+                Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "Ha ocurrido un error en Actualizar Marca", Toast.LENGTH_SHORT).show();
+            Log.e("LAB_ERROR", "Error al Actualizar Marca", e);
+        }
     }
 
     public void limpiarCampos(View v){
