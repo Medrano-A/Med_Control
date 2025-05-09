@@ -43,8 +43,8 @@
 
     <TableRow>
         <Button
-            android:id="@+id/muniConsActuBtn"
-            android:onClick="consActuMuni"
+            android:id="@+id/disConsActuBtn"
+            android:onClick="consActuDis"
             android:text="@string/ConsultarDatos" />
     </TableRow>
 

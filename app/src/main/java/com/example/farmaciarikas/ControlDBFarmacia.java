@@ -520,29 +520,111 @@ public class ControlDBFarmacia {
     }
     /*----MUNICIPIO----*/
     public String insertar(Municipio m){
-        return null;
+        String regInsert = "Registro insertado N°= ";
+        long cont = 0;
+
+        if(verificarIntegridadMncip(m, 1)){
+            ContentValues c = new ContentValues();
+            c.put("idMunicipio", m.getIdMunicipio());
+            c.put("idDepartamento", m.getIdDepartamento());
+            c.put("nombre", m.getNombre());
+            cont = db.insert("Municipio", null, c);
+        }
+
+        if(cont == -1 || cont == 0){
+            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion";
+        }else{
+            regInsert=regInsert+cont;
+        }
+
+        return regInsert;
     }
     public String actualizar(Municipio m){
-        return null;
+        if(verificarIntegridadMncip(m,2)){
+            String[] id = {Integer.toString(m.getIdMunicipio()), Integer.toString(m.getIdDepartamento())};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre", m.getNombre());
+            db.update("Municipio", cv, "idMunicipio = ? AND idDepartamento = ?", id);
+            return "Registro actualizado correctamente";
+        }else{
+            return "Registro no existe";
+        }
     }
-    public Municipio consultarMuni(int idMuni){
-        return null;
+    public Municipio consultarMuni(int idMuni, int idDepto){
+        String[] id = {String.valueOf(idMuni), String.valueOf(idDepto)};
+        Cursor muniCursor = db.query("Municipio", camposMunicipio, "idMunicipio = ? AND idDepartamento = ?", id, null, null, null);
+        if(muniCursor.moveToFirst()){
+            Municipio muni = new Municipio();
+            muni.setIdMunicipio(Integer.parseInt(muniCursor.getString(0)));
+            muni.setIdDepartamento(Integer.parseInt(muniCursor.getString(1)));
+            muni.setNombre(muniCursor.getString(2));
+            return muni;
+        }else{
+            return null;
+        }
     }
     public String eliminar(Municipio m){
-        return null;
+        String regAfectados = "Filas Afectadas = ";
+        int cont = 0;
+        String where = "idMunicipio = '" + m.getIdMunicipio() + "'";
+        where = where + "AND idDepartamento '" + m.getIdDepartamento() + "'";
+        cont += db.delete("Municipio", where, null);
+        regAfectados+=cont;
+        return regAfectados;
     }
     /*----DISTRITO----*/
     public String insertar(Distrito dis){
-        return null;
+        String regInsert = "Registro insertado N°= ";
+        long cont = 0;
+
+        if(verificarIntegridaDist(dis, 1)){
+            ContentValues c = new ContentValues();
+            c.put("idDistrito", dis.getIdDistrito());
+            c.put("idMunicipio", dis.getIdMunicipio());
+            c.put("nombre", dis.getNombre());
+            cont = db.insert("Distrito", null, c);
+        }
+
+        if(cont == -1 || cont == 0){
+            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion";
+        }else{
+            regInsert=regInsert+cont;
+        }
+
+        return regInsert;
     }
     public String actualizar(Distrito dis){
-        return null;
+        if(verificarIntegridaDist(dis,2)){
+            String[] id = {Integer.toString(dis.getIdDistrito()), Integer.toString(dis.getIdMunicipio())};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre", dis.getNombre());
+            db.update("Distrito", cv, "idDistrito = ? AND idMunicipio = ?", id);
+            return "Registro actualizado correctamente";
+        }else{
+            return "Registro no existe";
+        }
     }
-    public Distrito consultarDis(int idDis){
-        return null;
+    public Distrito consultarDis(int idDis, int idMun){
+        String[] id = {String.valueOf(idDis), String.valueOf(idMun)};
+        Cursor disCursor = db.query("Distrito", camposDistrito, "idDistrito = ? AND idMunicipio = ?", id, null, null, null);
+        if(disCursor.moveToFirst()){
+            Distrito dis = new Distrito();
+            dis.setIdDistrito(Integer.parseInt(disCursor.getString(0)));
+            dis.setIdMunicipio(Integer.parseInt(disCursor.getString(1)));
+            dis.setNombre(disCursor.getString(2));
+            return dis;
+        }else{
+            return null;
+        }
     }
     public String eliminar(Distrito dis){
-        return null;
+        String regAfectados = "Filas Afectadas = ";
+        int cont = 0;
+        String where = "idDistrito = '" + dis.getIdDistrito() + "'";
+        where = where + "AND idMunicipio '" + dis.getIdMunicipio() + "'";
+        cont += db.delete("Distrito", where, null);
+        regAfectados+=cont;
+        return regAfectados;
     }
     public boolean verificarIntegridadLab(Object dato, int relacion) throws SQLException{
         switch (relacion){
@@ -584,10 +666,67 @@ public class ControlDBFarmacia {
         }
     }
     public boolean verificarIntegridadMncip(Object dato, int relacion) throws SQLException{
-        return true;
+        switch (relacion){
+            case 1:{
+                //verificar que al insertar el municipio exista el departamento seleccionado con el ID
+                Municipio mun = (Municipio) dato;
+                String[] idDepto = {Integer.toString(mun.getIdDepartamento())};
+                //se consulta en la tabla relacionada si existe el id, si lo encuentra entonces es posible realizar la insercion
+                Cursor c1 = db.query("Departamento", null, "idDepartamento = ?", idDepto, null, null, null);
+                if(c1.moveToFirst()){
+                    //Se encontro el id
+                    return true;
+                }
+                return false;
+            }
+            case 2:{
+                //verificar que al actualizar el municipio exista el departamento seleccionado con el ID asi como el municipio previamente insertado
+                Municipio m = (Municipio) dato;
+                String[] ids = {Integer.toString(m.getIdMunicipio()), Integer.toString(m.getIdDepartamento())};
+                abrir();
+                Cursor actu = db.query("Municipio", null, "idMunicipio = ? AND idDepartamento = ?", ids, null, null, null);
+                if(actu.moveToFirst()){
+                    //se encontro el registro
+                    return true;
+                }
+                actu.close();
+                cerrar();
+                return false;
+            }
+            default:
+                return false;
+        }
     }
     public boolean verificarIntegridaDist(Object dato, int relacion) throws SQLException{
-        return true;
+        switch (relacion){
+            case 1:{
+                //verificar que al insertar el distrito exista el municipio seleccionado con el ID
+                Distrito dis = (Distrito) dato;
+                String[] idMuni = {Integer.toString(dis.getIdMunicipio())};
+                Cursor c1 = db.query("Municipio", null, "idMunicipio = ?", idMuni, null, null, null);
+                if(c1.moveToFirst()){
+                    //Se encontro el id
+                    return true;
+                }
+                return false;
+            }
+            case 2:{
+                //verificar que al actualizar el distrito exista el municipio seleccionado con el ID asi como el distrito previamente insertado
+                Distrito dis = (Distrito) dato;
+                String[] ids = {Integer.toString(dis.getIdDistrito()), Integer.toString(dis.getIdMunicipio())};
+                abrir();
+                Cursor actu = db.query("Distrito", null, "idDistrito = ? AND idMunicipio = ?", ids, null, null, null);
+                if(actu.moveToFirst()){
+                    //se encontro el registro
+                    return true;
+                }
+                actu.close();
+                cerrar();
+                return false;
+            }
+            default:
+                return false;
+        }
     }
     public String llenadoTablasGD21001(){
         abrir();
@@ -623,7 +762,7 @@ public class ControlDBFarmacia {
         for (int i = 0; i < 5; i++) {
             d.setIdDepartamento(idDepartamento[i]);
             d.setNombre(nombreDep[i]);
-            //insertar(d);
+            insertar(d);
         }
         /*---------------------*/
         //tabla Municipio
@@ -637,7 +776,7 @@ public class ControlDBFarmacia {
             m.setIdMunicipio(idMunicipio[i]);
             m.setIdDepartamento(idDepartamentoMun[i]);
             m.setNombre(nombreMun[i]);
-            //insertar(m);
+            insertar(m);
         }
         /*---------------------*/
         //tabla Distrito
@@ -651,7 +790,7 @@ public class ControlDBFarmacia {
             dis.setIdDistrito(idDistrito[i]);
             dis.setIdMunicipio(idMunicipioDistrito[i]);
             dis.setNombre(nombreDist[i]);
-            //insertar(dis);
+            insertar(dis);
         }
 
         /*---------------------*/

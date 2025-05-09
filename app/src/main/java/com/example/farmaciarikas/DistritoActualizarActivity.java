@@ -1,6 +1,10 @@
 package com.example.farmaciarikas;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,17 +12,51 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class DistritoActualizarActivity extends AppCompatActivity {
+public class DistritoActualizarActivity extends Activity {
+
+    ControlDBFarmacia dbFarmHelper;
+
+    EditText editIdDistrito, editIdMunicipioDis, editNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_distrito_actualizar);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        //helperBd y asignacion de editTxt
+        dbFarmHelper = new ControlDBFarmacia(this);
+        editIdDistrito = (EditText) findViewById(R.id.disIdActuEdit);
+        editIdMunicipioDis = (EditText) findViewById(R.id.munDisiIdActuEdit);
+        editNombre = (EditText) findViewById(R.id.disNomActuEdit);
+    }
+
+    public void consActuDis(View v) {
+        int idDis, idMuni;
+        idDis = Integer.parseInt(editIdDistrito.getText().toString());
+        idMuni = Integer.parseInt(editIdMunicipioDis.getText().toString());
+        dbFarmHelper.abrir();
+        Distrito dis = dbFarmHelper.consultarDis(idDis, idMuni);
+        dbFarmHelper.cerrar();
+        if(dis == null){
+            Toast.makeText(this, "Distrito no registrado", Toast.LENGTH_SHORT).show();
+        }else{
+            editNombre.setText(dis.getNombre());
+        }
+    }
+
+    public void actuCampos(View v){
+        Distrito dis = new Distrito();
+        dis.setIdDistrito(Integer.parseInt(editIdDistrito.getText().toString()));
+        dis.setIdMunicipio(Integer.parseInt(editIdMunicipioDis.getText().toString()));
+        dis.setNombre(editNombre.getText().toString());
+        dbFarmHelper.abrir();
+        String estado = dbFarmHelper.actualizar(dis);
+        dbFarmHelper.cerrar();
+        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+    }
+
+    public void limpiarCampos(View v){
+        editIdDistrito.setText("");
+        editIdMunicipioDis.setText("");
+        editNombre.setText("");
     }
 }
