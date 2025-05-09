@@ -1,10 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".DetalleTransaccionConsultarActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consultar Detalle de Transacción"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- ID Detalle -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editDetalleIdConsulta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Detalle"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón Buscar -->
+        <Button
+            android:id="@+id/btnDetalleBuscarConsulta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Detalle"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Resultados de la consulta -->
+        <TextView
+            android:id="@+id/textDetalleIdTransaccion"
+            style="@style/TextViewStyleConsulta"
+            android:text="ID Transacción:"/>
+        <TextView
+            android:id="@+id/textDetalleCantidad"
+            style="@style/TextViewStyleConsulta"
+            android:text="Cantidad:"/>
+        <TextView
+            android:id="@+id/textDetallePrecioUnitario"
+            style="@style/TextViewStyleConsulta"
+            android:text="Precio Unitario:"/>
+        <TextView
+            android:id="@+id/textDetalleSubtotal"
+            style="@style/TextViewStyleConsulta"
+            android:text="Subtotal:"/>
+    </LinearLayout>
+</ScrollView>
