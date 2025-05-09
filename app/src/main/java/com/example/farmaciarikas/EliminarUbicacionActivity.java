@@ -36,7 +36,7 @@ public class EliminarUbicacionActivity extends AppCompatActivity {
         cardResultado = findViewById(R.id.cardResultado);
 
     }
-    public void buscarStock(View view) {
+    public void buscarUbicacion(View view) {
         helper.abrir();
         ubicacion = helper.consultarUbicacion(Integer.parseInt(etBuscarId.getText().toString()));
         helper.cerrar();

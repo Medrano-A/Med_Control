@@ -91,6 +91,7 @@
     <string name="buscar">Buscar</string>
     <string name="consultar_stock">Consultar Stock</string>
     <string name="actualizar_stock">Actualizar Stock</string>
+    <string name="registro_de_articulo">Registro de Articulo</string>
 
 
 </resources>

@@ -13,6 +13,21 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".ArticuloEliminar"
+            android:exported="false" />
+        <activity
+            android:name=".ArticuloConsultar"
+            android:exported="false" />
+        <activity
+            android:name=".ArticuloActualizar"
+            android:exported="false" />
+        <activity
+            android:name=".ArcticuloCrear"
+            android:exported="false" />
+        <activity
+            android:name=".ArticuloActivity"
+            android:exported="false" />
+        <activity
             android:name=".MM21030Activity"
             android:exported="false" />
         <activity
