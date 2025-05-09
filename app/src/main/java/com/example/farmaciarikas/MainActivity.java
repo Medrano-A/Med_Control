@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class MainActivity extends ListActivity  {
     String[] menu={"Menu GA21090","Menu MM21030","Menu MM22108","Menu GD21001", "Menu PG22010"};
@@ -18,7 +19,10 @@ public class MainActivity extends ListActivity  {
         setListAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, menu));
         helper = new ControlDBFarmacia(this);
-
+        helper.abrir();
+        String tost = helper.llenadoTablas();
+        helper.cerrar();
+        Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
     }
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){

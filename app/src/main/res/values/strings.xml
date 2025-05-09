@@ -352,7 +352,7 @@
     <string name="ConsultarDatos">Consultar</string>
     <string name="EliminarDatos">Eliminar</string>
     <string name="LimpiarCampos">Limpiar</string>
-    <string name="llenadoBD">Tablas GD21001 cargadas</string>
+    <string name="llenadoBD">Tablas  cargadas</string>
     <!-->GD21001<!-->
 
     <string name="agregar_ubicacion">Agregar Ubicación</string>

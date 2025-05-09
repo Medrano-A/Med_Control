@@ -47,11 +47,6 @@ public class GD21001Activity extends ListActivity {
             }catch(ClassNotFoundException e){
                 e.printStackTrace();
             }
-        }else{
-            bdHelper.abrir();
-            String tost = bdHelper.llenadoTablasGD21001();
-            bdHelper.cerrar();
-            Toast.makeText(this, tost, Toast.LENGTH_SHORT).show();
         }
     }
 }
