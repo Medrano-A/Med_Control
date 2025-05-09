@@ -35,43 +35,34 @@
 
         <!-- Campos del formulario -->
         <EditText
-            android:id="@+id/etIdStock"
-            android:hint="@string/id_stock"
+            android:id="@+id/etIdArticulo"
+            android:hint="@string/id_articulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/etIdDistribuidor"
+            android:hint="@string/id_distribuidor"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/etCodElemento"
-            android:hint="@string/codigo_elemento"
-            android:inputType="number"
+            android:id="@+id/etnombreArticulo"
+            android:hint="@string/nombre_articulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
-            android:id="@+id/etIdLocal"
-            android:hint="@string/id_local"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/etCantidad"
-            android:hint="@string/cantidad_stock"
-            android:inputType="number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <EditText
-            android:id="@+id/etFechaVencimiento"
-            android:hint="@string/fecha_vencimiento_yyyy_mm_dd"
+            android:id="@+id/etClasificacion"
+            android:hint="@string/clasificacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/btnInsertar"
-            android:onClick="registrarStock"
-            android:text="@string/registrar_stock"
+            android:onClick="registrarArticulo"
+            android:text="@string/registrar_articulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"/>
