@@ -17,6 +17,7 @@
             android:id="@+id/marcaConsultar"
             android:text="@string/ConsultarMarca"
             android:textSize="24sp"
+            android:textStyle="bold"
             />
     </TableRow>
 

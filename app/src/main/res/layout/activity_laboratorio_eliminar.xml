@@ -17,6 +17,7 @@
         android:text="@string/EliminarLabo"
         android:layout_gravity="center_horizontal"
         android:textSize="24sp"
+        android:textStyle="bold"
         />
 
     <TextView

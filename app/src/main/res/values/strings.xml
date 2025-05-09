@@ -220,9 +220,12 @@
     <!-->GD21001<!-->
 
     <string-array name="menu_items_GD21001">
-        <item>Tabla Transacciones</item>
+        <item>Tabla Departamento</item>
+        <item>Tabla Municipio</item>
+        <item>Tabla Distrito</item>
         <item>Tabla Marca</item>
         <item>Tabla Laboratorio</item>
+        <item>LLenar Tablas De BD</item>
     </string-array>
 
     <string-array name="menu_items_Transaccion">
@@ -230,6 +233,27 @@
         <item>Actualizar Transaccion</item>
         <item>Consultar Transaccion</item>
         <item>Eliminar Transaccion</item>
+    </string-array>
+
+    <string-array name="menu_items_Departamento">
+        <item>Insertar Departamento</item>
+        <item>Actualizar Departamento</item>
+        <item>Consultar Departamento</item>
+        <item>Eliminar Departamento</item>
+    </string-array>
+
+    <string-array name="menu_items_Municipio">
+        <item>Insertar Municipio</item>
+        <item>Actualizar Municipio</item>
+        <item>Consultar Municipio</item>
+        <item>Eliminar Municipio</item>
+    </string-array>
+
+    <string-array name="menu_items_Distrito">
+        <item>Insertar Distrito</item>
+        <item>Actualizar Distrito</item>
+        <item>Consultar Distrito</item>
+        <item>Eliminar Distrito</item>
     </string-array>
 
     <string-array name="menu_items_Marca">
@@ -262,22 +286,66 @@
     <string name="fechaEmision">Fecha de Emision:</string>
     <string name="totalTransaccion">Total:</string>
     <string name="tipoTransaccion">Tipo De Transaccion:</string>
+
+    <!-- Departamento -->
+    <string name="idDepartamentoDpto">ID del Departamento:</string>
+    <string name="nombreDpto">Nombre del Departamento:</string>
+    <string-array name="departamento_ids">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </string-array>
+
+
+    <!-- Municipio -->
+    <string name="idMunicipioMun">ID del Municipio:</string>
+    <string name="idDepartamentoMun">ID del Departamento:</string>
+    <string name="nombreMun">Nombre del Municipio:</string>
+
+    <!-- Distrito -->
+    <string name="idDistrito">ID del Distrito:</string>
+    <string name="idMunicipioDist">ID del Municipio:</string>
+    <string name="nombreDist">Nombre del Distrito:</string>
+
     <!-->Botones<!-->
     <string name="InsertarMarca">Insertar Marca</string>
     <string name="InsertarTransaccion">Insertar Transaccion</string>
     <string name="InsertarLaboratorio">Insertar Laboratorio</string>
+    <string name="InsertarDepartamento">Insertar Departamento</string>
+    <string name="InsertarMunicipio">Insertar Municipio</string>
+    <string name="InsertarDistrito">Insertar Distrito</string>
 
     <string name="ActualizarMarca">Actualizar Marca</string>
     <string name="ActualizarTransaccion">Actualizar Transaccion</string>
     <string name="ActualizarLabo">Actualizar Laboratorio</string>
+    <string name="ActualizarDepartamento">Actualizar Departamento</string>
+    <string name="ActualizarMunicipio">Actualizar Municipio</string>
+    <string name="ActualizarDistrito">Actualizar Distrito</string>
 
     <string name="ConsultarMarca">Consultar Marca</string>
     <string name="ConsultarTransaccion">Consultar Transaccion</string>
     <string name="ConsultarLabo">Consultar Laboratorio</string>
+    <string name="ConsultarDepartamento">Consultar Departamento</string>
+    <string name="ConsultarMunicipio">Consultar Municipio</string>
+    <string name="ConsultarDistrito">Consultar Distrito</string>
 
     <string name="EliminarMarca">Eliminar Marca</string>
     <string name="EliminarTransaccion">Eliminar Transaccion</string>
     <string name="EliminarLabo">Eliminar Laboratorio</string>
+    <string name="EliminarDepartamento">Eliminar Departamento</string>
+    <string name="EliminarMunicipio">Eliminar Municipio</string>
+    <string name="EliminarDistrito">Eliminar Distrito</string>
 
     <string name="InsertarDatos">Insertar</string>
     <string name="ActualizarDatos">Actualizar</string>
