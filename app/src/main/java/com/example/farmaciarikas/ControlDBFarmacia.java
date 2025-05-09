@@ -147,7 +147,22 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE Distrito (idDistrito INTEGER NOT NULL PRIMARY KEY, idMunicipio INTEGER NOT NULL, nombre VARCHAR2(30) NOT NULL);");
                 db.execSQL("CREATE TABLE Marca (idMarca INTEGER NOT NULL PRIMARY KEY, nombre VARCHAR2(30) NOT NULL);");
 
-                //TABLA UBICACION
+
+                //Triggers GD21001
+                db.execSQL("CREATE TRIGGER borrar_municipios_al_borrar_departamento " +
+                        "AFTER DELETE ON Departamento " +
+                        "FOR EACH ROW BEGIN " +
+                        "DELETE FROM Municipio WHERE idDepartamento = OLD.idDepartamento; " +
+                        "END;");
+
+                db.execSQL("CREATE TRIGGER borrar_distritos_al_borrar_municipio " +
+                        "AFTER DELETE ON Municipio " +
+                        "FOR EACH ROW BEGIN " +
+                        "DELETE FROM Distrito WHERE idMunicipio = OLD.idMunicipio; " +
+                        "END;");
+
+
+
                 db.execSQL("CREATE TABLE ubicacion(idUbicacion INTEGER NOT NULL PRIMARY KEY," +
                         " idDistrito INTEGER NOT NULL," +
                         " idMarca INTEGER NOT NULL," +
