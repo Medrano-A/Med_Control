@@ -454,16 +454,55 @@ public class ControlDBFarmacia {
     }
     /*----MARCA----*/
     public String insertar(Marca m){
-        return null;
+        String regInsert = "Registro insertado N°= ";
+        long cont = 0;
+        ContentValues v = new ContentValues();
+        v.put("idMarca", m.getIdMarca());
+        v.put("nombre", m.getNombre());
+        cont = db.insert("Marca", null, v);
+        if(cont == -1 || cont == 0){
+            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion";
+        }else{
+            regInsert=regInsert+cont;
+        }
+        return regInsert;
     }
     public String actualizar(Marca m){
-        return null;
+        if(verificarIntegridadMarca(m, 1)){
+            String[] id = {Integer.toString(m.getIdMarca())};
+            ContentValues cMarcam = new ContentValues();
+            cMarcam.put("nombre", m.getNombre());
+            db.update("Marca", cMarcam, "idMarca = ?", id);
+            return "Registro actualizado correctamente";
+        }else{
+            return "Registro no existe o no se encuentra";
+        }
     }
-    public Marca consultarMarca(String idMarca){
-        return null;
+    public Marca consultarMarca(int idMarca){
+        String[] id = {Integer.toString(idMarca)};
+        Cursor c = db.query("Marca", camposMarca, "idMarca = ?", id, null, null, null);
+        if(c.moveToFirst()){
+            Marca m = new Marca();
+            m.setIdMarca(Integer.parseInt(c.getString(0)));
+            m.setNombre(c.getString(1));
+            return m;
+        }else{
+            return null;
+        }
     }
     public String eliminar(Marca m){
-        return null;
+        String regAfect = "Filas afectadas = ";
+        int cont = 0;
+        //verificar la integridad relacionada con el id
+        if(verificarIntegridadMarca(m, 1)){
+            cont += db.delete("Marca", "idMarca = '" + m.getIdMarca() +"'", null);
+        }else{
+            regAfect = "ID no existe o no se encuentra, Filas afectadas = ";
+            regAfect += cont;
+            return regAfect;
+        }
+        regAfect += cont;
+        return regAfect;
     }
     /*----DEPARTAMENTO----*/
     public String insertar(Departamento d){
@@ -645,7 +684,22 @@ public class ControlDBFarmacia {
         }
     }
     public boolean verificarIntegridadMarca(Object dato, int relacion) throws SQLException{
-        return true;
+        switch (relacion){
+            case 1:{
+                //verificar que el Id de la marca que se quiere usar exista en la tabla
+                Marca m = (Marca) dato;
+                String[] id = {Integer.toString(m.getIdMarca())};
+                abrir();
+                Cursor cExistMarca = db.query("Marca", null, "idMarca = ?", id, null, null, null);
+                if(cExistMarca.moveToFirst()){
+                    //se encontro el ID
+                    return true;
+                }
+                return false;
+            }
+            default:
+                return false;
+        }
     }
     public boolean verificarIntegridadDpto(Object dato, int relacion) throws SQLException{
         switch (relacion){

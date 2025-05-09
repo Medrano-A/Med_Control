@@ -16,6 +16,7 @@
             android:id="@+id/laboInsertar"
             android:text="@string/InsertarLaboratorio"
             android:textSize="24sp"
+            android:textStyle="bold"
             />
     </TableRow>
 
