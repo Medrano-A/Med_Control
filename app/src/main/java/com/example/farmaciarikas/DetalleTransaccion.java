@@ -29,25 +29,25 @@ public class DetalleTransaccion extends Model<DetalleTransaccion> {
                               double subtotal,
                               double precioUnitario) {
         super();
-        this.idDetalle       = idDetalle;
-        this.idTransaccion   = idTransaccion;
-        this.cantidad        = cantidad;
-        this.subtotal        = subtotal;
-        this.precioUnitario  = precioUnitario;
+        this.idDetalle      = idDetalle;
+        this.idTransaccion  = idTransaccion;
+        this.cantidad       = cantidad;
+        this.subtotal       = subtotal;
+        this.precioUnitario = precioUnitario;
         fillValues();
     }
 
-    // Getters y setters
-    public int getIdDetalle() { return idDetalle; }
-    public void setIdDetalle(int idDetalle) { this.idDetalle = idDetalle; fillValues(); }
-    public int getIdTransaccion() { return idTransaccion; }
-    public void setIdTransaccion(int idTransaccion) { this.idTransaccion = idTransaccion; fillValues(); }
-    public int getCantidad() { return cantidad; }
-    public void setCantidad(int cantidad) { this.cantidad = cantidad; fillValues(); }
-    public double getSubtotal() { return subtotal; }
-    public void setSubtotal(double subtotal) { this.subtotal = subtotal; fillValues(); }
-    public double getPrecioUnitario() { return precioUnitario; }
-    public void setPrecioUnitario(double precioUnitario) { this.precioUnitario = precioUnitario; fillValues(); }
+    // Getters / setters
+    public int getIdDetalle()            { return idDetalle; }
+    public void setIdDetalle(int id)     { idDetalle = id; fillValues(); }
+    public int getIdTransaccion()        { return idTransaccion; }
+    public void setIdTransaccion(int id) { idTransaccion = id; fillValues(); }
+    public int getCantidad()             { return cantidad; }
+    public void setCantidad(int c)       { cantidad = c; fillValues(); }
+    public double getSubtotal()          { return subtotal; }
+    public void setSubtotal(double s)    { subtotal = s; fillValues(); }
+    public double getPrecioUnitario()    { return precioUnitario; }
+    public void setPrecioUnitario(double p) { precioUnitario = p; fillValues(); }
 
     // Sincronización de ContentValues
     private void fillValues() {
@@ -60,6 +60,7 @@ public class DetalleTransaccion extends Model<DetalleTransaccion> {
     }
 
     /* ---------- CRUD ---------- */
+
     @Override
     public boolean exists() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -75,12 +76,22 @@ public class DetalleTransaccion extends Model<DetalleTransaccion> {
         if (exists()) {
             throw new SQLException("DetalleTransaccion duplicado: " + idDetalle);
         }
-        // Validar existencia de la transacción padre
-        if (Transaccion.getByPk(idTransaccion) == null) {
+        Transaccion t = Transaccion.getByPk(idTransaccion);
+        if (t == null) {
             throw new SQLException("Transaccion inexistente: " + idTransaccion);
         }
-        return dbHelper.getWritableDatabase()
-                .insertOrThrow(TABLE, null, valores);
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long newId = db.insertOrThrow(TABLE, null, valores);
+            // Recalcular total de la transacción
+            t.recalculateTotal();
+            db.setTransactionSuccessful();
+            return newId;
+        } finally {
+            db.endTransaction();
+        }
     }
 
     @Override
@@ -88,13 +99,22 @@ public class DetalleTransaccion extends Model<DetalleTransaccion> {
         if (!exists()) {
             throw new SQLException("No existe DetalleTransaccion con ID " + idDetalle);
         }
-        // Validar existencia de la transacción padre
-        if (Transaccion.getByPk(idTransaccion) == null) {
+        Transaccion t = Transaccion.getByPk(idTransaccion);
+        if (t == null) {
             throw new SQLException("Transaccion inexistente: " + idTransaccion);
         }
-        return dbHelper.getWritableDatabase()
-                .update(TABLE, valores,
-                        SEL_PK, new String[]{String.valueOf(idDetalle)});
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.update(TABLE, valores,
+                    SEL_PK, new String[]{String.valueOf(idDetalle)});
+            t.recalculateTotal();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
+            db.endTransaction();
+        }
     }
 
     @Override
@@ -102,12 +122,26 @@ public class DetalleTransaccion extends Model<DetalleTransaccion> {
         if (!exists()) {
             throw new SQLException("No existe DetalleTransaccion con ID " + idDetalle);
         }
-        return dbHelper.getWritableDatabase()
-                .delete(TABLE, SEL_PK,
-                        new String[]{String.valueOf(idDetalle)});
+        Transaccion t = Transaccion.getByPk(idTransaccion);
+        if (t == null) {
+            throw new SQLException("Transaccion inexistente: " + idTransaccion);
+        }
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.beginTransaction();
+        try {
+            long count = db.delete(TABLE,
+                    SEL_PK, new String[]{String.valueOf(idDetalle)});
+            t.recalculateTotal();
+            db.setTransactionSuccessful();
+            return count;
+        } finally {
+            db.endTransaction();
+        }
     }
 
     /* ---------- Consultas estáticas ---------- */
+
     public static DetalleTransaccion getByPk(int idDetalle) {
         DetalleTransaccion[] arr = getByQuery(SEL_PK,
                 new String[]{String.valueOf(idDetalle)});
@@ -136,7 +170,9 @@ public class DetalleTransaccion extends Model<DetalleTransaccion> {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         List<DetalleTransaccion> list = new ArrayList<>();
         try (Cursor c = db.query(TABLE, null, sel, args, null, null, null)) {
-            while (c.moveToNext()) list.add(modelFromCursor(c));
+            while (c.moveToNext()) {
+                list.add(modelFromCursor(c));
+            }
         }
         return list.toArray(new DetalleTransaccion[0]);
     }

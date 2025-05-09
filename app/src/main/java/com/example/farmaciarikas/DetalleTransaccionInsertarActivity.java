@@ -3,6 +3,8 @@ package com.example.farmaciarikas;
 import android.content.Intent;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -12,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Locale;
 
 public class DetalleTransaccionInsertarActivity extends AppCompatActivity {
 
@@ -28,13 +32,14 @@ public class DetalleTransaccionInsertarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detalle_transaccion_insertar);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets sys = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(sys.left, sys.top, sys.right, sys.bottom);
-            return insets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main),
+                (v, insets) -> {
+                    Insets sys = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    v.setPadding(sys.left, sys.top, sys.right, sys.bottom);
+                    return insets;
+                });
 
-        // Referencias a vistas
+        // Enlace de vistas
         editIdDetalle        = findViewById(R.id.editDetalleId);
         editIdTransaccion    = findViewById(R.id.editDetalleIdTransaccion);
         editCantidad         = findViewById(R.id.editDetalleCantidad);
@@ -45,6 +50,21 @@ public class DetalleTransaccionInsertarActivity extends AppCompatActivity {
 
         btnDetalleVerDetalles.setVisibility(Button.GONE);
 
+        // TextWatcher para recálculo automático
+        TextWatcher watcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                actualizarSubtotal();
+            }
+        };
+        editCantidad.addTextChangedListener(watcher);
+        editPrecioUnitario.addTextChangedListener(watcher);
+
+        // Acciones de botones
         btnDetalleGuardar.setOnClickListener(v -> guardarDetalle());
         btnDetalleVerDetalles.setOnClickListener(v -> {
             try {
@@ -57,16 +77,37 @@ public class DetalleTransaccionInsertarActivity extends AppCompatActivity {
                 );
                 i.putExtra("IDTRANSACCION", idTrans);
                 startActivity(i);
-            } catch (NumberFormatException ignored) {}
+            } catch (NumberFormatException ignored) { }
         });
     }
 
+    // Método que recalcula y muestra el subtotal
+    private void actualizarSubtotal() {
+        String cantStr   = editCantidad.getText().toString().trim();
+        String precioStr = editPrecioUnitario.getText().toString().trim();
+        if (!cantStr.isEmpty() && !precioStr.isEmpty()) {
+            try {
+                int cantidad       = Integer.parseInt(cantStr);
+                double precioUnit  = Double.parseDouble(precioStr);
+                double subtotalCalc = cantidad * precioUnit;
+                editSubtotal.setText(
+                        String.format(Locale.getDefault(), "%.2f", subtotalCalc)
+                );
+            } catch (NumberFormatException e) {
+                editSubtotal.setText("");
+            }
+        } else {
+            editSubtotal.setText("");
+        }
+    }
+
+    // Lógica de inserción, leyendo el subtotal ya calculado
     private void guardarDetalle() {
-        String idDetStr   = editIdDetalle.getText().toString().trim();
-        String idTransStr = editIdTransaccion.getText().toString().trim();
-        String cantStr    = editCantidad.getText().toString().trim();
-        String precioStr  = editPrecioUnitario.getText().toString().trim();
-        String subStr     = editSubtotal.getText().toString().trim();
+        String idDetStr    = editIdDetalle.getText().toString().trim();
+        String idTransStr  = editIdTransaccion.getText().toString().trim();
+        String cantStr     = editCantidad.getText().toString().trim();
+        String precioStr   = editPrecioUnitario.getText().toString().trim();
+        String subStr      = editSubtotal.getText().toString().trim();
 
         if (idDetStr.isEmpty() || idTransStr.isEmpty()
                 || cantStr.isEmpty() || precioStr.isEmpty() || subStr.isEmpty()) {

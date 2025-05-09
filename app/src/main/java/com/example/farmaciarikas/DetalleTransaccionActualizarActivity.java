@@ -1,6 +1,8 @@
 package com.example.farmaciarikas;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -12,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.util.Locale;
 
 public class DetalleTransaccionActualizarActivity extends AppCompatActivity {
 
@@ -32,13 +36,13 @@ public class DetalleTransaccionActualizarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_detalle_transaccion_actualizar);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets sys = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(sys.left, sys.top, sys.right, sys.bottom);
-            return insets;
-        });
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main),
+                (v, insets) -> {
+                    Insets sys = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+                    v.setPadding(sys.left, sys.top, sys.right, sys.bottom);
+                    return insets;
+                });
 
-        // Bindings
         editDetalleIdBuscar           = findViewById(R.id.editDetalleIdBuscar);
         btnDetalleBuscar              = findViewById(R.id.btnDetalleBuscar);
         layoutDatos                   = findViewById(R.id.layoutDatosDetalle);
@@ -50,6 +54,16 @@ public class DetalleTransaccionActualizarActivity extends AppCompatActivity {
 
         btnDetalleBuscar.setOnClickListener(v -> buscarDetalle());
         btnDetalleActualizarConfirmar.setOnClickListener(v -> actualizarDetalle());
+
+        TextWatcher watcher = new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int st, int c, int a) { }
+            @Override public void onTextChanged(CharSequence s, int st, int b, int c) { }
+            @Override public void afterTextChanged(Editable s) {
+                recalcularSubtotal();
+            }
+        };
+        editDetalleCantidad.addTextChangedListener(watcher);
+        editDetallePrecioUnitario.addTextChangedListener(watcher);
     }
 
     private void buscarDetalle() {
@@ -60,7 +74,6 @@ public class DetalleTransaccionActualizarActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
-
         try {
             int id = Integer.parseInt(idStr);
             DetalleTransaccion d = DetalleTransaccion.getByPk(id);
@@ -70,21 +83,39 @@ public class DetalleTransaccionActualizarActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
                 return;
             }
-
             currentDetalle = d;
             layoutDatos.setVisibility(LinearLayout.VISIBLE);
             textDetalleIdTransaccion.setText(String.valueOf(d.getIdTransaccion()));
             editDetalleCantidad.setText(String.valueOf(d.getCantidad()));
             editDetallePrecioUnitario.setText(String.valueOf(d.getPrecioUnitario()));
-            editDetalleSubtotal.setText(String.valueOf(d.getSubtotal()));
-
+            editDetalleSubtotal.setText(String.format(
+                    Locale.getDefault(), "%.2f", d.getSubtotal()
+            ));
             editDetalleIdBuscar.setEnabled(false);
             btnDetalleBuscar.setEnabled(false);
-
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ex) {
             Toast.makeText(this,
                     "Formato de ID inválido.",
                     Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void recalcularSubtotal() {
+        String cant = editDetalleCantidad.getText().toString().trim();
+        String pre  = editDetallePrecioUnitario.getText().toString().trim();
+        if (!cant.isEmpty() && !pre.isEmpty()) {
+            try {
+                int cantidad      = Integer.parseInt(cant);
+                double precio     = Double.parseDouble(pre);
+                double subtotal   = cantidad * precio;
+                editDetalleSubtotal.setText(
+                        String.format(Locale.getDefault(), "%.2f", subtotal)
+                );
+            } catch (NumberFormatException e) {
+                editDetalleSubtotal.setText("");
+            }
+        } else {
+            editDetalleSubtotal.setText("");
         }
     }
 
@@ -101,30 +132,25 @@ public class DetalleTransaccionActualizarActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
             return;
         }
-
         try {
             int cantidad    = Integer.parseInt(cantStr);
             double precio   = Double.parseDouble(precStr);
             double subtotal = Double.parseDouble(subStr);
-
             currentDetalle.setCantidad(cantidad);
             currentDetalle.setPrecioUnitario(precio);
             currentDetalle.setSubtotal(subtotal);
             currentDetalle.update();
-
             Toast.makeText(this,
                     "Detalle actualizado correctamente.",
                     Toast.LENGTH_LONG).show();
-
             btnDetalleActualizarConfirmar.setEnabled(false);
-
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException ex) {
             Toast.makeText(this,
                     "Formato numérico inválido.",
                     Toast.LENGTH_SHORT).show();
-        } catch (android.database.SQLException e) {
+        } catch (android.database.SQLException ex) {
             Toast.makeText(this,
-                    "Error al actualizar: " + e.getMessage(),
+                    "Error al actualizar: " + ex.getMessage(),
                     Toast.LENGTH_LONG).show();
         }
     }

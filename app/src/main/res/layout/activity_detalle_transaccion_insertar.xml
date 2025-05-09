@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editDetalleId"
                 android:layout_width="match_parent"
@@ -41,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editDetalleIdTransaccion"
                 android:layout_width="match_parent"
@@ -55,6 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editDetalleCantidad"
                 android:layout_width="match_parent"
@@ -69,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editDetallePrecioUnitario"
                 android:layout_width="match_parent"
@@ -77,18 +81,23 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Subtotal -->
+        <!-- Subtotal (no editable) -->
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editDetalleSubtotal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Subtotal"
-                android:inputType="numberDecimal" />
+                android:inputType="numberDecimal"
+                android:focusable="false"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:enabled="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Botón Guardar -->
