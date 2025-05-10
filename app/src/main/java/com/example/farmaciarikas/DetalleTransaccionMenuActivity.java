@@ -7,19 +7,19 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class TransaccionMenuActivity extends ListActivity {
+public class DetalleTransaccionMenuActivity extends ListActivity {
     private String[] menu;
     private Class<?>[] activityClasses = {
-            TransaccionInsertarActivity.class,
-            TransaccionConsultarActivity.class,
-            TransaccionActualizarActivity.class,
-            TransaccionEliminarActivity.class
+            DetalleTransaccionInsertarActivity.class,
+            DetalleTransaccionConsultarActivity.class,
+            DetalleTransaccionActualizarActivity.class,
+            DetalleTransaccionEliminarActivity.class
     };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        menu = getResources().getStringArray(R.array.menu_items_transaccion);
+        menu = getResources().getStringArray(R.array.menu_items_detalle_transaccion);
         setListAdapter(new ArrayAdapter<>(
                 this,
                 android.R.layout.simple_list_item_1,

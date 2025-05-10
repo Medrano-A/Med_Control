@@ -1,126 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="10dip"
-    android:stretchColumns="1"
-
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".TransaccionConsultarActivity">
 
-    <TableRow>
-        <TextView
-            android:id="@+id/transaccionConsulta"
-            android:text="@string/ConsultarTransaccion"
-            android:textSize="24sp"
-            />
-    </TableRow>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <!-->Ids<!-->
-    <TableRow>
-        <TextView
-            android:id="@+id/ventaIdConsulta"
-            android:text="@string/idVenta"
-            />
-        <EditText
-            android:id="@+id/ventaIdConsultaedit"
-            android:inputType="number"
-            android:maxLength="8"
-            />
-    </TableRow>
+        <!-- Título y búsqueda idénticos -->
 
-    <TableRow>
         <TextView
-            android:id="@+id/DuiConsulta"
-            android:text="@string/DuiCliente"
-            />
-        <EditText
-            android:id="@+id/DuiConsultaedit"
-            android:inputType="number"
-            android:maxLength="10"
-            />
-    </TableRow>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consultar Transacción"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
 
-    <TableRow>
-        <TextView
-            android:id="@+id/usuarioIdConsulta"
-            android:text="@string/IDUsuario"
-            />
-        <EditText
-            android:id="@+id/usuarioIdConsultaedit"
-            android:inputType="number"
-            android:maxLength="10"
-            />
-    </TableRow>
-
-    <TableRow>
-        <TextView
-            android:id="@+id/LocalIdConsulta"
-            android:text="@string/IDLocal"
-            />
-        <EditText
-            android:id="@+id/LocalIdConsultaedit"
-            android:inputType="number"
-            android:maxLength="10"
-            />
-    </TableRow>
-    <!-->Ids fin<!-->
-    <TableRow>
-        <Button
-            android:id="@+id/transConsultarBtnId"
-            style="?android:attr/buttonBarButtonStyle"
-            android:onClick="consultarTrans"
-            android:text="@string/ConsultarDatos"
-            />
-    </TableRow>
-
-    <TableRow>
-        <TextView
-            android:id="@+id/fechaEmisionConsulta"
-            android:text="@string/fechaEmision"
-            />
-        <EditText
-            android:id="@+id/fechaEmisionConsultaEdit"
-            android:inputType="date"
-            />
-    </TableRow>
-
-    <TableRow>
-        <TextView
-            android:id="@+id/totalConsulta"
-            android:text="@string/totalTransaccion"
-            />
-        <EditText
-            android:id="@+id/totalConsultaEdit"
-            android:inputType="numberDecimal"
-            />
-    </TableRow>
-
-    <TableRow>
-        <TextView
-            android:id="@+id/tipoTransConsulta"
-            android:text="@string/tipoTransaccion"
-            />
-        <EditText
-            android:id="@+id/tipoTransConsultaEdit"
-            android:inputType="text"
-            android:maxLength="30"
-            />
-    </TableRow>
-
-    <TableRow>
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTransaccionIdConsulta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Transacción"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/transConsultarBtnTxt"
-            style="?android:attr/buttonBarButtonStyle"
-            android:onClick="limpiarCampos"
-            android:text="@string/LimpiarCampos"
-            android:layout_gravity="center_horizontal"
-            />
+            android:id="@+id/btnTransaccionBuscarConsulta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Transacción"
+            android:layout_marginBottom="16dp"/>
 
-    </TableRow>
+        <!-- Campos de resultado de la transacción -->
 
-</TableLayout>
+        <TextView
+            android:id="@+id/textTransaccionDui"
+            style="@style/TextViewStyleConsulta"
+            android:text="DUI:"/>
+        <TextView
+            android:id="@+id/textTransaccionIdUsuario"
+            style="@style/TextViewStyleConsulta"
+            android:text="ID Usuario:"/>
+        <TextView
+            android:id="@+id/textTransaccionIdLocal"
+            style="@style/TextViewStyleConsulta"
+            android:text="ID Local:"/>
+        <TextView
+            android:id="@+id/textTransaccionFecha"
+            style="@style/TextViewStyleConsulta"
+            android:text="Fecha:"/>
+        <TextView
+            android:id="@+id/textTransaccionTotal"
+            style="@style/TextViewStyleConsulta"
+            android:text="Total:"/>
+        <TextView
+            android:id="@+id/textTransaccionTipo"
+            style="@style/TextViewStyleConsulta"
+            android:text="Tipo:"/>
+
+        <!-- Contenedor para todos los detalles -->
+
+        <TextView
+            android:id="@+id/labelDetalles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalles de la transacción:"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/containerDetalleTransaccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>

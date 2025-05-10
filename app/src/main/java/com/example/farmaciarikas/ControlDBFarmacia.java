@@ -55,7 +55,7 @@ public class ControlDBFarmacia {
     };
 
     private final Context context;
-    private DatabaseHelper DBHelper;
+    public DatabaseHelper DBHelper;
     private SQLiteDatabase db;
 
 
@@ -64,9 +64,9 @@ public class ControlDBFarmacia {
         DBHelper = new DatabaseHelper(context);
     }
 
-    private static class DatabaseHelper extends SQLiteOpenHelper {
+    public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String BASE_DATOS = "farmacia.s3db";
-        private static final int VERSION = 1;
+        private static final int VERSION = 2;
 
         public DatabaseHelper(Context context) {
             super(context, BASE_DATOS, null, VERSION);
@@ -79,6 +79,8 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
                 db.execSQL("CREATE TABLE detalleReceta (idDetReceta INTEGER NOT NULL PRIMARY KEY, idReceta INTEGER, dosis VARCHAR(50) NOT NULL);");
                 db.execSQL("CREATE TABLE distribuidor (idDistribuidor INTEGER NOT NULL PRIMARY KEY, idMarca INTEGER, nombre VARCHAR(30) NOT NULL, telefono CHAR(8) NOT NULL, nit CHAR(10) NOT NULL, correo VARCHAR(30));");
+
+
                 /*TABLA DOCTOR*/
                 db.execSQL("CREATE TABLE doctor" +
                         "(idDoctor INTEGER NOT NULL PRIMARY KEY," +
@@ -106,7 +108,6 @@ public class ControlDBFarmacia {
                         "idLaboratorio INTEGER NOT NULL," +
                         "viaDeAdministracion VARCHAR(32)," +
                         "formaFarmaceutica VARCHAR(32));");
-
 
 
                 /*TABLA LOCAL*/
@@ -178,6 +179,46 @@ public class ControlDBFarmacia {
                         " idDistribuidor INTEGER NOT NULL," +
                         " nombreArticulo TEXT NOT NULL," +
                         " clasificacion TEXT NOT NULL)");
+                // Crear tabla RECETA
+                db.execSQL(
+                        "CREATE TABLE RECETA (" +
+                                "IDRECETA INTEGER    NOT NULL PRIMARY KEY, " +
+                                "DUI       TEXT, " +
+                                "IDDOCTOR  INTEGER    NOT NULL, " +
+                                "NOMBREPACIENTE TEXT NOT NULL, " +
+                                "FECHA     DATE       NOT NULL, " +
+                                "EDAD      INTEGER    NOT NULL, " +
+                                "OBSERVACIONES TEXT NOT NULL" +
+                                ");"
+                );
+
+                // Tabla TRANSACCION
+                db.execSQL(
+                        "CREATE TABLE TRANSACCION (" +
+                                "IDTRANSACCION INTEGER NOT NULL PRIMARY KEY, " +
+                                "DUI            CHAR(10), " +
+                                "IDUSUARIO      INTEGER, " +
+                                "ID_LOCAL       INTEGER, " +
+                                "FECHA          DATE    NOT NULL, " +
+                                "TOTAL          REAL    NOT NULL DEFAULT 0, " +
+                                "TIPO           CHAR(30) NOT NULL" +
+                                ");"
+                );
+
+                // Tabla DETALLETRANSACCION
+                db.execSQL(
+                        "CREATE TABLE DETALLETRANSACCION (" +
+                                "ID_DETALLE     INTEGER NOT NULL PRIMARY KEY, " +
+                                "IDTRANSACCION  INTEGER NOT NULL, " +
+                                "CANTIDAD       INTEGER NOT NULL, " +
+                                "SUBTOTAL       REAL    NOT NULL, " +
+                                "PRECIOUNITARIO REAL    NOT NULL" +
+                                ");"
+                );
+
+
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -195,7 +236,7 @@ public class ControlDBFarmacia {
     }
 
     public void cerrar() {
-        DBHelper.close();
+        // DBHelper.close();
     }
 
     public SQLiteDatabase getReadableDatabase() {
@@ -405,7 +446,7 @@ public class ControlDBFarmacia {
     public String actualizar(Doctor doctor) {
 
         try {
-            if (verificarIntegridad(doctor, 5)) {
+            if (verificarInteverificarIntegridad(doctor, 5)) {
                 String[] id = {String.valueOf(doctor.getIdDoctor())};
                 ContentValues cv = new ContentValues();
                 cv.put("nombreDoctor", doctor.getNombreDoctor());
