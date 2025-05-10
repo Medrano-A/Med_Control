@@ -43,6 +43,9 @@ public class MainActivity extends ListActivity  {
             }
         }else{
             //meter codigo de llenado de BD aqui
+//            helper.abrir();
+//            String tost = helper.llenadoTablas();
+//            helper.cerrar();
         }
 
     }
