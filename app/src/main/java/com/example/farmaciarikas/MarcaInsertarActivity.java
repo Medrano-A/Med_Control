@@ -45,7 +45,7 @@ public class MarcaInsertarActivity extends Activity {
                 Toast.makeText(this, regInsert, Toast.LENGTH_SHORT).show();
             }
         }catch(Exception e){
-            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar en Marca", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar en Marca por favor Comunicarse con el equipo de desarollo", Toast.LENGTH_SHORT).show();
         }
 
     }
