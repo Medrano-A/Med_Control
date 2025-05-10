@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/EliminarCliente_hint_dui"
+            android:maxLength="10"
             android:inputType="number"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
