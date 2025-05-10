@@ -54,6 +54,10 @@ public class DetalleReceta extends Model<DetalleReceta> {
         this.idDetReceta = idDetReceta;
     }
 
+    public void setDosis(String dosis){
+        this.dosis=dosis;
+    }
+    public String getDosis(){return dosis;}
     public int getIdReceta() {
         return idReceta;
     }
