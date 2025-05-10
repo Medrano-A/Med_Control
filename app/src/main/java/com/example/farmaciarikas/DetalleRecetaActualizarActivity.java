@@ -101,7 +101,7 @@ public class DetalleRecetaActualizarActivity extends AppCompatActivity {
         boolean actualizada = dbFarmacia.actualizarDetalleReceta(detalle);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(DetalleRecetaActualizarActivity.this);
-        builder.setTitle(getString(R.string.dialog_title_info_actualizar));
+        builder.setTitle(getString(R.string.ActualizarDetalleReceta_titulo));
 
         if (actualizada) {
             builder.setMessage(getString(R.string.dialog_msg_detalleReceta_actualizado));

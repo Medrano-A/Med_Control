@@ -48,6 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/InsertarDetalleReceta_hint_dosis"
+            android:maxLength="50"
             android:inputType="text"
             android:minHeight="48dp"
             android:textColor="?android:textColorPrimary"
