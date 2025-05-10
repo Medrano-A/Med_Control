@@ -446,7 +446,7 @@ public class ControlDBFarmacia {
     public String actualizar(Doctor doctor) {
 
         try {
-            if (verificarInteverificarIntegridad(doctor, 5)) {
+            if (verificarIntegridad(doctor, 5)) {
                 String[] id = {String.valueOf(doctor.getIdDoctor())};
                 ContentValues cv = new ContentValues();
                 cv.put("nombreDoctor", doctor.getNombreDoctor());
@@ -1278,7 +1278,7 @@ public class ControlDBFarmacia {
         DetalleReceta detalleReceta = new DetalleReceta();
         for (int i = 0; i < 5; i++) {
             detalleReceta.setIdDetReceta(idDetReceta[i]);
-            detalleReceta.setIdReceta(idReceta[i]);
+            detalleReceta.setIdDetReceta(idReceta[i]);
             detalleReceta.setDosis(dosis[i]);
             insertarDetalleReceta(detalleReceta);
         }
