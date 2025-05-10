@@ -9,7 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 public class MainActivity extends ListActivity  {
-    String[] menu={"Menu GA21090","Menu MM21030","Menu MM22108","Menu GD21001", "Menu PG22010"};
+    String[] menu={"Menu GA21090","Menu MM21030","Menu MM22108","Menu GD21001", "Menu PG22010", "LLenar Base de Datos FarmaciaRikas"};
     String[] activities={"GA21090Activity","MM21030Activity","MM22108Activity","GD21001Activity","PG22010Activity"};
     ControlDBFarmacia helper;
 
@@ -42,6 +42,10 @@ public class MainActivity extends ListActivity  {
                 e.printStackTrace();
             }
         }else{
+            //meter codigo de llenado de BD aqui
+//            helper.abrir();
+//            String tost = helper.llenadoTablas();
+//            helper.cerrar();
         }
 
     }
