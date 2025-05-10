@@ -17,6 +17,10 @@ public class Distribuidor {
         this.correo = correo;
     }
 
+    public Distribuidor(){
+
+    }
+
     public int getIdDistribuidor() {
         return idDistribuidor;
     }

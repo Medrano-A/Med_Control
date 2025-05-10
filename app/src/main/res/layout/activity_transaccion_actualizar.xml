@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".TransaccionActualizarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Actualizar Transacción"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Sección de búsqueda -->
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTransaccionIdBuscarActualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Transacción"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnTransaccionBuscarActualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Sección de datos (oculta hasta buscar) -->
+        <LinearLayout
+            android:id="@+id/layoutDatosTransaccionActualizar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- DUI -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTransaccionDuiActualizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="DUI Cliente"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- ID Usuario -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTransaccionIdUsuarioActualizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ID Usuario"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- ID Local -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTransaccionIdLocalActualizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="ID Local"
+                    android:inputType="number"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Fecha -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTransaccionFechaActualizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Fecha (YYYY-MM-DD)"
+                    android:inputType="date"
+                    android:focusable="false"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Tipo -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTransaccionTipoActualizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Tipo de Transacción"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botones -->
+            <Button
+                android:id="@+id/btnTransaccionActualizarConfirmar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Actualizar"
+                android:layout_marginBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btnTransaccionGestionarDetallesActualizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gestionar Detalles"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

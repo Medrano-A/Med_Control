@@ -125,6 +125,7 @@
 
         <Button
             android:id="@+id/btnActualizar"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:background="@color/primary_color"
             android:onClick="actualizarMedicamento"
@@ -132,9 +133,19 @@
 
         <Button
             android:id="@+id/btnLimpiar"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
             android:background="@color/primary_color"
             android:onClick="limpiarTexto"
             android:text="@string/limpiar" />
+        <Button
+            android:id="@+id/btnConsultar"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:background="@color/primary_color"
+            android:onClick="consultarMedicamento"
+            android:text="@string/buscar" />
     </TableRow>
 
 </TableLayout>

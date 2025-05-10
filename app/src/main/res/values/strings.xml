@@ -58,6 +58,10 @@
     <string name="telefonoDoctor">Telefono</string>
     <string name="correo">Correo</string>
 
+    <!--Login-->
+    <string name="Usuario">Usuario</string>
+    <string name="login">Iniciar Sesión</string>
+    <string name="password">Contraseña</string>
     <string name="opciones">Opciones:</string>
 
 
@@ -212,6 +216,257 @@
     <string name="dialog_msg_detalleReceta_actualizado">Detalle Receta actualizado exitosamente</string>
     <string name="dialog_msg_error_actualizado_detalleReceta">Error al actualizar Detalle Receta</string>
 
+    <!--- MENÚS  -->
+    <string-array name="menu_items_receta">
+        <item>Crear Receta</item>
+        <item>Consultar Receta</item>
+        <item>Actualizar Receta</item>
+        <item>Eliminar Receta</item>
+    </string-array>
+    <string-array name="menu_items_transaccion">
+        <item>Crear Transacción</item>
+        <item>Consultar Transacción</item>
+        <item>Actualizar Transacción</item>
+        <item>Eliminar Transacción</item>
+    </string-array>
+    <string-array name="menu_items_detalle_transaccion">
+        <item>Crear Detalle Transacción</item>
+        <item>Consultar Detalle Transacción</item>
+        <item>Actualizar Detalle Transacción</item>
+        <item>Eliminar Detalle Transacción</item>
+    </string-array>
+
+    <!-- RECETA -->
+    <string name="RecetaInsertar_titulo">Crear Receta</string>
+    <string name="RecetaInsertar_hint_id">ID Receta</string>
+    <string name="RecetaInsertar_hint_dui">DUI Cliente</string>
+    <string name="RecetaInsertar_hint_idDoctor">ID Doctor</string>
+    <string name="RecetaInsertar_hint_nombrePaciente">Nombre Paciente</string>
+    <string name="RecetaInsertar_hint_fecha">Fecha (YYYY-MM-DD)</string>
+    <string name="RecetaInsertar_hint_edad">Edad</string>
+    <string name="RecetaInsertar_hint_observaciones">Observaciones</string>
+    <string name="RecetaInsertar_btn_guardar">Guardar</string>
+    <string name="dialog_msg_receta_guardado">Receta guardada exitosamente</string>
+    <string name="dialog_msg_error_guardar_receta">Error al guardar Receta</string>
+
+    <string name="RecetaConsultar_titulo">Consultar Receta</string>
+    <string name="RecetaConsultar_hint_id">ID Receta</string>
+    <string name="RecetaConsultar_btn_consultar">Buscar</string>
+    <string name="dialog_msg_receta_encontrado">Receta encontrada</string>
+    <string name="dialog_msg_error_receta_no_encontrada">Receta no encontrada</string>
+
+    <string name="RecetaActualizar_titulo">Actualizar Receta</string>
+    <string name="RecetaActualizar_hint_id">ID Receta</string>
+    <string name="RecetaActualizar_btn_buscar">Buscar</string>
+    <string name="RecetaActualizar_btn_actualizar">Actualizar</string>
+    <string name="dialog_msg_receta_actualizado">Receta actualizada exitosamente</string>
+    <string name="dialog_msg_error_actualizar_receta">Error al actualizar Receta</string>
+
+    <string name="RecetaEliminar_titulo">Eliminar Receta</string>
+    <string name="RecetaEliminar_hint_id">ID Receta</string>
+    <string name="RecetaEliminar_btn_eliminar">Eliminar</string>
+    <string name="dialog_msg_receta_eliminado">Receta eliminada exitosamente</string>
+    <string name="dialog_msg_error_eliminar_receta">Error al eliminar Receta</string>
+
+    <!-- TRANSACCIÓN -->
+    <string name="TransaccionInsertar_titulo">Crear Transacción</string>
+    <string name="TransaccionInsertar_hint_id">ID Transacción</string>
+    <string name="TransaccionInsertar_hint_dui">DUI Cliente</string>
+    <string name="TransaccionInsertar_hint_idUsuario">ID Usuario</string>
+    <string name="TransaccionInsertar_hint_idLocal">ID Local</string>
+    <string name="TransaccionInsertar_hint_fecha">Fecha (YYYY-MM-DD)</string>
+    <string name="TransaccionInsertar_btn_guardar">Guardar</string>
+    <string name="dialog_msg_transaccion_guardado">Transacción guardada exitosamente</string>
+    <string name="dialog_msg_error_guardar_transaccion">Error al guardar Transacción</string>
+
+    <string name="TransaccionConsultar_titulo">Consultar Transacción</string>
+    <string name="TransaccionConsultar_hint_id">ID Transacción</string>
+    <string name="TransaccionConsultar_btn_consultar">Buscar</string>
+    <string name="dialog_msg_transaccion_encontrada">Transacción encontrada</string>
+    <string name="dialog_msg_error_transaccion_no_encontrada">Transacción no encontrada</string>
+
+    <string name="TransaccionActualizar_titulo">Actualizar Transacción</string>
+    <string name="TransaccionActualizar_hint_id">ID Transacción</string>
+    <string name="TransaccionActualizar_btn_buscar">Buscar</string>
+    <string name="TransaccionActualizar_btn_actualizar">Actualizar</string>
+    <string name="dialog_msg_transaccion_actualizada">Transacción actualizada exitosamente</string>
+    <string name="dialog_msg_error_actualizar_transaccion">Error al actualizar Transacción</string>
+
+    <string name="TransaccionEliminar_titulo">Eliminar Transacción</string>
+    <string name="TransaccionEliminar_hint_id">ID Transacción</string>
+    <string name="TransaccionEliminar_btn_eliminar">Eliminar</string>
+    <string name="dialog_msg_transaccion_eliminada">Transacción eliminada exitosamente</string>
+    <string name="dialog_msg_error_eliminar_transaccion">Error al eliminar Transacción</string>
+
+    <!--  DETALLE TRANSACCIÓN -->
+    <string name="DetalleTransaccionInsertar_titulo">Crear Detalle Transacción</string>
+    <string name="DetalleTransaccionInsertar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionInsertar_hint_idTransaccion">ID Transacción</string>
+    <string name="DetalleTransaccionInsertar_hint_cantidad">Cantidad</string>
+    <string name="DetalleTransaccionInsertar_hint_precioUnitario">Precio Unitario</string>
+    <string name="DetalleTransaccionInsertar_hint_subtotal">Subtotal</string>
+    <string name="DetalleTransaccionInsertar_btn_guardar">Guardar</string>
+    <string name="dialog_msg_detalleTransaccion_guardado">Detalle Transacción guardado</string>
+    <string name="dialog_msg_error_guardar_detalleTransaccion">Error al guardar Detalle Transacción</string>
+
+    <string name="DetalleTransaccionConsultar_titulo">Consultar Detalle Transacción</string>
+    <string name="DetalleTransaccionConsultar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionConsultar_btn_consultar">Buscar</string>
+    <string name="dialog_msg_detalleTransaccion_encontrado">Detalle Transacción encontrado</string>
+    <string name="dialog_msg_error_no_encontrado_detalleTransaccion">Error al buscar Detalle Transacción</string>
+
+    <string name="DetalleTransaccionActualizar_titulo">Actualizar Detalle Transacción</string>
+    <string name="DetalleTransaccionActualizar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionActualizar_btn_buscar">Buscar</string>
+    <string name="DetalleTransaccionActualizar_btn_actualizar">Actualizar</string>
+    <string name="dialog_msg_detalleTransaccion_actualizado">Detalle Transacción actualizado</string>
+    <string name="dialog_msg_error_actualizar_detalleTransaccion">Error al actualizar Detalle Transacción</string>
+
+    <string name="DetalleTransaccionEliminar_titulo">Eliminar Detalle Transacción</string>
+    <string name="DetalleTransaccionEliminar_hint_id">ID Detalle</string>
+    <string name="DetalleTransaccionEliminar_btn_eliminar">Eliminar</string>
+    <string name="dialog_msg_detalleTransaccion_eliminado">Detalle Transacción eliminado</string>
+    <string name="dialog_msg_error_eliminar_detalleTransaccion">Error al eliminar Detalle Transacción</string>
+
+
+    <!-->GD21001<!-->
+
+    <string-array name="menu_items_GD21001">
+        <item>Tabla Departamento</item>
+        <item>Tabla Municipio</item>
+        <item>Tabla Distrito</item>
+        <item>Tabla Marca</item>
+        <item>Tabla Laboratorio</item>
+        <item>LLenar Tablas De BD</item>
+    </string-array>
+
+    <string-array name="menu_items_Transaccion">
+        <item>Insertar Transaccion</item>
+        <item>Actualizar Transaccion</item>
+        <item>Consultar Transaccion</item>
+        <item>Eliminar Transaccion</item>
+    </string-array>
+
+    <string-array name="menu_items_Departamento">
+        <item>Insertar Departamento</item>
+        <item>Actualizar Departamento</item>
+        <item>Consultar Departamento</item>
+        <item>Eliminar Departamento</item>
+    </string-array>
+
+    <string-array name="menu_items_Municipio">
+        <item>Insertar Municipio</item>
+        <item>Actualizar Municipio</item>
+        <item>Consultar Municipio</item>
+        <item>Eliminar Municipio</item>
+    </string-array>
+
+    <string-array name="menu_items_Distrito">
+        <item>Insertar Distrito</item>
+        <item>Actualizar Distrito</item>
+        <item>Consultar Distrito</item>
+        <item>Eliminar Distrito</item>
+    </string-array>
+
+    <string-array name="menu_items_Marca">
+        <item>Insertar Marca</item>
+        <item>Actualizar Marca</item>
+        <item>Consultar Marca</item>
+        <item>Eliminar Marca</item>
+    </string-array>
+
+    <string-array name="menu_items_Laboratorio">
+        <item>Insertar Laboratorio</item>
+        <item>Actualizar Laboratorio</item>
+        <item>Consultar Laboratorio</item>
+        <item>Eliminar Laboratorio</item>
+    </string-array>
+
+    <!-->Marca<!-->
+    <string name="idMarca">Marca ID:</string>
+    <string name="nombreMarca">Nombre Marca:</string>
+    <!-->Laboratorio<!-->
+    <string name="idLabo">Laboratorio ID:</string>
+    <string name="laboratorioNombre">Nombre Laboratorio:</string>
+    <string name="laboratorioTipo">Tipo De Laboratorio:</string>
+    <string name="laboratorioTelefono">Telefono Laboratorio:</string>
+    <!-->Transaccion<!-->
+    <string name="idVenta">Transaccion ID:</string>
+    <string name="DuiCliente">Dui:</string>
+    <string name="IDUsuario">Usuario ID:</string>
+    <string name="IDLocal">Local ID:</string>
+    <string name="fechaEmision">Fecha de Emision:</string>
+    <string name="totalTransaccion">Total:</string>
+    <string name="tipoTransaccion">Tipo De Transaccion:</string>
+
+    <!-- Departamento -->
+    <string name="idDepartamentoDpto">ID del Departamento:</string>
+    <string name="nombreDpto">Nombre del Departamento:</string>
+    <string-array name="departamento_ids">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+    </string-array>
+
+
+    <!-- Municipio -->
+    <string name="idMunicipioMun">ID del Municipio:</string>
+    <string name="idDepartamentoMun">ID del Departamento:</string>
+    <string name="nombreMun">Nombre del Municipio:</string>
+
+    <!-- Distrito -->
+    <string name="idDistrito">ID del Distrito:</string>
+    <string name="idMunicipioDist">ID del Municipio:</string>
+    <string name="nombreDist">Nombre del Distrito:</string>
+
+    <!-->Botones<!-->
+    <string name="InsertarMarca">Insertar Marca</string>
+    <string name="InsertarTransaccion">Insertar Transaccion</string>
+    <string name="InsertarLaboratorio">Insertar Laboratorio</string>
+    <string name="InsertarDepartamento">Insertar Departamento</string>
+    <string name="InsertarMunicipio">Insertar Municipio</string>
+    <string name="InsertarDistrito">Insertar Distrito</string>
+
+    <string name="ActualizarMarca">Actualizar Marca</string>
+    <string name="ActualizarTransaccion">Actualizar Transaccion</string>
+    <string name="ActualizarLabo">Actualizar Laboratorio</string>
+    <string name="ActualizarDepartamento">Actualizar Departamento</string>
+    <string name="ActualizarMunicipio">Actualizar Municipio</string>
+    <string name="ActualizarDistrito">Actualizar Distrito</string>
+
+    <string name="ConsultarMarca">Consultar Marca</string>
+    <string name="ConsultarTransaccion">Consultar Transaccion</string>
+    <string name="ConsultarLabo">Consultar Laboratorio</string>
+    <string name="ConsultarDepartamento">Consultar Departamento</string>
+    <string name="ConsultarMunicipio">Consultar Municipio</string>
+    <string name="ConsultarDistrito">Consultar Distrito</string>
+
+    <string name="EliminarMarca">Eliminar Marca</string>
+    <string name="EliminarTransaccion">Eliminar Transaccion</string>
+    <string name="EliminarLabo">Eliminar Laboratorio</string>
+    <string name="EliminarDepartamento">Eliminar Departamento</string>
+    <string name="EliminarMunicipio">Eliminar Municipio</string>
+    <string name="EliminarDistrito">Eliminar Distrito</string>
+
+    <string name="InsertarDatos">Insertar</string>
+    <string name="ActualizarDatos">Actualizar</string>
+    <string name="ConsultarDatos">Consultar</string>
+    <string name="EliminarDatos">Eliminar</string>
+    <string name="LimpiarCampos">Limpiar</string>
+    <string name="llenadoBD">Tablas  cargadas</string>
+    <!-->GD21001<!-->
+
     <string name="agregar_ubicacion">Agregar Ubicación</string>
     <string name="id_de_ubicacion">ID de Ubicación</string>
     <string name="nombre_de_la_ubicacion">Descripción de Ubicación</string>
@@ -255,5 +510,5 @@
     <string name="ingrese_id_de_articulo">Ingrese ID de Articulo</string>
     <string name="borrar_articulo">Borrar Articulo</string>
 
-
 </resources>
+

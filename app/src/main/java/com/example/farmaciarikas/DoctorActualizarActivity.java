@@ -48,4 +48,23 @@ public class DoctorActualizarActivity extends Activity {
         correo.setText("");
 
     }
+    public void consultarDoctor(View v) {
+
+        helper.abrir();
+        Doctor doctor =
+                helper.consultarDoctor(Integer.parseInt(editIdDoctor.getText().toString()));
+
+        helper.cerrar();
+        if(doctor == null)
+            Toast.makeText(this, "Doctor con carnet " +
+                    editIdDoctor.getText().toString() +
+                    " no encontrado", Toast.LENGTH_LONG).show();
+        else{
+            editNombre.setText(doctor.getNombreDoctor());
+            editEspecialidad.setText(doctor.getEspecialidad());
+            editJvpm.setText(doctor.getJvpm());
+            telefono.setText(doctor.getTelefonoDoctor());
+            correo.setText(String.valueOf(doctor.getCorreoDoctor()));
+        }
+    }
 }

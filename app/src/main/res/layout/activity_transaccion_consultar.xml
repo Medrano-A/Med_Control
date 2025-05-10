@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".TransaccionConsultarActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título y búsqueda idénticos -->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Consultar Transacción"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTransaccionIdConsulta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ID Transacción"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnTransaccionBuscarConsulta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Buscar Transacción"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Campos de resultado de la transacción -->
+
+        <TextView
+            android:id="@+id/textTransaccionDui"
+            style="@style/TextViewStyleConsulta"
+            android:text="DUI:"/>
+        <TextView
+            android:id="@+id/textTransaccionIdUsuario"
+            style="@style/TextViewStyleConsulta"
+            android:text="ID Usuario:"/>
+        <TextView
+            android:id="@+id/textTransaccionIdLocal"
+            style="@style/TextViewStyleConsulta"
+            android:text="ID Local:"/>
+        <TextView
+            android:id="@+id/textTransaccionFecha"
+            style="@style/TextViewStyleConsulta"
+            android:text="Fecha:"/>
+        <TextView
+            android:id="@+id/textTransaccionTotal"
+            style="@style/TextViewStyleConsulta"
+            android:text="Total:"/>
+        <TextView
+            android:id="@+id/textTransaccionTipo"
+            style="@style/TextViewStyleConsulta"
+            android:text="Tipo:"/>
+
+        <!-- Contenedor para todos los detalles -->
+
+        <TextView
+            android:id="@+id/labelDetalles"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalles de la transacción:"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"/>
+
+        <LinearLayout
+            android:id="@+id/containerDetalleTransaccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="app_name">FarmaciaRikas</string>
     <string name="title_activity_alumno_menu">MedicineMenuActivity</string>
     <string name="title_activity_nota_menu">DoctorMenuActivity</string>
     <string name="title_activity_materia_menu">LocalMenuActivity</string>
@@ -24,15 +23,19 @@
     <string name="eliminar_registro">Delete Record</string>
     <string name="consultar_registro">Query Record</string>
     <string name="actualizar_registro">Update Record</string>
-    <string name="nombreMedicamento">Medicine Name</string>
+
+<!--Login-->
+    <string name="Usuario">User</string>
+    <string name="login">Login</string>
+    <string name="password">Contraseña</string>
+
+    <string name="idMedicamento">Code</string>
+    <string name="codElemento">Element Code</string>
+    <string name="nombreMedicamento">Medicine name</string>
     <string name="cantidad">Quantity</string>
     <string name="descripcion">Description</string>
     <string name="precioUni">Unit Price</string>
     <string name="unidad">Unit</string>
-
-
-    <string name="idMedicamento">Code</string>
-    <string name="codElemento">Element Code</string>
     <string name="codLaboratorio">Laboratory Code</string>
     <string name="viaAdministracion">Route of Administration</string>
     <string name="formaFarmaceutica">Pharmaceutical Form</string>
@@ -212,6 +215,83 @@
     <string name="ActualizarDetalleReceta_btn_actualizar">Update</string>
     <string name="dialog_msg_detalleReceta_actualizado">Prescription Details successfully updated</string>
     <string name="dialog_msg_error_actualizado_detalleReceta">Error searching Prescription Details</string>
+    <string name="RecetaInsertar_titulo">Create Prescription</string>
+    <string name="RecetaInsertar_hint_id">Prescription ID</string>
+    <string name="RecetaInsertar_hint_dui">Customer ID</string>
+    <string name="RecetaInsertar_hint_idDoctor">Doctor ID</string>
+    <string name="RecetaInsertar_hint_nombrePaciente">Patient Name</string>
+    <string name="RecetaInsertar_hint_fecha">Date (YYYY-MM-DD)</string>
+    <string name="RecetaInsertar_hint_edad">Age</string>
+    <string name="RecetaInsertar_hint_observaciones">Observations</string>
+    <string name="RecetaInsertar_btn_guardar">Save</string>
+    <string name="dialog_msg_receta_guardado">Prescription saved successfully</string>
+    <string name="dialog_msg_error_guardar_receta">Error saving prescription</string>
+    <string name="RecetaConsultar_titulo">Consult Prescription</string>
+    <string name="RecetaConsultar_hint_id">Prescription ID</string>
+    <string name="RecetaConsultar_btn_consultar">Search</string>
+    <string name="dialog_msg_receta_encontrado">Prescription found</string>
+    <string name="dialog_msg_error_receta_no_encontrada">Prescription not found</string>
+    <string name="RecetaActualizar_titulo">Update Prescription</string>
+    <string name="RecetaActualizar_hint_id">Prescription ID</string>
+    <string name="RecetaActualizar_btn_buscar">Search</string>
+    <string name="RecetaActualizar_btn_actualizar">Update</string>
+    <string name="dialog_msg_receta_actualizado">Prescription updated successfully</string>
+    <string name="dialog_msg_error_actualizar_receta">Error updating Prescription</string>
+    <string name="RecetaEliminar_titulo">Delete Prescription</string>
+    <string name="RecetaEliminar_hint_id">Prescription ID</string>
+    <string name="RecetaEliminar_btn_eliminar">Delete</string>
+    <string name="dialog_msg_receta_eliminado">Prescription deleted successfully</string>
+    <string name="dialog_msg_error_eliminar_receta">Error deleting Prescription</string>
+    <string name="TransaccionInsertar_titulo">Create transaction</string>
+    <string name="TransaccionInsertar_hint_id">Transaction ID</string>
+    <string name="TransaccionInsertar_hint_dui">Customer DUI</string>
+    <string name="TransaccionInsertar_hint_idUsuario">User ID</string>
+    <string name="TransaccionInsertar_hint_idLocal">Location ID</string>
+    <string name="TransaccionInsertar_hint_fecha">Date (YYYY-MM-DD)</string>
+    <string name="TransaccionInsertar_btn_guardar">Save</string>
+    <string name="dialog_msg_transaccion_guardado">Transaction saved successfully</string>
+    <string name="dialog_msg_error_guardar_transaccion">Error saving transaction</string>
+    <string name="TransaccionConsultar_titulo">Consult transaction</string>
+    <string name="TransaccionConsultar_hint_id">Transaction ID</string>
+    <string name="TransaccionConsultar_btn_consultar">Search</string>
+    <string name="dialog_msg_transaccion_encontrada">Transaction found</string>
+    <string name="dialog_msg_error_transaccion_no_encontrada">Transaction not found</string>
+    <string name="TransaccionActualizar_titulo">Update transaction</string>
+    <string name="TransaccionActualizar_hint_id">Transaction ID</string>
+    <string name="TransaccionActualizar_btn_buscar">Search</string>
+    <string name="TransaccionActualizar_btn_actualizar">Update</string>
+    <string name="dialog_msg_transaccion_actualizada">Transaction updated successfully</string>
+    <string name="dialog_msg_error_actualizar_transaccion">Error updating transaction</string>
+    <string name="TransaccionEliminar_titulo">Delete transaction</string>
+    <string name="TransaccionEliminar_hint_id">Transaction ID</string>
+    <string name="TransaccionEliminar_btn_eliminar">Delete</string>
+    <string name="dialog_msg_transaccion_eliminada">Transaction deleted successfully</string>
+    <string name="dialog_msg_error_eliminar_transaccion">Error deleting transaction</string>
+    <string name="DetalleTransaccionInsertar_titulo">Create transaction detail</string>
+    <string name="DetalleTransaccionInsertar_hint_id">Detail ID</string>
+    <string name="DetalleTransaccionInsertar_hint_idTransaccion">Transaction ID</string>
+    <string name="DetalleTransaccionInsertar_hint_cantidad">Quantity</string>
+    <string name="DetalleTransaccionInsertar_hint_precioUnitario">Unit price</string>
+    <string name="DetalleTransaccionInsertar_hint_subtotal">Subtotal</string>
+    <string name="DetalleTransaccionInsertar_btn_guardar">Save</string>
+    <string name="dialog_msg_detalleTransaccion_guardado">Transaction detail saved</string>
+    <string name="dialog_msg_error_guardar_detalleTransaccion">Error saving transaction detail</string>
+    <string name="DetalleTransaccionConsultar_titulo">Consult transaction detail</string>
+    <string name="DetalleTransaccionConsultar_hint_id">Detail ID</string>
+    <string name="DetalleTransaccionConsultar_btn_consultar">Search</string>
+    <string name="dialog_msg_detalleTransaccion_encontrado">Transaction detail found</string>
+    <string name="dialog_msg_error_no_encontrado_detalleTransaccion">Error searching transaction detail</string>
+    <string name="DetalleTransaccionActualizar_titulo">Update transaction detail</string>
+    <string name="DetalleTransaccionActualizar_hint_id">Detail ID</string>
+    <string name="DetalleTransaccionActualizar_btn_buscar">Search</string>
+    <string name="DetalleTransaccionActualizar_btn_actualizar">Update</string>
+    <string name="dialog_msg_detalleTransaccion_actualizado">Transaction detail updated</string>
+    <string name="dialog_msg_error_actualizar_detalleTransaccion">Error updating transaction detail</string>
+    <string name="DetalleTransaccionEliminar_titulo">Delete transaction detail</string>
+    <string name="DetalleTransaccionEliminar_hint_id">Detail ID</string>
+    <string name="DetalleTransaccionEliminar_btn_eliminar">Delete</string>
+    <string name="dialog_msg_detalleTransaccion_eliminado">Transaction detail deleted</string>
+    <string name="dialog_msg_error_eliminar_detalleTransaccion">Error deleting transaction detail</string>
 
 
     <string name="agregar_ubicacion">Add Location</string>
@@ -249,5 +329,132 @@
     <string name="registro_de_articulo">Item Registration</string>
 
 
-</resources>
 
+
+    <!-->GD21001<!-->
+    <string-array name="menu_items_GD21001">
+        <item>Department Table</item>
+        <item>Municipality Table</item>
+        <item>District Table</item>
+        <item>Brand Table</item>
+        <item>Laboratory Table</item>
+        <item>Fill Database Tables</item>
+    </string-array>
+
+    <string-array name="menu_items_Transaccion">
+        <item>Insert Transaction</item>
+        <item>Update Transaction</item>
+        <item>Consult Transaction</item>
+        <item>Delete Transaction</item>
+    </string-array>
+
+    <string-array name="menu_items_Departamento">
+        <item>Insert Department</item>
+        <item>Update Department</item>
+        <item>Consult Department</item>
+        <item>Delete Department</item>
+    </string-array>
+
+    <string-array name="menu_items_Municipio">
+        <item>Insert Municipality</item>
+        <item>Update Municipality</item>
+        <item>Consult Municipality</item>
+        <item>Delete Municipality</item>
+    </string-array>
+
+    <string-array name="menu_items_Distrito">
+        <item>Insert District</item>
+        <item>Update District</item>
+        <item>Consult District</item>
+        <item>Delete District</item>
+    </string-array>
+
+    <string-array name="menu_items_Marca">
+        <item>Insert Brand</item>
+        <item>Update Brand</item>
+        <item>Consult Brand</item>
+        <item>Delete Brand</item>
+    </string-array>
+
+    <string-array name="menu_items_Laboratorio">
+        <item>Insert Laboratory</item>
+        <item>Update Laboratory</item>
+        <item>Consult Laboratory</item>
+        <item>Delete Laboratory</item>
+    </string-array>
+
+    <!-->Brand<!-->
+    <string name="idMarca">Brand ID</string>
+    <string name="nombreMarca">Brand Name</string>
+    <!-->Laboratory<!-->
+    <string name="idLabo">Laboratory ID</string>
+    <string name="laboratorioNombre">Laboratory Name</string>
+    <string name="laboratorioTipo">Laboratory Type</string>
+    <string name="laboratorioTelefono">Laboratory Phone</string>
+    <!-->Transaction<!-->
+    <string name="idVenta">Transaction ID</string>
+    <string name="DuiCliente">DUI</string>
+    <string name="IDUsuario">User ID</string>
+    <string name="IDLocal">Location ID</string>
+    <string name="fechaEmision">Issue Date</string>
+    <string name="totalTransaccion">Total</string>
+    <string name="tipoTransaccion">Transaction Type</string>
+
+    <!-- Department -->
+    <string name="idDepartamentoDpto">Department ID:</string>
+    <string name="nombreDpto">Department Name:</string>
+
+    <!-- Municipality -->
+    <string name="idMunicipioMun">Municipality ID:</string>
+    <string name="idDepartamentoMun">Department ID:</string>
+    <string name="nombreMun">Municipality Name:</string>
+
+    <!-- District -->
+    <string name="idDistrito">District ID:</string>
+    <string name="idMunicipioDist">Municipality ID:</string>
+    <string name="nombreDist">District Name:</string>
+
+    <!-->Buttons<!-->
+    <string name="InsertarMarca">Insert Brand</string>
+    <string name="InsertarTransaccion">Insert Transaction</string>
+    <string name="InsertarLaboratorio">Insert Laboratory</string>
+
+    <string name="ActualizarMarca">Update Brand</string>
+    <string name="ActualizarTransaccion">Update Transaction</string>
+    <string name="ActualizarLabo">Update Laboratory</string>
+
+    <string name="ConsultarMarca">Consult Brand</string>
+    <string name="ConsultarTransaccion">Consult Transaction</string>
+    <string name="ConsultarLabo">Consult Laboratory</string>
+
+    <string name="EliminarMarca">Delete Brand</string>
+    <string name="EliminarTransaccion">Delete Transaction</string>
+    <string name="EliminarLabo">Delete Laboratory</string>
+
+    <string name="InsertarDepartamento">Insert Department</string>
+    <string name="InsertarMunicipio">Insert Municipality</string>
+    <string name="InsertarDistrito">Insert District</string>
+
+    <string name="ActualizarDepartamento">Update Department</string>
+    <string name="ActualizarMunicipio">Update Municipality</string>
+    <string name="ActualizarDistrito">Update District</string>
+
+    <string name="ConsultarDepartamento">Consult Department</string>
+    <string name="ConsultarMunicipio">Consult Municipality</string>
+    <string name="ConsultarDistrito">Consult District</string>
+
+    <string name="EliminarDepartamento">Delete Department</string>
+    <string name="EliminarMunicipio">Delete Municipality</string>
+    <string name="EliminarDistrito">Delete District</string>
+
+
+    <string name="InsertarDatos">Insert</string>
+    <string name="ActualizarDatos">Update</string>
+    <string name="ConsultarDatos">Query</string>
+    <string name="EliminarDatos">Delete</string>
+    <string name="LimpiarCampos">Clear</string>
+    <string name="llenadoBD">GD21001 Tables</string>
+
+
+
+</resources>

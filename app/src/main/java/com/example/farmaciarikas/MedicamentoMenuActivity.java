@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 public class MedicamentoMenuActivity extends ListActivity  {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};

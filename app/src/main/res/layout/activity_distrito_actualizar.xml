@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+    tools:context=".DistritoActualizarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/disActu"
+            android:text="@string/ActualizarDistrito"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/disIdActu"
+            android:text="@string/idDistrito"
+            />
+        <EditText
+            android:id="@+id/disIdActuEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/munDisiIdActu"
+            android:text="@string/idMunicipioDist"
+            />
+        <EditText
+            android:id="@+id/munDisiIdActuEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/disConsActuBtn"
+            android:onClick="consActuDis"
+            android:text="@string/ConsultarDatos" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/disNomActu"
+            android:text="@string/nombreDist"
+            />
+        <EditText
+            android:id="@+id/disNomActuEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:id="@+id/disActuBtn"
+            android:onClick="actuCampos"
+            android:text="@string/ActualizarDatos"
+            />
+
+        <Button
+            android:id="@+id/disActuBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+    </TableRow>
+
+</TableLayout>
