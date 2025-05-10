@@ -45,6 +45,18 @@ public class DetalleReceta extends Model<DetalleReceta> {
         return idReceta;
     }
 
+    public String getDosis() {
+        return dosis;
+    }
+
+    public void setIdReceta(int idReceta) {
+        this.idReceta = idReceta;
+    }
+
+    public void setDosis(String dosis) {
+        this.dosis = dosis;
+    }
+
     public boolean esValido() {
         return idDetReceta > 0 && dosis != null && !dosis.trim().isEmpty();
     }
