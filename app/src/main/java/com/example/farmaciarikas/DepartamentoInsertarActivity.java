@@ -50,17 +50,25 @@ public class DepartamentoInsertarActivity extends Activity {
     }
 
     public void insertarDpto(View v){
-        String idDpto = spinnerIds.getSelectedItem().toString();
-        int id = Integer.parseInt(idDpto);
-        String nombreDpto = editNombreDpto.getText().toString();
-        String regInserts;
-        Departamento d = new Departamento();
-        d.setIdDepartamento(id);
-        d.setNombre(nombreDpto);
-        dbFarmHelper.abrir();
-        regInserts = dbFarmHelper.insertar(d);
-        dbFarmHelper.cerrar();
-        Toast.makeText(this, regInserts, Toast.LENGTH_SHORT).show();
+        try{
+            if(editNombreDpto.getText().toString().isEmpty()){
+                Toast.makeText(this, "El nombre de Departamento se esta enviando vacio, por favor completar o revisar si ya existe el ID", Toast.LENGTH_SHORT).show();
+            }else{
+                String idDpto = spinnerIds.getSelectedItem().toString();
+                int id = Integer.parseInt(idDpto);
+                String nombreDpto = editNombreDpto.getText().toString();
+                String regInserts;
+                Departamento d = new Departamento();
+                d.setIdDepartamento(id);
+                d.setNombre(nombreDpto);
+                dbFarmHelper.abrir();
+                regInserts = dbFarmHelper.insertar(d);
+                dbFarmHelper.cerrar();
+                Toast.makeText(this, regInserts, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar en Departamento", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void limpiarCampos(View v){

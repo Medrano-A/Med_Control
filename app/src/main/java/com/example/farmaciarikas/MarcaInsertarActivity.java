@@ -29,16 +29,25 @@ public class MarcaInsertarActivity extends Activity {
     }
 
     public void insertarMarca(View v) {
-        int idMarca = Integer.parseInt(editIdMarca.getText().toString());
-        String nombre = editNombre.getText().toString();
-        String regInsert;
-        Marca m = new Marca();
-        m.setIdMarca(idMarca);
-        m.setNombre(nombre);
-        dbFarmHelper.abrir();
-        regInsert = dbFarmHelper.insertar(m);
-        dbFarmHelper.cerrar();
-        Toast.makeText(this, regInsert, Toast.LENGTH_SHORT).show();
+        try{
+            if(editIdMarca.getText().toString().isEmpty() || editNombre.getText().toString().isEmpty()){
+                Toast.makeText(this, "Los campos de Marca se esta enviando vacio, por favor completar", Toast.LENGTH_SHORT).show();
+            }else{
+                int idMarca = Integer.parseInt(editIdMarca.getText().toString());
+                String nombre = editNombre.getText().toString();
+                String regInsert;
+                Marca m = new Marca();
+                m.setIdMarca(idMarca);
+                m.setNombre(nombre);
+                dbFarmHelper.abrir();
+                regInsert = dbFarmHelper.insertar(m);
+                dbFarmHelper.cerrar();
+                Toast.makeText(this, regInsert, Toast.LENGTH_SHORT).show();
+            }
+        }catch(Exception e){
+            Toast.makeText(this, "A ocurrido un error durante la ejecucion en Insertar en Marca", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     public void limpiarCampos(View v){

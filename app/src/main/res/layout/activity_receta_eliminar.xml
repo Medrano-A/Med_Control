@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".TransaccionEliminarActivity">
+    android:gravity="center_horizontal"
+    tools:context=".RecetaEliminarActivity">
 
-    <!-- Título -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eliminar Transacción"
+        android:text="@string/RecetaEliminar_titulo"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="24dp"/>
 
-    <!-- ID Transacción a eliminar -->
     <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTransaccionIdEliminar"
+            android:id="@+id/editRecetaId_eliminar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID Transacción"
+            android:hint="@string/RecetaEliminar_hint_id"
             android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Botón Eliminar -->
     <Button
-        android:id="@+id/btnTransaccionEliminarConfirmar"
-        android:layout_width="match_parent"
+        android:id="@+id/btnRecetaEliminar_confirmar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eliminar Transacción"
-        android:icon="@android:drawable/ic_menu_delete"/>
+        android:text="@string/RecetaEliminar_btn_eliminar"
+        app:icon="@android:drawable/ic_menu_delete" /> <!-- Opcional: añadir un icono -->
+
 </LinearLayout>

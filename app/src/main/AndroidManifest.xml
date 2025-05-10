@@ -13,6 +13,54 @@
         android:theme="@style/Theme.FarmaciaRikas"
         tools:targetApi="31">
         <activity
+            android:name=".PG22010Activity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleTransaccionEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleTransaccionActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleTransaccionConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleTransaccionInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DetalleTransaccionMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TransaccionMenuActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecetaEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecetaActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecetaConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecetaInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecetaMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
@@ -66,18 +114,6 @@
             android:name=".DepartamentoMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".TransaccionActualizarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TransaccionConsultarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TransaccionEliminarActivity"
-            android:exported="false" />
-        <activity
-            android:name=".TransaccionInsertarActivity"
-            android:exported="false" />
-        <activity
             android:name=".MarcaActualizarActivity"
             android:exported="false" />
         <activity
@@ -103,9 +139,6 @@
             android:exported="false" />
         <activity
             android:name=".GD21001Activity"
-            android:exported="false" />
-        <activity
-            android:name=".TransaccionMenuActivity"
             android:exported="false" />
         <activity
             android:name=".MarcaMenuActivity"
@@ -148,9 +181,6 @@
             android:exported="false" />
         <activity
             android:name=".ActualizarUbicacionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ActualizarStockActivity"
             android:exported="false" />
         <activity
             android:name=".ListarUbicacionesActivity"
@@ -256,11 +286,16 @@
             android:exported="false" />
         <activity
             android:name=".MedicamentoMenuActivity"
+
             android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

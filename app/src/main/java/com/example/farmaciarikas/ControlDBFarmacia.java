@@ -55,7 +55,7 @@ public class ControlDBFarmacia {
     };
 
     private final Context context;
-    private DatabaseHelper DBHelper;
+    public DatabaseHelper DBHelper;
     private SQLiteDatabase db;
 
 
@@ -64,9 +64,9 @@ public class ControlDBFarmacia {
         DBHelper = new DatabaseHelper(context);
     }
 
-    private static class DatabaseHelper extends SQLiteOpenHelper {
+    public static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String BASE_DATOS = "farmacia.s3db";
-        private static final int VERSION = 1;
+        private static final int VERSION = 2;
 
         public DatabaseHelper(Context context) {
             super(context, BASE_DATOS, null, VERSION);
@@ -79,6 +79,8 @@ public class ControlDBFarmacia {
                 db.execSQL("CREATE TABLE cliente (dui CHAR(10) NOT NULL PRIMARY KEY, nombre VARCHAR(30) NOT NULL, apellido VARCHAR(50) NOT NULL, telefono CHAR(8) NOT NULL, correo VARCHAR(30));");
                 db.execSQL("CREATE TABLE detalleReceta (idDetReceta INTEGER NOT NULL PRIMARY KEY, idReceta INTEGER, dosis VARCHAR(50) NOT NULL);");
                 db.execSQL("CREATE TABLE distribuidor (idDistribuidor INTEGER NOT NULL PRIMARY KEY, idMarca INTEGER, nombre VARCHAR(30) NOT NULL, telefono CHAR(8) NOT NULL, nit CHAR(10) NOT NULL, correo VARCHAR(30));");
+
+
                 /*TABLA DOCTOR*/
                 db.execSQL("CREATE TABLE doctor" +
                         "(idDoctor INTEGER NOT NULL PRIMARY KEY," +
@@ -106,7 +108,6 @@ public class ControlDBFarmacia {
                         "idLaboratorio INTEGER NOT NULL," +
                         "viaDeAdministracion VARCHAR(32)," +
                         "formaFarmaceutica VARCHAR(32));");
-
 
 
                 /*TABLA LOCAL*/
@@ -176,6 +177,46 @@ public class ControlDBFarmacia {
                         " idDistribuidor INTEGER NOT NULL," +
                         " nombreArticulo TEXT NOT NULL," +
                         " clasificacion TEXT NOT NULL)");
+                // Crear tabla RECETA
+                db.execSQL(
+                        "CREATE TABLE RECETA (" +
+                                "IDRECETA INTEGER    NOT NULL PRIMARY KEY, " +
+                                "DUI       TEXT, " +
+                                "IDDOCTOR  INTEGER    NOT NULL, " +
+                                "NOMBREPACIENTE TEXT NOT NULL, " +
+                                "FECHA     DATE       NOT NULL, " +
+                                "EDAD      INTEGER    NOT NULL, " +
+                                "OBSERVACIONES TEXT NOT NULL" +
+                                ");"
+                );
+
+                // Tabla TRANSACCION
+                db.execSQL(
+                        "CREATE TABLE TRANSACCION (" +
+                                "IDTRANSACCION INTEGER NOT NULL PRIMARY KEY, " +
+                                "DUI            CHAR(10), " +
+                                "IDUSUARIO      INTEGER, " +
+                                "ID_LOCAL       INTEGER, " +
+                                "FECHA          DATE    NOT NULL, " +
+                                "TOTAL          REAL    NOT NULL DEFAULT 0, " +
+                                "TIPO           CHAR(30) NOT NULL" +
+                                ");"
+                );
+
+                // Tabla DETALLETRANSACCION
+                db.execSQL(
+                        "CREATE TABLE DETALLETRANSACCION (" +
+                                "ID_DETALLE     INTEGER NOT NULL PRIMARY KEY, " +
+                                "IDTRANSACCION  INTEGER NOT NULL, " +
+                                "CANTIDAD       INTEGER NOT NULL, " +
+                                "SUBTOTAL       REAL    NOT NULL, " +
+                                "PRECIOUNITARIO REAL    NOT NULL" +
+                                ");"
+                );
+
+
+
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -193,7 +234,7 @@ public class ControlDBFarmacia {
     }
 
     public void cerrar() {
-        DBHelper.close();
+        // DBHelper.close();
     }
 
     public SQLiteDatabase getReadableDatabase() {
@@ -683,7 +724,7 @@ public class ControlDBFarmacia {
         lab.put("telefono", l.getTelefono());
         cont = db.insert("Laboratorio", null, lab);
         if (cont == 1 || cont == 0){
-            regInsert = "Error al insertar el registro, registro ya esta insertado, verificar informacion";
+            regInsert = "Error al insertar el registro, registro ya esta insertado, verificar informacion o si ya existe ID";
         }else{
             regInsert = regInsert + cont;
         }
@@ -794,7 +835,7 @@ public class ControlDBFarmacia {
         v.put("nombre", d.getNombre());
         cont = db.insert("Departamento", null, v);
         if(cont == -1 || cont == 0){
-            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion";
+            regInsert = "Error al insertar el registro en la base de datos, verificar la insercion o Si ya existe el ID";
         }else{
             regInsert=regInsert+cont;
         }
@@ -808,7 +849,7 @@ public class ControlDBFarmacia {
             db.update("Departamento", c, "idDepartamento = ?", id);
             return "Registro actualizado correctamente";
         }else{
-            return "Registro con Id " + d.getIdDepartamento() + "no existe";
+            return "Registro con Id " + d.getIdDepartamento() + " no existe";
         }
 
     }
@@ -867,7 +908,7 @@ public class ControlDBFarmacia {
             db.update("Municipio", cv, "idMunicipio = ? AND idDepartamento = ?", id);
             return "Registro actualizado correctamente";
         }else{
-            return "Registro no existe";
+            return "Registro con Ids: " + m.getIdMunicipio() + " " +  m.getIdDepartamento() + " no existe";
         }
     }
     public Municipio consultarMuni(int idMuni, int idDepto){
@@ -921,7 +962,7 @@ public class ControlDBFarmacia {
             db.update("Distrito", cv, "idDistrito = ? AND idMunicipio = ?", id);
             return "Registro actualizado correctamente";
         }else{
-            return "Registro no existe";
+            return "Registro con Ids: " + dis.getIdDistrito() + " " + dis.getIdMunicipio() + " No existe";
         }
     }
     public Distrito consultarDis(int idDis, int idMun){
@@ -1067,30 +1108,36 @@ public class ControlDBFarmacia {
 
     public String llenadoTablas(){
         abrir();
-        //limpiado de tablas
-        db.execSQL("DELETE FROM doctor");
-        db.execSQL("DELETE FROM elemento");
-        db.execSQL("DELETE FROM medicamento");
-        db.execSQL("DELETE FROM local");
 
-        //tabla Departamento
-        /*Campos iniciales*/
+        // Limpieza completa de tablas, incluyendo las que generan conflicto
+        db.execSQL("DELETE FROM distrito");
+        db.execSQL("DELETE FROM municipio");
+        db.execSQL("DELETE FROM departamento");
+        db.execSQL("DELETE FROM marca");
+        db.execSQL("DELETE FROM laboratorio");
+        db.execSQL("DELETE FROM doctor");
+        db.execSQL("DELETE FROM medicamento");
+        db.execSQL("DELETE FROM elemento");
+        db.execSQL("DELETE FROM ubicacion");
+        db.execSQL("DELETE FROM local");
+        db.execSQL("DELETE FROM cliente");
+        db.execSQL("DELETE FROM detalleReceta");
+        db.execSQL("DELETE FROM distribuidor");
+
+        // Departamento
         final int[] idDepartamento = {1, 2, 3, 4, 5};
         final String[] nombreDep = {"San Salvador", "La Libertad", "Santa Ana", "Chalatenango", "San Miguel"};
-        /*Insercion de datos*/
         Departamento d = new Departamento();
         for (int i = 0; i < 5; i++) {
             d.setIdDepartamento(idDepartamento[i]);
             d.setNombre(nombreDep[i]);
             insertar(d);
         }
-        /*---------------------*/
-        //tabla Municipio
-        /*Campos iniciales*/
+
+        // Municipio
         final int[] idMunicipio = {100, 200, 300, 400, 500};
         final int[] idDepartamentoMun = {1, 2, 3, 4, 5};
         final String[] nombreMun = {"Soyapango", "Santa Tecla", "Metapán", "Mejicanos", "Chirilagua"};
-        /*Insercion de datos*/
         Municipio m = new Municipio();
         for (int i = 0; i < 5; i++) {
             m.setIdMunicipio(idMunicipio[i]);
@@ -1098,13 +1145,11 @@ public class ControlDBFarmacia {
             m.setNombre(nombreMun[i]);
             insertar(m);
         }
-        /*---------------------*/
-        //tabla Distrito
-        /*Campos iniciales*/
+
+        // Distrito
         final int[] idDistrito = {1000, 2000, 3000, 4000, 5000};
         final int[] idMunicipioDistrito = {100, 200, 300, 400, 500};
         final String[] nombreDist = {"Distrito 1", "Distrito 2", "Distrito 3", "Distrito 4", "Distrito 5"};
-        /*Insercion de datos*/
         Distrito dis = new Distrito();
         for (int i = 0; i < 5; i++) {
             dis.setIdDistrito(idDistrito[i]);
@@ -1113,12 +1158,9 @@ public class ControlDBFarmacia {
             insertar(dis);
         }
 
-        /*---------------------*/
-        //tabla Marca
-        /*Campos iniciales*/
+        // Marca
         final int[] idMarca = {501, 502, 503, 504, 505};
         final String[] nombreMarca = {"Farvel", "EISI", "GUD", "Advi", "PDM"};
-        /*Insercion de datos*/
         Marca marca = new Marca();
         for (int i = 0; i < 5; i++) {
             marca.setIdMarca(idMarca[i]);
@@ -1126,17 +1168,15 @@ public class ControlDBFarmacia {
             insertar(marca);
         }
 
-
-        /*----------TABLA DOCTOR----*/
-        final int[] idDoctor = {01, 02, 03, 04, 05};
+        // Doctor
+        final int[] idDoctor = {1, 2, 3, 4, 5};
         final String[] nombreDoctor = {"Juan Lopez", "Elmer Chavez", "Gustavo Fring", "Melissa Hernandez", "Daniela Diaz"};
         final String[] especialidad = {"Cirujano", "Pediatra", "Odontologo", "Ginecologa", "Cardiologo"};
         final String[] jvpm = {"1234", "7894", "7531", "8754", "4561"};
         final String[] telefonoDoctor = {"80017029", "80017030", "80017031", "80017032", "80017033"};
         final String[] correoDoctor = {"juan@gmail.com", "elmer@gmail.com", "gustavo@gmail.com", "melissa@gamil.com", "daniela@gmail.com"};
-        /*Insercion de datos*/
         Doctor doctor = new Doctor();
-        for(int i=0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             doctor.setIdDoctor(idDoctor[i]);
             doctor.setNombreDoctor(nombreDoctor[i]);
             doctor.setEspecialidad(especialidad[i]);
@@ -1145,59 +1185,50 @@ public class ControlDBFarmacia {
             doctor.setCorreoDoctor(correoDoctor[i]);
             insertar(doctor);
         }
-/*TABLA DE LABORATORIO**/
-        final int[] idLaboratorio = {01, 02, 03, 04, 05};
+
+        // Laboratorio
+        final int[] idLaboratorio = {1, 2, 3, 4, 5};
         final String[] nombre = {"Laboratorio Pfizer", "Laboratorio SanSavior", "Laboratorio Quesadillas", "LabComputo", "Laboratorio Bukeli"};
         final String[] tipo = {"Química", "Quimica", "Biología", "Clinico", "Medrano"};
         final String[] telefono = {"70017029", "70017030", "70017031", "70017032", "70017033"};
-        /*Insercion de datos*/
         Laboratorio l = new Laboratorio();
-        for(int i=0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             l.setIdLaboratorio(idLaboratorio[i]);
             l.setNombre(nombre[i]);
             l.setTipo(tipo[i]);
             l.setTelefono(telefono[i]);
             insertar(l);
         }
-        /*---TABLA ELEMENTO*/
 
+        // Elemento y Medicamento
         final int[] idElemento = {1, 2, 3, 4, 5};
         final String[] nombreElemento = {"Paracetamol", "Aspirina", "Cefalexina", "Clonazepam", "Alca D"};
-        final int[] cantidad = {4,10,5,20,25};
-        final String[] descripción = {"Se utiliza para aliviar dolores leves a moderados (como dolor de cabeza," +
-                " dental o muscular)", "se usa para dolores leves, fiebre e inflamaciones,", "se utiliza para" +
-                " tratar infecciones bacterianas como las de piel, vías urinarias, respiratorias y de tejidos blandos",
-                "Se usa para tratar trastornos de ansiedad, epilepsia y, en algunos casos, insomnio severo.",
-                "es efectivo para el tratamiento de los síntomas de la diarrea y alivia generalmente con una sola dosis"};
-        final Double[] precioUnitario = {12.50,15.20,5.60,40.30,50.00};
-        final String[] Unidad = {"Blísteres", "Caja", "Cápsulas", "Ampollas", "Frascos"};
-        /*TABLA MEDICAMENTO*/
-        final String[] idMedicamento = {"A1","A2", "A3", "A4", "A5"};
-        final String[] viaDeAdministracion = {"Oral", "Vía Sublingual", "Rectal", "Intravenosa", "Intramuscular"};
-        final String[] formaFarmaceutica={"Solida","Liquida","Solida","Liquida","Semisolida"};
+        final int[] cantidad = {4, 10, 5, 20, 25};
+        final String[] descripcion = {"Para dolores leves a moderados", "Para dolores y fiebre", "Para infecciones bacterianas", "Trastornos de ansiedad y epilepsia", "Alivio de diarrea"};
+        final Double[] precioUnitario = {12.50, 15.20, 5.60, 40.30, 50.00};
+        final String[] unidad = {"Blísteres", "Caja", "Cápsulas", "Ampollas", "Frascos"};
+        final String[] idMedicamento = {"A1", "A2", "A3", "A4", "A5"};
+        final String[] viaAdmin = {"Oral", "Sublingual", "Rectal", "Intravenosa", "Intramuscular"};
+        final String[] forma = {"Solida", "Liquida", "Solida", "Liquida", "Semisolida"};
 
-        /*Insercion de datos de Medicamento*/
         Medicamento medicamento = new Medicamento();
-        for(int i=0; i < 5; i++){
+        for (int i = 0; i < 5; i++) {
             medicamento.setCodElemento(idElemento[i]);
             medicamento.setIdMedicamento(idMedicamento[i]);
             medicamento.setNombre(nombreElemento[i]);
             medicamento.setCantidad(cantidad[i]);
-            medicamento.setDescripcion(descripción[i]);
+            medicamento.setDescripcion(descripcion[i]);
             medicamento.setPrecioUni(precioUnitario[i]);
-            medicamento.setUnidades(Unidad[i]);
-            medicamento.setIdLaboratorio((idLaboratorio[i]));
-            medicamento.setViaDeAdministracion(viaDeAdministracion[i]);
-            medicamento.setFormaFarmaceutica(formaFarmaceutica[i]);
+            medicamento.setUnidades(unidad[i]);
+            medicamento.setIdLaboratorio(idLaboratorio[i]);
+            medicamento.setViaDeAdministracion(viaAdmin[i]);
+            medicamento.setFormaFarmaceutica(forma[i]);
             insertar(medicamento);
         }
 
-        /*TABLA UBICACION*/
-
+        // Ubicacion
         final int[] idUbicacion = {1, 2, 3, 4, 5};
         final String[] descripcionUbi = {"Distrito 1, Soyapango, San Salvador", "Distrito 2, Santa Tecla, La Libertad", "Distrito 3, Metapán, Santa Ana", "Distrito 4, Mejicanos, Chalatenango", "Distrito 5, Chirilagua, San Miguel"};
-
-        /*Insercion de datos*/
         Ubicacion ubicacion = new Ubicacion();
         for (int i = 0; i < 5; i++) {
             ubicacion.setIdUbicacion(idUbicacion[i]);
@@ -1206,13 +1237,12 @@ public class ControlDBFarmacia {
             ubicacion.setIdDistrito(idDistrito[i]);
             insertar(ubicacion);
         }
-        /*TABLA LOCAL*/
 
+        // Local
         final int[] idLocal = {1, 2, 3, 4, 5};
-        final String[] nombreLocal = {"Local A, Planta Baja", "Local B, Segunda Planta", "Sucursal San Benito", "Farmacia Plaza Futura, Nivel Corporativo", "Sucursal Plaza Mayor, Nivel 2"};
-        final String[] tipoLocal={"Local","Local","Sucursal","Farmacia","Sucursal"};
+        final String[] nombreLocal = {"Local A, Planta Baja", "Local B, Segunda Planta", "Sucursal San Benito", "Farmacia Plaza Futura", "Sucursal Plaza Mayor"};
+        final String[] tipoLocal = {"Local", "Local", "Sucursal", "Farmacia", "Sucursal"};
         final String[] telefonoLocal = {"70017029", "70017030", "70017031", "70017032", "70017033"};
-        /*Insercion de datos*/
         Local local = new Local();
         for (int i = 0; i < 5; i++) {
             local.setIdUbicacion(idUbicacion[i]);
@@ -1223,9 +1253,56 @@ public class ControlDBFarmacia {
             insertar(local);
         }
 
+        // Cliente
+        final String[] duiCliente = {"0123456789", "1234567890", "2345678901", "3456789012", "4567890123"};
+        final String[] nombreCliente = {"Carlos", "Andrea", "Luis", "Sofia", "Pedro"};
+        final String[] apellidoCliente = {"Martinez", "Lopez", "Gomez", "Hernandez", "Diaz"};
+        final String[] telefonoCliente = {"70112233", "70223344", "70334455", "70445566", "70556677"};
+        final String[] correoCliente = {"carlos@mail.com", "andrea@mail.com", "luis@mail.com", "sofia@mail.com", "pedro@mail.com"};
+        Cliente cliente = new Cliente();
+        for (int i = 0; i < 5; i++) {
+            cliente.setDui(duiCliente[i]);
+            cliente.setNombre(nombreCliente[i]);
+            cliente.setApellido(apellidoCliente[i]);
+            cliente.setTelefono(telefonoCliente[i]);
+            cliente.setCorreo(correoCliente[i]);
+            insertarCliente(cliente);
+        }
+
+        // DetalleReceta
+        final int[] idDetReceta = {1, 2, 3, 4, 5};
+        final int[] idReceta = {10, 20, 30, 40, 50};
+        final String[] dosis = {"1 cada 8 horas", "2 diarias", "1 antes de dormir", "Cada 6 horas", "1 diaria"};
+        DetalleReceta detalleReceta = new DetalleReceta();
+        for (int i = 0; i < 5; i++) {
+            detalleReceta.setIdDetReceta(idDetReceta[i]);
+            detalleReceta.setIdDetReceta(idReceta[i]);
+            detalleReceta.setDosis(dosis[i]);
+            insertarDetalleReceta(detalleReceta);
+        }
+
+        // Distribuidor
+        final int[] idDistribuidor = {101, 102, 103, 104, 105};
+        final int[] idMarcaDistribuidor = {501, 502, 503, 504, 505};
+        final String[] nombreDistribuidor = {"Droguería San Jose", "Distribuidora EISI", "Medical Supply", "Global Farma", "Distribuciones PDM"};
+        final String[] telefonoDistribuidor = {"71112233", "72223344", "73334455", "74445566", "75556677"};
+        final String[] nitDistribuidor = {"1234567890", "2345678901", "3456789012", "4567890123", "5678901234"};
+        final String[] correoDistribuidor = {"sanjo@mail.com", "eisi@mail.com", "medsup@mail.com", "gfarma@mail.com", "pdm@mail.com"};
+        Distribuidor distribuidor = new Distribuidor();
+        for (int i = 0; i < 5; i++) {
+            distribuidor.setIdDistribuidor(idDistribuidor[i]);
+            distribuidor.setIdMarca(idMarcaDistribuidor[i]);
+            distribuidor.setNombre(nombreDistribuidor[i]);
+            distribuidor.setTelefono(telefonoDistribuidor[i]);
+            distribuidor.setNit(nitDistribuidor[i]);
+            distribuidor.setCorreo(correoDistribuidor[i]);
+            insertarDistribuidor(distribuidor);
+        }
+
         cerrar();
         return context.getResources().getString(R.string.llenadoBD);
     }
+
 
 
     //Fin GD21001/////////////
@@ -1290,9 +1367,11 @@ public class ControlDBFarmacia {
         try {
             long resultado = db.insert("cliente", null, values);
             Log.d("DB", "Resultado insert: " + resultado);
+
             return resultado != -1;
         } catch (Exception e) {
             Log.e("DB", "Error insertando cliente", e);
+
             return false;
         }
     }
@@ -1367,6 +1446,7 @@ public class ControlDBFarmacia {
                     new String[]{cliente.getDui()} // argumentos WHERE
             );
             Log.d("DB", "Filas actualizadas: " + filasAfectadas);
+
         } catch (Exception e) {
             Log.e("DB", "Error actualizando cliente", e);
         }
@@ -1385,6 +1465,7 @@ public class ControlDBFarmacia {
             values.put("dosis", detalle.getDosis());
 
             long resultado = db.insert("detalleReceta", null, values);
+
             return resultado != -1;
         } catch (Exception e) {
             Log.e("DB", "Error insertando detalle receta", e);
@@ -1396,6 +1477,7 @@ public class ControlDBFarmacia {
         try {
             db = DBHelper.getWritableDatabase();
             int filasAfectadas = db.delete("detalleReceta", "idDetReceta = ?", new String[]{String.valueOf(idDetReceta)});
+
             return filasAfectadas > 0;
         } catch (Exception e) {
             Log.e("DB", "Error eliminando detalle receta", e);
@@ -1423,6 +1505,7 @@ public class ControlDBFarmacia {
             Log.e("DB", "Error consultando detalle receta", e);
         } finally {
             if (cursor != null) cursor.close();
+
         }
 
         return detalle;
@@ -1439,9 +1522,11 @@ public class ControlDBFarmacia {
             String[] whereArgs = {String.valueOf(detalle.getIdDetReceta())};
 
             int filasAfectadas = db.update("detalleReceta", values, whereClause, whereArgs);
+
             return filasAfectadas > 0;
         } catch (Exception e) {
             Log.e("DB", "Error actualizando detalle receta", e);
+
             return false;
         }
     }
@@ -1460,7 +1545,11 @@ public class ControlDBFarmacia {
 
         long resultado = -1;
         try {
-            resultado = db.insert("distribuidor", null, valores);
+            boolean verificar = verificarMarca(distribuidor.getIdMarca());
+            if(verificar){
+                resultado = db.insert("distribuidor", null, valores);
+            }
+
         } catch (Exception e) {
             Log.e("DB", "Error insertando distribuidor", e);
         }
@@ -1468,15 +1557,47 @@ public class ControlDBFarmacia {
         return resultado != -1;
     }
 
+    public boolean verificarMarca(int idMarca) {
+        db = this.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            cursor = db.rawQuery("SELECT 1 FROM marca WHERE idMarca = ?", new String[]{String.valueOf(idMarca)});
+            return cursor.moveToFirst(); // Retorna true si encontró al menos una coincidencia
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+
+        }
+    }
+
     public boolean eliminarDistribuidor(int idDistribuidor) {
         db = DBHelper.getWritableDatabase();
         int resultado = 0;
         try {
-            resultado = db.delete("distribuidor", "idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
+            boolean eliminado = eliminarDistribuidorArticulo(idDistribuidor);
+            if(eliminado){
+                resultado = db.delete("distribuidor", "idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return resultado > 0;
+    }
+
+    private boolean eliminarDistribuidorArticulo(int idDistribuidor){
+        db = DBHelper.getWritableDatabase();
+        int resultado = 0;
+        try{
+            resultado = db.delete("articulo","idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
+        }
+        catch (Exception e){
+            return false;
+        }
+
+        return resultado > 0;
+
     }
 
     public Distribuidor consultarDistribuidor(int idDistribuidor) {
@@ -1499,7 +1620,7 @@ public class ControlDBFarmacia {
             e.printStackTrace();
         } finally {
             if (cursor != null) cursor.close();
-            db.close();
+
         }
 
         return distribuidor;
@@ -1509,6 +1630,7 @@ public class ControlDBFarmacia {
         SQLiteDatabase db = null;
         try {
             db = DBHelper.getWritableDatabase();
+            int filasAfectadas = 0;
             ContentValues values = new ContentValues();
 
             values.put("idMarca", distribuidor.getIdMarca());
@@ -1517,12 +1639,15 @@ public class ControlDBFarmacia {
             values.put("nit", distribuidor.getNit());
             values.put("correo", distribuidor.getCorreo());
 
-            int filasAfectadas = db.update(
+            boolean verificar = verificarMarca(distribuidor.getIdMarca());
+            if(verificar){
+            filasAfectadas = db.update(
                     "distribuidor",
                     values,
                     "idDistribuidor = ?",
                     new String[]{String.valueOf(distribuidor.getIdDistribuidor())}
-            );
+            );}
+
 
             return filasAfectadas > 0;
         } catch (Exception e) {
