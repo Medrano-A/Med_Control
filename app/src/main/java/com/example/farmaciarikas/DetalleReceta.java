@@ -14,20 +14,7 @@ public class DetalleReceta extends Model<DetalleReceta> {
     // — Campos originales
     private int    idDetReceta;
     private int    idReceta;
-
-    public void setIdReceta(int idReceta) {
-        this.idReceta = idReceta;
-    }
-
     private String dosis;
-
-    public void setDosis(String dosis) {
-        this.dosis = dosis;
-    }
-
-    public String getDosis() {
-        return dosis;
-    }
 
     // — Metadatos para el mini-ORM
     public static final String TABLE    = "detalleReceta";
