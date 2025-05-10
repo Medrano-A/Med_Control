@@ -446,7 +446,7 @@ public class ControlDBFarmacia {
     public String actualizar(Doctor doctor) {
 
         try {
-            if (verificarInteverificarIntegridad(doctor, 5)) {
+            if (verificarIntegridad(doctor, 5)) {
                 String[] id = {String.valueOf(doctor.getIdDoctor())};
                 ContentValues cv = new ContentValues();
                 cv.put("nombreDoctor", doctor.getNombreDoctor());
@@ -725,7 +725,7 @@ public class ControlDBFarmacia {
         lab.put("tipo", l.getTipo());
         lab.put("telefono", l.getTelefono());
         cont = db.insert("Laboratorio", null, lab);
-        if (cont == 1 || cont == 0){
+        if (cont == -1 || cont == 0){
             regInsert = "Error al insertar el registro, registro ya esta insertado, verificar informacion o si ya existe ID";
         }else{
             regInsert = regInsert + cont;

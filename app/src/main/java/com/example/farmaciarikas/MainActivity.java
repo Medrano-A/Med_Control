@@ -10,8 +10,7 @@ import android.widget.Toast;
 
 public class MainActivity extends ListActivity  {
     String[] menu={"Menu GA21090","Menu MM21030","Menu MM22108","Menu GD21001", "Menu PG22010"};
-            String[]
-    activities={"GA21090Activity","MM21030Activity","MM22108Activity","GD21001Activity","PG22010Activity"};
+    String[] activities={"GA21090Activity","MM21030Activity","MM22108Activity","GD21001Activity","PG22010Activity"};
     ControlDBFarmacia helper;
 
     @Override
@@ -32,7 +31,7 @@ public class MainActivity extends ListActivity  {
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
-        if(position!=4){
+        if(position!=5){
             String nombreValue=activities[position];
             try{
                 Class<?>

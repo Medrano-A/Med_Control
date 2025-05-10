@@ -23,7 +23,7 @@
     <TableRow>
         <TextView
             android:id="@+id/marcaIdInsertar"
-            android:text="@string/idLabo"
+            android:text="@string/idMarca"
             />
         <EditText
             android:id="@+id/marcaIdInsertarEdit"
