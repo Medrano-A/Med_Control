@@ -723,7 +723,7 @@ public class ControlDBFarmacia {
         lab.put("tipo", l.getTipo());
         lab.put("telefono", l.getTelefono());
         cont = db.insert("Laboratorio", null, lab);
-        if (cont == 1 || cont == 0){
+        if (cont == -1 || cont == 0){
             regInsert = "Error al insertar el registro, registro ya esta insertado, verificar informacion o si ya existe ID";
         }else{
             regInsert = regInsert + cont;
