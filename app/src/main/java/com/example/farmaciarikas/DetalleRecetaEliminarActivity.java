@@ -47,7 +47,7 @@ public class DetalleRecetaEliminarActivity extends AppCompatActivity {
         boolean eliminado = dbFarmacia.eliminarDetalleReceta(id);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getString(R.string.dialog_title_info_eliminar));
+        builder.setTitle(getString(R.string.EliminarDetalleReceta_titulo));
 
         if (eliminado) {
             builder.setMessage(getString(R.string.dialog_msg_detalleReceta_eliminado));

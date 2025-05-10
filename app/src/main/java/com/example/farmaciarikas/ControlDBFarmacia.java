@@ -1276,7 +1276,7 @@ public class ControlDBFarmacia {
         DetalleReceta detalleReceta = new DetalleReceta();
         for (int i = 0; i < 5; i++) {
             detalleReceta.setIdDetReceta(idDetReceta[i]);
-            detalleReceta.setIdDetReceta(idReceta[i]);
+            detalleReceta.setIdReceta(idReceta[i]);
             detalleReceta.setDosis(dosis[i]);
             insertarDetalleReceta(detalleReceta);
         }
@@ -1465,11 +1465,12 @@ public class ControlDBFarmacia {
             values.put("dosis", detalle.getDosis());
 
             long resultado = db.insert("detalleReceta", null, values);
-
+            db.close();
             return resultado != -1;
         } catch (Exception e) {
             Log.e("DB", "Error insertando detalle receta", e);
             return false;
+
         }
     }
 
@@ -1477,7 +1478,7 @@ public class ControlDBFarmacia {
         try {
             db = DBHelper.getWritableDatabase();
             int filasAfectadas = db.delete("detalleReceta", "idDetReceta = ?", new String[]{String.valueOf(idDetReceta)});
-
+            db.close();
             return filasAfectadas > 0;
         } catch (Exception e) {
             Log.e("DB", "Error eliminando detalle receta", e);
@@ -1522,7 +1523,7 @@ public class ControlDBFarmacia {
             String[] whereArgs = {String.valueOf(detalle.getIdDetReceta())};
 
             int filasAfectadas = db.update("detalleReceta", values, whereClause, whereArgs);
-
+            db.close();
             return filasAfectadas > 0;
         } catch (Exception e) {
             Log.e("DB", "Error actualizando detalle receta", e);
@@ -1575,10 +1576,9 @@ public class ControlDBFarmacia {
         db = DBHelper.getWritableDatabase();
         int resultado = 0;
         try {
-            boolean eliminado = eliminarDistribuidorArticulo(idDistribuidor);
-            if(eliminado){
-                resultado = db.delete("distribuidor", "idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
-            }
+            eliminarDistribuidorArticulo(idDistribuidor);
+            resultado = db.delete("distribuidor", "idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -1586,17 +1586,14 @@ public class ControlDBFarmacia {
         return resultado > 0;
     }
 
-    private boolean eliminarDistribuidorArticulo(int idDistribuidor){
+    private void eliminarDistribuidorArticulo(int idDistribuidor){
         db = DBHelper.getWritableDatabase();
-        int resultado = 0;
         try{
-            resultado = db.delete("articulo","idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
+            db.delete("articulo","idDistribuidor = ?", new String[]{String.valueOf(idDistribuidor)});
         }
         catch (Exception e){
-            return false;
+            Log.e("DB", "Error al eliminar Distribudior");
         }
-
-        return resultado > 0;
 
     }
 
