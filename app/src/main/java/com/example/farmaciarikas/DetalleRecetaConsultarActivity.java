@@ -44,7 +44,7 @@ public class DetalleRecetaConsultarActivity extends AppCompatActivity {
                 DetalleReceta detalle = dbFarmacia.consultarDetalleReceta(idDetReceta);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetalleRecetaConsultarActivity.this);
-                builder.setTitle(getString(R.string.dialog_title_info_consultar));
+                builder.setTitle(getString(R.string.ConsultarDetalleReceta_titulo));
 
                 if (detalle != null) {
                     editTextIdReceta.setText(String.valueOf(detalle.getIdReceta()));

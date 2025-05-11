@@ -53,7 +53,7 @@ public class DetalleRecetaInsertarActivity extends AppCompatActivity {
                 }
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(DetalleRecetaInsertarActivity.this);
-                builder.setTitle(getString(R.string.dialog_title_info_ingreso));
+                builder.setTitle(getString(R.string.InsertarDetalleReceta_titulo));
 
                 boolean insertado = dbFarmacia.insertarDetalleReceta(detalle);
                 if (insertado) {
