@@ -46,7 +46,7 @@ public class MainActivity extends ListActivity  {
 
             if (isButtonDisabled) {
                 // Notificar al usuario que el botón ya está deshabilitado
-                Toast.makeText(this, "El llenado de base de datos ya se realizó anteriormente.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "El llenado de base de datos ya se realizó .", Toast.LENGTH_SHORT).show();
             } else {
                 // Llenar la base de datos
                 helper = new ControlDBFarmacia(this);
