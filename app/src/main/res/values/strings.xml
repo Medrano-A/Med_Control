@@ -33,7 +33,7 @@
     <string name="unidad">Unidad</string>
     <string name="codLaboratorio">Codigo Laboratorio</string>
     <string name="viaAdministracion">Via de administracion</string>
-    <string name="formaFarmaceutica">Forma <Farmaceut></Farmaceut>ica</string>
+    <string name="formaFarmaceutica">Forma Farmaceutica</string>
 
     <string name="idLaboratorio">Codigo laboratorio</string>
     <string name="insertar">Insertar</string>
