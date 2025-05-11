@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Insertar Transacción"
+            android:text="Insertar Nueva Transacción"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="16dp" />
@@ -33,7 +33,7 @@
                 android:id="@+id/editTransaccionId"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ID Transacción"
+                android:hint="ID Transacción (obligatorio)"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,7 +48,7 @@
                 android:id="@+id/editTransaccionDui"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="DUI Cliente"
+                android:hint="DUI Cliente (opcional)"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -63,8 +63,8 @@
                 android:id="@+id/editTransaccionIdUsuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ID Usuario"
-                android:inputType="number" />
+                android:hint="ID Usuario (opcional)"
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- ID Local -->
@@ -78,7 +78,7 @@
                 android:id="@+id/editTransaccionIdLocal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ID Local"
+                android:hint="ID Local (opcional)"
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -93,7 +93,7 @@
                 android:id="@+id/editTransaccionFecha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha (YYYY-MM-DD)"
+                android:hint="Fecha (YYYY-MM-DD, obligatorio)"
                 android:inputType="date"
                 android:focusable="false" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -109,7 +109,7 @@
                 android:id="@+id/editTransaccionTipo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Tipo de Transacción"
+                android:hint="Tipo de Transacción (obligatorio)"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +126,7 @@
             android:id="@+id/btnTransaccionAnadirDetalles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Añadir Detalles"
+            android:text="Añadir/Gestionar Detalles"
             android:visibility="gone" />
 
     </LinearLayout>

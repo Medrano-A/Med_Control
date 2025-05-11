@@ -9,7 +9,7 @@ import java.util.List;
 public class Receta extends Model<Receta> {
     // Campos originales
     private int idReceta;
-    private String dui;
+    private String dui; // DUI del Cliente
     private int idDoctor; // Este es el ID del Doctor
     private String nombrePaciente;
     private String fecha;        // yyyy-MM-dd
@@ -76,33 +76,60 @@ public class Receta extends Model<Receta> {
     // Método privado para verificar si un Doctor existe en la tabla 'doctor'
     private boolean doctorExists(int doctorId) {
         if (dbHelper == null) {
-            // Esto no debería pasar si Model.init() se llamó correctamente
             throw new IllegalStateException("Model.dbHelper no ha sido inicializado. Llama a Model.init() primero.");
         }
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = null;
         try {
-            // Consulta directa a la tabla 'doctor'
-            // Asegúrate que "doctor" sea el nombre correcto de la tabla y "idDoctor" el de la columna PK
-            cursor = db.query("doctor", /* tabla */
-                    new String[]{"idDoctor"},       /* columnas a retornar (solo necesitamos saber si existe) */
-                    "idDoctor = ?",                 /* selección */
-                    new String[]{String.valueOf(doctorId)}, /* argumentos de selección */
-                    null,                           /* groupBy */
-                    null,                           /* having */
-                    null);                          /* orderBy */
-            return cursor.moveToFirst(); // True si el cursor tiene al menos una fila (el doctor existe)
+            cursor = db.query("doctor",
+                    new String[]{"idDoctor"},
+                    "idDoctor = ?",
+                    new String[]{String.valueOf(doctorId)},
+                    null, null, null);
+            return cursor.moveToFirst();
         } catch (Exception e) {
-            // Loguear el error si es necesario
-            // e.printStackTrace();
-            return false; // Asumir que no existe en caso de error para ser conservador
+            // e.printStackTrace(); // Opcional: loguear error
+            return false;
         } finally {
             if (cursor != null) {
                 cursor.close();
             }
-            // No cierres 'db' aquí, SQLiteOpenHelper gestiona su ciclo de vida.
         }
     }
+
+    // Método privado para verificar si un Cliente existe en la tabla 'cliente'
+    private boolean clienteExists(String duiCliente) {
+        if (dbHelper == null) {
+            throw new IllegalStateException("Model.dbHelper no ha sido inicializado. Llama a Model.init() primero.");
+        }
+        // Si el DUI es nulo o vacío, no se realiza la verificación (asumiendo que el DUI es opcional en la receta)
+        // La tabla RECETA tiene DUI TEXT, lo que permite NULL.
+        if (duiCliente == null || duiCliente.trim().isEmpty()) {
+            return true; // Se considera válido si no se proporciona DUI
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        Cursor cursor = null;
+        try {
+            // Consulta directa a la tabla 'cliente'
+            // El nombre de la tabla es 'cliente' y la columna PK es 'dui'
+            cursor = db.query("cliente",                 /* tabla */
+                    new String[]{"dui"},            /* columnas a retornar */
+                    "dui = ?",                      /* selección */
+                    new String[]{duiCliente},       /* argumentos de selección */
+                    null,                           /* groupBy */
+                    null,                           /* having */
+                    null);                          /* orderBy */
+            return cursor.moveToFirst(); // True si el cursor tiene al menos una fila (el cliente existe)
+        } catch (Exception e) {
+            // e.printStackTrace(); // Opcional: loguear error
+            return false; // Asumir que no existe en caso de error
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
 
     @Override
     public boolean exists() {
@@ -122,14 +149,14 @@ public class Receta extends Model<Receta> {
         if (exists()) {
             throw new SQLException("Receta ya existe: " + idReceta);
         }
-        // Validar existencia de Doctor manualmente
+        // Validar existencia de Doctor
         if (!doctorExists(this.idDoctor)) {
             throw new SQLException("Doctor inexistente: " + this.idDoctor + ". No se puede crear la receta.");
         }
-        // También podrías querer validar DUI (Cliente) aquí si fuera necesario y no está cubierto por FK
-        // if (!clienteExists(this.dui)) {
-        //     throw new SQLException("Cliente con DUI inexistente: " + this.dui);
-        // }
+        // Validar existencia de Cliente (si se proporciona DUI)
+        if (!clienteExists(this.dui)) { // clienteExists maneja internamente DUI nulo/vacío
+            throw new SQLException("Cliente con DUI " + this.dui + " inexistente. No se puede crear la receta.");
+        }
 
         return dbHelper.getWritableDatabase()
                 .insertOrThrow(TABLE, null, valores);
@@ -145,10 +172,10 @@ public class Receta extends Model<Receta> {
         if (!doctorExists(this.idDoctor)) {
             throw new SQLException("Doctor inexistente: " + this.idDoctor + ". No se puede actualizar la receta.");
         }
-        // Similar para DUI si aplica
-        // if (!clienteExists(this.dui)) {
-        //     throw new SQLException("Cliente con DUI inexistente: " + this.dui);
-        // }
+        // Validar que el nuevo DUI (si se cambió y no es nulo/vacío) exista
+        if (!clienteExists(this.dui)) { // clienteExists maneja internamente DUI nulo/vacío
+            throw new SQLException("Cliente con DUI " + this.dui + " inexistente. No se puede actualizar la receta.");
+        }
 
         return dbHelper.getWritableDatabase()
                 .update(TABLE, valores,
@@ -160,11 +187,8 @@ public class Receta extends Model<Receta> {
     public long delete() throws SQLException {
         if (dbHelper == null) throw new IllegalStateException("Model.dbHelper no inicializado.");
         if (!exists()) {
-            // Opcional: podrías no lanzar excepción si no existe y simplemente retornar 0
             throw new SQLException("No existe Receta con ID " + idReceta + " para eliminar.");
         }
-        // No borrar si hay detalles vinculados
-        // DetalleReceta.countByReceta usa Model.dbHelper, así que está bien
         if (DetalleReceta.countByReceta(idReceta) > 0) {
             throw new SQLException(
                     "No se puede eliminar Receta con ID " + idReceta + " porque tiene detalles asociados."
@@ -200,7 +224,6 @@ public class Receta extends Model<Receta> {
     }
 
     private static Receta modelFromCursor(Cursor c) {
-        // Este método no necesita dbHelper porque solo procesa un Cursor ya existente
         return new Receta(
                 c.getInt   (c.getColumnIndexOrThrow(FIELDS[0])), // IDRECETA
                 c.getString(c.getColumnIndexOrThrow(FIELDS[1])), // DUI

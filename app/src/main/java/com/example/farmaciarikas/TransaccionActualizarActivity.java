@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.view.View; // Import for View.VISIBLE/GONE
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -97,15 +98,21 @@ public class TransaccionActualizarActivity extends AppCompatActivity {
                 Toast.makeText(this,
                         "No se encontró Transacción con ID " + id,
                         Toast.LENGTH_SHORT).show();
+                layoutDatos.setVisibility(View.GONE);
+                btnGestionarDetalles.setVisibility(View.GONE);
+                currentTransaccion = null;
                 return;
             }
 
             currentTransaccion = t;
-            layoutDatos.setVisibility(LinearLayout.VISIBLE);
+            layoutDatos.setVisibility(View.VISIBLE);
+            btnConfirmar.setEnabled(true); // Habilitar botón de confirmar al encontrar
+            btnGestionarDetalles.setVisibility(View.VISIBLE);
 
-            editDui.setText(t.getDui());
-            editIdUsuario.setText(String.valueOf(t.getIdUsuario()));
-            editIdLocal.setText(String.valueOf(t.getIdLocal()));
+
+            editDui.setText(t.getDui() != null ? t.getDui() : "");
+            editIdUsuario.setText(t.getIdUsuario() != null ? t.getIdUsuario() : ""); // idUsuario es String
+            editIdLocal.setText(t.getIdLocal() != null ? String.valueOf(t.getIdLocal()) : ""); // idLocal es Integer
             editFecha.setText(t.getFecha());
             editTipo.setText(t.getTipo());
 
@@ -128,18 +135,29 @@ public class TransaccionActualizarActivity extends AppCompatActivity {
         String fechaStr   = editFecha.getText().toString().trim();
         String tipoStr    = editTipo.getText().toString().trim();
 
-        if (duiStr.isEmpty() || usrStr.isEmpty()
-                || locStr.isEmpty() || fechaStr.isEmpty() || tipoStr.isEmpty()) {
+        // Validar campos que sí son estrictamente obligatorios
+        if (fechaStr.isEmpty() || tipoStr.isEmpty()) {
             Toast.makeText(this,
-                    "Todos los campos deben estar completos.",
+                    "La Fecha y el Tipo de transacción son obligatorios.",
                     Toast.LENGTH_SHORT).show();
             return;
         }
 
         try {
-            currentTransaccion.setDui(duiStr);
-            currentTransaccion.setIdUsuario(Integer.parseInt(usrStr));
-            currentTransaccion.setIdLocal(Integer.parseInt(locStr));
+            currentTransaccion.setDui(duiStr.isEmpty() ? null : duiStr);
+            currentTransaccion.setIdUsuario(usrStr.isEmpty() ? null : usrStr); // idUsuario es String
+
+            Integer idLocalVal = null;
+            if (!locStr.isEmpty()) {
+                try {
+                    idLocalVal = Integer.parseInt(locStr);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "ID Local debe ser un número válido o estar vacío.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+            currentTransaccion.setIdLocal(idLocalVal); // idLocal es Integer
+
             currentTransaccion.setFecha(fechaStr);
             currentTransaccion.setTipo(tipoStr);
 
@@ -148,21 +166,27 @@ public class TransaccionActualizarActivity extends AppCompatActivity {
                     "Transacción actualizada correctamente.",
                     Toast.LENGTH_LONG).show();
 
-            btnConfirmar.setEnabled(false);
-            btnGestionarDetalles.setVisibility(Button.VISIBLE);
+            // Opcional: deshabilitar botón de confirmar para evitar doble actualización
+            // btnConfirmar.setEnabled(false);
+            // btnGestionarDetalles.setVisibility(Button.VISIBLE); // Ya debería ser visible
 
-        } catch (NumberFormatException e) {
-            Toast.makeText(this,
-                    "ID Usuario o ID Local inválido.",
-                    Toast.LENGTH_SHORT).show();
         } catch (android.database.SQLException e) {
             Toast.makeText(this,
                     "Error al actualizar: " + e.getMessage(),
                     Toast.LENGTH_LONG).show();
+        } catch (Exception e) { // Captura general para otros errores inesperados
+            Toast.makeText(this,
+                    "Error inesperado al actualizar: " + e.getMessage(),
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
         }
     }
 
     private void abrirDetalles() {
+        if (currentTransaccion == null) {
+            Toast.makeText(this, "Primero busque una transacción.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         Intent i = new Intent(this, DetalleTransaccionMenuActivity.class);
         i.putExtra("IDTRANSACCION", currentTransaccion.getIdTransaccion());
         startActivity(i);
@@ -174,5 +198,10 @@ public class TransaccionActualizarActivity extends AppCompatActivity {
         // Permitir nueva búsqueda al volver
         editIdBuscar.setEnabled(true);
         btnBuscar.setEnabled(true);
+        // Opcional: ocultar datos y botón de detalles si no hay transacción actual
+        if (currentTransaccion == null) {
+            layoutDatos.setVisibility(View.GONE);
+            btnGestionarDetalles.setVisibility(View.GONE);
+        }
     }
 }

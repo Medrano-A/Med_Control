@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.view.View; // Import for View.VISIBLE/GONE
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,7 +50,7 @@ public class TransaccionInsertarActivity extends AppCompatActivity {
         editTipo             = findViewById(R.id.editTransaccionTipo);
         btnGuardarTransaccion = findViewById(R.id.btnTransaccionGuardar);
         btnAnadirDetalles     = findViewById(R.id.btnTransaccionAnadirDetalles);
-        btnAnadirDetalles.setVisibility(Button.GONE);
+        btnAnadirDetalles.setVisibility(View.GONE);
 
         // Fecha por defecto
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
@@ -60,12 +61,14 @@ public class TransaccionInsertarActivity extends AppCompatActivity {
         btnGuardarTransaccion.setOnClickListener(v -> guardarTransaccion());
         btnAnadirDetalles.setOnClickListener(v -> {
             try {
-                int id = Integer.parseInt(editIdTransaccion.getText().toString());
+                int id = Integer.parseInt(editIdTransaccion.getText().toString().trim());
                 Intent i = new Intent(TransaccionInsertarActivity.this,
                         DetalleTransaccionMenuActivity.class);
                 i.putExtra("IDTRANSACCION", id);
                 startActivity(i);
-            } catch (NumberFormatException ignored) { /* nunca debería ocurrir */ }
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "ID de Transacción no válido para añadir detalles.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -92,21 +95,36 @@ public class TransaccionInsertarActivity extends AppCompatActivity {
         String fechaStr = editFecha.getText().toString().trim();
         String tipoStr  = editTipo.getText().toString().trim();
 
-        if (idStr.isEmpty() || duiStr.isEmpty() || usrStr.isEmpty()
-                || locStr.isEmpty() || fechaStr.isEmpty() || tipoStr.isEmpty()) {
+        // Validar campos que son estrictamente obligatorios para insertar
+        if (idStr.isEmpty() || fechaStr.isEmpty() || tipoStr.isEmpty()) {
             Toast.makeText(this,
-                    "Todos los campos son obligatorios.",
+                    "ID Transacción, Fecha y Tipo son obligatorios.",
                     Toast.LENGTH_SHORT).show();
             return;
         }
 
         try {
             int idTrans = Integer.parseInt(idStr);
-            int idUsr   = Integer.parseInt(usrStr);
-            int idLoc   = Integer.parseInt(locStr);
+
+            String idUsuarioFinal = usrStr.isEmpty() ? null : usrStr; // idUsuario es String
+
+            Integer idLocalFinal = null;
+            if (!locStr.isEmpty()) {
+                try {
+                    idLocalFinal = Integer.parseInt(locStr);
+                } catch (NumberFormatException e) {
+                    Toast.makeText(this, "ID Local debe ser un número válido o estar vacío.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
 
             Transaccion t = new Transaccion(
-                    idTrans, duiStr, idUsr, idLoc, fechaStr, tipoStr
+                    idTrans,
+                    duiStr.isEmpty() ? null : duiStr,
+                    idUsuarioFinal,
+                    idLocalFinal,
+                    fechaStr,
+                    tipoStr
             );
             long res = t.insert();
 
@@ -115,12 +133,19 @@ public class TransaccionInsertarActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
 
             editIdTransaccion.setEnabled(false);
-            btnGuardarTransaccion.setEnabled(false);
-            btnAnadirDetalles.setVisibility(Button.VISIBLE);
+            // Opcional: deshabilitar otros campos también
+            editDui.setEnabled(false);
+            editIdUsuario.setEnabled(false);
+            editIdLocal.setEnabled(false);
+            editFecha.setEnabled(false);
+            editTipo.setEnabled(false);
 
-        } catch (NumberFormatException e) {
+            btnGuardarTransaccion.setEnabled(false);
+            btnAnadirDetalles.setVisibility(View.VISIBLE);
+
+        } catch (NumberFormatException e) { // Principalmente para idTrans
             Toast.makeText(this,
-                    "Formato numérico inválido en ID, Usuario o Local.",
+                    "Formato numérico inválido para ID Transacción.",
                     Toast.LENGTH_SHORT).show();
         } catch (android.database.SQLException e) {
             Toast.makeText(this,
