@@ -1,6 +1,8 @@
 package com.example.farmaciarikas;
 
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -10,6 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class ActualizarStockActivity extends AppCompatActivity {
     EditText etIdStock;
@@ -31,7 +38,23 @@ public class ActualizarStockActivity extends AppCompatActivity {
         etCodElemento = (EditText) findViewById(R.id.etCodElemento);
         etIdLocal = (EditText) findViewById(R.id.etIdLocal);
         etCantidad = (EditText) findViewById(R.id.etCantidad);
+        etCantidad.setFilters(new InputFilter[] {
+                new InputFilter() {
+                    @Override
+                    public CharSequence filter(CharSequence source, int start, int end,
+                                               Spanned dest, int dstart, int dend) {
+                        String resultado = dest.subSequence(0, dstart)
+                                + source.toString()
+                                + dest.subSequence(dend, dest.length());
+                        if (resultado.matches("^0.*") || !resultado.matches("\\d*")) {
+                            return "";
+                        }
+                        return null;
+                    }
+                }
+        });
         etFechaVencimiento = (EditText) findViewById(R.id.etFechaVencimiento);
+
     }
     public void buscarStock(View view) {
         limpiar();
@@ -64,11 +87,30 @@ public class ActualizarStockActivity extends AppCompatActivity {
         stock.setCantidad(Integer.parseInt(etCantidad.getText().toString()));
         stock.setCodElemento(Integer.parseInt(etCodElemento.getText().toString()));
         stock.setIdLocal(Integer.parseInt(etIdLocal.getText().toString()));
-        stock.setFechaVencimiento(etFechaVencimiento.getText().toString());
-        helper.abrir();
-        String estado = helper.actualizar(stock);
-        helper.cerrar();
-        Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+        String fechaIngresada = etFechaVencimiento.getText().toString();
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        formato.setLenient(false); // No permitir fechas como 2024-02-30
+
+        try {
+            Date fecha = formato.parse(fechaIngresada);
+            Date fechaActual = new Date();
+
+            if (fecha != null && fecha.after(fechaActual)) {
+                stock.setFechaVencimiento(etFechaVencimiento.getText().toString());
+                helper.abrir();
+                String estado = helper.actualizar(stock);
+                helper.cerrar();
+                Toast.makeText(this, estado, Toast.LENGTH_SHORT).show();
+            } else {
+
+                etFechaVencimiento.setError("La fecha debe ser mayor a la actual");
+            }
+        } catch (ParseException e) {
+            etFechaVencimiento.setError("Formato inválido. Usa yyyy-MM-dd");
+        }
+
+
+
     }
 
 }

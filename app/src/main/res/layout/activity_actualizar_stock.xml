@@ -82,12 +82,14 @@
             android:id="@+id/etIdStock"
             android:hint="@string/id_stock"
             android:inputType="number"
+            android:enabled="false"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <EditText
             android:id="@+id/etCodElemento"
             android:hint="@string/codigo_elemento"
+            android:enabled="false"
             android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -108,6 +110,7 @@
 
         <EditText
             android:id="@+id/etFechaVencimiento"
+            android:maxLength="10"
             android:hint="@string/fecha_vencimiento_yyyy_mm_dd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

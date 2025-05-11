@@ -93,6 +93,9 @@
             android:name=".MunicipioInsertarActivity"
             android:exported="false" />
         <activity
+            android:name=".ActualizarStockActivity"
+            android:exported="false" />
+        <activity
             android:name=".DepartamentoEliminarActivity"
             android:exported="false" />
         <activity
