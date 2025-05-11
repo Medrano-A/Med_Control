@@ -309,22 +309,38 @@ public class ControlDBFarmacia {
 
     /*-----------------------------------------------TABLA UBICACION----------------------------------------------------------*/
     public String insertar(Ubicacion ubicacion) {
-        String regInsertados = "Registro Insertado Nº= ";
-        long contador = 0;
-        ContentValues doc = new ContentValues();
-        doc.put("idUbicacion", ubicacion.getIdUbicacion());
-        doc.put("idDistrito", ubicacion.getIdDistrito());
-        doc.put("idMarca", ubicacion.getIdMarca());
-        doc.put("detalle", ubicacion.getDetalle());
+        try{
+            if(verificarIntegridadUbicacion(ubicacion,1)){
+                if(verificarIntegridadUbiMarca(ubicacion,1)){
+                    String regInsertados = "Registro Insertado Nº= ";
+                    long contador = 0;
+                    ContentValues doc = new ContentValues();
+                    doc.put("idUbicacion", ubicacion.getIdUbicacion());
+                    doc.put("idDistrito", ubicacion.getIdDistrito());
+                    doc.put("idMarca", ubicacion.getIdMarca());
+                    doc.put("detalle", ubicacion.getDetalle());
 
-        contador = db.insert("ubicacion", null, doc);
+                    contador = db.insert("ubicacion", null, doc);
 
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        } else {
-            regInsertados = regInsertados + contador;
+                    if (contador == -1 || contador == 0) {
+                        regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                    } else {
+                        regInsertados = regInsertados + contador;
+                    }
+                    return regInsertados;
+
+                }else{
+                    return "No se encontro ID Marca";
+                }
+
+
+            }else{
+                return "No se encontro ID Distrito";
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        return regInsertados;
+
     }
 
     public Ubicacion consultarUbicacion(int idUbicacion) {
@@ -344,13 +360,64 @@ public class ControlDBFarmacia {
     }
 
     public String actualizar(Ubicacion ubicacion) {
-        String[] id = {String.valueOf(ubicacion.getIdUbicacion())};
-        ContentValues cv = new ContentValues();
-        cv.put("idDistrito", ubicacion.getIdDistrito());
-        cv.put("idMarca", ubicacion.getIdMarca());
-        cv.put("detalle", ubicacion.getDetalle());
-        db.update("ubicacion", cv, "idUbicacion = ?", id);
-        return "Registro Actualizado Correctamente";
+        try{
+            if(verificarIntegridadUbicacion(ubicacion,1)){
+                if(verificarIntegridadUbiMarca(ubicacion,1)){
+                    String[] id = {String.valueOf(ubicacion.getIdUbicacion())};
+                    ContentValues cv = new ContentValues();
+                    cv.put("idDistrito", ubicacion.getIdDistrito());
+                    cv.put("idMarca", ubicacion.getIdMarca());
+                    cv.put("detalle", ubicacion.getDetalle());
+                    db.update("ubicacion", cv, "idUbicacion = ?", id);
+                    return "Registro Actualizado Correctamente";
+                }else{
+                    return "No se encontro ID Marca";
+                }
+
+
+            }else{
+                return "No se encontro ID Distrito";
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+    public boolean verificarIntegridadUbicacion(Object dato, int relacion) throws SQLException{
+        switch (relacion){
+            case 1:{
+                //verificar que el id distrito exista en la distrito
+                Ubicacion ubicacion = (Ubicacion) dato;
+                String[] id = {Integer.toString(ubicacion.getIdDistrito())};
+                abrir();
+                Cursor cExist = db.query("Distrito", null, "idDistrito = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el lab
+                    return true;
+                }
+                return false;
+            }
+            default:
+                return false;
+        }
+    }
+    public boolean verificarIntegridadUbiMarca(Object dato, int relacion) throws SQLException{
+        switch (relacion){
+            case 1:{
+                //verificar que el id marca exista en la tabla marca
+                Ubicacion ubicacion = (Ubicacion) dato;
+                String[] id = {Integer.toString(ubicacion.getIdMarca())};
+                abrir();
+                Cursor cExist = db.query("Marca", null, "idMarca = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el lab
+                    return true;
+                }
+                return false;
+            }
+            default:
+                return false;
+        }
     }
 
     public String eliminar(Ubicacion ubicacion) {
@@ -362,25 +429,77 @@ public class ControlDBFarmacia {
         return regAfectados;
     }
 
+
     /*-----------------------------------------------TABLA STOCKS----------------------------------------------------------*/
-    public String insertar(Stock stock) {
-        String regInsertados = "Registro Insertado Nº= ";
-        long contador = 0;
-        ContentValues doc = new ContentValues();
-        doc.put("idStock", stock.getIdStock());
-        doc.put("codElemento", stock.getCodElemento());
-        doc.put("idlocal", stock.getIdLocal());
-        doc.put("cantidad", stock.getCantidad());
-        doc.put("fechavencimiento", stock.getFechaVencimiento());
+    public boolean verificarIntegridadStock(Object dato, int relacion) throws SQLException{
+        switch (relacion){
+            case 1:{
+                //verificar que el id local exista en la tabla local
+                Stock stock = (Stock) dato;
+                String[] id = {Integer.toString(stock.getIdLocal())};
+                abrir();
+                Cursor cExist = db.query("local", null, "idLocal = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el lab
+                    return true;
+                }
+                return false;
+            }
+            case 2:{
+                //verificar que el codElemento exista en la tabla Elemento
+                Stock stock = (Stock) dato;
+                String[] id = {Integer.toString(stock.getCodElemento())};
+                abrir();
+                Cursor cExist = db.query("elemento", null, "codElemento = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el elemento
+                    return true;
+                }
+                return false;
 
-        contador = db.insert("stock", null, doc);
 
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        } else {
-            regInsertados = regInsertados + contador;
+            }
+            default:
+                return false;
         }
-        return regInsertados;
+    }
+
+    public String insertar(Stock stock) {
+        try{
+            if(verificarIntegridadStock(stock,1)){
+                if(verificarIntegridadStock(stock,2)){
+                    String regInsertados = "Registro Insertado Nº= ";
+                    long contador = 0;
+                    ContentValues doc = new ContentValues();
+                    doc.put("idStock", stock.getIdStock());
+                    doc.put("codElemento", stock.getCodElemento());
+                    doc.put("idlocal", stock.getIdLocal());
+                    doc.put("cantidad", stock.getCantidad());
+                    doc.put("fechavencimiento", stock.getFechaVencimiento());
+
+                    contador = db.insert("stock", null, doc);
+
+                    if (contador == -1 || contador == 0) {
+                        regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+                    } else {
+                        regInsertados = regInsertados + contador;
+                    }
+                    return regInsertados;
+
+                }else{
+                    return "No se encontro ID Elemento";
+                }
+
+
+            }else{
+                return "No se encontro ID Local";
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
+
     }
 
     public String eliminar(Stock stock) {
@@ -400,7 +519,6 @@ public class ControlDBFarmacia {
             stock.setIdStock(cursor.getInt(0));
             stock.setCodElemento(cursor.getInt(1));
             stock.setIdLocal(cursor.getInt(2));
-            ;
             stock.setCantidad(cursor.getInt(3));
             stock.setFechaVencimiento(cursor.getString(4));
             return stock;
@@ -410,15 +528,27 @@ public class ControlDBFarmacia {
     }
 
     public String actualizar(Stock stock) {
-        String[] id = {String.valueOf(stock.getIdStock())};
-        ContentValues cv = new ContentValues();
-        cv.put("codElemento", stock.getCodElemento());
-        cv.put("idlocal", stock.getIdLocal());
-        cv.put("cantidad", stock.getCantidad());
-        cv.put("fechavencimiento", stock.getFechaVencimiento());
-        db.update("stock", cv, "idStock = ?", id);
-        return "Registro Actualizado Correctamente";
+        try{
+            if(verificarIntegridadStock(stock,1)){
+                String[] id = {String.valueOf(stock.getIdStock())};
+                ContentValues cv = new ContentValues();
+                cv.put("codElemento", stock.getCodElemento());
+                cv.put("idlocal", stock.getIdLocal());
+                cv.put("cantidad", stock.getCantidad());
+                cv.put("fechavencimiento", stock.getFechaVencimiento());
+                db.update("stock", cv, "idStock = ?", id);
+                return "Registro Actualizado Correctamente";
+
+            }else{
+                return "ID local no encontrado";
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
+
     /*TABLAS DE GA21090*/
     /*-----------------------------------------------TABLA DOCTOR----------------------------------------------------------*/
     public String insertar(Doctor doctor) {
@@ -987,6 +1117,7 @@ public class ControlDBFarmacia {
         regAfectados+=cont;
         return regAfectados;
     }
+
     public boolean verificarIntegridadLab(Object dato, int relacion) throws SQLException{
         switch (relacion){
             case 1:{
