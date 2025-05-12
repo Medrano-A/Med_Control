@@ -253,22 +253,50 @@ public class ControlDBFarmacia {
     /*--CRUDS DE MM2108
     /*-----------------------------------------------TABLA ARTICULO-----------------------------------------------------------*/
     public String insertar(Articulo articulo) {
-        String regInsertados = "Registro Insertado Nº= ";
-        long contador = 0;
-        ContentValues doc = new ContentValues();
-        doc.put("idArticulo", articulo.getIdArticulo());
-        doc.put("idDistribuidor", articulo.getIdDistribuidor());
-        doc.put("nombreArticulo", articulo.getNombreArticulo());
-        doc.put("clasificacion", articulo.getClasificacion());
+        try {
+            if (verificarIntegridadArticulo(articulo, 1)) {
+                String resultado = "";
 
-        contador = db.insert("articulo",null,doc);
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        } else {
-            regInsertados = regInsertados + contador;
+                // Insertar en tabla "elemento"
+                ContentValues ele = new ContentValues();
+                ele.put("codElemento", articulo.getCodElemento());
+                ele.put("nombre", articulo.getNombre());
+                ele.put("descripcion", articulo.getDescripcion());
+                ele.put("precioUni", articulo.getPrecioUni());
+                ele.put("unidades", articulo.getUnidades());
+
+                long idElemento = db.insert("elemento", null, ele);
+                if (idElemento <= 0) {
+                    return "Error al insertar el Elemento. Registro duplicado o fallo de inserción.";
+                }
+
+                // Insertar en tabla "articulo"
+                ContentValues art = new ContentValues();
+                art.put("idArticulo", articulo.getIdArticulo());
+                art.put("idDistribuidor", articulo.getIdDistribuidor());
+                art.put("nombreArticulo", articulo.getNombreArticulo());
+                art.put("clasificacion", articulo.getClasificacion());
+
+                long idArticulo = db.insert("articulo", null, art);
+                if (idArticulo <= 0) {
+                    return "Elemento insertado, pero error al insertar Artículo. Registro duplicado o fallo.";
+                }
+
+                resultado = "Elemento insertado con ID = " + idElemento + "\n" +
+                        "Artículo insertado con ID = " + idArticulo;
+
+                return resultado;
+
+            } else {
+                return "No se encontró el ID del distribuidor. Verifica la integridad del dato.";
+            }
+
+        } catch (Exception e) {
+            Log.e("InsertarArticulo", "Error al insertar", e); // Útil para depuración
+            return "Ocurrió un error inesperado: " + e.getMessage();
         }
-        return regInsertados;
     }
+
     public Articulo consultarArticulo(int idArticulo) {
         String[] id = {String.valueOf(idArticulo)};
         Cursor cursor = db.query("articulo", camposArticulo, "idArticulo = ?", id, null, null, null);
@@ -286,13 +314,20 @@ public class ControlDBFarmacia {
         }
     }
     public String actualizar(Articulo articulo) {
-        String[] id = {String.valueOf(articulo.getIdArticulo())};
-        ContentValues cv = new ContentValues();
-        cv.put("idDistribuidor", articulo.getIdDistribuidor());
-        cv.put("nombreArticulo", articulo.getNombreArticulo());
-        cv.put("clasificacion", articulo.getClasificacion());
-        db.update("articulo", cv, "idArticulo = ?", id);
-        return "Registro Actualizado Correctamente";
+        try{
+            if(verificarIntegridadArticulo(articulo,1)){
+                String[] id = {String.valueOf(articulo.getIdArticulo())};
+                ContentValues cv = new ContentValues();
+                cv.put("idDistribuidor", articulo.getIdDistribuidor());
+                cv.put("nombreArticulo", articulo.getNombreArticulo());
+                cv.put("clasificacion", articulo.getClasificacion());
+                db.update("articulo", cv, "idArticulo = ?", id);
+                return "Registro Actualizado Correctamente";
+            }else{ return "No se encontro ID Articulo";}
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
     public String eliminarArticulo(int idArticulo) {
         String regAfectados = "filas afectadas= ";
@@ -301,7 +336,24 @@ public class ControlDBFarmacia {
         regAfectados += contador;
         return regAfectados;
     }
-
+    public boolean verificarIntegridadArticulo(Object dato, int relacion) throws SQLException{
+        switch (relacion){
+            case 1:{
+                //verificar que el id distribuidor exista
+                Articulo articulo = (Articulo) dato;
+                String[] id = {Integer.toString(articulo.getIdDistribuidor())};
+                abrir();
+                Cursor cExist = db.query("distribuidor", null, "idDistribuidor = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el Distribuidor
+                    return true;
+                }
+                return false;
+            }
+            default:
+                return false;
+        }
+    }
 
 
 
@@ -1356,6 +1408,51 @@ public class ControlDBFarmacia {
             medicamento.setFormaFarmaceutica(forma[i]);
             insertar(medicamento);
         }
+        //Articulo
+        final int[] codElemento ={6,7,8,9,10};
+        final String[] nombreElementos ={"Revista NatGeo","Almanaque Escuela Para Todos","Philips","ColaShampan",
+                "Lapiceros Big"};
+        final int[] cantidades={10,10,10,10,10};
+        final String[] descripciones={"Revista Cientifica","Almanaque CA","Desarmadores","Bebidas","Utiles"};
+        final double[] precio ={10,5.5,7.3,1.5,1};
+        final String[] unidades ={"Libro","Libro","Caja","Lata","Caja"};
+        final int[] idArticulo = {1, 2, 3, 4, 5};
+        final int[] IDDistribuidor={101,102,103,104,105};
+        final String[] nombreArticulo={"National GeoGraphic","Escuela Para Todos","Philips","ColaShampan","Big Lapicero"};
+        final String[] clasificacion={"Lectura","Lectura","Herramientas","Bebidas","Escolares"};
+        Articulo articulo = new Articulo();
+        for (int i = 0; i < 5; i++) {
+            articulo.setCodElemento(codElemento[i]);
+            articulo.setIdArticulo(idArticulo[i]);
+            articulo.setNombre(nombreElementos[i]);
+            articulo.setCantidad(cantidades[i]);
+            articulo.setDescripcion(descripciones[i]);
+            articulo.setPrecioUni(precio[i]);
+            articulo.setUnidades(unidades[i]);
+            articulo.setIdDistribuidor(IDDistribuidor[i]);
+            articulo.setNombreArticulo(nombreArticulo[i]);
+            articulo.setClasificacion(clasificacion[i]);
+            insertar(articulo);
+        }
+        //Stock
+        final int[] idStock = {1, 2, 3, 4, 5};
+        final int[] idLocalStock = {1, 2, 3, 4, 5};
+        final int[] idElementoStock = {6, 7, 8, 9, 10};
+        final int[] cantidadStock = {10, 20, 30, 40, 50};
+        final String[] fechaVencimientoStock = {"2030-06-30", "2030-07-31", "2030-08-31", "2030-09-30", "2030-10"};
+        Stock stock = new Stock();
+        for (int i = 0; i < 5; i++) {
+            stock.setIdStock(idStock[i]);
+            stock.setIdLocal(idLocalStock[i]);
+            stock.setCodElemento(idElementoStock[i]);
+            stock.setCantidad(cantidadStock[i]);
+            stock.setFechaVencimiento(fechaVencimientoStock[i]);
+            insertar(stock);
+        }
+
+
+
+
 
         // Ubicacion
         final int[] idUbicacion = {1, 2, 3, 4, 5};
@@ -1371,7 +1468,7 @@ public class ControlDBFarmacia {
 
         // Local
         final int[] idLocal = {1, 2, 3, 4, 5};
-        final String[] nombreLocal = {"Local A, Planta Baja", "Local B, Segunda Planta", "Sucursal San Benito", "Farmacia Plaza Futura", "Sucursal Plaza Mayor"};
+        final String[] nombreLocal = {"Local A, Planta Baja", "Local B, Stegunda Planta", "Sucursal San Benito", "Farmacia Plaza Futura", "Sucursal Plaza Mayor"};
         final String[] tipoLocal = {"Local", "Local", "Sucursal", "Farmacia", "Sucursal"};
         final String[] telefonoLocal = {"70017029", "70017030", "70017031", "70017032", "70017033"};
         Local local = new Local();

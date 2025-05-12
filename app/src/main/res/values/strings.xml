@@ -509,6 +509,11 @@
     <string name="consultar_articulo">Consultar Articulo</string>
     <string name="ingrese_id_de_articulo">Ingrese ID de Articulo</string>
     <string name="borrar_articulo">Borrar Articulo</string>
+    <string name="id_elemento">ID Elemento</string>
+    <string name="nombre_elemento">Nombre Elemento</string>
+    <string name="cantidad_elemento">Cantidad</string>
+    <string name="precio_unitario">Precio Unitario</string>
+    <string name="unidades">Unidades</string>
 
 </resources>
 

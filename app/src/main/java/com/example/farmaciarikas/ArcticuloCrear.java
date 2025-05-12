@@ -16,10 +16,18 @@ public class ArcticuloCrear extends AppCompatActivity {
     EditText etIdDistribuidor;
     EditText etnombreArticulo;
     EditText etClasificacion;
+    EditText etIdElemento;
+    EditText etNombreElemento;
+    EditText etCantidadElemento;
+    EditText etDescripcionElemento;
+    EditText tPrecioUnitarioElemento;
+    EditText etUnidadesElemento;
+
 
     ControlDBFarmacia helper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_arcticulo_crear);
@@ -28,11 +36,24 @@ public class ArcticuloCrear extends AppCompatActivity {
         etIdDistribuidor = (EditText) findViewById(R.id.etIdDistribuidor);
         etnombreArticulo = (EditText) findViewById(R.id.etnombreArticulo);
         etClasificacion = (EditText) findViewById(R.id.etClasificacion);
+        etIdElemento = (EditText) findViewById(R.id.etIdElemento);
+        etNombreElemento = (EditText) findViewById(R.id.etNombreElemento);
+        etCantidadElemento = (EditText) findViewById(R.id.etCantidadElemento);
+        etDescripcionElemento = (EditText) findViewById(R.id.etDescripcionElemento);
+        tPrecioUnitarioElemento = (EditText) findViewById(R.id.etPrecioUnitarioElemento);
+        etUnidadesElemento = (EditText) findViewById(R.id.etUnidadesElemento);
+
     }
     public void registrarArticulo(View view) {
 
         String regInsertados;
         Articulo nuevoArticulo = recogerDatos();
+        nuevoArticulo.setCodElemento(Integer.parseInt(etIdElemento.getText().toString()));
+        nuevoArticulo.setNombre(etNombreElemento.getText().toString());
+        nuevoArticulo.setCantidad(Integer.parseInt(etCantidadElemento.getText().toString()));
+        nuevoArticulo.setDescripcion(etDescripcionElemento.getText().toString());
+        nuevoArticulo.setPrecioUni(Double.parseDouble(tPrecioUnitarioElemento.getText().toString()));
+        nuevoArticulo.setUnidades(etUnidadesElemento.getText().toString());
         helper.abrir();
         regInsertados=helper.insertar(nuevoArticulo);
         helper.cerrar();

@@ -21,7 +21,7 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_agregarstock"
+                android:src="@drawable/ic_agregararticulo"
                 android:contentDescription="Icono Stock"
                 android:layout_marginEnd="8dp"/>
 
@@ -58,7 +58,39 @@
             android:hint="@string/clasificacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
+        <EditText
+            android:id="@+id/etIdElemento"
+            android:inputType="number"
+            android:hint="@string/id_elemento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etNombreElemento"
+            android:hint="@string/nombre_elemento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etCantidadElemento"
+            android:inputType="number"
+            android:hint="@string/cantidad_elemento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etDescripcionElemento"
+            android:hint="@string/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etPrecioUnitarioElemento"
+            android:inputType="number"
+            android:hint="@string/precio_unitario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <EditText
+            android:id="@+id/etUnidadesElemento"
+            android:hint="@string/unidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/btnInsertar"
             android:onClick="registrarArticulo"

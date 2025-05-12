@@ -25,10 +25,10 @@ public class ArticuloActivity extends AppCompatActivity {
         listViewOpciones = findViewById(R.id.listViewOpciones);
 
         List<Opcion> opciones = new ArrayList<>();
-        opciones.add(new Opcion("Registrar Articulo", R.drawable.ic_agregarstock));
-        opciones.add(new Opcion("Consultar Articulo", R.drawable.ic_buscarstock));
-        opciones.add(new Opcion("Actualizar Articulo", R.drawable.ic_actualizarstock));
-        opciones.add(new Opcion("Eliminar Articulo", R.drawable.ic_borrarstock));
+        opciones.add(new Opcion("Registrar Articulo", R.drawable.ic_agregararticulo));
+        opciones.add(new Opcion("Consultar Articulo", R.drawable.ic_articulobuscar));
+        opciones.add(new Opcion("Actualizar Articulo", R.drawable.ic_editararticulo));
+        opciones.add(new Opcion("Eliminar Articulo", R.drawable.ic_eliminararticulo));
 
         OpcionAdapter adapter = new OpcionAdapter(this, opciones);
         listViewOpciones.setAdapter(adapter);
