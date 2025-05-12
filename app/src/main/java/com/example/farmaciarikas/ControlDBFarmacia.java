@@ -1471,7 +1471,12 @@ public class ControlDBFarmacia {
             detalleReceta.setIdDetReceta(idDetReceta[i]);
             detalleReceta.setIdReceta(idReceta[i]);
             detalleReceta.setDosis(dosis[i]);
-            insertarDetalleReceta(detalleReceta);
+            // insertarDetalleReceta(detalleReceta); // Llamada incorrecta al método eliminado/inseguro
+            try {
+                detalleReceta.insert(); // Usar el método de la clase que valida FK
+            } catch (SQLException e) {
+                 Log.e("LlenadoDB", "Error insertando DetalleReceta " + idDetReceta[i] + ": " + e.getMessage());
+            }
         }
 
         // Distribuidor
@@ -1748,13 +1753,15 @@ public class ControlDBFarmacia {
     }
 
     //Detalle Receta
+    //Detalle Receta (Eliminado - Usar DetalleReceta.insert() que valida FK)
+    /*
     public boolean insertarDetalleReceta(DetalleReceta detalle) {
         try {
             db = DBHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
 
             values.put("idDetReceta", detalle.getIdDetReceta());
-            values.put("idReceta", detalle.getIdReceta());
+            values.put("idReceta", detalle.getIdReceta()); // ¡No verifica si idReceta existe!
             values.put("dosis", detalle.getDosis());
 
             long resultado = db.insert("detalleReceta", null, values);
@@ -1766,6 +1773,7 @@ public class ControlDBFarmacia {
 
         }
     }
+    */
 
     public boolean eliminarDetalleReceta(int idDetReceta) {
         try {
@@ -1962,17 +1970,35 @@ public class ControlDBFarmacia {
         return regInsertados;
     }
     public String insertar(AccesoUsuario accesoUsuario) {
+        // Verificar FK id_usuario
+        Cursor cursorUsuario = db.query("User", new String[]{"id_usuario"}, "id_usuario = ?", new String[]{accesoUsuario.getId_usuario()}, null, null, null);
+        if (!cursorUsuario.moveToFirst()) {
+            cursorUsuario.close();
+            return "Error al Insertar: El usuario con ID " + accesoUsuario.getId_usuario() + " no existe.";
+        }
+        cursorUsuario.close();
+
+        // Verificar FK id_opcion_crud
+        Cursor cursorOpcion = db.query("OpcionCrud", new String[]{"id_opcion_crud"}, "id_opcion_crud = ?", new String[]{String.valueOf(accesoUsuario.getId_opcion_crud())}, null, null, null);
+        if (!cursorOpcion.moveToFirst()) {
+            cursorOpcion.close();
+            return "Error al Insertar: La opción CRUD con ID " + accesoUsuario.getId_opcion_crud() + " no existe.";
+        }
+        cursorOpcion.close();
+
+        // Si las FKs existen, proceder con la inserción
         String regInsertados = "Registro Insertado Nº= ";
         long contador = 0;
         ContentValues accUsuario = new ContentValues();
-        accUsuario.put("id_acceso", accesoUsuario.getId_acceso());
+        // No insertar id_acceso si es autoincremental
+        // accUsuario.put("id_acceso", accesoUsuario.getId_acceso()); // Asumiendo AUTOINCREMENT
         accUsuario.put("id_usuario", accesoUsuario.getId_usuario());
         accUsuario.put("id_opcion_crud", accesoUsuario.getId_opcion_crud());
 
-        ;
         contador = db.insert("AccesoUsuario", null, accUsuario);
+
         if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            regInsertados = "Error al Insertar el registro. Verificar inserción (posible duplicado si id_acceso no es AUTOINCREMENT).";
         } else {
             regInsertados = regInsertados + contador;
         }
