@@ -338,7 +338,6 @@
         <item>District Table</item>
         <item>Brand Table</item>
         <item>Laboratory Table</item>
-        <item>Fill Database Tables</item>
     </string-array>
 
     <string-array name="menu_items_Transaccion">

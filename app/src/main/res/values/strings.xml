@@ -337,7 +337,6 @@
         <item>Tabla Distrito</item>
         <item>Tabla Marca</item>
         <item>Tabla Laboratorio</item>
-        <item>LLenar Tablas De BD</item>
     </string-array>
 
     <string-array name="menu_items_Transaccion">
