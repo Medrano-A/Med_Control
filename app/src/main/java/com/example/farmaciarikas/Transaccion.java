@@ -289,6 +289,4 @@ public class Transaccion extends Model<Transaccion> {
                 .update(TABLE, valores, SEL_PK, new String[]{ String.valueOf(idTransaccion) });
     }
 
-    // Eliminé ensureTableExists() porque la creación de la tabla debe ser manejada por SQLiteOpenHelper.
-    // Si la tabla no existe, las operaciones fallarán con una excepción de SQLite, lo cual es informativo.
 }

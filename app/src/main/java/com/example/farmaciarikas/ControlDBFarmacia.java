@@ -1309,6 +1309,9 @@ public class ControlDBFarmacia {
         db.execSQL("DELETE FROM cliente");
         db.execSQL("DELETE FROM detalleReceta");
         db.execSQL("DELETE FROM distribuidor");
+        db.execSQL("DELETE FROM " + Transaccion.TABLE);
+        db.execSQL("DELETE FROM " + DetalleTransaccion.TABLE);
+        db.execSQL("DELETE FROM " + Receta.TABLE);
 
         // Departamento
         final int[] idDepartamento = {1, 2, 3, 4, 5};
@@ -1530,6 +1533,64 @@ public class ControlDBFarmacia {
             stock.setFechaVencimiento(fechaVencimientoStock[i]);
             insertar(stock);
         }
+
+        // Receta
+        final String[] duiReceta = {duiCliente[0], duiCliente[1], duiCliente[2], duiCliente[3], duiCliente[4]}; // Usar DUIs de clientes existentes
+        final int[] idDoctorReceta = {idDoctor[0], idDoctor[1], idDoctor[2], idDoctor[3], idDoctor[4]}; // Usar IDs de doctores existentes
+        final String[] nombrePaciente = {"Carlos Martinez", "Andrea Lopez", "Luis Gomez", "Sofia Hernandez", "Pedro Diaz"};
+        final String[] fechaReceta = {"2024-01-15", "2024-02-20", "2024-03-10", "2024-04-05", "2024-05-22"};
+        final int[] edadPaciente = {30, 25, 45, 22, 50};
+        final String[] observacionesReceta = {"Tomar con abundante agua", "Evitar lácteos", "Reposo recomendado", "Puede causar somnolencia", "Seguir indicaciones"};
+        Receta recetaObj; // Renombrado para evitar conflicto con la tabla
+        for (int i = 0; i < 5; i++) {
+            recetaObj = new Receta(idReceta[i], duiReceta[i], idDoctorReceta[i], nombrePaciente[i], fechaReceta[i], edadPaciente[i], observacionesReceta[i]);
+            try {
+                recetaObj.insert();
+            } catch (SQLException e) {
+                Log.e("LlenadoDB", "Error insertando Receta " + idReceta[i] + ": " + e.getMessage());
+            }
+        }
+
+        // Transaccion
+        final int[] idTransaccion = {1001, 1002, 1003, 1004, 1005};
+        final String[] duiTransaccion = {duiCliente[0], null, duiCliente[2], null, duiCliente[4]}; // Algunos sin cliente asociado
+        final String[] idUsuarioTransaccion = {"01", "02", "03", "04", "05"}; // Usar IDs de usuarios existentes (asumiendo que permisosUsuarios() se llama antes o están definidos)
+        final Integer[] idLocalTransaccion = {idLocal[0], idLocal[1], idLocal[2], idLocal[3], idLocal[4]}; // Usar IDs de locales existentes
+        final String[] fechaTransaccion = {"2024-05-01", "2024-05-02", "2024-05-03", "2024-05-04", "2024-05-05"};
+        final String[] tipoTransaccion = {"Venta", "Compra", "Venta", "Ajuste", "Venta"};
+        Transaccion transaccion;
+        for (int i = 0; i < 5; i++) {
+            // Usar constructor que inicia total en 0
+            transaccion = new Transaccion(idTransaccion[i], duiTransaccion[i], idUsuarioTransaccion[i], idLocalTransaccion[i], fechaTransaccion[i], tipoTransaccion[i]);
+            try {
+                transaccion.insert();
+            } catch (SQLException e) {
+                Log.e("LlenadoDB", "Error insertando Transaccion " + idTransaccion[i] + ": " + e.getMessage());
+            }
+        }
+
+        // DetalleTransaccion
+        // Insertaremos 2 detalles para las primeras 3 transacciones
+        final int[] idDetalleTransaccion = {2001, 2002, 2003, 2004, 2005, 2006};
+        final int[] idTransaccionDetalle = {idTransaccion[0], idTransaccion[0], idTransaccion[1], idTransaccion[1], idTransaccion[2], idTransaccion[2]};
+        final int[] cantidadDetalle = {2, 1, 5, 10, 1, 3};
+        // Usar precios de medicamentos existentes (precioUnitario[i])
+        final double[] precioUnitarioDetalle = {precioUnitario[0], precioUnitario[1], precioUnitario[2], precioUnitario[3], precioUnitario[4], precioUnitario[0]};
+        // Calcular subtotal = cantidad * precioUnitario
+        double[] subtotalDetalle = new double[6];
+        for(int i=0; i<6; i++){
+            subtotalDetalle[i] = cantidadDetalle[i] * precioUnitarioDetalle[i];
+        }
+        DetalleTransaccion detalleTransaccion;
+        for (int i = 0; i < 6; i++) {
+            detalleTransaccion = new DetalleTransaccion(idDetalleTransaccion[i], idTransaccionDetalle[i], cantidadDetalle[i], subtotalDetalle[i], precioUnitarioDetalle[i]);
+            try {
+                detalleTransaccion.insert(); // Esto debería recalcular el total de la transacción asociada
+            } catch (SQLException e) {
+                Log.e("LlenadoDB", "Error insertando DetalleTransaccion " + idDetalleTransaccion[i] + ": " + e.getMessage());
+            }
+        }
+
 
         cerrar();
         return context.getResources().getString(R.string.llenadoBD);
