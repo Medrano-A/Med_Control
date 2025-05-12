@@ -520,6 +520,7 @@ public class ControlDBFarmacia {
         try{
             if(verificarIntegridadStock(stock,1)){
                 if(verificarIntegridadStock(stock,2)){
+                    db = DBHelper.getWritableDatabase();
                     String regInsertados = "Registro Insertado Nº= ";
                     long contador = 0;
                     ContentValues doc = new ContentValues();
@@ -536,6 +537,7 @@ public class ControlDBFarmacia {
                     } else {
                         regInsertados = regInsertados + contador;
                     }
+                    db.close();
                     return regInsertados;
 
                 }else{
@@ -547,6 +549,7 @@ public class ControlDBFarmacia {
                 return "No se encontro ID Local";
             }
         } catch (Exception e) {
+            Log.e("DB","No se pudo ingresar stock");
             throw new RuntimeException(e);
         }
 
@@ -1408,47 +1411,6 @@ public class ControlDBFarmacia {
             medicamento.setFormaFarmaceutica(forma[i]);
             insertar(medicamento);
         }
-        //Articulo
-        final int[] codElemento ={6,7,8,9,10};
-        final String[] nombreElementos ={"Revista NatGeo","Almanaque Escuela Para Todos","Philips","ColaShampan",
-                "Lapiceros Big"};
-        final int[] cantidades={10,10,10,10,10};
-        final String[] descripciones={"Revista Cientifica","Almanaque CA","Desarmadores","Bebidas","Utiles"};
-        final double[] precio ={10,5.5,7.3,1.5,1};
-        final String[] unidades ={"Libro","Libro","Caja","Lata","Caja"};
-        final int[] idArticulo = {1, 2, 3, 4, 5};
-        final int[] IDDistribuidor={101,102,103,104,105};
-        final String[] nombreArticulo={"National GeoGraphic","Escuela Para Todos","Philips","ColaShampan","Big Lapicero"};
-        final String[] clasificacion={"Lectura","Lectura","Herramientas","Bebidas","Escolares"};
-        Articulo articulo = new Articulo();
-        for (int i = 0; i < 5; i++) {
-            articulo.setCodElemento(codElemento[i]);
-            articulo.setIdArticulo(idArticulo[i]);
-            articulo.setNombre(nombreElementos[i]);
-            articulo.setCantidad(cantidades[i]);
-            articulo.setDescripcion(descripciones[i]);
-            articulo.setPrecioUni(precio[i]);
-            articulo.setUnidades(unidades[i]);
-            articulo.setIdDistribuidor(IDDistribuidor[i]);
-            articulo.setNombreArticulo(nombreArticulo[i]);
-            articulo.setClasificacion(clasificacion[i]);
-            insertar(articulo);
-        }
-        //Stock
-        final int[] idStock = {1, 2, 3, 4, 5};
-        final int[] idLocalStock = {1, 2, 3, 4, 5};
-        final int[] idElementoStock = {6, 7, 8, 9, 10};
-        final int[] cantidadStock = {10, 20, 30, 40, 50};
-        final String[] fechaVencimientoStock = {"2030-06-30", "2030-07-31", "2030-08-31", "2030-09-30", "2030-10"};
-        Stock stock = new Stock();
-        for (int i = 0; i < 5; i++) {
-            stock.setIdStock(idStock[i]);
-            stock.setIdLocal(idLocalStock[i]);
-            stock.setCodElemento(idElementoStock[i]);
-            stock.setCantidad(cantidadStock[i]);
-            stock.setFechaVencimiento(fechaVencimientoStock[i]);
-            insertar(stock);
-        }
 
 
 
@@ -1525,6 +1487,48 @@ public class ControlDBFarmacia {
             distribuidor.setNit(nitDistribuidor[i]);
             distribuidor.setCorreo(correoDistribuidor[i]);
             insertarDistribuidor(distribuidor);
+        }
+
+        //Articulo
+        final int[] codElemento ={6,7,8,9,10};
+        final String[] nombreElementos ={"Revista NatGeo","Almanaque Escuela Para Todos","Philips","ColaShampan",
+                "Lapiceros Big"};
+        final int[] cantidades={10,10,10,10,10};
+        final String[] descripciones={"Revista Cientifica","Almanaque CA","Desarmadores","Bebidas","Utiles"};
+        final double[] precio ={10,5.5,7.3,1.5,1};
+        final String[] unidades ={"Libro","Libro","Caja","Lata","Caja"};
+        final int[] idArticulo = {1, 2, 3, 4, 5};
+        final int[] IDDistribuidor={101,102,103,104,105};
+        final String[] nombreArticulo={"National GeoGraphic","Escuela Para Todos","Philips","ColaShampan","Big Lapicero"};
+        final String[] clasificacion={"Lectura","Lectura","Herramientas","Bebidas","Escolares"};
+        Articulo articulo = new Articulo();
+        for (int i = 0; i < 5; i++) {
+            articulo.setCodElemento(codElemento[i]);
+            articulo.setIdArticulo(idArticulo[i]);
+            articulo.setNombre(nombreElementos[i]);
+            articulo.setCantidad(cantidades[i]);
+            articulo.setDescripcion(descripciones[i]);
+            articulo.setPrecioUni(precio[i]);
+            articulo.setUnidades(unidades[i]);
+            articulo.setIdDistribuidor(IDDistribuidor[i]);
+            articulo.setNombreArticulo(nombreArticulo[i]);
+            articulo.setClasificacion(clasificacion[i]);
+            insertar(articulo);
+        }
+        //Stock
+        final int[] idStock = {1, 2, 3, 4, 5};
+        final int[] idLocalStock = {1, 2, 3, 4, 5};
+        final int[] idElementoStock = {1,2,3,4,5};
+        final int[] cantidadStock = {10, 20, 30, 40, 50};
+        final String[] fechaVencimientoStock = {"2030-06-15", "2030-07-15", "2030-08-15", "2030-09-15", "2030-10-15"};
+        Stock stock = new Stock();
+        for (int i = 0; i < 5; i++) {
+            stock.setIdStock(idStock[i]);
+            stock.setIdLocal(idLocalStock[i]);
+            stock.setCodElemento(idElementoStock[i]);
+            stock.setCantidad(cantidadStock[i]);
+            stock.setFechaVencimiento(fechaVencimientoStock[i]);
+            insertar(stock);
         }
 
         cerrar();
