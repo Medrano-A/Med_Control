@@ -253,22 +253,50 @@ public class ControlDBFarmacia {
     /*--CRUDS DE MM2108
     /*-----------------------------------------------TABLA ARTICULO-----------------------------------------------------------*/
     public String insertar(Articulo articulo) {
-        String regInsertados = "Registro Insertado Nº= ";
-        long contador = 0;
-        ContentValues doc = new ContentValues();
-        doc.put("idArticulo", articulo.getIdArticulo());
-        doc.put("idDistribuidor", articulo.getIdDistribuidor());
-        doc.put("nombreArticulo", articulo.getNombreArticulo());
-        doc.put("clasificacion", articulo.getClasificacion());
+        try {
+            if (verificarIntegridadArticulo(articulo, 1)) {
+                String resultado = "";
 
-        contador = db.insert("articulo",null,doc);
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        } else {
-            regInsertados = regInsertados + contador;
+                // Insertar en tabla "elemento"
+                ContentValues ele = new ContentValues();
+                ele.put("codElemento", articulo.getCodElemento());
+                ele.put("nombre", articulo.getNombre());
+                ele.put("descripcion", articulo.getDescripcion());
+                ele.put("precioUni", articulo.getPrecioUni());
+                ele.put("unidades", articulo.getUnidades());
+
+                long idElemento = db.insert("elemento", null, ele);
+                if (idElemento <= 0) {
+                    return "Error al insertar el Elemento. Registro duplicado o fallo de inserción.";
+                }
+
+                // Insertar en tabla "articulo"
+                ContentValues art = new ContentValues();
+                art.put("idArticulo", articulo.getIdArticulo());
+                art.put("idDistribuidor", articulo.getIdDistribuidor());
+                art.put("nombreArticulo", articulo.getNombreArticulo());
+                art.put("clasificacion", articulo.getClasificacion());
+
+                long idArticulo = db.insert("articulo", null, art);
+                if (idArticulo <= 0) {
+                    return "Elemento insertado, pero error al insertar Artículo. Registro duplicado o fallo.";
+                }
+
+                resultado = "Elemento insertado con ID = " + idElemento + "\n" +
+                        "Artículo insertado con ID = " + idArticulo;
+
+                return resultado;
+
+            } else {
+                return "No se encontró el ID del distribuidor. Verifica la integridad del dato.";
+            }
+
+        } catch (Exception e) {
+            Log.e("InsertarArticulo", "Error al insertar", e); // Útil para depuración
+            return "Ocurrió un error inesperado: " + e.getMessage();
         }
-        return regInsertados;
     }
+
     public Articulo consultarArticulo(int idArticulo) {
         String[] id = {String.valueOf(idArticulo)};
         Cursor cursor = db.query("articulo", camposArticulo, "idArticulo = ?", id, null, null, null);
@@ -286,13 +314,20 @@ public class ControlDBFarmacia {
         }
     }
     public String actualizar(Articulo articulo) {
-        String[] id = {String.valueOf(articulo.getIdArticulo())};
-        ContentValues cv = new ContentValues();
-        cv.put("idDistribuidor", articulo.getIdDistribuidor());
-        cv.put("nombreArticulo", articulo.getNombreArticulo());
-        cv.put("clasificacion", articulo.getClasificacion());
-        db.update("articulo", cv, "idArticulo = ?", id);
-        return "Registro Actualizado Correctamente";
+        try{
+            if(verificarIntegridadArticulo(articulo,1)){
+                String[] id = {String.valueOf(articulo.getIdArticulo())};
+                ContentValues cv = new ContentValues();
+                cv.put("idDistribuidor", articulo.getIdDistribuidor());
+                cv.put("nombreArticulo", articulo.getNombreArticulo());
+                cv.put("clasificacion", articulo.getClasificacion());
+                db.update("articulo", cv, "idArticulo = ?", id);
+                return "Registro Actualizado Correctamente";
+            }else{ return "No se encontro ID Articulo";}
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
     public String eliminarArticulo(int idArticulo) {
         String regAfectados = "filas afectadas= ";
@@ -301,7 +336,24 @@ public class ControlDBFarmacia {
         regAfectados += contador;
         return regAfectados;
     }
-
+    public boolean verificarIntegridadArticulo(Object dato, int relacion) throws SQLException{
+        switch (relacion){
+            case 1:{
+                //verificar que el id distribuidor exista
+                Articulo articulo = (Articulo) dato;
+                String[] id = {Integer.toString(articulo.getIdDistribuidor())};
+                abrir();
+                Cursor cExist = db.query("distribuidor", null, "idDistribuidor = ?", id, null, null, null);
+                if(cExist.moveToFirst()){
+                    //Se encontro el Distribuidor
+                    return true;
+                }
+                return false;
+            }
+            default:
+                return false;
+        }
+    }
 
 
 
