@@ -453,8 +453,21 @@
     <string name="ConsultarDatos">Query</string>
     <string name="EliminarDatos">Delete</string>
     <string name="LimpiarCampos">Clear</string>
-    <string name="llenadoBD">GD21001 Tables</string>
+    <string name="llenadoBD">Tables with data</string>
 
 
-
+    <string name="id_articulo">Article ID</string>
+    <string name="id_distribuidor">Distributor ID</string>
+    <string name="nombre_articulo">Article Name</string>
+    <string name="clasificacion">Classification</string>
+    <string name="registrar_articulo">Register Article</string>
+    <string name="actualizar_articulo">Update Article</string>
+    <string name="consultar_articulo">Consult Article</string>
+    <string name="ingrese_id_de_articulo">Enter Article ID</string>
+    <string name="borrar_articulo">Delete Article</string>
+    <string name="id_elemento">Element ID</string>
+    <string name="nombre_elemento">Element Name</string>
+    <string name="cantidad_elemento">Quantity</string>
+    <string name="precio_unitario">Unit Price</string>
+    <string name="unidades">Units</string>
 </resources>
