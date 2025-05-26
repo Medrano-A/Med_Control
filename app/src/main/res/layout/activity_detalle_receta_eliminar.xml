@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/EliminarDetalleReceta_titulo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/editTextId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/EliminarDetalleReceta_hint_id"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes" />
+        
+
+        <!--Boton final-->
+        <Button
+            android:id="@+id/buttonEliminarDetalleReceta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/EliminarDetalleReceta_btn_eliminar"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

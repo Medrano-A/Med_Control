@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/InsertarCliente_titulo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/editTextDui"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/InsertarCliente_hint_dui"
+            android:inputType="number"
+            android:maxLength="10"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="username"/>
+
+        <EditText
+            android:id="@+id/editTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/InsertarCliente_hint_nombre"
+            android:maxLength="30"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="givenName"/>
+
+        <EditText
+            android:id="@+id/editTextApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/InsertarCliente_hint_apellido"
+            android:maxLength="50"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="familyName"/>
+
+        <EditText
+            android:id="@+id/editTextTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/InsertarCliente_hint_telefono"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:maxLength="8"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="phone"/>
+
+        <EditText
+            android:id="@+id/editTextCorreo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/InsertarCliente_hint_correo"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"
+            android:maxLength="30"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes"
+            android:autofillHints="emailAddress"/>
+
+        <Button
+            android:id="@+id/buttonGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/InsertarCliente_btn_guardar"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

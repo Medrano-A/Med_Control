@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Título -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            android:paddingBottom="24dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_location"
+                android:contentDescription="icono editar" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="@string/editar_ubicacion"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Barra de búsqueda -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_search_bar"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_search"
+                 />
+
+            <EditText
+                android:id="@+id/etBuscarId"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/ingrese_id_de_ubicacion"
+                android:textColor="#444444"
+                android:textColorHint="#888888"
+                android:background="@android:color/transparent"
+                android:inputType="number"
+                android:paddingStart="12dp"/>
+        </LinearLayout>
+
+        <!-- Botón Buscar -->
+        <Button
+            android:id="@+id/btnBuscarEditar"
+            android:onClick="buscarUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscar"
+            android:layout_marginTop="16dp" />
+
+        <!-- Formulario editable -->
+        <EditText
+            android:id="@+id/etResultadoId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id_ubicaci_n"
+            android:enabled="false"
+            android:layout_marginTop="24dp"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/etResultadoNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/detalle_ubicaci_n"
+            android:layout_marginTop="12dp"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etResultadoDistrito"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id_distrito"
+            android:layout_marginTop="12dp"
+            android:inputType="number" />
+        <EditText
+            android:id="@+id/etResultadoMarca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/id_marca"
+            android:layout_marginTop="12dp"
+            android:inputType="number" />
+
+        <!-- Botón Guardar Cambios -->
+        <Button
+            android:id="@+id/btnGuardarCambios"
+            android:onClick="actualizarUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/guardar_cambios"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+
+    tools:context=".LaboratorioActualizarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/laboActu"
+            android:text="@string/ActualizarLabo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/laboIdActu"
+            android:text="@string/idLabo"/>
+        <EditText
+            android:id="@+id/laboIdActuEdit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/laboActuIDBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:onClick="consultarLabo"
+            android:text="@string/ConsultarDatos"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/laboNombreActu"
+            android:text="@string/laboratorioNombre"
+            />
+        <EditText
+            android:id="@+id/laboNombreActuEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/laboTipoActu"
+            android:text="@string/laboratorioTipo"
+            />
+        <EditText
+            android:id="@+id/laboTipoActuEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+    <TableRow>
+        <TextView
+            android:id="@+id/laboTelActu"
+            android:text="@string/laboratorioTelefono"
+            />
+        <EditText
+            android:id="@+id/laboTelActuEdit"
+            android:inputType="number"
+            android:maxLength="8"
+            />
+    </TableRow>
+
+    <TableRow style="?android:attr/buttonBarStyle">
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/laboActuBtn"
+            android:onClick="ActuLabo"
+            android:text="@string/ActualizarDatos" />
+
+        <Button
+            android:id="@+id/laboActuTxtBtn"
+            style="?android:attr/buttonBarButtonStyle"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+
+    </TableRow>
+
+</TableLayout>

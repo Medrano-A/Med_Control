@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ActualizarDetalleReceta_titulo"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/editTextId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ActualizarDetalleReceta_hint_id"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes" />
+
+        <EditText
+            android:id="@+id/editTextIdReceta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ActualizarDetalleReceta_hint_id_receta"
+            android:enabled="false"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes" />
+
+        <EditText
+            android:id="@+id/editTextDosis"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ActualizarDetalleReceta_hint_dosis"
+            android:maxLength="50"
+            android:enabled="false"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:textColor="?android:textColorPrimary"
+            android:textColorHint="?android:textColorHint"
+            android:importantForAutofill="yes" />
+
+        <!--Boton final-->
+        <Button
+            android:id="@+id/buttonActualizarDetalleReceta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ActualizarDetalleReceta_btn_buscar"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

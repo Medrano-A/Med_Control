@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1">
+
+        <TableRow android:layout_marginBottom="8dp">
+            <TextView android:text="@string/idLocal" />
+            <EditText
+                android:id="@+id/editLocal"
+                android:inputType="text"
+                android:maxLength="7"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="8dp">
+            <TextView android:text="@string/idUbicacion" />
+            <EditText
+                android:id="@+id/editUbicacion"
+                android:inputType="text"
+                android:maxLength="6"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="8dp">
+            <TextView android:text="@string/nombreLocal" />
+            <EditText
+                android:id="@+id/editNombre"
+                android:inputType="text"
+                android:maxLength="30"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="8dp">
+            <TextView android:text="@string/tipo" />
+            <EditText
+                android:id="@+id/editTipo"
+                android:inputType="text"
+                android:maxLength="30"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="8dp">
+            <TextView android:text="@string/telefonoLocal" />
+            <EditText
+                android:id="@+id/editTelefono"
+                android:inputType="text"
+                android:maxLength="8"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="12dp">
+            <TextView android:text="@string/opciones" />
+        </TableRow>
+
+        <TableRow android:layout_marginBottom="12dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/primary_color"
+                android:onClick="insertarLocal"
+                android:text="@string/insertar" />
+        </TableRow>
+
+    </TableLayout>
+</ScrollView>
+

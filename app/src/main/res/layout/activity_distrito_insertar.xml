@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+    tools:context=".DistritoInsertarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/distInsertar"
+            android:text="@string/InsertarDistrito"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/disIdInsertar"
+            android:text="@string/idDistrito"
+            />
+        <EditText
+            android:id="@+id/disIdInsertarEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/muDisiIdInsertar"
+            android:text="@string/idMunicipioDist"
+            />
+        <EditText
+            android:id="@+id/muDisiIdInsertarEdit"
+            android:inputType="number"
+            android:maxLength="10"
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/disNomInsertar"
+            android:text="@string/nombreDist"
+            />
+        <EditText
+            android:id="@+id/disNomInsertarEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/disInsertarBtn"
+            android:onClick="insertarDis"
+            android:text="@string/InsertarDatos" />
+
+        <Button
+            android:id="@+id/disInsertarBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+    </TableRow>
+
+</TableLayout>

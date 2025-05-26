@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:stretchColumns="1"
+    android:padding="16dp">
+
+    <TableRow android:layout_marginBottom="8dp">
+        <TextView
+            android:text="@string/idMedicamento"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editIdMed"
+            android:inputType="text"
+            android:maxLength="7" />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/nombreMedicamento"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editNombreMedicamento"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/cantidad"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editCantidad"
+            android:inputType="number"
+            android:maxLength="10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/descripcion"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editDescripcion"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/precioUni"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editPrecio"
+            android:inputType="numberDecimal"
+            android:maxLength="10"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/unidad"
+            android:layout_marginEnd="8dp" />
+        <EditText
+            android:id="@+id/editUnidad"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+    <TableRow android:layout_marginBottom="8dp">
+        <TextView
+            android:text="@string/idLaboratorio"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editIdLab"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+
+    <TableRow android:layout_marginBottom="8dp">
+        <TextView
+            android:text="@string/viaAdministracion"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editVia"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+
+    <TableRow android:layout_marginBottom="16dp">
+        <TextView
+            android:text="@string/formaFarmaceutica"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editForma"
+            android:inputType="text"
+            android:maxLength="30" />
+    </TableRow>
+
+    <!-- Botones alineados en la misma fila -->
+    <TableRow android:layout_marginBottom="16dp" android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@color/primary_color"
+            android:onClick="actualizarMedicamento"
+            android:text="@string/actualizar" />
+
+        <Button
+            android:id="@+id/btnLimpiar"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"
+            android:background="@color/primary_color"
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+        <Button
+            android:id="@+id/btnConsultar"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:background="@color/primary_color"
+            android:onClick="consultarMedicamento"
+            android:text="@string/buscar" />
+    </TableRow>
+
+</TableLayout>
