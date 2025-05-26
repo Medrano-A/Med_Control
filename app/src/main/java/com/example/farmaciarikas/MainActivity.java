@@ -30,11 +30,7 @@ public class MainActivity extends ListActivity  {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-<<<<<<< HEAD
-        if (position != 5) {
-=======
         if (position != 6) {
->>>>>>> ga21090
             String nombreValue = activities[position];
             try {
                 Class<?> clase = Class.forName("com.example.farmaciarikas." + nombreValue);

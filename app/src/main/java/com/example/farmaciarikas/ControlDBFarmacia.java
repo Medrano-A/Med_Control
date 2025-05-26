@@ -643,14 +643,14 @@ public class ControlDBFarmacia {
             return "Registro con carnet " + doctor.getIdDoctor() + " no existe";
         }*/
             }else{
-            Log.e("ActualizarDoctor", "Error: El Doctor con ID " + doctor.getIdDoctor() + " no existe.");
-            return "Error no existe el codigo del Doctor";
-        }
+                Log.e("ActualizarDoctor", "Error: El Doctor con ID " + doctor.getIdDoctor() + " no existe.");
+                return "Error no existe el codigo del Doctor";
+            }
 
-    }catch (SQLException e){
-        Log.e("ActualizarDoctor", "Error en la base de datos: " + e.getMessage());
-        return "Error en la base de datos";
-    }
+        }catch (SQLException e){
+            Log.e("ActualizarDoctor", "Error en la base de datos: " + e.getMessage());
+            return "Error en la base de datos";
+        }
 
 
     }
@@ -760,8 +760,8 @@ public class ControlDBFarmacia {
                 valores.put("viaDeAdministracion", medicamento.getViaDeAdministracion());
                 valores.put("formaFarmaceutica", medicamento.getFormaFarmaceutica());
 
-               String where = "idMedicamento=?";
-               String [] whereArgs = {medicamento.getIdMedicamento()};
+                String where = "idMedicamento=?";
+                String [] whereArgs = {medicamento.getIdMedicamento()};
                 int filasAfectadas = db.update("medicamento", valores, where, whereArgs);
                 return filasAfectadas > 0;  // Si se actualizaron filas, es verdadero
 
@@ -1471,16 +1471,7 @@ public class ControlDBFarmacia {
             detalleReceta.setIdDetReceta(idDetReceta[i]);
             detalleReceta.setIdReceta(idReceta[i]);
             detalleReceta.setDosis(dosis[i]);
-<<<<<<< HEAD
-            // insertarDetalleReceta(detalleReceta); // Llamada incorrecta al método eliminado/inseguro
-            try {
-                detalleReceta.insert(); // Usar el método de la clase que valida FK
-            } catch (SQLException e) {
-                 Log.e("LlenadoDB", "Error insertando DetalleReceta " + idDetReceta[i] + ": " + e.getMessage());
-            }
-=======
             insertarDetalleReceta(detalleReceta);
->>>>>>> ga21090
         }
 
         // Distribuidor
@@ -1757,22 +1748,13 @@ public class ControlDBFarmacia {
     }
 
     //Detalle Receta
-<<<<<<< HEAD
-    //Detalle Receta (Eliminado - Usar DetalleReceta.insert() que valida FK)
-    /*
-=======
->>>>>>> ga21090
     public boolean insertarDetalleReceta(DetalleReceta detalle) {
         try {
             db = DBHelper.getWritableDatabase();
             ContentValues values = new ContentValues();
 
             values.put("idDetReceta", detalle.getIdDetReceta());
-<<<<<<< HEAD
-            values.put("idReceta", detalle.getIdReceta()); // ¡No verifica si idReceta existe!
-=======
             values.put("idReceta", detalle.getIdReceta());
->>>>>>> ga21090
             values.put("dosis", detalle.getDosis());
 
             long resultado = db.insert("detalleReceta", null, values);
@@ -1784,10 +1766,6 @@ public class ControlDBFarmacia {
 
         }
     }
-<<<<<<< HEAD
-    */
-=======
->>>>>>> ga21090
 
     public boolean eliminarDetalleReceta(int idDetReceta) {
         try {
@@ -1953,12 +1931,12 @@ public class ControlDBFarmacia {
 
             boolean verificar = verificarMarca(distribuidor.getIdMarca());
             if(verificar){
-            filasAfectadas = db.update(
-                    "distribuidor",
-                    values,
-                    "idDistribuidor = ?",
-                    new String[]{String.valueOf(distribuidor.getIdDistribuidor())}
-            );}
+                filasAfectadas = db.update(
+                        "distribuidor",
+                        values,
+                        "idDistribuidor = ?",
+                        new String[]{String.valueOf(distribuidor.getIdDistribuidor())}
+                );}
 
 
             return filasAfectadas > 0;
@@ -1984,37 +1962,6 @@ public class ControlDBFarmacia {
         return regInsertados;
     }
     public String insertar(AccesoUsuario accesoUsuario) {
-<<<<<<< HEAD
-        // Verificar FK id_usuario
-        Cursor cursorUsuario = db.query("User", new String[]{"id_usuario"}, "id_usuario = ?", new String[]{accesoUsuario.getId_usuario()}, null, null, null);
-        if (!cursorUsuario.moveToFirst()) {
-            cursorUsuario.close();
-            return "Error al Insertar: El usuario con ID " + accesoUsuario.getId_usuario() + " no existe.";
-        }
-        cursorUsuario.close();
-
-        // Verificar FK id_opcion_crud
-        Cursor cursorOpcion = db.query("OpcionCrud", new String[]{"id_opcion_crud"}, "id_opcion_crud = ?", new String[]{String.valueOf(accesoUsuario.getId_opcion_crud())}, null, null, null);
-        if (!cursorOpcion.moveToFirst()) {
-            cursorOpcion.close();
-            return "Error al Insertar: La opción CRUD con ID " + accesoUsuario.getId_opcion_crud() + " no existe.";
-        }
-        cursorOpcion.close();
-
-        // Si las FKs existen, proceder con la inserción
-        String regInsertados = "Registro Insertado Nº= ";
-        long contador = 0;
-        ContentValues accUsuario = new ContentValues();
-        // No insertar id_acceso si es autoincremental
-        // accUsuario.put("id_acceso", accesoUsuario.getId_acceso()); // Asumiendo AUTOINCREMENT
-        accUsuario.put("id_usuario", accesoUsuario.getId_usuario());
-        accUsuario.put("id_opcion_crud", accesoUsuario.getId_opcion_crud());
-
-        contador = db.insert("AccesoUsuario", null, accUsuario);
-
-        if (contador == -1 || contador == 0) {
-            regInsertados = "Error al Insertar el registro. Verificar inserción (posible duplicado si id_acceso no es AUTOINCREMENT).";
-=======
         String regInsertados = "Registro Insertado Nº= ";
         long contador = 0;
         ContentValues accUsuario = new ContentValues();
@@ -2026,7 +1973,6 @@ public class ControlDBFarmacia {
         contador = db.insert("AccesoUsuario", null, accUsuario);
         if (contador == -1 || contador == 0) {
             regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
->>>>>>> ga21090
         } else {
             regInsertados = regInsertados + contador;
         }

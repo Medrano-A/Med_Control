@@ -66,11 +66,10 @@ public class DoctorActualizarActivity extends Activity {
             editJvpm.setText(doctor.getJvpm());
             telefono.setText(doctor.getTelefonoDoctor());
             correo.setText(String.valueOf(doctor.getCorreoDoctor()));
-<<<<<<< HEAD
-=======
+
             editIdDoctor.setEnabled(false);
 
->>>>>>> ga21090
+
         }
     }
 }

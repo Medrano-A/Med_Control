@@ -71,9 +71,8 @@ public class LocalActualizarActivity extends Activity {
         editIdUbicacion.setText("");
         editTipo.setText("");
         editTelefono.setText("");
-<<<<<<< HEAD
-=======
+
         editIdLocal.setEnabled(true);
->>>>>>> ga21090
+
     }
 }

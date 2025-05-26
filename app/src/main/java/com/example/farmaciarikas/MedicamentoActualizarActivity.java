@@ -125,10 +125,9 @@ public class MedicamentoActualizarActivity extends Activity {
         editNombre.setText("");
         editPrecio.setText("");
         editCantidad.setText("");
-<<<<<<< HEAD
 
-=======
+
         editIdMedicamento.setEnabled(true);
->>>>>>> ga21090
+
     }
 }
