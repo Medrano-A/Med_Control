@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dip"
+    android:stretchColumns="1"
+    tools:context=".DepartamentoConsultarActivity">
+
+    <TableRow>
+        <TextView
+            android:id="@+id/dptoCons"
+            android:text="@string/ConsultarDepartamento"
+            android:textSize="24sp"
+            android:textStyle="bold"/>
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/dptoIdCons"
+            android:text="@string/idDepartamentoDpto"
+            />
+
+        <Spinner
+            android:id="@+id/spinnerDepartamentoConsulta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="TouchTargetSizeCheck" />
+
+    </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/dptoConsBtn"
+            android:onClick="consDpto"
+            android:text="@string/ConsultarDatos" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/dptoNomCons"
+            android:text="@string/nombreDpto"
+            />
+
+        <EditText
+            android:id="@+id/dptoNomConsEdit"
+            android:inputType="text"
+            android:maxLength="30"
+            tools:ignore="TouchTargetSizeCheck" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:id="@+id/dptoInsertarBtnTxt"
+            android:onClick="limpiarCampos"
+            android:text="@string/LimpiarCampos"
+            />
+    </TableRow>
+
+</TableLayout>

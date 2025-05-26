@@ -46,6 +46,7 @@ public class DoctorActualizarActivity extends Activity {
         editJvpm.setText("");
         telefono.setText("");
         correo.setText("");
+        editIdDoctor.setEnabled(true);
 
     }
     public void consultarDoctor(View v) {
@@ -65,6 +66,11 @@ public class DoctorActualizarActivity extends Activity {
             editJvpm.setText(doctor.getJvpm());
             telefono.setText(doctor.getTelefonoDoctor());
             correo.setText(String.valueOf(doctor.getCorreoDoctor()));
+<<<<<<< HEAD
+=======
+            editIdDoctor.setEnabled(false);
+
+>>>>>>> ga21090
         }
     }
 }
