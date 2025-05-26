@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dp"
+    android:padding="16dp"
+    android:stretchColumns="1">
+
+    <TableRow>
+        <TextView
+            android:text="@string/idDoctor"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
+        <EditText
+            android:id="@+id/editIdDoc"
+            android:inputType="text"
+            android:maxLength="3"
+            android:layout_marginBottom="8dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/nombreDoctor"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
+        <EditText
+            android:id="@+id/editNombreDoctor"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/especialidad"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
+        <EditText
+            android:id="@+id/editEspecialidad"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/jvpm"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
+        <EditText
+            android:id="@+id/editJvpm"
+            android:inputType="text"
+            android:maxLength="4"
+            android:layout_marginBottom="8dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/telefonoDoctor"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
+        <EditText
+            android:id="@+id/editTelefonoDoctor"
+            android:inputType="text"
+            android:maxLength="8"
+            android:layout_marginBottom="8dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/correo"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp" />
+        <EditText
+            android:id="@+id/editCorreoDoctor"
+            android:inputType="textEmailAddress"
+            android:maxLength="30"
+            android:layout_marginBottom="8dp" />
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:text="@string/opciones"
+            android:layout_marginBottom="8dp" />
+    </TableRow>
+
+    <TableRow>
+
+        <Button
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@color/primary_color"
+            android:onClick="insertarDoctor"
+            android:text="@string/insertar" />
+    </TableRow>
+
+</TableLayout>
