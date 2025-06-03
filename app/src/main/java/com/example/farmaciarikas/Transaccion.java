@@ -8,13 +8,13 @@ import java.util.List;
 
 public class Transaccion extends Model<Transaccion> {
     // Campos de la entidad
-    private int    idTransaccion;
-    private String dui;
-    private int    idUsuario;
-    private int    idLocal;
-    private String fecha;    // yyyy-MM-dd
-    private double total;
-    private String tipo;
+    private int     idTransaccion;
+    private String  dui;            // Puede ser null o vacío
+    private String  idUsuario;      // FK a User.id_usuario (CHAR(2)), puede ser null o vacío
+    private Integer idLocal;        // FK a Local.idLocal (INTEGER), puede ser null
+    private String  fecha;          // yyyy-MM-dd
+    private double  total;
+    private String  tipo;
 
     // Metadatos mini-ORM
     public static final String TABLE    = "TRANSACCION";
@@ -28,8 +28,8 @@ public class Transaccion extends Model<Transaccion> {
      */
     public Transaccion(int idTransaccion,
                        String dui,
-                       int idUsuario,
-                       int idLocal,
+                       String idUsuario, // Cambiado a String
+                       Integer idLocal,   // Cambiado a Integer
                        String fecha,
                        double total,
                        String tipo) {
@@ -49,8 +49,8 @@ public class Transaccion extends Model<Transaccion> {
      */
     public Transaccion(int idTransaccion,
                        String dui,
-                       int idUsuario,
-                       int idLocal,
+                       String idUsuario, // Cambiado a String
+                       Integer idLocal,   // Cambiado a Integer
                        String fecha,
                        String tipo) {
         super();
@@ -59,54 +59,94 @@ public class Transaccion extends Model<Transaccion> {
         this.idUsuario      = idUsuario;
         this.idLocal        = idLocal;
         this.fecha          = fecha;
-        this.total          = 0;
+        this.total          = 0; // Total inicial
         this.tipo           = tipo;
         fillValues();
     }
 
     // Getters / setters
-    public int getIdTransaccion()         { return idTransaccion; }
-    public void setIdTransaccion(int id)  { idTransaccion = id; fillValues(); }
-    public String getDui()               { return dui; }
-    public void setDui(String d)         { dui = d; fillValues(); }
-    public int getIdUsuario()            { return idUsuario; }
-    public void setIdUsuario(int u)      { idUsuario = u; fillValues(); }
-    public int getIdLocal()              { return idLocal; }
-    public void setIdLocal(int l)        { idLocal = l; fillValues(); }
-    public String getFecha()             { return fecha; }
-    public void setFecha(String f)       { fecha = f; fillValues(); }
-    public double getTotal()             { return total; }
-    public void setTotal(double t)       { total = t; fillValues(); }
-    public String getTipo()              { return tipo; }
-    public void setTipo(String tp)       { tipo = tp; fillValues(); }
+    public int getIdTransaccion()             { return idTransaccion; }
+    public void setIdTransaccion(int id)      { idTransaccion = id; fillValues(); }
+    public String getDui()                   { return dui; }
+    public void setDui(String d)             { dui = d; fillValues(); }
+    public String getIdUsuario()               { return idUsuario; } // Cambiado a String
+    public void setIdUsuario(String u)         { idUsuario = u; fillValues(); } // Cambiado a String
+    public Integer getIdLocal()                { return idLocal; } // Cambiado a Integer
+    public void setIdLocal(Integer l)          { idLocal = l; fillValues(); } // Cambiado a Integer
+    public String getFecha()                 { return fecha; }
+    public void setFecha(String f)           { fecha = f; fillValues(); }
+    public double getTotal()                 { return total; }
+    public void setTotal(double t)           { total = t; fillValues(); }
+    public String getTipo()                  { return tipo; }
+    public void setTipo(String tp)           { tipo = tp; fillValues(); }
 
     // Rellena ContentValues
     private void fillValues() {
         valores.clear();
         valores.put(FIELDS[0], idTransaccion);
-        valores.put(FIELDS[1], dui);
-        valores.put(FIELDS[2], idUsuario);
-        valores.put(FIELDS[3], idLocal);
+        valores.put(FIELDS[1], (dui != null && dui.isEmpty()) ? null : dui); // Guardar null si es cadena vacía
+        valores.put(FIELDS[2], (idUsuario != null && idUsuario.isEmpty()) ? null : idUsuario); // Guardar null si es cadena vacía
+        valores.put(FIELDS[3], idLocal); // Integer puede ser null directamente
         valores.put(FIELDS[4], fecha);
         valores.put(FIELDS[5], total);
         valores.put(FIELDS[6], tipo);
     }
 
-    /* Verifica que la tabla exista */
-    private void ensureTableExists() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor c = db.rawQuery(
-                "SELECT name FROM sqlite_master WHERE type='table' AND name='" + TABLE + "'",
-                null
-        );
-        boolean exists = c.moveToFirst();
-        c.close();
-        if (!exists) throw new SQLException("Tabla '" + TABLE + "' no existe");
+    private void ensureDbHelper() {
+        if (dbHelper == null) {
+            throw new IllegalStateException("Model.dbHelper no ha sido inicializado. Llama a Model.init() primero.");
+        }
     }
+
+    // --- Métodos de validación de FK ---
+    private boolean clienteExists(String duiCliente) {
+        ensureDbHelper();
+        if (duiCliente == null || duiCliente.trim().isEmpty()) {
+            return true; // DUI opcional, si no se da, es válido
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try (Cursor c = db.query("cliente", new String[]{"dui"}, "dui = ?", new String[]{duiCliente}, null, null, null)) {
+            return c.moveToFirst();
+        } catch (Exception e) {
+            // Log.e("Transaccion", "Error verificando cliente", e); // Opcional: Loguear
+            return false; // En caso de error, asumir que no existe
+        }
+    }
+
+    private boolean usuarioExists(String usuarioId) {
+        ensureDbHelper();
+        if (usuarioId == null || usuarioId.trim().isEmpty()) {
+            return true; // ID Usuario opcional, si no se da, es válido
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        // User.id_usuario es CHAR(2)
+        try (Cursor c = db.query("User", new String[]{"id_usuario"}, "id_usuario = ?", new String[]{usuarioId}, null, null, null)) {
+            return c.moveToFirst();
+        } catch (Exception e) {
+            // Log.e("Transaccion", "Error verificando usuario", e); // Opcional: Loguear
+            return false;
+        }
+    }
+
+    private boolean localExists(Integer localId) {
+        ensureDbHelper();
+        if (localId == null || localId == 0) { // Asumir 0 como no especificado si se usa int primitivo en algún lado
+            return true; // ID Local opcional, si no se da, es válido
+        }
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        try (Cursor c = db.query("local", new String[]{"idLocal"}, "idLocal = ?", new String[]{String.valueOf(localId)}, null, null, null)) {
+            return c.moveToFirst();
+        } catch (Exception e) {
+            // Log.e("Transaccion", "Error verificando local", e); // Opcional: Loguear
+            return false;
+        }
+    }
+    // --- Fin Métodos de validación de FK ---
+
 
     @Override
     public boolean exists() {
-        ensureTableExists();
+        ensureDbHelper();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         try (Cursor c = db.query(
                 TABLE, null,
@@ -117,38 +157,44 @@ public class Transaccion extends Model<Transaccion> {
     }
 
     @Override
-    public long insert() {
-        ensureTableExists();
+    public long insert() throws SQLException {
+        ensureDbHelper();
         if (exists()) {
             throw new SQLException("Transaccion duplicada: " + idTransaccion);
         }
-        // Integridad manual sin ORM
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        if (!db.query("cliente", new String[]{"dui"}, "dui=?", new String[]{dui}, null, null, null).moveToFirst())
-            throw new SQLException("Cliente inexistente: " + dui);
-        /* if (!db.query("User", new String[]{"id_usuario"}, "id_usuario=?", new String[]{String.valueOf(idUsuario)}, null, null, null).moveToFirst())
-            throw new SQLException("Usuario inexistente: " + idUsuario);*/
-        /* if (!db.query("local", new String[]{"idLocal"}, "idLocal=?", new String[]{String.valueOf(idLocal)}, null, null, null).moveToFirst())
-            throw new SQLException("Local inexistente: " + idLocal); */
+
+        // Validaciones de FK
+        if (!clienteExists(this.dui)) {
+            throw new SQLException("Cliente inexistente: " + this.dui);
+        }
+        if (!usuarioExists(this.idUsuario)) {
+            throw new SQLException("Usuario inexistente: " + this.idUsuario);
+        }
+        if (!localExists(this.idLocal)) {
+            throw new SQLException("Local inexistente: " + this.idLocal);
+        }
 
         return dbHelper.getWritableDatabase()
                 .insertOrThrow(TABLE, null, valores);
     }
 
     @Override
-    public long update() {
-        ensureTableExists();
+    public long update() throws SQLException {
+        ensureDbHelper();
         if (!exists()) {
-            throw new SQLException("No existe Transaccion con ID " + idTransaccion);
+            throw new SQLException("No existe Transaccion con ID " + idTransaccion + " para actualizar.");
         }
-        // Validaciones idénticas a insert
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        if (!db.query("cliente", new String[]{"dui"}, "dui=?", new String[]{dui}, null, null, null).moveToFirst())
-            throw new SQLException("Cliente inexistente: " + dui);
-        if (!db.query("User", new String[]{"id_usuario"}, "id_usuario=?", new String[]{String.valueOf(idUsuario)}, null, null, null).moveToFirst())
-            throw new SQLException("Usuario inexistente: " + idUsuario);
-        if (!db.query("local", new String[]{"idLocal"}, "idLocal=?", new String[]{String.valueOf(idLocal)}, null, null, null).moveToFirst())
-            throw new SQLException("Local inexistente: " + idLocal);
+
+        // Validaciones de FK
+        if (!clienteExists(this.dui)) {
+            throw new SQLException("Cliente inexistente: " + this.dui);
+        }
+        if (!usuarioExists(this.idUsuario)) {
+            throw new SQLException("Usuario inexistente: " + this.idUsuario);
+        }
+        if (!localExists(this.idLocal)) {
+            throw new SQLException("Local inexistente: " + this.idLocal);
+        }
 
         return dbHelper.getWritableDatabase()
                 .update(TABLE, valores, SEL_PK,
@@ -156,11 +202,14 @@ public class Transaccion extends Model<Transaccion> {
     }
 
     @Override
-    public long delete() {
-        ensureTableExists();
+    public long delete() throws SQLException {
+        ensureDbHelper();
+        if (!exists()) { // Primero verificar si la transacción existe para evitar error en countByTransaccion
+            throw new SQLException("No existe Transaccion con ID " + idTransaccion + " para eliminar.");
+        }
         // No borrar si hay detalles asociados
         if (DetalleTransaccion.countByTransaccion(idTransaccion) > 0) {
-            throw new SQLException("No se puede eliminar: existen detalles asociados");
+            throw new SQLException("No se puede eliminar Transaccion con ID " + idTransaccion + ": existen detalles asociados.");
         }
         return dbHelper.getWritableDatabase()
                 .delete(TABLE, SEL_PK,
@@ -169,16 +218,19 @@ public class Transaccion extends Model<Transaccion> {
 
     /* Consultas estáticas */
     public static Transaccion getByPk(int id) {
+        ensureDbHelper_static(); // Necesario para métodos estáticos
         List<Transaccion> arr = getByQuery(SEL_PK, new String[]{String.valueOf(id)});
         return arr.isEmpty() ? null : arr.get(0);
     }
 
     public static Transaccion[] getAll() {
+        ensureDbHelper_static();
         List<Transaccion> list = getByQuery(null, null);
         return list.toArray(new Transaccion[0]);
     }
 
     public static List<Transaccion> getByQuery(String sel, String[] args) {
+        ensureDbHelper_static();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         List<Transaccion> list = new ArrayList<>();
         try (Cursor c = db.query(TABLE, null, sel, args, null, null, null)) {
@@ -189,12 +241,25 @@ public class Transaccion extends Model<Transaccion> {
         return list;
     }
 
+    private static void ensureDbHelper_static() { // Método helper para estáticos
+        if (dbHelper == null) {
+            throw new IllegalStateException("Model.dbHelper no ha sido inicializado. Llama a Model.init() primero.");
+        }
+    }
+
     private static Transaccion modelFromCursor(Cursor c) {
+        // Leer idLocal como Integer para manejar NULLs correctamente desde la BD
+        Integer idLocalVal = null;
+        int idLocalColumnIndex = c.getColumnIndex(FIELDS[3]); // ID_LOCAL
+        if (!c.isNull(idLocalColumnIndex)) {
+            idLocalVal = c.getInt(idLocalColumnIndex);
+        }
+
         return new Transaccion(
                 c.getInt   (c.getColumnIndexOrThrow(FIELDS[0])), // IDTRANSACCION
                 c.getString(c.getColumnIndexOrThrow(FIELDS[1])), // DUI
-                c.getInt   (c.getColumnIndexOrThrow(FIELDS[2])), // IDUSUARIO
-                c.getInt   (c.getColumnIndexOrThrow(FIELDS[3])), // ID_LOCAL
+                c.getString(c.getColumnIndexOrThrow(FIELDS[2])), // IDUSUARIO (leído como String)
+                idLocalVal,                                      // ID_LOCAL (leído como Integer)
                 c.getString(c.getColumnIndexOrThrow(FIELDS[4])), // FECHA
                 c.getDouble(c.getColumnIndexOrThrow(FIELDS[5])), // TOTAL
                 c.getString(c.getColumnIndexOrThrow(FIELDS[6]))  // TIPO
@@ -202,20 +267,26 @@ public class Transaccion extends Model<Transaccion> {
     }
 
     public void recalculateTotal() {
-        // 1) sumar subtotales de todos sus detalles
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor c = db.rawQuery(
-                "SELECT IFNULL(SUM(SUBTOTAL),0) FROM DETALLETRANSACCION WHERE IDTRANSACCION = ?",
-                new String[]{ String.valueOf(idTransaccion) }
-        );
+        ensureDbHelper();
+        SQLiteDatabase db = dbHelper.getReadableDatabase(); // Usar readable para query
+        Cursor c = null;
         double suma = 0;
-        if (c.moveToFirst()) suma = c.getDouble(0);
-        c.close();
+        try {
+            c = db.rawQuery(
+                    "SELECT IFNULL(SUM(SUBTOTAL),0) FROM DETALLETRANSACCION WHERE IDTRANSACCION = ?",
+                    new String[]{ String.valueOf(idTransaccion) }
+            );
+            if (c.moveToFirst()) suma = c.getDouble(0);
+        } finally {
+            if (c != null) c.close();
+        }
 
-        // 2) actualizar campo local y BD
         this.total = suma;
         fillValues();  // vuelve a poblar ContentValues con el nuevo total
+
+        // Usar writable para update
         dbHelper.getWritableDatabase()
                 .update(TABLE, valores, SEL_PK, new String[]{ String.valueOf(idTransaccion) });
     }
+
 }

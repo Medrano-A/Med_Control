@@ -31,7 +31,7 @@
                 android:id="@+id/editTransaccionIdBuscarActualizar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="ID Transacción"
+                android:hint="ID Transacción a Buscar"
                 android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +60,7 @@
                     android:id="@+id/editTransaccionDuiActualizar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="DUI Cliente"
+                    android:hint="DUI Cliente (opcional)"
                     android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,8 +74,8 @@
                     android:id="@+id/editTransaccionIdUsuarioActualizar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="ID Usuario"
-                    android:inputType="number"/>
+                    android:hint="ID Usuario (opcional)"
+                    android:inputType="text"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- ID Local -->
@@ -88,7 +88,7 @@
                     android:id="@+id/editTransaccionIdLocalActualizar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="ID Local"
+                    android:hint="ID Local (opcional)"
                     android:inputType="number"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -126,7 +126,7 @@
                 android:id="@+id/btnTransaccionActualizarConfirmar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Actualizar"
+                android:text="Confirmar Actualización"
                 android:layout_marginBottom="8dp"/>
 
             <Button

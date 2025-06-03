@@ -13,3 +13,8 @@
 .externalNativeBuild
 .cxx
 local.properties
+<<<<<<< HEAD
+
+.filecommand/
+=======
+>>>>>>> ga21090

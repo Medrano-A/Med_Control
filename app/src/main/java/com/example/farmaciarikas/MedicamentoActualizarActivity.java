@@ -112,6 +112,7 @@ public class MedicamentoActualizarActivity extends Activity {
             editDescripcion.setText(medicamento.getDescripcion());
             editPrecio.setText(String.valueOf(medicamento.getPrecioUni()));
             editUnidad.setText(medicamento.getUnidades());
+            editIdMedicamento.setEnabled(false);
         }
     }
 
@@ -124,6 +125,9 @@ public class MedicamentoActualizarActivity extends Activity {
         editNombre.setText("");
         editPrecio.setText("");
         editCantidad.setText("");
+
+
+        editIdMedicamento.setEnabled(true);
 
     }
 }

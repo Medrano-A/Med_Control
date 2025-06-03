@@ -60,6 +60,7 @@ public class LocalActualizarActivity extends Activity {
             editNombre.setText(local.getNombreLocal());
             editTipo.setText(local.getTipoLocal());
             editTelefono.setText(local.getTelefonoLocal());
+            editIdLocal.setEnabled(false);
         }
 
     }
@@ -70,5 +71,8 @@ public class LocalActualizarActivity extends Activity {
         editIdUbicacion.setText("");
         editTipo.setText("");
         editTelefono.setText("");
+
+        editIdLocal.setEnabled(true);
+
     }
 }

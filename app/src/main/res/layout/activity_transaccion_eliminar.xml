@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
+    android:gravity="center_horizontal"
     tools:context=".TransaccionEliminarActivity">
 
     <!-- Título -->
@@ -13,29 +14,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Eliminar Transacción"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="32dp"/>
 
     <!-- ID Transacción a eliminar -->
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp">
+        android:maxWidth="400dp"
+        android:layout_marginBottom="24dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTransaccionIdEliminar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="ID Transacción"
+            android:hint="ID Transacción a Eliminar"
             android:inputType="number"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Botón Eliminar -->
     <Button
         android:id="@+id/btnTransaccionEliminarConfirmar"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
         android:text="Eliminar Transacción"
-        android:icon="@android:drawable/ic_menu_delete"/>
+        android:textSize="16sp"
+        android:textColor="@android:color/white"
+        android:backgroundTint="@color/design_default_color_error"
+        android:icon="@android:drawable/ic_menu_delete"
+        android:iconTint="@android:color/white"/>
 </LinearLayout>

@@ -520,6 +520,7 @@ public class ControlDBFarmacia {
         try{
             if(verificarIntegridadStock(stock,1)){
                 if(verificarIntegridadStock(stock,2)){
+                    db = DBHelper.getWritableDatabase();
                     String regInsertados = "Registro Insertado Nº= ";
                     long contador = 0;
                     ContentValues doc = new ContentValues();
@@ -536,6 +537,7 @@ public class ControlDBFarmacia {
                     } else {
                         regInsertados = regInsertados + contador;
                     }
+                    db.close();
                     return regInsertados;
 
                 }else{
@@ -547,6 +549,7 @@ public class ControlDBFarmacia {
                 return "No se encontro ID Local";
             }
         } catch (Exception e) {
+            Log.e("DB","No se pudo ingresar stock");
             throw new RuntimeException(e);
         }
 
@@ -640,14 +643,14 @@ public class ControlDBFarmacia {
             return "Registro con carnet " + doctor.getIdDoctor() + " no existe";
         }*/
             }else{
-            Log.e("ActualizarDoctor", "Error: El Doctor con ID " + doctor.getIdDoctor() + " no existe.");
-            return "Error no existe el codigo del Doctor";
-        }
+                Log.e("ActualizarDoctor", "Error: El Doctor con ID " + doctor.getIdDoctor() + " no existe.");
+                return "Error no existe el codigo del Doctor";
+            }
 
-    }catch (SQLException e){
-        Log.e("ActualizarDoctor", "Error en la base de datos: " + e.getMessage());
-        return "Error en la base de datos";
-    }
+        }catch (SQLException e){
+            Log.e("ActualizarDoctor", "Error en la base de datos: " + e.getMessage());
+            return "Error en la base de datos";
+        }
 
 
     }
@@ -757,8 +760,8 @@ public class ControlDBFarmacia {
                 valores.put("viaDeAdministracion", medicamento.getViaDeAdministracion());
                 valores.put("formaFarmaceutica", medicamento.getFormaFarmaceutica());
 
-               String where = "idMedicamento=?";
-               String [] whereArgs = {medicamento.getIdMedicamento()};
+                String where = "idMedicamento=?";
+                String [] whereArgs = {medicamento.getIdMedicamento()};
                 int filasAfectadas = db.update("medicamento", valores, where, whereArgs);
                 return filasAfectadas > 0;  // Si se actualizaron filas, es verdadero
 
@@ -1306,6 +1309,9 @@ public class ControlDBFarmacia {
         db.execSQL("DELETE FROM cliente");
         db.execSQL("DELETE FROM detalleReceta");
         db.execSQL("DELETE FROM distribuidor");
+        db.execSQL("DELETE FROM " + Transaccion.TABLE);
+        db.execSQL("DELETE FROM " + DetalleTransaccion.TABLE);
+        db.execSQL("DELETE FROM " + Receta.TABLE);
 
         // Departamento
         final int[] idDepartamento = {1, 2, 3, 4, 5};
@@ -1408,47 +1414,6 @@ public class ControlDBFarmacia {
             medicamento.setFormaFarmaceutica(forma[i]);
             insertar(medicamento);
         }
-        //Articulo
-        final int[] codElemento ={6,7,8,9,10};
-        final String[] nombreElementos ={"Revista NatGeo","Almanaque Escuela Para Todos","Philips","ColaShampan",
-                "Lapiceros Big"};
-        final int[] cantidades={10,10,10,10,10};
-        final String[] descripciones={"Revista Cientifica","Almanaque CA","Desarmadores","Bebidas","Utiles"};
-        final double[] precio ={10,5.5,7.3,1.5,1};
-        final String[] unidades ={"Libro","Libro","Caja","Lata","Caja"};
-        final int[] idArticulo = {1, 2, 3, 4, 5};
-        final int[] IDDistribuidor={101,102,103,104,105};
-        final String[] nombreArticulo={"National GeoGraphic","Escuela Para Todos","Philips","ColaShampan","Big Lapicero"};
-        final String[] clasificacion={"Lectura","Lectura","Herramientas","Bebidas","Escolares"};
-        Articulo articulo = new Articulo();
-        for (int i = 0; i < 5; i++) {
-            articulo.setCodElemento(codElemento[i]);
-            articulo.setIdArticulo(idArticulo[i]);
-            articulo.setNombre(nombreElementos[i]);
-            articulo.setCantidad(cantidades[i]);
-            articulo.setDescripcion(descripciones[i]);
-            articulo.setPrecioUni(precio[i]);
-            articulo.setUnidades(unidades[i]);
-            articulo.setIdDistribuidor(IDDistribuidor[i]);
-            articulo.setNombreArticulo(nombreArticulo[i]);
-            articulo.setClasificacion(clasificacion[i]);
-            insertar(articulo);
-        }
-        //Stock
-        final int[] idStock = {1, 2, 3, 4, 5};
-        final int[] idLocalStock = {1, 2, 3, 4, 5};
-        final int[] idElementoStock = {6, 7, 8, 9, 10};
-        final int[] cantidadStock = {10, 20, 30, 40, 50};
-        final String[] fechaVencimientoStock = {"2030-06-30", "2030-07-31", "2030-08-31", "2030-09-30", "2030-10"};
-        Stock stock = new Stock();
-        for (int i = 0; i < 5; i++) {
-            stock.setIdStock(idStock[i]);
-            stock.setIdLocal(idLocalStock[i]);
-            stock.setCodElemento(idElementoStock[i]);
-            stock.setCantidad(cantidadStock[i]);
-            stock.setFechaVencimiento(fechaVencimientoStock[i]);
-            insertar(stock);
-        }
 
 
 
@@ -1526,6 +1491,106 @@ public class ControlDBFarmacia {
             distribuidor.setCorreo(correoDistribuidor[i]);
             insertarDistribuidor(distribuidor);
         }
+
+        //Articulo
+        final int[] codElemento ={6,7,8,9,10};
+        final String[] nombreElementos ={"Revista NatGeo","Almanaque Escuela Para Todos","Philips","ColaShampan",
+                "Lapiceros Big"};
+        final int[] cantidades={10,10,10,10,10};
+        final String[] descripciones={"Revista Cientifica","Almanaque CA","Desarmadores","Bebidas","Utiles"};
+        final double[] precio ={10,5.5,7.3,1.5,1};
+        final String[] unidades ={"Libro","Libro","Caja","Lata","Caja"};
+        final int[] idArticulo = {1, 2, 3, 4, 5};
+        final int[] IDDistribuidor={101,102,103,104,105};
+        final String[] nombreArticulo={"National GeoGraphic","Escuela Para Todos","Philips","ColaShampan","Big Lapicero"};
+        final String[] clasificacion={"Lectura","Lectura","Herramientas","Bebidas","Escolares"};
+        Articulo articulo = new Articulo();
+        for (int i = 0; i < 5; i++) {
+            articulo.setCodElemento(codElemento[i]);
+            articulo.setIdArticulo(idArticulo[i]);
+            articulo.setNombre(nombreElementos[i]);
+            articulo.setCantidad(cantidades[i]);
+            articulo.setDescripcion(descripciones[i]);
+            articulo.setPrecioUni(precio[i]);
+            articulo.setUnidades(unidades[i]);
+            articulo.setIdDistribuidor(IDDistribuidor[i]);
+            articulo.setNombreArticulo(nombreArticulo[i]);
+            articulo.setClasificacion(clasificacion[i]);
+            insertar(articulo);
+        }
+        //Stock
+        final int[] idStock = {1, 2, 3, 4, 5};
+        final int[] idLocalStock = {1, 2, 3, 4, 5};
+        final int[] idElementoStock = {1,2,3,4,5};
+        final int[] cantidadStock = {10, 20, 30, 40, 50};
+        final String[] fechaVencimientoStock = {"2030-06-15", "2030-07-15", "2030-08-15", "2030-09-15", "2030-10-15"};
+        Stock stock = new Stock();
+        for (int i = 0; i < 5; i++) {
+            stock.setIdStock(idStock[i]);
+            stock.setIdLocal(idLocalStock[i]);
+            stock.setCodElemento(idElementoStock[i]);
+            stock.setCantidad(cantidadStock[i]);
+            stock.setFechaVencimiento(fechaVencimientoStock[i]);
+            insertar(stock);
+        }
+
+        // Receta
+        final String[] duiReceta = {duiCliente[0], duiCliente[1], duiCliente[2], duiCliente[3], duiCliente[4]}; // Usar DUIs de clientes existentes
+        final int[] idDoctorReceta = {idDoctor[0], idDoctor[1], idDoctor[2], idDoctor[3], idDoctor[4]}; // Usar IDs de doctores existentes
+        final String[] nombrePaciente = {"Carlos Martinez", "Andrea Lopez", "Luis Gomez", "Sofia Hernandez", "Pedro Diaz"};
+        final String[] fechaReceta = {"2024-01-15", "2024-02-20", "2024-03-10", "2024-04-05", "2024-05-22"};
+        final int[] edadPaciente = {30, 25, 45, 22, 50};
+        final String[] observacionesReceta = {"Tomar con abundante agua", "Evitar lácteos", "Reposo recomendado", "Puede causar somnolencia", "Seguir indicaciones"};
+        Receta recetaObj; // Renombrado para evitar conflicto con la tabla
+        for (int i = 0; i < 5; i++) {
+            recetaObj = new Receta(idReceta[i], duiReceta[i], idDoctorReceta[i], nombrePaciente[i], fechaReceta[i], edadPaciente[i], observacionesReceta[i]);
+            try {
+                recetaObj.insert();
+            } catch (SQLException e) {
+                Log.e("LlenadoDB", "Error insertando Receta " + idReceta[i] + ": " + e.getMessage());
+            }
+        }
+
+        // Transaccion
+        final int[] idTransaccion = {1001, 1002, 1003, 1004, 1005};
+        final String[] duiTransaccion = {duiCliente[0], null, duiCliente[2], null, duiCliente[4]}; // Algunos sin cliente asociado
+        final String[] idUsuarioTransaccion = {"01", "02", "03", "04", "05"}; // Usar IDs de usuarios existentes (asumiendo que permisosUsuarios() se llama antes o están definidos)
+        final Integer[] idLocalTransaccion = {idLocal[0], idLocal[1], idLocal[2], idLocal[3], idLocal[4]}; // Usar IDs de locales existentes
+        final String[] fechaTransaccion = {"2024-05-01", "2024-05-02", "2024-05-03", "2024-05-04", "2024-05-05"};
+        final String[] tipoTransaccion = {"Venta", "Compra", "Venta", "Ajuste", "Venta"};
+        Transaccion transaccion;
+        for (int i = 0; i < 5; i++) {
+            // Usar constructor que inicia total en 0
+            transaccion = new Transaccion(idTransaccion[i], duiTransaccion[i], idUsuarioTransaccion[i], idLocalTransaccion[i], fechaTransaccion[i], tipoTransaccion[i]);
+            try {
+                transaccion.insert();
+            } catch (SQLException e) {
+                Log.e("LlenadoDB", "Error insertando Transaccion " + idTransaccion[i] + ": " + e.getMessage());
+            }
+        }
+
+        // DetalleTransaccion
+        // Insertaremos 2 detalles para las primeras 3 transacciones
+        final int[] idDetalleTransaccion = {2001, 2002, 2003, 2004, 2005, 2006};
+        final int[] idTransaccionDetalle = {idTransaccion[0], idTransaccion[0], idTransaccion[1], idTransaccion[1], idTransaccion[2], idTransaccion[2]};
+        final int[] cantidadDetalle = {2, 1, 5, 10, 1, 3};
+        // Usar precios de medicamentos existentes (precioUnitario[i])
+        final double[] precioUnitarioDetalle = {precioUnitario[0], precioUnitario[1], precioUnitario[2], precioUnitario[3], precioUnitario[4], precioUnitario[0]};
+        // Calcular subtotal = cantidad * precioUnitario
+        double[] subtotalDetalle = new double[6];
+        for(int i=0; i<6; i++){
+            subtotalDetalle[i] = cantidadDetalle[i] * precioUnitarioDetalle[i];
+        }
+        DetalleTransaccion detalleTransaccion;
+        for (int i = 0; i < 6; i++) {
+            detalleTransaccion = new DetalleTransaccion(idDetalleTransaccion[i], idTransaccionDetalle[i], cantidadDetalle[i], subtotalDetalle[i], precioUnitarioDetalle[i]);
+            try {
+                detalleTransaccion.insert(); // Esto debería recalcular el total de la transacción asociada
+            } catch (SQLException e) {
+                Log.e("LlenadoDB", "Error insertando DetalleTransaccion " + idDetalleTransaccion[i] + ": " + e.getMessage());
+            }
+        }
+
 
         cerrar();
         return context.getResources().getString(R.string.llenadoBD);
@@ -1866,12 +1931,12 @@ public class ControlDBFarmacia {
 
             boolean verificar = verificarMarca(distribuidor.getIdMarca());
             if(verificar){
-            filasAfectadas = db.update(
-                    "distribuidor",
-                    values,
-                    "idDistribuidor = ?",
-                    new String[]{String.valueOf(distribuidor.getIdDistribuidor())}
-            );}
+                filasAfectadas = db.update(
+                        "distribuidor",
+                        values,
+                        "idDistribuidor = ?",
+                        new String[]{String.valueOf(distribuidor.getIdDistribuidor())}
+                );}
 
 
             return filasAfectadas > 0;
