@@ -1,24 +1,106 @@
 package com.example.farmaciarikas;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
+/**
+ * Servicio-cliente que envía un JSON al PHP insertar_doctor.php
+ * y muestra el mensaje devuelto por el backend.
+ */
 public class InsertarDoctorService extends AppCompatActivity {
+
+    // Controles UI
+    private EditText editIdDoc, editNombreDoctor, editEspecialidad,
+            editJvpm, editTelefonoDoctor, editCorreoDoctor;
+
+    // URL del servicio PHP
+    private final String URL = String.format(
+            "http://%s/ws5/farmacia/insertar_doctor.php", ControlService.BASE_IP);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_insertar_doctor_service);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        // Referencias
+        editIdDoc         = findViewById(R.id.editIdDoc);
+        editNombreDoctor  = findViewById(R.id.editNombreDoctor);
+        editEspecialidad  = findViewById(R.id.editEspecialidad);
+        editJvpm          = findViewById(R.id.editJvpm);
+        editTelefonoDoctor= findViewById(R.id.editTelefonoDoctor);
+        editCorreoDoctor  = findViewById(R.id.editCorreoDoctor);
+    }
+
+    /** Vinculado en XML con android:onClick="insertarDoctor" */
+    public void insertarDoctor(View v) {
+
+        // Capturar datos
+        String idDoc   = editIdDoc.getText().toString().trim();
+        String nombre  = editNombreDoctor.getText().toString().trim();
+        String espec   = editEspecialidad.getText().toString().trim();
+        String jvpm    = editJvpm.getText().toString().trim();
+        String tel     = editTelefonoDoctor.getText().toString().trim();
+        String correo  = editCorreoDoctor.getText().toString().trim();
+
+        // Validación básica
+        if (idDoc.isEmpty() || nombre.isEmpty()) {
+            Toast.makeText(this, "ID y Nombre son obligatorios", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            // Construir JSON de envío
+            JSONObject json = new JSONObject();
+            json.put("idDoctor", idDoc);
+            json.put("nombreDoctor", nombre);
+            json.put("especialidad", espec);
+            json.put("jvpm", jvpm);
+            json.put("telefonoDoctor", tel);
+            json.put("correoDoctor", correo);
+
+            // Petición Volley
+            JsonObjectRequest req = new JsonObjectRequest(
+                    Request.Method.POST,
+                    URL,
+                    json,
+                    response -> {
+                        String msg = response.optString("message", "Sin mensaje");
+                        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+                    },
+                    error -> {
+                        String msg = (error.networkResponse != null)
+                                ? "HTTP " + error.networkResponse.statusCode
+                                : "Error de red";
+                        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+                    }
+            );
+
+            RequestQueue queue = Volley.newRequestQueue(this);
+            queue.add(req);
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error JSON: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    /** (opcional) Limpia todas las cajas; enlázalo en XML si lo deseas. */
+    public void limpiarCampos(View v) {
+        editIdDoc.setText("");
+        editNombreDoctor.setText("");
+        editEspecialidad.setText("");
+        editJvpm.setText("");
+        editTelefonoDoctor.setText("");
+        editCorreoDoctor.setText("");
     }
 }
