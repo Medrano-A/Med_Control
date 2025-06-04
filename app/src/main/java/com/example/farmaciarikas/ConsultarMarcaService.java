@@ -39,7 +39,7 @@ public class ConsultarMarcaService extends AppCompatActivity {
             Toast.makeText(this, "Por favor ingresa el ID de la Marca", Toast.LENGTH_SHORT).show();
             return;
         }
-        String url = "http://192.168.0.7/ws1/consultar_marca.php?idMarca=" + idMarcaText;
+        String url = "http://"+ControlService.BASE_IP+"/ws1/consultar_marca.php?idMarca=" + idMarcaText;
 
         StringRequest getRequest = new StringRequest(
                 Request.Method.GET,

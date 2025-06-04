@@ -40,7 +40,7 @@ public class InsertarMarcaService extends AppCompatActivity {
             return;
         }
 
-        String url = "http://192.168.0.7/ws1/insertar_marca.php";
+        String url = "http://"+ControlService.BASE_IP+"/ws1/insertar_marca.php";
 
         // Crear la solicitud POST
         StringRequest postRequest = new StringRequest(
