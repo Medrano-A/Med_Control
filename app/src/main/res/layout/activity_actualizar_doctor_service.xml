@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:stretchColumns="1"
+    android:padding="16dp">
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:text="@string/idDoctor"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editDoctor"
+            android:inputType="text"
+            android:maxLength="7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:text="@string/nombreDoctor"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editNombre"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:text="@string/especialidad"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editEspecialidad"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:text="@string/jvpm"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editJvpm"
+            android:inputType="text"
+            android:maxLength="4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:text="@string/telefonoDoctor"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editTelefonoDoctor"
+            android:inputType="text"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:text="@string/correo"
+            android:layout_marginEnd="8dp" />
+
+        <EditText
+            android:id="@+id/editCorreoDoctor"
+            android:inputType="textEmailAddress"
+            android:maxLength="30"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="16dp"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@color/purpleDark"
+            android:onClick="actualizarDoctor"
+            android:text="@string/actualizar" />
+
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            android:background="@color/purpleDark"
+            android:onClick="limpiarTexto"
+            android:text="@string/limpiar" />
+
+
+        <Button
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:background="@color/purpleDark"
+            android:onClick="consultarDoctor"
+            android:text="@string/buscar" />
+    </TableRow>
+</TableLayout>

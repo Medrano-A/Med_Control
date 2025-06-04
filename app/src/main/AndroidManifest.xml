@@ -18,6 +18,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".EliminarDoctorService"
+            android:exported="false" />
+        <activity
+            android:name=".ActualizarDoctorService"
+            android:exported="false" />
+        <activity
             android:name=".ConsultarMarcaService"
             android:exported="false" />
         <activity

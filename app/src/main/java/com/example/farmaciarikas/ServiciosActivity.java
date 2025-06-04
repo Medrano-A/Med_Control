@@ -18,7 +18,7 @@ public class ServiciosActivity extends ListActivity  {
             activities={
             "InsertarDepartamentoService","ConsultarDepartamentoService",
             "InsertarDoctorService","ConsultarDoctorService","InsertarMarcaService",
-            "ConsultarMarcaService"
+            "ConsultarMarcaService", "ActualizarDoctorService", "EliminarDoctorService"
             };
     @Override
     public void onCreate(Bundle savedInstanceState) {
