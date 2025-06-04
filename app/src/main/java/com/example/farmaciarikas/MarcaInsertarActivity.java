@@ -12,6 +12,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class MarcaInsertarActivity extends Activity {
 
     ControlDBFarmacia dbFarmHelper;
@@ -49,6 +56,7 @@ public class MarcaInsertarActivity extends Activity {
         }
 
     }
+
 
     public void limpiarCampos(View v){
         editIdMarca.setText("");

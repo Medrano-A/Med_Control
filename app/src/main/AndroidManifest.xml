@@ -16,7 +16,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FarmaciaRikas"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ConsultarMarcaService"
+            android:exported="false" />
+        <activity
+            android:name=".InsertarMarcaService"
+            android:exported="false" />
         <activity
             android:name=".ConsultarDoctorService"
             android:exported="false" />

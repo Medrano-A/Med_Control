@@ -513,6 +513,8 @@
     <string name="cantidad_elemento">Cantidad</string>
     <string name="precio_unitario">Precio Unitario</string>
     <string name="unidades">Unidades</string>
+    <string name="insertar_en_servidor">Insertar en Servidor</string>
+    <string name="consultar_marca_en_servidor">Consultar Marca en servidor</string>
 
 </resources>
 
