@@ -26,8 +26,9 @@ public class InsertarDepartamentoService extends AppCompatActivity {
     private Button btnInsertar, btnLimpiar;
 
     // Cambia la IP si es necesario
-    private final String URL = "http://192.168.0.12/ws5/farmacia/insertar_departamento.php";
-
+    private final String URL = String.format("http://%s/ws5/farmacia/insertar_departamento.php", ControlService.BASE_IP);
+    // 172.16.112.174
+    // http://172.16.112.174/ws5/farmacia/insertar_departamento.php
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -6,9 +6,21 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 public class ServiciosActivity extends ListActivity  {
-    String[] menu={"Servicio Ingresar Departamento","Servicio Consultar Departamento","Servicio Ingresar Doctor","Servicio Editar Doctor","Servicio Consultar Doctor","Servicio Eliminar Doctor","Serivicio Ingresar Marca","Servicio Consultar Marca"};
+    String[] menu={
+            "Servicio Ingresar Departamento",
+            "Servicio Consultar Departamento",
+            "Servicio Ingresar Doctor",
+            "Servicio Consultar Doctor",
+            "Servicio Editar Doctor",
+            "Servicio Eliminar Doctor","Serivicio Ingresar Marca",
+            "Servicio Consultar Marca"};
     String[]
-            activities={"InsertarDepartamentoService","ConsultarDepartamentoService","LocalMenuActivity"};
+            activities={
+            "InsertarDepartamentoService",
+            "ConsultarDepartamentoService",
+            "InsertarDoctorService",
+            "ConsultarDoctorService"
+            };
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,7 +30,7 @@ public class ServiciosActivity extends ListActivity  {
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
-        if(position!=3){
+
             String nombreValue=activities[position];
             try{
                 Class<?>
@@ -28,6 +40,6 @@ public class ServiciosActivity extends ListActivity  {
             }catch(ClassNotFoundException e){
                 e.printStackTrace();
             }
-        }
+
     }
 }
