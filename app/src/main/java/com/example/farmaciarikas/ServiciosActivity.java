@@ -9,13 +9,15 @@ public class ServiciosActivity extends ListActivity  {
     String[] menu={
             "Servicio Ingresar Departamento","Servicio Consultar Departamento",
             "Servicio Ingresar Doctor","Servicio Consultar Doctor",
+            "Servicio Insertar Marca",
+            "Servicio Consultar Marca",
             "Servicio Editar Doctor",
-            "Servicio Eliminar Doctor","Serivicio Ingresar Marca",
-            "Servicio Consultar Marca"};
+            "Servicio Eliminar Doctor",};
     String[]
             activities={
             "InsertarDepartamentoService","ConsultarDepartamentoService",
-            "InsertarDoctorService","ConsultarDoctorService"
+            "InsertarDoctorService","ConsultarDoctorService","InsertarMarcaService",
+            "ConsultarMarcaService"
             };
     @Override
     public void onCreate(Bundle savedInstanceState) {
