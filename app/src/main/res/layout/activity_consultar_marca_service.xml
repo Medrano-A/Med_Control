@@ -33,15 +33,6 @@
     </TableRow>
 
     <TableRow>
-        <Button
-            android:id="@+id/marcaConsultarBtnId"
-            style="?android:attr/buttonBarButtonStyle"
-            android:onClick="consultarMarca"
-            android:text="@string/ConsultarDatos"
-            />
-    </TableRow>
-
-    <TableRow>
         <TextView
             android:id="@+id/marcaNomCons"
             android:text="@string/nombreMarca"
