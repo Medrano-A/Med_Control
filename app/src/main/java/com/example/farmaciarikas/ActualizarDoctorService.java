@@ -158,7 +158,7 @@ public class ActualizarDoctorService extends Activity {
                     editJvpm.setText(json.optString("jvpm", ""));
                     telefono.setText(json.optString("telefonoDoctor", ""));
                     correo.setText(json.optString("correoDoctor", ""));
-                    editIdDoctor.setEnabled(true);
+                    editIdDoctor.setEnabled(false);
                 } else {
                     String msg = json.optString("message", "No encontrado");
                     Toast.makeText(ActualizarDoctorService.this, msg, Toast.LENGTH_LONG).show();
