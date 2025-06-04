@@ -62,7 +62,7 @@ public class ConsultarDepartamentoService extends AppCompatActivity {
 
             try {
                 // URL con la IP local de tu servidor
-                URL url = new URL("http://192.168.0.12/ws5/farmacia/consultar_departamento.php?idDepartamento=" + idDepartamento);
+                URL url = new URL("http://" + ControlService.BASE_IP + "/ws5/farmacia/consultar_departamento.php?idDepartamento=" + idDepartamento);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
 

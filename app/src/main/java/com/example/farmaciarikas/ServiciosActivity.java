@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 public class ServiciosActivity extends ListActivity  {
     String[] menu={
+
             "Servicio Ingresar Departamento","Servicio Consultar Departamento",
             "Servicio Ingresar Doctor","Servicio Consultar Doctor",
             "Servicio Insertar Marca",
@@ -28,7 +29,7 @@ public class ServiciosActivity extends ListActivity  {
     @Override
     protected void onListItemClick(ListView l,View v,int position,long id){
         super.onListItemClick(l, v, position, id);
-        if(position!=3){
+
             String nombreValue=activities[position];
             try{
                 Class<?>
@@ -38,6 +39,6 @@ public class ServiciosActivity extends ListActivity  {
             }catch(ClassNotFoundException e){
                 e.printStackTrace();
             }
-        }
+
     }
 }
